@@ -26,7 +26,7 @@ public:
 	void bindIOS(boost::asio::io_service& ios);
 
 protected:
-
+	virtual std::shared_ptr<Socket> createSocket(boost::asio::io_service& ios) = 0;
 	virtual Boolean execute(const MsgData& msg) = 0;
 
 	virtual void close() = 0;

@@ -17,6 +17,7 @@ public:
 	void setClientPort(UShort port) { _clientPort = port; }
 
 protected:
+	virtual std::shared_ptr<Socket> createSocket(boost::asio::io_service& ios) override;
 	virtual Boolean execute(const MsgData& msg);
 	virtual void close();
 	virtual Boolean proHeartBeatTimeout();
