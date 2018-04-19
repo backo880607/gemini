@@ -1,5 +1,5 @@
-#include "../../../include/session/authz/DefaultObjectPermission.h"
-#include "../../../public/tools/StringUtil.h"
+#include "session/authz/DefaultObjectPermission.h"
+#include "tools/StringUtil.h"
 
 namespace gemini {
 

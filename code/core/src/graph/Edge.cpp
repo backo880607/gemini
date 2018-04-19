@@ -1,4 +1,4 @@
-#include "../../include/graph/Edge.h"
+#include "graph/Edge.h"
 
 namespace gemini {
 namespace graph {

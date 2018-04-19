@@ -14,6 +14,9 @@ public:
 	~WorkIn();
 
 	DECLARE_ENTITY(Work, work)
+	DECLARE_VECTOR(WorkRel, workRels)
+	DECLARE_ENTITY(Item, inputItem)
+	DECLARE_ENTITY(RouteStepIn, routeStepIn)
 };
 
 }

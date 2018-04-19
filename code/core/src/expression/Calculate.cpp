@@ -1,6 +1,7 @@
-#include "../../include/expression/Calculate.h"
-#include "../../include/entities/FactoryMgr.h"
-#include "../../include/Application.h"
+#include "expression/Calculate.h"
+#include "entities/FactoryMgr.h"
+#include "Application.h"
+#include "entities/IocRelation.h"
 
 #include <locale>
 
@@ -8,17 +9,17 @@ namespace gemini {
 
 #define ENDFLG	'\0'
 
-Any IntCalculate::getValue(const EntityObject::SPtr entity)
+Any LongCalculate::getValue(const EntityObject::SPtr& entity)
 {
 	return _value;
 }
 
-Boolean IntCalculate::parse(const Char*& str)
+Boolean LongCalculate::parse(const Char*& str)
 {
 	return false;
 }
 
-Any DoubleCalculate::getValue(const EntityObject::SPtr entity)
+Any DoubleCalculate::getValue(const EntityObject::SPtr& entity)
 {
 	return _value;
 }
@@ -28,7 +29,7 @@ Boolean DoubleCalculate::parse(const Char*& str)
 	return false;
 }
 
-Any TextCalculate::getValue(const EntityObject::SPtr entity)
+Any TextCalculate::getValue(const EntityObject::SPtr& entity)
 {
 	return _value;
 }
@@ -48,7 +49,7 @@ Boolean TextCalculate::parse(const Char*& str)
 	return false;
 }
 
-Any DateTimeCalculate::getValue(const EntityObject::SPtr entity)
+Any DateTimeCalculate::getValue(const EntityObject::SPtr& entity)
 {
 	return _value;
 }
@@ -74,12 +75,12 @@ OperTypeCalculate::OperTypeCalculate(const String& name)
 	_fun = FunctionMgr::instance().getFunction(name);
 }
 
-Any OperTypeCalculate::getValue(const EntityObject::SPtr entity)
+Any OperTypeCalculate::getValue(const EntityObject::SPtr& entity)
 {
 	return nullptr;
 }
 
-Any OperTypeCalculate::getValue(const Any& param1, const Any& param2, const EntityObject::SPtr entity)
+Any OperTypeCalculate::getValue(const Any& param1, const Any& param2, const EntityObject::SPtr& entity)
 {
 	std::vector<Any> params;
 	params.push_back(param1);
@@ -92,7 +93,7 @@ Boolean OperTypeCalculate::parse(const Char*& str)
 	return false;
 }
 
-Any FieldCalculate::getValue(const EntityObject::SPtr entity)
+Any FieldCalculate::getValue(const EntityObject::SPtr& entity)
 {
 	if (_propertyCls == nullptr) {
 		return nullptr;
@@ -102,15 +103,22 @@ Any FieldCalculate::getValue(const EntityObject::SPtr entity)
 		return entity;
 	}
 
-	EntityObject::SPtr relaEntity = entity;
+	Boolean multiRef = false;
+	std::vector<UInt> signs;
 	for (const Field* path : _paths) {
-		relaEntity = path->get<EntityObject::SPtr>(relaEntity.rawPointer());
-		if (relaEntity == nullptr) {
-			break;
-		}
+		multiRef = path->getMultiRef();
+		signs.push_back(path->index());
+	}
+	if (multiRef) {
+		signs.push_back(_field->index());
+		return IocRelation::getList(entity, signs);
+	}
+	EntityObject::SPtr targetEntity = IocRelation::get(entity, signs);
+	if (!targetEntity.valid()) {
+		return nullptr;
 	}
 
-	return getResult(relaEntity.rawPointer());
+	return getResult(targetEntity.rawPointer());
 }
 
 Boolean FieldCalculate::parse(const Char*& str)
@@ -163,40 +171,84 @@ Boolean FieldCalculate::parse(const Char*& str)
 
 Any FieldCalculate::getResult(const EntityObject* entity)
 {
-	if (_propertyCls == &Class::forType<Boolean>()) {
-		return entity != nullptr ? _field->get<Boolean>(entity) : false;
-	} else if (_propertyCls == &Class::forType<Char>()) {
-		return entity != nullptr ? _field->get<Char>(entity) : Char();
-	} else if (_propertyCls == &Class::forType<UChar>()) {
-		return entity != nullptr ? _field->get<UChar>(entity) : UChar();
-	} else if (_propertyCls == &Class::forType<Short>()) {
-		return entity != nullptr ? _field->get<Short>(entity) : Short();
-	} else if (_propertyCls == &Class::forType<UShort>()) {
-		return entity != nullptr ? _field->get<UShort>(entity) : UShort();
-	} else if (_propertyCls == &Class::forType<Int>()) {
-		return entity != nullptr ? _field->get<Int>(entity) : Int();
-	} else if (_propertyCls == &Class::forType<UInt>()) {
-		return entity != nullptr ? _field->get<UInt>(entity) : UInt();
-	} else if (_propertyCls == &Class::forType<Long>()) {
-		return entity != nullptr ? _field->get<Long>(entity) : Long();
-	} else if (_propertyCls == &Class::forType<ULong>()) {
-		return entity != nullptr ? _field->get<ULong>(entity) : ULong();
-	} else if (_propertyCls == &Class::forType<Float>()) {
-		return entity != nullptr ? _field->get<Float>(entity) : Float();
-	} else if (_propertyCls == &Class::forType<Double>()) {
-		return entity != nullptr ? _field->get<Double>(entity) : Double();
-	} else if (_propertyCls == &Class::forType<LDouble>()) {
-		return entity != nullptr ? _field->get<LDouble>(entity) : LDouble();
-	} else if (_propertyCls == &Class::forType<String>()) {
-		return entity != nullptr ? _field->get<String>(entity) : String();
+	if (entity == nullptr) {
+		return nullptr;
 	}
 
-	return Any();
+	if (_propertyCls == &Class::forType<Boolean>()) {
+		return _field->get<Boolean>(entity);
+	} else if (_propertyCls == &Class::forType<Char>()) {
+		return _field->get<Char>(entity);
+	} else if (_propertyCls == &Class::forType<UChar>()) {
+		return _field->get<UChar>(entity);
+	} else if (_propertyCls == &Class::forType<Short>()) {
+		return _field->get<Short>(entity);
+	} else if (_propertyCls == &Class::forType<UShort>()) {
+		return _field->get<UShort>(entity);
+	} else if (_propertyCls == &Class::forType<Int>()) {
+		return _field->get<Int>(entity);
+	} else if (_propertyCls == &Class::forType<UInt>()) {
+		return _field->get<UInt>(entity);
+	} else if (_propertyCls == &Class::forType<Long>()) {
+		return _field->get<Long>(entity);
+	} else if (_propertyCls == &Class::forType<ULong>()) {
+		return _field->get<ULong>(entity);
+	} else if (_propertyCls == &Class::forType<Float>()) {
+		return _field->get<Float>(entity);
+	} else if (_propertyCls == &Class::forType<Double>()) {
+		return _field->get<Double>(entity);
+	} else if (_propertyCls == &Class::forType<LDouble>()) {
+		return _field->get<LDouble>(entity);
+	} else if (_propertyCls == &Class::forType<String>()) {
+		return _field->get<String>(entity);
+	} else if (_propertyCls->isBase(Class::forType<EntityObject>())) {
+		return _field->get<EntityObject::SPtr>(entity);
+	}
+
+	return nullptr;
 }
 
-Any FunctionCalculate::getValue(const EntityObject::SPtr entity)
+Any FunctionCalculate::getValue(const EntityObject::SPtr& entity)
 {
-	return nullptr;
+	std::vector<Any> params;
+	if (_params.empty()) {
+		return _fun.invoke(params);
+	}
+
+	UInt index = 0;
+	Any paramVal = _params[index].getValue(entity);
+	if (!paramVal) {
+		return nullptr;
+	}
+
+	params.push_back(paramVal);
+	if (paramVal.getClass().isBase(Class::forType<EntityObject>())) {
+		EntityObject::SPtr targetEntity = paramVal.cast<EntityObject::SPtr>();
+		for (++index; index < _params.size(); ++index) {
+			paramVal = _params[index].getValue(targetEntity);
+			if (!paramVal) {
+				return nullptr;
+			}
+			params.push_back(paramVal);
+		}
+	} else if (paramVal.getClass() == Class::forType<IList>()) {
+		const IList& targetEntities = paramVal.cast<IList>();
+		for (++index; index < _params.size(); ++index) {
+			if (!_params[index]._hasField) {
+				params.push_back(_params[index].getValue(nullptr));
+				continue;
+			}
+		}
+	} else {
+		for (++index; index < _params.size(); ++index) {
+			paramVal = _params[index].getValue(entity);
+			if (!paramVal) {
+				return nullptr;
+			}
+			params.push_back(paramVal);
+		}
+	}
+	return _fun.invoke(params);
 }
 
 Boolean FunctionCalculate::parse(const Char*& str)
@@ -226,6 +278,42 @@ Boolean FunctionCalculate::parse(const Char*& str)
 		return false;
 
 	++str;
+	return true;
+}
+
+Any DurationCalculate::getValue(const EntityObject::SPtr& entity)
+{
+	return Any();
+}
+
+Boolean DurationCalculate::parse(const Char *& str)
+{
+	return Boolean();
+}
+
+Any EnumCalculate::getValue(const EntityObject::SPtr& entity)
+{
+	return Any();
+}
+
+Boolean EnumCalculate::parse(const Char *& str)
+{
+	return Boolean();
+}
+
+Any BracketCalculate::getValue(const EntityObject::SPtr& entity)
+{
+	return _exp.getValue(entity);
+}
+
+Boolean BracketCalculate::parse(const Char *& str)
+{
+	Node* nd = _exp.create(str, false);
+	if (nd == nullptr) {
+		return false;
+	}
+
+	_exp._root = nd;
 	return true;
 }
 

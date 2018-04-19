@@ -15,32 +15,32 @@ namespace gemini {
 class CORE_API MsgData
 {
 	/**
-	* @brief 消息头
+	* @brief 消息头-8字节
 	*/
 	struct MsgHead {
 		UChar 	type;			///< 传输的消息类型
 		UChar   funcID;			///< 功能号
 		UChar 	dataEncode;		///< 数据类型(4bits)，及数据编码类型(4bits)
 		UChar 	cptEncryPri;	///< 数据压缩类型(2bits)，加密类型(2bits)及优先级(4bits)
-		UShort  seq;			///< 消息块序号
-		UShort 	size;			///< 实际传输的数据大小
+		//UShort  seq;			///< 消息块序号
+		UInt 	size;			///< 实际传输的数据大小
 		UInt 	originSize;		///< 原始数据大小，即压缩前的数据大小
 		UInt 	id;				///< 客户端消息ID(12bits)，服务端会话ID(20bits)
+		Char	path[120];		///< 处理路径
 	};
 
 public:
 	typedef UChar T_TYPE;
-	typedef UChar T_FUNC;
 
 	class mutable_buffer {
 	public:
 		/// Construct an empty buffer.
-		mutable_buffer() : data_(0), size_(0) {}
+		mutable_buffer() : _data(0), _size(0) {}
 		/// Construct a buffer to represent a given memory range.
-		mutable_buffer(void* data, std::size_t size) : data_(data), size_(size) {}
+		mutable_buffer(void* data, std::size_t size) : _data(data), _size(size) {}
 
-		void* data_;
-		std::size_t size_;
+		void* _data;
+		std::size_t _size;
 	};
 
 	static const UInt s_maxBlock = 64*1024; 	///< 最大的消息传输块大小，超过该长度的消息，分块传输
@@ -140,11 +140,11 @@ public:
 	/**
 	 * @brief 获取序号
 	 */
-	UShort getSeq() const { return getHead().seq; }
+	//UShort getSeq() const { return getHead().seq; }
 	/**
 	 * @brief 设置序号
 	 */
-	void setSeq(UShort seq) { getHead().seq = seq; }
+	//void setSeq(UShort seq) { getHead().seq = seq; }
 	
 	/**
 	 * @brief 获取ID
@@ -171,6 +171,9 @@ public:
 	 */
 	void setSessionID(UInt id)
 	{ getHead().id = ((getHead().id >> 20) << 20) | id; }
+
+	String getPath() const { return getHead().path; }
+	void setPath(const Char* path) { }
 
 	/**
 	 * @brief 获取头部首地址

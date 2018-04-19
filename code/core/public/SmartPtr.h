@@ -65,7 +65,7 @@ public:
 	~StorageSystem() { }
 
 	void create() { _pT = new value_type; }
-	void destroy() { delete _pT; _pT = nullptr; }
+	void destroy() { delete (void *)_pT; _pT = nullptr; }
 
 	pointer operator-> () const { return _pT; }
 	pointer operator-> () { return _pT; }

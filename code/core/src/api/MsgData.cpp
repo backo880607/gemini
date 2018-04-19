@@ -1,5 +1,5 @@
-#include "../../public/api/MsgData.h"
-#include "../../public/Buffer.h"
+#include "api/MsgData.h"
+#include "Buffer.h"
 
 #include <mutex>
 
@@ -20,8 +20,6 @@ uint8_t s_key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 
 uint8_t s_iv[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
 const UInt AES_BLOCK_LEN = 16;
 
-//const UInt _S_MsgTypes[] = { MsgType::MSG_RealTime, MsgType::MSG_History, MsgType::MSG_Cur5Minutes, MsgType::MSG_SliceTime, MsgType::MSG_ExRight, 0 };
-//const std::size_t _S_MsgTypesLen = (sizeof(_S_MsgTypes) / sizeof(_S_MsgTypes[0])) - 1;
 MsgData::MsgData()
 {
 	memset(&_head, 0, s_msgHeadSize);
@@ -32,7 +30,7 @@ MsgData::MsgData()
 	setCompressType(CompressType::CPT_NONE);
 	setEncryption(Encryption::Encry_None);
 	setPriority(0);
-	setSeq(0);
+	//setSeq(0);
 }
 
 MsgData::~MsgData()
@@ -59,7 +57,7 @@ void MsgData::networkToHost()
 	*ptr = ntohs(*ptr);
 	++ptr;
 	*ptr = ntohs(*ptr);
-	getHead().seq = ntohs(getHead().seq);
+	//getHead().seq = ntohs(getHead().seq);
 	getHead().size = ntohs(getHead().size);
 	getHead().originSize = ntohl(getHead().originSize);
 	getHead().id = ntohl(getHead().id);
@@ -71,7 +69,7 @@ void MsgData::hostToNetwork()
 	*ptr = htons(*ptr);
 	++ptr;
 	*ptr = htons(*ptr);
-	getHead().seq = htons(getHead().seq);
+	//getHead().seq = htons(getHead().seq);
 	getHead().size = htons(getHead().size);
 	getHead().originSize = htonl(getHead().originSize);
 	getHead().id = htonl(getHead().id);
@@ -98,7 +96,7 @@ Boolean MsgData::commit(std::size_t size)
 
 Boolean MsgData::step(UInt pos, const Char*& data, UInt& size)
 {
-	UInt buffSize = boost::asio::buffer_size(_data->data());
+	UInt buffSize = (UInt)boost::asio::buffer_size(_data->data());
 	if (pos >= buffSize)
 		return false;
 
@@ -110,13 +108,13 @@ Boolean MsgData::step(UInt pos, const Char*& data, UInt& size)
 
 Boolean MsgData::valid() const
 {
-	return getDataSize() > 0 && getAESCBCSize() == boost::asio::buffer_size(_data->data());
+	return getAESCBCSize() == boost::asio::buffer_size(_data->data());
 }
 
 Boolean MsgData::format()
 {
 	const Char* pData = boost::asio::buffer_cast<const Char*>(_data->data());
-	const UInt size = boost::asio::buffer_size(_data->data());
+	const UInt size = (UInt)boost::asio::buffer_size(_data->data());
 	return format(pData, size);
 }
 
@@ -127,8 +125,8 @@ Boolean MsgData::format(const void* pData, std::size_t size)
 	const Encryption encry = getEncryption();
 	if (cpt == CompressType::CPT_NONE && encry == Encryption::Encry_None)
 	{
-		getHead().size = size;
-		getHead().originSize = size;
+		getHead().size = (UInt)size;
+		getHead().originSize = (UInt)size;
 		if (pData != boost::asio::buffer_cast<const Char*>(_data->data()))
 		{
 			_data->consume(_data->size());
@@ -138,36 +136,36 @@ Boolean MsgData::format(const void* pData, std::size_t size)
 		return true;
 	}
 
-	std::size_t postCompressSize = (size + 12) * 1.1;
+	std::size_t postCompressSize = (UInt)((size + 12) * 1.1);
 	//Char* comBuf = (Char*)malloc(postCompressSize*sizeof(Char));
 	Buffer<Char> comBuf(postCompressSize + 16);
 	const Char* data = nullptr;
-	// Ñ¹Ëõ´¦Àí
+	// Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (cpt == CompressType::CPT_ZLIB) {
 		Int rt = compress((Bytef*)comBuf.begin(), (uLongf*)&postCompressSize, (const Bytef *)pData, (uLong)size);
 		if (rt != Z_OK)
 		{
-			//LOG(Logger::LOG_INFO).Log("Êý¾ÝÑ¹Ëõ´íÎó	rt: ").Log(rt);
+			//LOG(Logger::LOG_INFO).Log("ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	rt: ").Log(rt);
 			return false;
 		}
 		comBuf[postCompressSize / sizeof(Char)] = 0;
 
 		data = comBuf.begin();
-		getHead().size = postCompressSize;
-		getHead().originSize = size;
+		getHead().size = (UInt)postCompressSize;
+		getHead().originSize = (UInt)size;
 	}
 	else if (cpt == CompressType::CPT_NONE) {
 		memcpy(comBuf.begin(), pData, size);
 		data = comBuf.begin();
-		getHead().size = size;
-		getHead().originSize = size;
+		getHead().size = (UInt)size;
+		getHead().originSize = (UInt)size;
 	}
 	else {
 		return false;
 	}
 
 
-	// ¼ÓÃÜ´¦Àí
+	// ï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½
 	if (encry == Encryption::Encry_AES)
 	{
 		std::unique_lock<std::mutex> locker(g_zlibMutex);
@@ -197,7 +195,7 @@ Boolean MsgData::parse()
 {
 	const Char* data = boost::asio::buffer_cast<const Char*>(_data->data());
 
-	// ½âÃÜ
+	// ï¿½ï¿½ï¿½ï¿½
 	Encryption encry = getEncryption();
 	if (encry == Encryption::Encry_AES)
 	{
@@ -212,7 +210,7 @@ Boolean MsgData::parse()
 		decryBuf.reset();
 	}
 
-	// ½âÑ¹
+	// ï¿½ï¿½Ñ¹
 	const CompressType cpt = getCompressType();
 	if (cpt == CompressType::CPT_ZLIB)
 	{
@@ -223,7 +221,7 @@ Boolean MsgData::parse()
 			(const Bytef *)data, (uLong)getHead().size);
 		if (rt != Z_OK || bufSize != originSize)
 		{
-			//LOG(Logger::LOG_INFO).Log("Êý¾Ý½âÑ¹´íÎó	rt: ").Log(rt);
+			//LOG(Logger::LOG_INFO).Log("ï¿½ï¿½ï¿½Ý½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½	rt: ").Log(rt);
 			return false;
 		}
 

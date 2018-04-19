@@ -1,7 +1,7 @@
-#include "../../public/Object.h"
-#include "../../include/entities/RefBase.h"
-#include "../../public/message/Exception.h"
-#include "../../public/tools/StringUtil.h"
+#include "Object.h"
+#include "entities/RefBase.h"
+#include "message/Exception.h"
+#include "tools/StringUtil.h"
 
 #include <chrono>
 #include <atomic>
@@ -97,21 +97,6 @@ Boolean IList::operator==(const Any & rhs) const
 		}
 	}
 	return rhsIter.hasNext() ? false : true;
-}
-
-String IList::str() const
-{
-	String value;
-	IList::Iterator iter = iterator();
-	while (iter.hasNext()) {
-		EntityObject::SPtr entity = iter.next<EntityObject>();
-		value += StringUtil::format(entity->getID()) += ',';
-	}
-
-	if (!value.empty()) {
-		value.erase(value.size() - 1);
-	}
-	return std::move(value);
 }
 
 }

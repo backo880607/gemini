@@ -1,5 +1,5 @@
-#include "../../include/propagate/GraphPropagate.h"
-#include "../../include/propagate/EdgePropagate.h"
+#include "propagate/GraphPropagate.h"
+#include "propagate/EdgePropagate.h"
 
 namespace gemini {
 

@@ -4,12 +4,18 @@
 
 namespace aps {
 
+class Task
 class APS_API Resource : public gemini::EntityObject
 {
 	DECLARE_CLASS(Resource, gemini::EntityObject)
 public:
 	Resource();
 	~Resource();
+
+	DECLARE_FIELD(gemini::String, prevBuffer)
+	DECLARE_FIELD(gemini::String, nextBuffer)
+
+	DECLARE_VECTOR(Task, tasks)
 };
 
 }

@@ -35,6 +35,7 @@ public:
 	static Any funCount(const std::vector<Any>& params);
 	static Any funAverage(const std::vector<Any>& params);
 	static Any funSum(const std::vector<Any>& params);
+	static Any funGuard(const std::vector<Any>& params);
 };
 
 }

@@ -1,4 +1,4 @@
-#include "../../public/api/MsgQueue.h"
+#include "api/MsgQueue.h"
 
 namespace gemini {
 

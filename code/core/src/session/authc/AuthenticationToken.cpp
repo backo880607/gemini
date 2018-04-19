@@ -1,4 +1,4 @@
-#include "../../../public/session/AuthenticationToken.h"
+#include "session/AuthenticationToken.h"
 
 namespace gemini {
 

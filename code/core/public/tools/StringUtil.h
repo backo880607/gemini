@@ -3,9 +3,7 @@
 #include "../Common.h"
 
 namespace gemini {
-	
-class Any;
-class DateTime;
+
 class CORE_API StringUtil final : public noncopyable
 {
 	StringUtil() = delete;
@@ -30,39 +28,49 @@ public:
 	static Int compare(const Char* str, const Char* test);
 	static Int icompare(const Char* str, const Char* test);
 
+	static String::size_type ifind_first(const Char* str, const Char* test);
+	static String::size_type ifind_last(const Char* str, const Char* test);
+	static String get_head(const Char* str, const Char* sep);
+	static String iget_head(const Char* str, const Char* sep);
+	static String get_tail(const Char* str, const Char* sep);
+	static String iget_tail(const Char* str, const Char* sep);
 
-	static String find_last(const String& str, const Char* sep);
+	static void erase_all(String& str, const Char* dest);
+	static void ierase_all(String& str, const Char* dest);
+	static void erase_first(String& str, const Char* dest);
+	static void ierase_first(String& str, const Char* dest);
+
 
 	static const Char* increment(const Char* str);
 	static const Char* descending(const Char* str);
 
-	static Int icompare(const String& str, const Char* rhs);
+	static void replace(String& str, const Char* origin, const Char* des);
 
 	template <typename T>
 	static String format(T val) { return formatImpl(val); }
 	static String format(Float val, Int precision);
 	static String format(Double val, Int precision);
 	static String format(LDouble val, Int precision);
-	static String format(const DateTime& val, const Char* f);
 
 	template <typename T>
 	static T convert(const Char* str) { 
 		std::remove_const<T>::type val;
 		convertImpl(val, str);
-		if (errno == ERANGE) {
-
-		}
-
 		return val;
 	}
 	template <typename T>
 	static T convert(const Char* str, std::size_t fPos, std::size_t lPos) {
-		return (T)convertLong(str, fPos, lPos);
+		std::remove_const<T>::type val;
+		convertImpl(val, str, fPos, lPos);
+		return val;
 	}
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template <>
 	static String convert<String>(const Char* str, std::size_t fPos, std::size_t lPos) {
 		return String(str + fPos, lPos - fPos);
 	}
+#else
+#endif
 
 	static void append(String& str) {}
 	template <typename T, typename ...Args>
@@ -72,19 +80,18 @@ public:
 	}
 
 	template <typename T>
-	static String join(const T& container, const Char* sep, Boolean bPair = false) {
+	static String join(const T& container, const Char* sep) {
 		typename T::const_iterator fIter = container.begin();
 		typename T::const_iterator lIter = container.end();
-		return std::move(join(fIter, lIter, sep, bPair));
+		return std::move(join(fIter, lIter, sep));
 	}
-
 	template <typename InputIter>
-	static String join(InputIter fIter, InputIter lIter, const Char* sep, Boolean bPair = false) {
+	static String join(InputIter fIter, InputIter lIter, const Char* sep) {
 		String value;
 		for (; fIter != lIter; ++fIter) {
 			value += format(*fIter) += sep;
 		}
-		if (false == bPair && !value.empty()) {
+		if (!value.empty()) {
 			value.erase(value.size() - strlen(sep));
 		}
 
@@ -107,38 +114,34 @@ public:
  		if (fPos <= lPos)
  			vecVal.push_back(convert<T>(str.c_str(), fPos, lPos));
 	}
-
 	template <typename T, typename Fun>
 	static void parse(const String& str, const Char* sep, Fun fun, std::size_t fPos = 0, std::size_t lPos = String::npos) {
 		if (fPos >= lPos || str.empty()) return;
 
 		const std::size_t sepLen = strlen(sep);
 		std::size_t idx = str.find(sep, fPos);
-		while (idx != String::npos && idx < lPos)
-		{
+		while (idx != String::npos && idx < lPos) {
 			fun(convert<T>(str.c_str(), fPos, idx));
 			idx += sepLen;
 			fPos = idx;
 			idx = str.find(sep, idx);
 		}
 
-		if (fPos <= lPos)
-		{
+		if (fPos <= lPos) {
 			fun(convert<T>(str.c_str(), fPos, lPos));
 		}
 	}
 	template <typename T, typename Fun>
 	static void parse(const String& str, const Char* sep, Fun fun, const Char* lhs, const Char* rhs) {
 		std::size_t fPos = str.find(lhs);
-		if (fPos != String::npos)
-		{
+		if (fPos != String::npos) {
 			std::size_t lPos = str.find(rhs, ++fPos);
 			if (lPos != String::npos)
 				parse<T>(str, sep, fun, fPos, lPos);
 		}
 	}
 
-	static void replace(String& str, const Char* origin, const Char* des);
+	static String SPrintf(const Char* pFormat, ...);
 
 	static std::wstring utf8_to_unicode(const Char* src);
 
@@ -166,21 +169,34 @@ private:
 	static String formatImpl(WChar* val);
 	static String formatImpl(const WChar* val);
 	static String formatImpl(const String& val) { return val; }
-	static String formatImpl(const Any& val);
-	static String formatImpl(const DateTime& val);
 
 	template <typename T>
-	static void convertImpl(T& val, const Char* str) { val = std::strtoll(str, nullptr, 0); }
-	static void convertImpl(Short& val, const Char* str) { val = (Short)std::strtol(str, nullptr, 0); }
-	static void convertImpl(UShort& val, const Char* str) { val = (UShort)std::strtol(str, nullptr, 0); }
-	static void convertImpl(Int& val, const Char* str) { val = std::strtol(str, nullptr, 0); }
-	static void convertImpl(UInt& val, const Char* str) { val = std::strtoul(str, nullptr, 0); }
-	static void convertImpl(Long& val, const Char* str) { val = std::strtoll(str, nullptr, 0); }
-	static void convertImpl(ULong& val, const Char* str) { val = std::strtoull(str, nullptr, 0); }
-	static void convertImpl(Float& val, const Char* str) { val = std::strtof(str, nullptr); }
-	static void convertImpl(Double& val, const Char* str) { val = std::strtod(str, nullptr); }
-	static void convertImpl(LDouble& val, const Char* str) { val = std::strtold(str, nullptr); }
-	static Long convertLong(const Char* str, std::size_t fPos /*= 0*/, std::size_t lPos /*= npos*/);
+	static void convertImpl(T& val, const Char* str) { val = T::valueOf(str); }
+	static void convertImpl(Boolean& val, const Char* str) { val = std::strtol(str, nullptr, 0) != 0; }
+	static void convertImpl(Short& val, const Char* str);
+	static void convertImpl(UShort& val, const Char* str);
+	static void convertImpl(Int& val, const Char* str);
+	static void convertImpl(UInt& val, const Char* str);
+	static void convertImpl(Long& val, const Char* str);
+	static void convertImpl(ULong& val, const Char* str);
+	static void convertImpl(Float& val, const Char* str);
+	static void convertImpl(Double& val, const Char* str);
+	static void convertImpl(LDouble& val, const Char* str);
+	static void convertImpl(String& val, const Char* str) { val = str; }
+
+	template <typename T>
+	static void convertImpl(T& val, const Char* str, std::size_t fPos, std::size_t lPos) { val = T::valueOf(String(str + fPos, lPos - fPos)); }
+	static void convertImpl(Boolean& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(Short& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(UShort& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(Int& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(UInt& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(Long& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(ULong& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(Float& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(Double& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(LDouble& val, const Char* str, std::size_t fPos, std::size_t lPos);
+	static void convertImpl(String& val, const Char* str, std::size_t fPos, std::size_t lPos) { val = String(str + fPos, lPos - fPos); }
 };
 
 }

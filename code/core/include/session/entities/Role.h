@@ -7,9 +7,6 @@ namespace gemini {
 class Role : public EntityObject
 {
 	DECLARE_CLASS(Role, EntityObject)
-public:
-	Role() {}
-	~Role() {}
 
 	DECLARE_FIELD(String, name)
 	DECLARE_FIELD(String, remark)

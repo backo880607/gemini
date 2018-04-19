@@ -1,4 +1,4 @@
-#include "../../../include/session/authz/DefaultAuthorizationInfo.h"
+#include "session/authz/DefaultAuthorizationInfo.h"
 
 namespace gemini {
 

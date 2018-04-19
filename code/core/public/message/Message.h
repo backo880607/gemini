@@ -16,8 +16,11 @@ public:
 		Error,
 		Fatal
 	};
-	Message();
-	~Message();
+
+	template <class T, typename ...ARGS>
+	static void debug(ARGS... args) {
+		create<T>(Type::Debug, args...);
+	}
 
 	template <class T, typename ...ARGS>
 	static void info(ARGS... args) {
@@ -40,18 +43,21 @@ public:
 	}
 
 	template <class T, typename ...ARGS>
-	static void strong_error(ARGS... args) {
+	static Message::SPtr strong_error(ARGS... args) {
 		Message::SPtr msg = createTemp<T>(Type::Error, args...);
+		return msg;
 	}
 
 	template <class T, typename ...ARGS>
-	static void tips(ARGS... args) {
+	static Message::SPtr tips(ARGS... args) {
 		Message::SPtr msg = createTemp<T>(Type::Info, args...);
+		return msg;
 	}
 
 	template <class T, typename ...ARGS>
-	static void warning_tips(ARGS... args) {
+	static Message::SPtr warning_tips(ARGS... args) {
 		Message::SPtr msg = createTemp<T>(Type::Warning, args...);
+		return msg;
 	}
 
 private:
@@ -80,8 +86,12 @@ private:
 	}
 	static Message::SPtr createImpl(Type type, log_info& msg, Boolean bTemp = false);
 
+	Type getType() const { return (const Type&)_type; }
+	const String& getName() const { return (const String&)_name; }
+	const String& getDetail() const { return (const String&)_detail; }
+
 private:
-	DECLARE_FIELD(Message::Type, type)
+	DECLARE_FIELD(Type, type)
 	DECLARE_FIELD(String, name)
 	DECLARE_FIELD(String, detail)
 };

@@ -1,5 +1,5 @@
-#include "../../include/service/ServiceMgr.h"
-#include "../../public/message/Exception.h"
+#include "service/ServiceMgr.h"
+#include "message/Exception.h"
 
 namespace gemini {
 
@@ -18,10 +18,7 @@ void ServiceMgr::init()
 	for (std::map<ServiceAutowired*, String>::iterator iter = _autowireds.begin();
 		iter != _autowireds.end(); ++iter) {
 		const IBaseService* service = getInterface(iter->second);
-		if (service == nullptr) {
-			THROW(Exception) << u8"not register service interface: " << iter->second;
-		}
-
+		THROW_IF(service == nullptr, Exception, u8"not register service interface: ", iter->second)
 		iter->first->assign(service);
 	}
 }
@@ -29,19 +26,14 @@ void ServiceMgr::init()
 void ServiceMgr::registerService(const String& name, const BaseService* service)
 {
 	std::map<String, Data>::iterator iter = _services.find(name);
-	if (iter != _services.end()) {
-		THROW(Exception) << u8"repeat register service: " << name;
-	}
+	THROW_IF(iter != _services.end(), Exception, u8"repeat register service: ", name)
 	_services[name]._service = service;
 }
 
 void ServiceMgr::registerInterface(const String& name, const IBaseService* service)
 {
 	std::map<String, const IBaseService*>::iterator iter = _interfaces.find(name);
-	if (iter != _interfaces.end()) {
-		THROW(Exception) << u8"repeat register service interface: " << name;
-	}
-
+	THROW_IF(iter != _interfaces.end(), Exception, u8"repeat register service interface: ", name)
 	_interfaces.insert(std::make_pair(name, service));
 }
 

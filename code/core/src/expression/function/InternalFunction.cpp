@@ -1,6 +1,6 @@
-#include "../../../include/expression/function/InternalFunction.h"
-#include "../../../public/tools/StringUtil.h"
-#include "../../../public/DateTime.h"
+#include "expression/function/InternalFunction.h"
+#include "tools/StringUtil.h"
+#include "DateTime.h"
 
 namespace gemini {
 
@@ -171,6 +171,11 @@ Any InternalFunction::funAverage(const std::vector<Any>& params)
 Any InternalFunction::funSum(const std::vector<Any>& params)
 {
 
+}
+
+Any InternalFunction::funGuard(const std::vector<Any>& params)
+{
+	return !params[0] ? params[1] : params[0];
 }
 
 }

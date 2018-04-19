@@ -1,4 +1,4 @@
-#include "../../../include/service/mstr/ItemService.h"
+#include "../../../include/service/mstr/ItemServiceImpl.h"
 #include "../../../bean/mstr/Item.h"
 #include "../../../bean/tech/RouteStepIn.h"
 #include "../../../bean/tech/RouteStep.h"
@@ -9,7 +9,7 @@
 void initAPS() {}
 namespace aps {
 
-gemini::ServiceRegister<ItemService, IItemService> item_service_register();
+gemini::ServiceRegister<ItemServiceImpl, ItemService> item_service_register();
 gemini::Boolean ItemService::calcLevel(const gemini::SmartPtr<Item>& item) const
 {
 	if (item->_type == ItemType::SRC_MATERIALS) {

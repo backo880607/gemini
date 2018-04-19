@@ -28,5 +28,7 @@ private:
 	const T* _service;
 };
 
+#define SERVICE_INTERFACE_METHOD(CLS, METHOD_NAME) virtual gemini::Boolean METHOD_NAME(const gemini::SmartPtr<CLS>& entity) const = 0;
+
 }
 #endif // GEMINI_IBaseService_INCLUDE

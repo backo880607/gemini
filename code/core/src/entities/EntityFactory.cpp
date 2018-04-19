@@ -1,8 +1,8 @@
-#include "../../include/entities/EntityFactory.h"
-#include "../../include/entities/RefEntity.h"
-#include "../../include/entities/RefList.h"
-#include "../../include/entities/RefSet.h"
-#include "../../include/entities/RefVector.h"
+#include "entities/EntityFactory.h"
+#include "entities/RefEntity.h"
+#include "entities/RefList.h"
+#include "entities/RefSet.h"
+#include "entities/RefVector.h"
 
 namespace gemini {
 

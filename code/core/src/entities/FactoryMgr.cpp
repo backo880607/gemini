@@ -1,6 +1,6 @@
-#include "../../include/entities/FactoryMgr.h"
-#include "../../public/Object.h"
-#include "../../include/entities/FactoryHelper.h"
+#include "entities/FactoryMgr.h"
+#include "Object.h"
+#include "entities/FactoryHelper.h"
 
 namespace gemini {
 

@@ -1,7 +1,7 @@
-#include "../../include/propagate/Propagate.h"
-#include "../../include/propagate/VertexPropagate.h"
-#include "../../include/propagate/GraphPropagate.h"
-#include "../../include/entities/IocRelation.h"
+#include "propagate/Propagate.h"
+#include "propagate/VertexPropagate.h"
+#include "propagate/GraphPropagate.h"
+#include "entities/IocRelation.h"
 
 #include <stack>
 
@@ -25,7 +25,7 @@ void getEntities(const EntityObject::SPtr& entity, std::vector<UInt>::const_iter
 		result.insert(entity);
 	}
 	else {
-		IList::Iterator relaIter = IocRelation::getList(entity, *iter++)->iterator();
+		IList::Iterator relaIter = IocRelation::getList(entity, *iter++).iterator();
 		while (relaIter.hasNext()) {
 			getEntities(relaIter.next<EntityObject>(), iter, signs, result);
 		}
@@ -52,7 +52,7 @@ std::vector<VertexPropagate*> buildVertex(VertexPropagate* trigger)
 			if (target == nullptr) {
 				target = trigger->createVertex(entity, targetData);
 				result.push_back(target);
-			} else if (target->_visited == -1) { // ³öÏÖÑ­»·
+			} else if (target->_visited == -1) { // ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½
 
 			} else {
 				graph::Graph::createEdge(trigger, 0, target, -1);

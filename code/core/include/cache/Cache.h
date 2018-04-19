@@ -29,6 +29,7 @@ public:
 	}
 
 	static EntityObject::SPtr create(const Class& cls, Long id);
+	static EntityObject::SPtr createTemp(const Class& cls);
 
 	static EntityObject::SPtr get(const Class& cls, Long id);
 

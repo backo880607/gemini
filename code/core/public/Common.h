@@ -110,5 +110,23 @@ protected:
 	noncopyable& operator=(const noncopyable&) = delete;
 };
 
+class CORE_API Platform
+{
+public:
+  static String getEnv(const Char* name);
+  static Boolean hasEnv(const Char* name);
+  static void setEnv(const Char* name, const Char* value);
+  static String osName();
+  static String osDisplayName();
+  static String osVersion();
+  static String osArchitecture();
+  static String nodeName();
+  static String osID();
+  static String CPUID();
+  static String mainDiskID();
+  static String mainBoardID();
+  static String macAddress();
+};
+
 }
 #endif

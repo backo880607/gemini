@@ -4,8 +4,14 @@
 
 namespace boost {
 	namespace property_tree {
+		namespace detail {
+			template <typename T> struct less_nocase;
+		}
+
 		template < class Key, class Data, class KeyCompare = std::less<Key> > class basic_ptree;
-		typedef basic_ptree<std::string, std::string> ptree;
+		typedef basic_ptree<std::string, std::string,
+			detail::less_nocase<std::string> >
+			iptree;
 	}
 }
 
@@ -14,10 +20,10 @@ namespace gemini {
 class CORE_API DataNode
 {
 public:
-	typedef boost::property_tree::ptree node_type;
+	typedef boost::property_tree::iptree node_type;
 	typedef node_type* node_ptr;
 	DataNode() : _pNode(nullptr) { }
-	DataNode(node_ptr node, const Char* name = u8"") : _pNode(node), _name(name) {}
+	DataNode(node_ptr node, const Char* name = "") : _pNode(node), _name(name) {}
 	~DataNode() {}
 	DataNode& operator= (node_ptr node) { _pNode = node; _name.clear(); return *this; }
 	DataNode& operator= (const DataNode& node) { _pNode = node._pNode; _name = node._name; return *this; }

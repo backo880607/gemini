@@ -13,6 +13,7 @@ public:
 	~RouteStepOut();
 
 	DECLARE_ENTITY(RouteStep, routeStep)
+	DECLARE_ENTITY(Item, outputItem)
 };
 
 }

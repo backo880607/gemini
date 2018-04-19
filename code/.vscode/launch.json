@@ -5,14 +5,14 @@
                 "name": "gemini Launch",
                 "type": "cppdbg",
                 "request": "launch",
-                "program": "${workspaceFolder}/a.exe",
+                "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
                 "args": [],
-                "stopAtEntry": false,
+                "stopAtEntry": true,
                 "cwd": "${workspaceFolder}",
                 "environment": [],
                 "externalConsole": true,
                 "MIMode": "gdb",
-                "miDebuggerPath": "C:\\mingw\\bin\\gdb.exe",
+                "miDebuggerPath": "gdb.exe",
                 "setupCommands": [
                     {
                         "description": "Enable pretty-printing for gdb",
@@ -20,7 +20,7 @@
                         "ignoreFailures": true
                     }
                 ],
-                "preLaunchTask": "build hello world"
+                "preLaunchTask": "Compile gemini"
             }
         ]
     }

@@ -1,7 +1,7 @@
-#include "../public/Any.h"
-#include "../public/tools/StringUtil.h"
-#include "../public/message/Exception.h"
-#include "../public/Object.h"
+#include "Any.h"
+#include "tools/StringUtil.h"
+#include "message/Exception.h"
+#include "Object.h"
 
 namespace gemini {
 
@@ -963,7 +963,30 @@ public:
 		if (getClass() == rhs.getClass()) { return _value->getID() < rhs.cast<EntityObject>()->getID(); }
 		THROW(OperandException);
 	}
-	virtual String str() const { return StringUtil::format(_value->getID()); }
+	virtual String str() const { THROW(ClassCastException); }
+};
+class HolderIList : public Any::Holder<const IList&> {
+public:
+	HolderIList(const IList& value) : Any::Holder<const IList&>(value) {}
+	virtual PlaceHolder* clone() const { return new HolderIList(_value); }
+	virtual const Class& getClass() const { return Class::forType<IList>(); }
+	virtual Any operator+ (const Any& rhs) const { THROW(OperandException); }
+	virtual void operator+= (const Any& rhs) { THROW(OperandException); }
+	virtual Any operator- (const Any& rhs) const { THROW(OperandException); }
+	virtual void operator-= (const Any& rhs) { THROW(OperandException); }
+	virtual Any operator* (const Any& rhs) const { THROW(OperandException); }
+	virtual void operator*= (const Any& rhs) { THROW(OperandException); }
+	virtual Any operator/ (const Any& rhs) const { THROW(OperandException); }
+	virtual void operator/= (const Any& rhs) { THROW(OperandException); }
+	virtual Boolean operator== (const Any& rhs) const {
+		//if (getClass() == rhs.getClass()) { return _value->getID() == rhs.cast<EntityObject>()->getID(); }
+		THROW(OperandException);
+	}
+	virtual Boolean operator< (const Any& rhs) const {
+		//if (getClass() == rhs.getClass()) { return _value->getID() < rhs.cast<EntityObject>()->getID(); }
+		THROW(OperandException);
+	}
+	virtual String str() const { THROW(ClassCastException); }
 };
 
 Any::Any(const Any& rhs)
@@ -1053,6 +1076,11 @@ Any::PlaceHolder* Any::create(const Char* value) {
 Any::PlaceHolder * Any::create(const SmartPtr<EntityObject>& value)
 {
 	return new HolderEntityObject(value);
+}
+
+Any::PlaceHolder * Any::create(const IList & value)
+{
+	return new HolderIList(value);
 }
 
 Any& Any::operator= (std::nullptr_t rhs) {

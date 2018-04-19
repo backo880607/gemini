@@ -1,4 +1,8 @@
-#include "../public/DateTime.h"
+#include "DateTime.h"
+#include "message/Exception.h"
+#include "session/Subject.h"
+#include "tools/LocaleUtil.h"
+#include "tools/StringUtil.h"
 
 #include <time.h>
 
@@ -140,6 +144,28 @@ DateTime & DateTime::addMonths(Int months)
 	return *this;
 }
 
+DateTime DateTime::operator+(const Duration & dur) const
+{
+	return DateTime(getValue() + dur._value);
+}
+
+DateTime DateTime::operator-(const Duration & dur) const
+{
+	return DateTime(getValue() - dur._value);
+}
+
+DateTime & DateTime::operator+=(const Duration & dur)
+{
+	_time += dur._value;
+	return *this;
+}
+
+DateTime & DateTime::operator-=(const Duration & dur)
+{
+	_time -= dur._value;
+	return *this;
+}
+
 Any DateTime::operator+ (const Any& rhs) const
 {
 	if (rhs.isType<DateTime>()) {
@@ -202,6 +228,118 @@ Boolean DateTime::operator< (const Any& rhs) const
 		return *this < rhs.cast<DateTime>();
 	}
 	return false;
+}
+
+std::ostringstream& getDateTimeOSStream() {
+	return Subject::get().getSession()->get<LocaleUtil>().getOSS(true);
+}
+String DateTime::str() const
+{
+	std::ostringstream& ss = getDateTimeOSStream();
+	ss << boost::locale::as::datetime << boost::locale::as::local_time << getValue();
+	return ss.str();
+}
+
+String DateTime::str(const Char * f) const
+{
+	tm* t1 = localtime(&_time);
+	Char temp[128];
+	strftime(temp, 128, f, t1);
+	return temp;
+}
+
+std::istringstream& getDateTimeISStream(const Char* str) {
+	return Subject::get().getSession()->get<LocaleUtil>().getISS(str);
+}
+DateTime DateTime::valueOf(const Char * str)
+{
+	DateTime dt;
+	std::istringstream& ss = getDateTimeISStream(str);
+	ss >> boost::locale::as::datetime >> boost::locale::as::local_time >> dt._time;
+	return dt;
+}
+
+Any Duration::operator+(const Any & rhs) const
+{
+	if (rhs.isType<Duration>()) {
+		return Duration(_value + rhs.cast<Duration>()._value);
+	} else if (rhs.isType<DateTime>()) {
+		return DateTime(_value + rhs.cast<DateTime>().getValue());
+	}
+	THROW(OperandException);
+}
+
+void Duration::operator+=(const Any & rhs)
+{
+	if (rhs.isType<Duration>()) {
+		_value += rhs.cast<Duration>()._value;
+	}
+	THROW(OperandException);
+}
+
+Any Duration::operator-(const Any & rhs) const
+{
+	if (rhs.isType<Duration>()) {
+		return Duration(_value - rhs.cast<Duration>()._value);
+	}
+	THROW(OperandException);
+}
+
+void Duration::operator-=(const Any & rhs)
+{
+	if (rhs.isType<Duration>()) {
+		_value -= rhs.cast<Duration>()._value;
+	}
+	THROW(OperandException);
+}
+
+Any Duration::operator*(const Any & rhs) const
+{
+	THROW(OperandException);
+}
+
+void Duration::operator*=(const Any & rhs)
+{
+	THROW(OperandException);
+}
+
+Any Duration::operator/(const Any & rhs) const
+{
+	THROW(OperandException);
+}
+
+void Duration::operator/=(const Any & rhs)
+{
+	if (rhs.isType<Duration>()) {
+		_value /= rhs.cast<Duration>()._value;
+	}
+	THROW(OperandException);
+}
+
+Boolean Duration::operator==(const Any & rhs) const
+{
+	if (rhs.isType<Duration>()) {
+		return _value == rhs.cast<Duration>()._value;
+	}
+	THROW(OperandException);
+}
+
+Boolean Duration::operator<(const Any & rhs) const
+{
+	if (rhs.isType<Duration>()) {
+		return _value < rhs.cast<Duration>()._value;
+	}
+	THROW(OperandException);
+}
+
+String Duration::str() const
+{
+	return StringUtil::format(_value);
+}
+
+Duration Duration::valueOf(const Char * str)
+{
+	return StringUtil::convert<Int>(str);
 }
 
 }

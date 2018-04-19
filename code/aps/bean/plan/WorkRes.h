@@ -5,6 +5,8 @@
 namespace aps {
 
 class Work;
+class Resource;
+class RouteStepRes;
 class APS_API WorkRes : public gemini::EntityObject
 {
 #define MODULE_API APS_API
@@ -14,6 +16,8 @@ public:
 	~WorkRes();
 
 	DECLARE_ENTITY(Work, work)
+	DECLARE_ENTITY(Resource, res)
+	DECLARE_ENTITY(RouteStepRes, routeStepRes)
 };
 
 }

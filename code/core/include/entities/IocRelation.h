@@ -11,14 +11,14 @@ class IocRelation final
 		std::vector<UInt>::const_iterator iter, const std::vector<UInt>& signs);
 
 	static void getListImpl(EntityObject::SPtr entity, std::vector<UInt>::const_iterator iter,
-		const std::vector<UInt>& signs, std::vector<EntityObject::SPtr>& result);
+		const std::vector<UInt>& signs);
 
 public:
 	static EntityObject::SPtr get(EntityObject::SPtr entity, UInt sign);
 	static EntityObject::SPtr get(EntityObject::SPtr entity, const std::vector<UInt>& signs);
 
-	static const RefBase* getList(EntityObject::SPtr entity, UInt sign);
-	static std::vector<EntityObject::SPtr> getList(EntityObject::SPtr entity, const std::vector<UInt>& signs);
+	static const IList& getList(EntityObject::SPtr entity, UInt sign);
+	static const IList& getList(EntityObject::SPtr entity, const std::vector<UInt>& signs);
 
 	static void set(EntityObject::SPtr entity, UInt sign, EntityObject::SPtr relaEntity);
 

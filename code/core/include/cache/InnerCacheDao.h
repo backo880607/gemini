@@ -13,8 +13,11 @@ public:
 	InnerCacheDao();
 	virtual ~InnerCacheDao();
 
-	virtual std::vector<EntityObject::SPtr> select() override;
+	virtual const IList& select() override;
 	virtual EntityObject::SPtr select(ID id) override;
+	virtual void insert(EntityObject::SPtr entity);
+	virtual void erase(ID id);
+	virtual void erase(EntityObject::SPtr entity);
 	virtual void clear();
 
 	virtual void insert(const std::map<ID, EntityObject::SPtr>& entities) override;

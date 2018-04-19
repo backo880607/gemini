@@ -1,10 +1,11 @@
-#include "../../include/Entities/IocRelation.h"
-#include "../../include/Entities/RefVector.h"
-#include "../../include/Entities/EntityFactory.h"
-#include "../../include/Entities/FactoryMgr.h"
+#include "entities/IocRelation.h"
+#include "entities/RefVector.h"
+#include "entities/EntityFactory.h"
+#include "entities/FactoryMgr.h"
 
 namespace gemini {
 
+thread_local RefVector tl_ref_dynamic2;
 EntityObject::SPtr IocRelation::getImpl(EntityObject::SPtr entity, std::vector<UInt>::const_iterator iter, const std::vector<UInt>& signs)
 {
 	if (iter == signs.end()) {
@@ -22,14 +23,14 @@ EntityObject::SPtr IocRelation::getImpl(EntityObject::SPtr entity, std::vector<U
 	return nullptr;
 }
 
-void IocRelation::getListImpl(EntityObject::SPtr entity, std::vector<UInt>::const_iterator iter, const std::vector<UInt>& signs, std::vector<EntityObject::SPtr>& result)
+void IocRelation::getListImpl(EntityObject::SPtr entity, std::vector<UInt>::const_iterator iter, const std::vector<UInt>& signs)
 {
 	if (iter == signs.end()) {
-		result.push_back(entity);
+		tl_ref_dynamic2.add(entity);
 	} else {
 		IList::Iterator relaIter = entity->_relations[*iter++]->iterator();
 		while (relaIter.hasNext()) {
-			getListImpl(relaIter.next<EntityObject>(), iter, signs, result);
+			getListImpl(relaIter.next<EntityObject>(), iter, signs);
 		}
 	}
 }
@@ -44,16 +45,16 @@ EntityObject::SPtr IocRelation::get(EntityObject::SPtr entity, const std::vector
 	return getImpl(entity, signs.begin(), signs);
 }
 
-const RefBase* IocRelation::getList(EntityObject::SPtr entity, UInt sign)
+const IList& IocRelation::getList(EntityObject::SPtr entity, UInt sign)
 {
-	return entity->_relations[sign];
+	return *entity->_relations[sign];
 }
 
-std::vector<EntityObject::SPtr> IocRelation::getList(EntityObject::SPtr entity, const std::vector<UInt>& signs)
+const IList& IocRelation::getList(EntityObject::SPtr entity, const std::vector<UInt>& signs)
 {
-	std::vector<EntityObject::SPtr> result;
-	getListImpl(entity, signs.begin(), signs, result);
-	return result;
+	tl_ref_dynamic2.remove();
+	getListImpl(entity, signs.begin(), signs);
+	return tl_ref_dynamic2;
 }
 
 void IocRelation::set(EntityObject::SPtr entity, UInt sign, EntityObject::SPtr relaEntity)

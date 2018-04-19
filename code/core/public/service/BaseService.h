@@ -8,13 +8,14 @@ class IBaseService;
 class CORE_API BaseService
 {
 	EntityObject::SPtr createImpl(const Class& cls, Long id) const;
+	EntityObject::SPtr createTempImpl(const Class& cls) const;
 	EntityObject::SPtr getImpl(const Class& cls) const;
 	EntityObject::SPtr getImpl(const Class& cls, Long id) const;
 	EntityObject::SPtr getInheritImpl(const Class& cls, Long id) const;
-	std::vector<EntityObject::SPtr> getListImpl(const Class& cls) const;
+	const IList& getListImpl(const Class& cls) const;
 
 	EntityObject::SPtr getImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const;
-	std::vector<EntityObject::SPtr> getListImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const;
+	const IList& getListImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const;
 
 	template<typename... A> class RefSign {};
 	template<typename Head, typename... Tail> class RefSign<Head, Tail...> {
@@ -46,6 +47,10 @@ public:
 		T::const_reference relaEntity = create<typename T::value_type>();
 		IocRelation::set(entity, T::index(), relaEntity);
 	}
+	template <typename T>
+	typename T::SPtr createTemp() const {
+		return createTempImpl(T::getClassStatic());
+	}
 
 	template <typename T>
 	typename T::SPtr get() const {
@@ -69,23 +74,19 @@ public:
 
 	template <class T, typename Fun>
 	void foreach(Fun fun) const {
-		for (typename T::SPtr entity : getListImpl(T::getClassStatic())) {
-			fun(entity);
+		IList::Iterator iter = getListImpl(T::getClassStatic()).iterator();
+		while (iter.hasNext()) {
+			fun(iter.next<T>());
 		}
 	}
 
 	template <typename T>
-	std::list<typename T::SPtr> getList() const {
-		std::list<typename T::SPtr> entities;
-		for (typename T::SPtr entity : getListImpl(T::getClassStatic())) {
-			entities.push_back(entity);
-		}
-
-		return entities;
+	const IList& getList() const {
+		return getListImpl(T::getClassStatic());
 	}
 
 	template <class T, typename Filter>
-	std::list<typename T::SPtr> getList(Filter filter) const {
+	const IList& getList(Filter filter) const {
 		std::list<typename T::SPtr> entities = getList<T>();
 		for (std::list<typename T::SPtr>::iterator iter = entities.begin();
 			iter != entities.end(); ++iter) {
@@ -96,7 +97,7 @@ public:
 		return entities;
 	}
 	template <class T>
-	std::list<typename T::SPtr> getList(const Char* strExpression) const {
+	const IList& getList(const Char* strExpression) const {
 
 	}
 

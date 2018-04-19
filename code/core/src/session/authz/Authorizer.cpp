@@ -1,5 +1,5 @@
-#include "../../../include/session/authz/Authorizer.h"
+#include "session/authz/Authorizer.h"
 
 namespace gemini {
-int;
+
 }

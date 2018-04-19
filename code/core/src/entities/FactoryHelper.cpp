@@ -1,10 +1,10 @@
-#include "../../include/entities/FactoryHelper.h"
-#include "../../include/Application.h"
-#include "../../public/tools/XML.h"
-#include "../../public/tools/File.h"
-#include "../../include/entities/FactoryMgr.h"
-#include "../../public/message/Exception.h"
-#include "../../public/tools/StringUtil.h"
+#include "entities/FactoryHelper.h"
+#include "Application.h"
+#include "tools/XML.h"
+#include "tools/File.h"
+#include "entities/FactoryMgr.h"
+#include "message/Exception.h"
+#include "tools/StringUtil.h"
 
 namespace gemini {
 
@@ -24,39 +24,22 @@ void FactoryHelper::loadConfig()
 	path.append(u8"relations");
 	XMLFile::foreach_recursion(path.string().c_str(), [&](XMLFile& xmlFile) {
 		XMLNode rootNode = xmlFile.getNode(u8"Class");
-		if (!rootNode.valid()) {
-			THROW(Exception) << u8" relations xml config invalid class node: ";
-		}
-		
+		THROW_IF(!rootNode.valid(), Exception, u8" relations xml config invalid class node: ")
 		String clsName = rootNode.getAttribute(u8"name");
 		EntityFactory* firstFactory = FactoryMgr::instance().getFactory(clsName);
-		if (firstFactory == nullptr) {
-			THROW(Exception) << u8"invalid bean name: " << clsName;
-		}
-
+		THROW_IF(firstFactory == nullptr, Exception, u8"invalid bean name: ", clsName)
 		rootNode.foreach([&](XMLNode relaNode) {
 			String firstSignName = relaNode.getAttribute(u8"field");
 			UInt firstSign = firstFactory->getRelaSign(firstSignName);
-			if (firstSign == 0) {
-				THROW(Exception) << u8"invalid field name: " << firstSignName << u8" which bean is: " << clsName;
-			}
-
+			THROW_IF(firstSign == 0, Exception, u8"invalid field name: ", firstSignName, u8" which bean is: ", clsName)
 			String secondFactoryName = relaNode.getAttribute(u8"name");
 			EntityFactory* secondFactory = FactoryMgr::instance().getFactory(secondFactoryName);
-			if (secondFactory == nullptr) {
-				THROW(Exception) << u8"invalid bean name: " << secondFactoryName;
-			}
-
+			THROW_IF(secondFactory == nullptr, Exception, u8"invalid bean name: ", secondFactoryName)
 			String secondSignName = relaNode.getAttribute(u8"reverse");
 			UInt secondSign = secondFactory->getRelaSign(secondSignName);
-			if (secondSign == 0) {
-				THROW(Exception) << u8"invalid field name: " << secondSignName << u8" which bean is: " << secondFactoryName;
-			}
-
+			THROW_IF(secondSign == 0, Exception, u8"invalid field name: ", secondSignName, u8" which bean is: ", secondFactoryName)
 			EntityFactory::Data* firstData = const_cast<EntityFactory::Data*>(firstFactory->getRelaData(firstSign));
-			if (firstData == nullptr) {
-				THROW(Exception) << u8"entity factory relaData init failed.";
-			}
+			THROW_IF(firstData == nullptr, Exception, u8"entity factory relaData init failed.")
 			firstData->relaFactory = secondFactory;
 			firstData->reverseSign = secondSign;
 
@@ -85,14 +68,12 @@ void FactoryHelper::loadConfig()
 			}
 
 			String ownerName = relaNode.getAttribute(u8"owner");
-			firstData->owner = StringUtil::icompare(ownerName, u8"true") == 0 ? true : false;
+			firstData->owner = StringUtil::icompare(ownerName.c_str(), u8"true") == 0 ? true : false;
 
-			// ÓÐ·´Ïò¹ØÁª
+			// ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (secondSign > 0) {
 				EntityFactory::Data* secondData = const_cast<EntityFactory::Data*>(secondFactory->getRelaData(secondSign));
-				if (secondData == nullptr) {
-					THROW(Exception) << u8"entity factory relaData init failed.";
-				}
+				THROW_IF(secondData == nullptr, Exception, u8"entity factory relaData init failed.")
 				secondData->relaFactory = firstFactory;
 				secondData->reverseSign = firstSign;
 				secondData->owner = false;

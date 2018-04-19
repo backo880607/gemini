@@ -1,6 +1,6 @@
-#include "../../public/api/Process.h"
-#include "../../public/tools/StringUtil.h"
-#include "../../public/message/Exception.h"
+#include "api/Process.h"
+#include "tools/StringUtil.h"
+#include "message/Exception.h"
 
 #include <boost/interprocess/sync/interprocess_mutex.hpp>
 #include <boost/interprocess/sync/interprocess_condition.hpp>
@@ -15,7 +15,7 @@
 
 namespace gemini {
 
-// ¹²ÏíÄÚ´æµÄBuffer£¬Í¨¹ýÌõ¼þ±äÁ¿À´Í¬²½¡£
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Bufferï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½
 struct ProcessBuffer {
 	boost::interprocess::interprocess_mutex    mutex;
 	boost::interprocess::interprocess_condition  cond_empty;
@@ -51,7 +51,7 @@ Boolean Process::SharedMemory::open(ULong id /* = 0 */)
 			_buffer = static_cast<ProcessBuffer*>(addr);
 		}
 	} catch (interprocess_exception& ex) {
-		THROW(Exception) << ex.what();
+		THROW(Exception, ex.what());
 		return false;
 	}
 
@@ -205,7 +205,7 @@ void ProcessPool::startHeartBeat()
 						++iter;
 					}
 					/*else if (ptr->GetAccessTime().IsElapsed(m_autoTime)) {
-						// ±£´æÊý¾Ýµ½ÎÄ¼þ£¬²¢ÖÕÖ¹½ø³Ì¡£
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½Ì¡ï¿½
 						YKSmartPtr<YKCMDSaveSQL> saveCmd(true);
 						ptr->Write(saveCmd);
 						ptr->Terminate();
@@ -221,7 +221,7 @@ void ProcessPool::startHeartBeat()
 			} while (true);
 		}
 		catch (interprocess_exception& err) {
-			THROW(Exception) << err.what();
+			THROW(Exception, err.what());
 		}
 	}));
 }

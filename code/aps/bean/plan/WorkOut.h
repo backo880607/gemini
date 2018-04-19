@@ -15,6 +15,9 @@ public:
 	~WorkOut();
 
 	DECLARE_ENTITY(Work, work)
+	DECLARE_VECTOR(WorkRel, workRels)
+	DECLARE_ENTITY(Item, outputItem)
+	DECLARE_ENTITY(RouteStepOut, routeStepOut)
 };
 
 }

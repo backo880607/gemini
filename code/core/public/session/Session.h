@@ -23,9 +23,6 @@ class CORE_API Session : public EntityObject {
 	};
 
 	DECLARE_CLASS(Session, EntityObject)
-public:
-	Session();
-	~Session();
 
 	DECLARE_FIELD(DateTime, startTime)
 	DECLARE_FIELD(DateTime, stopTime)

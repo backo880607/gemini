@@ -1,7 +1,7 @@
-#include "../../public/api/MsgTransmit.h"
+#include "api/MsgTransmit.h"
 
 namespace gemini {
-int;
+
 MsgTransmit::MsgTransmit(MsgQueue& request, MsgQueue& response)
 	: _request(request)
 	, _response(response)

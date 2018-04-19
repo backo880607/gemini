@@ -1,5 +1,5 @@
-#include "../../../include/session/authz/DefaultAuthorizer.h"
-#include "../../../include/session/realm/DefaultRealm.h"
+#include "session/authz/DefaultAuthorizer.h"
+#include "session/realm/DefaultRealm.h"
 
 namespace gemini {
 

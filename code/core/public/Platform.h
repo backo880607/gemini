@@ -61,7 +61,7 @@
 #define GEMINI_OS_QNX           0x000b
 #define GEMINI_OS_VXWORKS       0x000c
 #define GEMINI_OS_CYGWIN        0x000d
-#define GEMINI_OS_NACL	      0x000e
+#define GEMINI_OS_NACL	      	0x000e
 #define GEMINI_OS_UNKNOWN_UNIX  0x00ff
 #define GEMINI_OS_WINDOWS_NT    0x1001
 #define GEMINI_OS_WINDOWS_CE    0x1011

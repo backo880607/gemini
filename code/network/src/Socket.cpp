@@ -34,7 +34,6 @@ Boolean Socket::start()
 	}
 
 	do_read();
-	_heartbeat.async_wait(boost::bind(&Socket::checkHeartBeat, shared_from_this(), boost::asio::placeholders::error));
 	return true;
 }
 
@@ -49,6 +48,7 @@ void Socket::stop()
 void Socket::do_read()
 {
 	async_read_head();
+	_heartbeat.async_wait(boost::bind(&Socket::checkHeartBeat, shared_from_this(), boost::asio::placeholders::error));
 }
 
 Boolean Socket::async_read_head()

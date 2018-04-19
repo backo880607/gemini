@@ -1,7 +1,7 @@
-#include "../../include/session/SecurityMgr.h"
-#include "../../include/session/authz/DefaultAuthorizer.h"
-#include "../../include/session/authc/DefaultAuthenticator.h"
-#include "../../include/cache/Cache.h"
+#include "session/SecurityMgr.h"
+#include "session/authz/DefaultAuthorizer.h"
+#include "session/authc/DefaultAuthenticator.h"
+#include "cache/Cache.h"
 
 namespace gemini {
 
@@ -26,7 +26,7 @@ SecurityMgr::~SecurityMgr()
 Session::SPtr SecurityMgr::login(const AuthenticationToken& token)
 {
 	_authc->authenticate(token);
-	Session::SPtr session(true);
+	Session::SPtr session = Cache::createTemp(Session::getClassStatic());
 	session->_startTime = DateTime::local();
 	session->_accessTime = session->_startTime;
 	return session;

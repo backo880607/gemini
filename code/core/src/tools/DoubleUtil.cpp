@@ -1,4 +1,4 @@
-#include "../../public/tools/DoubleUtil.h"
+#include "tools/DoubleUtil.h"
 
 #include <math.h>
 

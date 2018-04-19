@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <Class name="WorkIn">
+    <Relation field="WorkRels" relationClass="WorkRel" relationField="WorkIn" type="OneToMulti" owner="true" />
+    <Relation field="inputItem" relationClass="Item" type="MultiToOne" owner="false" />
+    <Relation field="routeStepIn" relationClass="RouteStepIn" type="MultiToOne" owner="false" />
+</Class>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <Class name="RouteStep">
+    <Relation field="routeStepIns" relationClass="RouteStepIn" relationField="routeStep" type="OneToMulti" owner="true" />
+    <Relation field="routeStepOuts" relationClass="RouteStepOut" relationField="routeStep" type="OneToMulti" owner="true" />
+    <Relation field="routeStepReses" relationClass="RouteStepRes" relationField="routeStep" type="OneToMulti" owner="true" />
+    <Relation field="stdRouteStep" relationClass="StandRouteStep" type="" />
+</Class>

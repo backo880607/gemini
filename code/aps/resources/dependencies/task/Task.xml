@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Class name="Task">
+    <Field name="boundary">
+        <condition field="work.routeStep.stdRouteStep.direction"/>
+        <dependency condition="Obverse" serviceClass="TaskService" method="calcBoundaryObverse">
+            <path value="SystemParam.baseTime" />
+            <path value="work.workRelIns.prevWork.task.prodEnd" />
+            <path value="work.workRelIns.contType" />
+            <path value="work.workRelIns.prevWork.task.res.nextBuffer" />
+            <path value="res.prevBuffer" />
+            <path value="work.workRelIns.minTimeCSTR" />
+            <path value="work.userEST" />
+            <path value="work.order.userEST" />
+            <path value="work.order.EST" />
+        </dependency>
+        <dependency condition="Reverse" serviceClass="TaskService" method="calcBoundaryReverse">
+            <path name="routeStepIns.routeStep.route.item.level" />
+        </dependency>
+    </Field>
+    <Field name="prodStart">
+        <condition field="work.routeStep.stdRouteStep.direction"/>
+        <dependency condition="Obverse" serviceClass="TaskService" method="calcProdStartObverse">
+            <path value="boundary" />
+            <path value="prevTask.nextSetEnd" />
+        </dependency>
+        <dependency condition="Reverse" serviceClass="TaskService" method="calcProdStartReverse">
+            <path value="prodTime" />
+            <path value="prodEnd" />
+        </dependency>
+    </Field>
+    <Field name="prodTime">
+        <dependency serviceClass="TaskService" method="calcProdTime">
+            <path value="prodEnd" />
+        </dependency>
+    </Field>
+    <Field name="prodEnd">
+        <condition field="work.routeStep.stdRouteStep.direction"/>
+        <dependency condition="Obverse" serviceClass="TaskService" method="calcProdEndObverse">
+            <path value="prodTime" />
+            <path value="prodStart" />
+        </dependency>
+        <dependency condition="Reverse" serviceClass="TaskService" method="calcProdEndReverse">
+            <path value="prodStart" />
+        </dependency>
+    </Field>
+    <Field name="prevSetStart">
+        <dependency serviceClass="TaskService" method="calcPrevSetStart">
+            <path value="prevSetEnd" />
+            <path value="prevTime" />
+        </dependency>
+    </Field>
+    <Field name="prevSetTime">
+
+    </Field>
+    <Field name="prevSetEnd">
+        <dependency serviceClass="TaskService" method="calcPrevSetEnd">
+            <path value="prodStart" />
+        </dependency>
+    </Field>
+    <Field name="lockedStart">
+    </Field>
+    <Field name="lockedTime">
+    </Field>
+    <Field name="lockedEnd">
+    </Field>
+</Class>

@@ -1,4 +1,4 @@
-#include "../../../include/expression/function/MathFunction.h"
+#include "expression/function/MathFunction.h"
 
 #include <stdlib.h>
 #include <math.h>

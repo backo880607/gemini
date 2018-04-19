@@ -1,6 +1,6 @@
-#include "../../../include/session/realm/AuthorizingRealm.h"
-#include "../../../include/session/authz/DefaultPermissionResolver.h"
-#include "../../../include/session/authz/AuthorizationInfo.h"
+#include "session/realm/AuthorizingRealm.h"
+#include "session/authz/DefaultPermissionResolver.h"
+#include "session/authz/AuthorizationInfo.h"
 
 namespace gemini {
 

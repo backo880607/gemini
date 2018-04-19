@@ -1,10 +1,10 @@
-#include "../include/Application.h"
-#include "../public/tools/File.h"
-#include "../include/DumpFile.h"
-#include "../include/entities/FactoryMgr.h"
-#include "../include/propagate/PropagateHelper.h"
-#include "../public/session/Subject.h"
-#include "../include/tools/LocaleUtil.h"
+#include "Application.h"
+#include "tools/File.h"
+#include "DumpFile.h"
+#include "entities/FactoryMgr.h"
+#include "propagate/PropagateHelper.h"
+#include "session/Subject.h"
+#include "tools/LocaleUtil.h"
 
 namespace gemini {
 

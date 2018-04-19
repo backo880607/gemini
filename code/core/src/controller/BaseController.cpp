@@ -1,5 +1,5 @@
-#include "../../public/controller/BaseController.h"
-#include "../../public/controller/ControllerMgr.h"
+#include "controller/BaseController.h"
+#include "controller/ControllerMgr.h"
 
 namespace gemini {
 

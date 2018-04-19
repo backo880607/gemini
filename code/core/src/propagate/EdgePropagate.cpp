@@ -1,1 +1,1 @@
-#include "../../include/propagate/EdgePropagate.h"
+#include "propagate/EdgePropagate.h"

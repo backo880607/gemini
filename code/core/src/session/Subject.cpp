@@ -1,5 +1,5 @@
-#include "../../public/session/Subject.h"
-#include "../../include/session/SecurityMgr.h"
+#include "session/Subject.h"
+#include "session/SecurityMgr.h"
 
 namespace gemini {
 

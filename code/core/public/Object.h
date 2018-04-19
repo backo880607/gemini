@@ -81,7 +81,6 @@ public:
 	virtual Iterator iterator() const = 0;
 
 	virtual Boolean operator== (const Any& rhs) const;
-	virtual String str() const;
 };
 
 class CORE_API GlobalObject : public Object

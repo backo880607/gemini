@@ -1,11 +1,11 @@
-#include "../../../include/session/realm/DefaultRealm.h"
-#include "../../../public/session/UsernamePasswordToken.h"
-#include "../../../include/session/authz/DefaultAuthorizationInfo.h"
-#include "../../../include/session/service/IUserService.h"
-#include "../../../include/session/authz/PermissionResolver.h"
-#include "../../../public/message/Message.h"
-#include "../../../include/session/Errors.h"
-#include "../../../include/session/service/UserService.h"
+#include "session/realm/DefaultRealm.h"
+#include "session/UsernamePasswordToken.h"
+#include "session/authz/DefaultAuthorizationInfo.h"
+#include "session/service/IUserService.h"
+#include "session/authz/PermissionResolver.h"
+#include "message/Message.h"
+#include "session/Errors.h"
+#include "session/service/UserService.h"
 
 namespace gemini {
 

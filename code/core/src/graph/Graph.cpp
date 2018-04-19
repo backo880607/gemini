@@ -1,6 +1,6 @@
-#include "../../include/graph/Graph.h"
-#include "../../include/graph/Vertex.h"
-#include "../../include/graph/Edge.h"
+#include "graph/Graph.h"
+#include "graph/Vertex.h"
+#include "graph/Edge.h"
 
 namespace gemini {
 namespace graph {

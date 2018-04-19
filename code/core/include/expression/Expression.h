@@ -7,7 +7,7 @@ namespace gemini {
 
 struct Node;
 class Calculate;
-class CORE_API Expression final
+class Expression final
 {
 public:
 	Expression();
@@ -26,15 +26,18 @@ public:
 	}
 
 private:
+	Any getValue(const EntityObject::SPtr& entity) { return getValue(_root, entity); }
 	Any getValue(Node* node, const EntityObject::SPtr& entity);
 	Node* create(const Char*& str, Boolean bFun);
 	Calculate* getNumberCalculate(const Char*& str);
 	Calculate* getFunOrFieldCalculate(const Char*& str);
 	void clear(Node* node);
 private:
+	Boolean _hasField;
 	Node* _root;
 	friend class FunctionCalculate;
 	friend class FieldCalculate;
+	friend class BracketCalculate;
 };
 
 }

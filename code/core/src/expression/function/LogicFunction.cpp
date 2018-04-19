@@ -1,4 +1,4 @@
-#include "../../../include/expression/function/LogicFunction.h"
+#include "expression/function/LogicFunction.h"
 
 namespace gemini {
 

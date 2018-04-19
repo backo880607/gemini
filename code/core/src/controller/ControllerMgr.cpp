@@ -1,4 +1,5 @@
-#include "../../public/controller/ControllerMgr.h"
+#include "controller/ControllerMgr.h"
+#include "message\Exception.h"
 
 namespace gemini {
 
@@ -14,10 +15,7 @@ void ControllerMgr::init()
 const BaseController& ControllerMgr::getController(const String& name)
 {
 	auto iter = _controllers.find(name);
-	if (iter == _controllers.end()) {
-
-	}
-
+	THROW_IF(iter == _controllers.end(), NoClassDefException, name)
 	return *iter->second;
 }
 

@@ -9,6 +9,7 @@ namespace gemini {
  *  精确到秒，内部存储到1970年1月1日零点的时间差
  * 
  */
+class Duration;
 class CORE_API DateTime : public AnyAbstract {
 public:
 	DateTime(Long tm = 0) : _time(tm) {};
@@ -36,7 +37,7 @@ public:
      * 
      * @return Long 
      */
-    Long getTime() const { return _time; }
+    Long getValue() const { return _time; }
     /**
      * @brief 将时间设置成指定的年月日时分秒
      * 
@@ -137,17 +138,21 @@ public:
      */
 	DateTime& addYears(Int years) { return addMonths(years * 12); }
 
-    DateTime operator+ (DateTime dt) { return _time + dt._time; }
-    DateTime operator- (DateTime dt) { return _time - dt._time; }
-    DateTime& operator+= (DateTime dt) { _time += dt._time; return *this; }
-    DateTime& operator-= (DateTime dt) { _time -= dt._time; return *this; }
+    DateTime operator+ (const DateTime& dt) const { return _time + dt._time; }
+	DateTime operator+ (const Duration& dur) const;
+    DateTime operator- (const DateTime& dt) const { return _time - dt._time; }
+	DateTime operator- (const Duration& dur) const;
+    DateTime& operator+= (const DateTime& dt) { _time += dt._time; return *this; }
+	DateTime& operator+= (const Duration& dur);
+    DateTime& operator-= (const DateTime& dt) { _time -= dt._time; return *this; }
+	DateTime& operator-= (const Duration& dur);
 
-    Boolean operator== (DateTime dt) const { return _time == dt._time; }
-	Boolean operator!= (DateTime dt) const { return !(*this == dt); }
-	Boolean operator> (DateTime dt) const { return _time > dt._time; }
-	Boolean operator>= (DateTime dt) const { return !(*this < dt); }
-	Boolean operator< (DateTime dt) const { return dt > *this ; }
-	Boolean operator<= (DateTime dt) const { return !(*this > dt); }
+    Boolean operator== (const DateTime& dt) const { return _time == dt._time; }
+	Boolean operator!= (const DateTime& dt) const { return !(*this == dt); }
+	Boolean operator> (const DateTime& dt) const { return _time > dt._time; }
+	Boolean operator>= (const DateTime& dt) const { return !(*this < dt); }
+	Boolean operator< (const DateTime& dt) const { return dt > *this ; }
+	Boolean operator<= (const DateTime& dt) const { return !(*this > dt); }
 	
 	// any support
 	virtual Any operator+ (const Any& rhs) const;
@@ -160,9 +165,50 @@ public:
 	virtual void operator/= (const Any& rhs);
     virtual Boolean operator== (const Any& rhs) const;
 	virtual Boolean operator< (const Any& rhs) const;
+
+	virtual String str() const;
+	String str(const Char* f) const;
+	static DateTime valueOf(const Char* str);
 private:
 	friend class StringUtil;
     Long _time;
+};
+
+class CORE_API Duration : public AnyAbstract {
+public:
+	Duration(Int value = 0) : _value(value) {}
+	~Duration() {}
+
+	Duration operator+ (const Duration& dur) const { return _value + dur._value; }
+	DateTime operator+ (const DateTime& dt) const { return dt.getValue() + _value; }
+	Duration operator- (const Duration& dur) const { return _value - dur._value; }
+	Duration& operator+= (const Duration& dur) { _value += dur._value; return *this; }
+	Duration& operator-= (const Duration& dur) { _value -= dur._value; return *this; }
+
+	Boolean operator== (const Duration& dur) const { return _value == dur._value; }
+	Boolean operator!= (const Duration& dur) const { return !(*this == dur); }
+	Boolean operator> (const Duration& dur) const { return _value > dur._value; }
+	Boolean operator>= (const Duration& dur) const { return !(*this < dur); }
+	Boolean operator< (const Duration& dur) const { return dur > *this; }
+	Boolean operator<= (const Duration& dur) const { return !(*this > dur); }
+
+	// any support
+	virtual Any operator+ (const Any& rhs) const;
+	virtual void operator+= (const Any& rhs);
+	virtual Any operator- (const Any& rhs) const;
+	virtual void operator-= (const Any& rhs);
+	virtual Any operator* (const Any& rhs) const;
+	virtual void operator*= (const Any& rhs);
+	virtual Any operator/ (const Any& rhs) const;
+	virtual void operator/= (const Any& rhs);
+	virtual Boolean operator== (const Any& rhs) const;
+	virtual Boolean operator< (const Any& rhs) const;
+
+	virtual String str() const;
+	static Duration valueOf(const Char* str);
+private:
+	friend class DateTime;
+	Int _value;
 };
 
 }

@@ -1,6 +1,6 @@
-#include "../../include/cache/CacheMgr.h"
-#include "../../include/cache/InnerCacheDao.h"
-#include "../../include/entities/FactoryMgr.h"
+#include "cache/CacheMgr.h"
+#include "cache/InnerCacheDao.h"
+#include "entities/FactoryMgr.h"
 
 namespace gemini {
 

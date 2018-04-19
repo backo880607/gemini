@@ -1,6 +1,6 @@
-#include "../../public/tools/File.h"
-#include "../../public/Buffer.h"
-#include "../../public/tools/StringUtil.h"
+#include "tools/File.h"
+#include "Buffer.h"
+#include "tools/StringUtil.h"
 
 #include <boost/filesystem.hpp>
 
@@ -127,7 +127,7 @@ FilePath FilePath::parent() const
 std::vector<FilePath> FilePath::getChildren() const
 {
 	std::vector<FilePath> vecPath;
-	boost::filesystem::directory_iterator end_iter; // È±Ê¡¹¹ÔìÉú³ÉÒ»¸ö½áÊøµü´úÆ÷
+	boost::filesystem::directory_iterator end_iter; // È±Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (boost::filesystem::directory_iterator iter(path()); iter != end_iter; ++iter) {
 		boost::system::error_code err;
 		if (boost::filesystem::is_regular_file(iter->path(), err) && !err) {
@@ -141,7 +141,7 @@ std::vector<FilePath> FilePath::getChildren() const
 std::vector<FilePath> FilePath::getChildrenRecursion() const
 {
 	std::vector<FilePath> vecPath;
-	boost::filesystem::recursive_directory_iterator end_iter; // È±Ê¡¹¹ÔìÉú³ÉÒ»¸ö½áÊøµü´úÆ÷
+	boost::filesystem::recursive_directory_iterator end_iter; // È±Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (boost::filesystem::recursive_directory_iterator iter(path()); iter != end_iter; ++iter) {
 		boost::system::error_code err;
 		if (boost::filesystem::is_regular_file(iter->path(), err) && !err) {

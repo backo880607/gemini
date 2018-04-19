@@ -9,9 +9,9 @@ namespace gemini {
 class LocaleUtil final : public noncopyable
 {
 public:
-	std::ostringstream& getOSS();
+	std::ostringstream& getOSS(Boolean bReset = false);
 
-	std::istringstream& getISS();
+	std::istringstream& getISS(const Char* str = nullptr);
 
 	const std::locale& getLocale() const { return _locale; }
 	void setLocale(const std::locale& loc);

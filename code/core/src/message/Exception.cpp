@@ -1,6 +1,7 @@
-#include "../../public/message/Exception.h"
-#include "../../public/tools/StringUtil.h"
+#include "message/Exception.h"
+#include "tools/StringUtil.h"
 
+#include <stdarg.h>
 #include <sstream>
 
 namespace gemini {
@@ -22,7 +23,7 @@ void Exception::setInfo(char const * curFun, char const * file, int line)
 	_info->throw_line_ = line;
 }
 
-thread_local String g_buffer;
+thread_local String tl_exception_buffer;
 char const* Exception::what() const
 {
 	std::stringstream temp;
@@ -32,8 +33,13 @@ char const* Exception::what() const
 		temp << StringUtil::format(any).c_str();
 	}
 
-	g_buffer = temp.str();
-	return g_buffer.c_str();
+	tl_exception_buffer = temp.str();
+	return tl_exception_buffer.c_str();
+}
+
+String log_info::detail()
+{
+	return String();
 }
 
 }

@@ -1,8 +1,8 @@
-#include "../../include/expression/Expression.h"
-#include "../../include/expression/Calculate.h"
-#include "../../public/tools/StringUtil.h"
-#include "../../include/expression/OperType.h"
-#include "../../include/Application.h"
+#include "expression/Expression.h"
+#include "expression/Calculate.h"
+#include "tools/StringUtil.h"
+#include "expression/OperType.h"
+#include "Application.h"
 
 #include <locale>
 
@@ -25,7 +25,8 @@ struct Node {
 };
 
 Expression::Expression()
-	: _root(nullptr)
+	: _hasField(false)
+	, _root(nullptr)
 {
 
 }
@@ -190,18 +191,19 @@ Node* Expression::create(const Char*& str, Boolean bFun)
 			else
 				root->rchild->rchild = new Node(OperType::DATA, cal);
 		} else if (curChar == '(') {
-			Node* nd = create(++str, false);
-			if (nd == nullptr) {
+			Calculate* cal = new BracketCalculate();
+			if (!cal->parse(str)) {
 				bError = true;
+				delete cal;
 				break;
 			}
 
 			if (root == nullptr)
-				root = nd;
+				root = new Node(OperType::DATA, cal);
 			else if (root->rchild == nullptr)
-				root->rchild = nd;
+				root->rchild = new Node(OperType::DATA, cal);
 			else
-				root->rchild->rchild = nd;
+				root->rchild->rchild = new Node(OperType::DATA, cal);
 		} else if (curChar == ')') {
 			break;
 		} else if (curChar == ',') {
@@ -230,12 +232,12 @@ Node* Expression::create(const Char*& str, Boolean bFun)
 				Calculate* cal = new OperTypeCalculate(String(temp, str - temp));
 				if (root == nullptr)
 					root = new Node(calType, cal);
-				else if (calType < root->type)	// ”≈œ»º∂∏¸∏ﬂ
+				else if (calType < root->type)	// ÔøΩÔøΩÔøΩ»ºÔøΩÔøΩÔøΩÔøΩÔøΩ
 					root->rchild = new Node(calType, cal, root->rchild);
-				else // ◊˜Œ™”≈œ»º∂∏¸–°µƒ◊Û◊” ˜
+				else // ÔøΩÔøΩŒ™ÔøΩÔøΩÔøΩ»ºÔøΩÔøΩÔøΩ–°ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 					root = new Node(calType, cal, root);
 			} else {
-				// ◊‘∂®“Â∫Ø ˝µ˜”√
+				// ÔøΩ‘∂ÔøΩÔøΩÂ∫ØÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 				Calculate* cal = getFunOrFieldCalculate(str);
 				if (cal == nullptr) {
 					bError = true;
@@ -279,7 +281,7 @@ Calculate* Expression::getNumberCalculate(const Char*& str)
 		return cal;
 	}
 
-	IntCalculate* cal = new IntCalculate();
+	LongCalculate* cal = new LongCalculate();
 	cal->_value = StringUtil::convert<Long>(String(temp, str - temp).c_str());
 	return cal;
 }
@@ -294,6 +296,7 @@ Calculate* Expression::getFunOrFieldCalculate(const Char*& str)
 				delete cal;
 				break;
 			}
+			_hasField = true;
 			return cal;
 		}
 		else if (*temp == '(') {

@@ -1,5 +1,5 @@
-#include "../../../include/expression/function/FunctionMgr.h"
-#include "../../../include/expression/function/InternalFunction.h"
+#include "expression/function/FunctionMgr.h"
+#include "expression/function/InternalFunction.h"
 
 namespace gemini {
 

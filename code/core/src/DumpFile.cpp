@@ -1,5 +1,5 @@
-#include "../include/DumpFile.h"
-#include "../include/Application.h"
+#include "DumpFile.h"
+#include "Application.h"
 
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 #pragma comment(lib, "common.lib")

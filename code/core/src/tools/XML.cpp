@@ -1,12 +1,12 @@
-#include "../../public/tools/XML.h"
+#include "tools/XML.h"
 
-#include "../../public/tools/StringUtil.h"
-#include "../../public/tools/File.h"
-#include "../../public/message/Log.h"
+#include "tools/StringUtil.h"
+#include "tools/File.h"
+#include "message/Log.h"
 
-#include <boost\property_tree\ptree.hpp>
-#include <boost\program_options\detail\utf8_codecvt_facet.hpp>
-#include <boost\property_tree\xml_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/program_options/detail/utf8_codecvt_facet.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 namespace gemini {
 
@@ -33,7 +33,6 @@ void XMLNode::removeAttribute(const Char* attr)
 
 
 XMLFile::XMLFile(const String& name, File_Mode mode /* = File_Mode::NormalFile */)
-	: _ptree(new boost::property_tree::ptree())
 {
 	open(name, mode);
 }
@@ -50,7 +49,7 @@ void XMLFile::clear()
 Boolean XMLFile::proXMLFile(String& path, File_Mode mode)
 {
 	using namespace boost::property_tree;
-	const String strExtension = StringUtil::find_last(path, ".");
+	const String strExtension = StringUtil::get_tail(path.c_str(), ".");
 	if (strExtension.empty())
 		path += ".xml";
 	else if (strExtension != "xml")
@@ -103,6 +102,9 @@ Boolean XMLFile::open(const String& name, File_Mode mode /* = File_Mode::NormalF
 		return false;
 
 	try {
+		if (_ptree == nullptr) {
+			_ptree.reset(new boost::property_tree::iptree());
+		}
 		std::locale utf8Locale(std::locale(), new boost::program_options::detail::utf8_codecvt_facet());
 		read_xml(xmlName.c_str(), *_ptree, 0, utf8Locale);
 	} catch (xml_parser_error& err) {

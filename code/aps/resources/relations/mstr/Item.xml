@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Class name="Item">
+    <Relation field="routes" relationClass="Route" relationField="item" type="OneToMulti" owner="true" />
+    <Relation field="orders" relationClass="Item" relationField="item" type="OneToMulti" owner="true" />
+</Class>

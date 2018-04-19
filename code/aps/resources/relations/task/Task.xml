@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Class name="Task">
+    <Relation field="workRes" relationClass="WorkRes" type="MultiToMulti" owner="false">
+    <Relation field="prevTask" relationClass="Task" relationField="nextTask" type="MultiToMulti" owner="false">
+</Class>

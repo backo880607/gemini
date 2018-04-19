@@ -6,17 +6,17 @@
 
 namespace gemini {
 
-class CORE_API Calculate
+class Calculate
 {
 public:
-	virtual Any getValue(const EntityObject::SPtr entity) = 0;
+	virtual Any getValue(const EntityObject::SPtr& entity) = 0;
 	virtual Boolean parse(const Char*& str) = 0;
 };
 
-class CORE_API IntCalculate : public Calculate
+class LongCalculate : public Calculate
 {
 public:
-	virtual Any getValue(const EntityObject::SPtr entity);
+	virtual Any getValue(const EntityObject::SPtr& entity);
 	virtual Boolean parse(const Char*& str);
 
 private:
@@ -24,10 +24,10 @@ private:
 	friend class Expression;
 };
 
-class CORE_API DoubleCalculate : public Calculate
+class DoubleCalculate : public Calculate
 {
 public:
-	virtual Any getValue(const EntityObject::SPtr entity);
+	virtual Any getValue(const EntityObject::SPtr& entity);
 	virtual Boolean parse(const Char*& str);
 
 private:
@@ -35,42 +35,62 @@ private:
 	friend class Expression;
 };
 
-class CORE_API TextCalculate : public Calculate
+class TextCalculate : public Calculate
 {
 public:
-	virtual Any getValue(const EntityObject::SPtr entity);
+	virtual Any getValue(const EntityObject::SPtr& entity);
 	virtual Boolean parse(const Char*& str);
 
 private:
 	String _value;
 };
 
-class CORE_API DateTimeCalculate : public Calculate
+class DateTimeCalculate : public Calculate
 {
 public:
-	virtual Any getValue(const EntityObject::SPtr entity);
+	virtual Any getValue(const EntityObject::SPtr& entity);
 	virtual Boolean parse(const Char*& str);
 
 private:
 	DateTime _value;
 };
 
-class CORE_API OperTypeCalculate : public Calculate
+class DurationCalculate : public Calculate
+{
+public:
+	virtual Any getValue(const EntityObject::SPtr& entity);
+	virtual Boolean parse(const Char*& str);
+
+private:
+	Duration _value;
+};
+
+class EnumCalculate : public Calculate
+{
+public:
+	virtual Any getValue(const EntityObject::SPtr& entity);
+	virtual Boolean parse(const Char*& str);
+
+private:
+	Int _value;
+};
+
+class OperTypeCalculate : public Calculate
 {
 public: 
 	OperTypeCalculate(const String& name);
 
-	virtual Any getValue(const EntityObject::SPtr entity);
-	virtual Any getValue(const Any& param1, const Any& param2, const EntityObject::SPtr entity);
+	virtual Any getValue(const EntityObject::SPtr& entity);
+	virtual Any getValue(const Any& param1, const Any& param2, const EntityObject::SPtr& entity);
 	virtual Boolean parse(const Char*& str);
 private:
 	Function _fun;
 };
 
-class CORE_API FieldCalculate : public Calculate
+class FieldCalculate : public Calculate
 {
 public:
-	virtual Any getValue(const EntityObject::SPtr entity);
+	virtual Any getValue(const EntityObject::SPtr& entity);
 	virtual Boolean parse(const Char*& str);
 
 private:
@@ -82,15 +102,25 @@ private:
 	std::vector<const Field*> _paths;
 };
 
-class CORE_API FunctionCalculate : public Calculate
+class FunctionCalculate : public Calculate
 {
 public:
-	virtual Any getValue(const EntityObject::SPtr entity);
+	virtual Any getValue(const EntityObject::SPtr& entity);
 	virtual Boolean parse(const Char*& str);
 
 private:
 	Function _fun;
 	std::vector<Expression> _params;
+};
+
+class BracketCalculate : public Calculate
+{
+public:
+	virtual Any getValue(const EntityObject::SPtr& entity);
+	virtual Boolean parse(const Char*& str);
+
+public:
+	Expression _exp;
 };
 
 }

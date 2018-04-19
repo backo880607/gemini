@@ -15,6 +15,7 @@ public:
 		return *this;
 	}
 
+	virtual String detail();
 private:
 	mutable Char const * throw_function_;
 	mutable Char const * throw_file_;
@@ -27,46 +28,46 @@ class CORE_API LOG_INFO : public log_info
 {
 public:
 	virtual String getName() override {
-		return u8"INFO";
+		return "INFO";
 	}
 };
 class CORE_API LOG_WARNING : public log_info
 {
 public:
 	virtual String getName() override {
-		return u8"WARNING";
+		return "WARNING";
 	}
 };
 class CORE_API LOG_ERROR : public log_info
 {
 public:
 	virtual String getName() override {
-		return u8"ERROR";
+		return "ERROR";
 	}
 };
 class CORE_API LOG_FATAL : public log_info
 {
 public:
 	virtual String getName() override {
-		return u8"FATAL";
+		return "FATAL";
 	}
 };
 class CORE_API TIPS_StrongError : public LOG_ERROR {
 public:
 	virtual String getName() override {
-		return u8"STRONGERROR";
+		return "STRONGERROR";
 	}
 };
 class CORE_API TIPS_WEAK : public LOG_INFO {
 public:
 	virtual String getName() override {
-		return u8"TIPS";
+		return "TIPS";
 	}
 };
 class CORE_API TIPS_WARNING : public LOG_WARNING {
 public:
 	virtual String getName() override {
-		return u8"WARNINGTIPS";
+		return "WARNINGTIPS";
 	}
 };
 
@@ -75,7 +76,7 @@ class CORE_API Exception : public std::exception
 	class exception_error : public LOG_WARNING {
 	public:
 		virtual String getName() override {
-			return u8"";
+			return "";
 		}
 	};
 public:
@@ -90,10 +91,16 @@ public:
 		return *this;
 	}
 
+	void setData() {}
+	template<class T, class ...Args> void setData(T head, Args... rest) {
+		*_info << head;
+		setData(rest...);
+	}
+
 	virtual char const* what() const;
 	String str() const { return what(); }
 
-	virtual String getName() const { return u8"Exception"; }
+	virtual String getName() const { return "Exception"; }
 private:
 	std::shared_ptr<exception_error> _info;
 };
@@ -101,57 +108,60 @@ private:
 class CORE_API ArithmeticExecption : public Exception
 {
 public:
-	virtual String getName() const override { return u8"ArithmeticExecption"; }
+	virtual String getName() const override { return "ArithmeticExecption"; }
 };
 class CORE_API OperandException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"OperandException"; }
+	virtual String getName() const override { return "OperandException"; }
 };
 class CORE_API NullPointerException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"NullPointerException"; }
+	virtual String getName() const override { return "NullPointerException"; }
 };
 class CORE_API ClassCastException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"ClassCastException"; }
+	virtual String getName() const override { return "ClassCastException"; }
 };
 class CORE_API FileNotFoundException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"FileNotFoundException"; }
+	virtual String getName() const override { return "FileNotFoundException"; }
 };
 class CORE_API IOException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"IOException"; }
+	virtual String getName() const override { return "IOException"; }
 };
 class CORE_API NoSuchMethodException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"NoSuchMethodException"; }
+	virtual String getName() const override { return "NoSuchMethodException"; }
 };
 class CORE_API CircularityException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"CircularityException"; }
+	virtual String getName() const override { return "CircularityException"; }
 };
 class CORE_API NoClassDefException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"NoClassDefException"; }
+	virtual String getName() const override { return "NoClassDefException"; }
 };
 class CORE_API UnknownException : public Exception
 {
 public:
-	virtual String getName() const override { return u8"UnknownException"; }
+	virtual String getName() const override { return "UnknownException"; }
 };
 
 
-#define THROW(ExceptionType) \
-	ExceptionType exc##__LINE__; exc##__LINE__.setInfo(__FUNCTION__, __FILE__, __LINE__); throw exc##__LINE__
+#define THROW(ExceptionType, ...) \
+	{ExceptionType exc##__LINE__; exc##__LINE__.setInfo(__FUNCTION__, __FILE__, __LINE__); exc##__LINE__.setData(__VA_ARGS__); throw exc##__LINE__;}
+
+#define THROW_IF(Cond, ExceptionType, ...) \
+	if (Cond) THROW(ExceptionType, __VA_ARGS__)
 
 
 }

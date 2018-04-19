@@ -1,13 +1,18 @@
-#include "../../public/service/BaseService.h"
-#include "../../include/service/ServiceMgr.h"
-#include "../../include/cache/Cache.h"
-#include "../../include/entities/IocRelation.h"
+#include "service/BaseService.h"
+#include "service/ServiceMgr.h"
+#include "cache/Cache.h"
+#include "entities/IocRelation.h"
 
 namespace gemini {
 
 EntityObject::SPtr BaseService::createImpl(const Class& cls, Long id) const
 {
 	return Cache::create(cls, id);
+}
+
+EntityObject::SPtr BaseService::createTempImpl(const Class & cls) const
+{
+	return Cache::createTemp(cls);
 }
 
 EntityObject::SPtr BaseService::getImpl(const Class& cls) const
@@ -25,9 +30,11 @@ EntityObject::SPtr BaseService::getInheritImpl(const Class & cls, Long id) const
 	return EntityObject::SPtr();
 }
 
-std::vector<EntityObject::SPtr> BaseService::getListImpl(const Class & cls) const
+static RefVector ddddddd = RefVector();
+const IList& BaseService::getListImpl(const Class & cls) const
 {
-	return Cache::getList(cls);
+	return ddddddd;
+	//return Cache::getList(cls);
 }
 
 EntityObject::SPtr BaseService::getImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const
@@ -35,7 +42,7 @@ EntityObject::SPtr BaseService::getImpl(EntityObject::SPtr entity, const std::ve
 	return IocRelation::get(entity, signs);
 }
 
-std::vector<EntityObject::SPtr> BaseService::getListImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const
+const IList& BaseService::getListImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const
 {
 	return IocRelation::getList(entity, signs);
 }

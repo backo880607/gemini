@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Class name="Order">
+    <Relation field="works" relationClass="Work" relationField="order" type="OneToMulti" owner="true" />
+</Class>

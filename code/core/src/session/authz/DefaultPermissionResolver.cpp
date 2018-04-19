@@ -1,5 +1,5 @@
-#include "../../../include/session/authz/DefaultPermissionResolver.h"
-#include "../../../include/session/authz/DefaultObjectPermission.h"
+#include "session/authz/DefaultPermissionResolver.h"
+#include "session/authz/DefaultObjectPermission.h"
 
 namespace gemini {
 	

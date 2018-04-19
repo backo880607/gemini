@@ -1,4 +1,4 @@
-#include "../../../include/session/entities/Permission.h"
+#include "session/entities/Permission.h"
 
 namespace gemini {
 

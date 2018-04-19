@@ -1,12 +1,13 @@
-#include "../public/Reflect.h"
-#include "../include/entities/IocRelation.h"
-#include "../include/propagate/Propagate.h"
-#include "../public/controller/BaseController.h"
+#include "Reflect.h"
+#include "entities/IocRelation.h"
+#include "propagate/Propagate.h"
+#include "controller/BaseController.h"
 
 namespace gemini {
 	
-Field::Field(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index /* = 0 */)
-	: _index(index)
+Field::Field(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index /* = 0 */, Boolean multiRef /* = 0 */)
+	: _multiRef(multiRef)
+	, _index(index)
 	, _type(type)
 	, _offset(offset)
 	, _class(cls)
@@ -19,9 +20,9 @@ Field::~Field() {
 	
 }
 
-__register_field__::__register_field__(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index /* = 0 */)
+__register_field__::__register_field__(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index /* = 0 */, Boolean multiRef /* = 0 */)
 {
-	const Field* field = new Field(type, offset, cls, name, index);
+	const Field* field = new Field(type, offset, cls, name, index, multiRef);
 	const_cast<Class&>(cls).addField(field);
 }
 

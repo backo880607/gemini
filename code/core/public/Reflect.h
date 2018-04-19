@@ -13,9 +13,10 @@ class CORE_API Field final
 	Field(const Field&) = delete;
 	Field& operator= (const Field&) = delete;
 public:
-	Field(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index = 0);
+	Field(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index = 0, Boolean multiRef = 0);
 	~Field();
 	
+	Boolean getMultiRef() const { return _multiRef; }
 	const String& getName() const { return _name; }
 	const Class& getClass() const { return _class; }
 	const Class& getType() const { return _type; }
@@ -28,6 +29,7 @@ public:
 	template <class Value> void set(SmartPtr<EntityObject>& object, const Value &value) const { return set<Value>(object.rawPointer(), value); }
 
 private:
+	Boolean _multiRef;
 	UInt _index;
 	const Class& _type;
 	ULong _offset;
@@ -35,7 +37,7 @@ private:
 	String _name;
 };
 struct CORE_API __register_field__ {
-	__register_field__(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index = 0);
+	__register_field__(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index = 0, Boolean multiRef = 0);
 };
 
 template <class Value> Value Field::get(const Object *object) const {
@@ -928,11 +930,13 @@ private:\
 	static void* create() { return new CLASS_NAME; }\
 	static const gemini::Class _class;\
 protected:\
+	CLASS_NAME() {}\
 	static gemini::UInt s_index;\
 	virtual gemini::UInt signMaxIndex() override { return ClassType::s_index; }\
 public:\
-	typedef gemini::SmartPtr<ClassType>	SPtr; \
-	typedef gemini::SmartPtr<ClassType, gemini::WeakCounted, gemini::StorageNo>	WPtr; \
+	typedef gemini::SmartPtr<ClassType>	SPtr;\
+	typedef gemini::SmartPtr<ClassType, gemini::WeakCounted, gemini::StorageNo>	WPtr;\
+	virtual ~CLASS_NAME() {}\
     static const gemini::Class& getClassStatic() { return CLASS_NAME::_class; }\
     virtual const gemini::Class& getClass() const { return CLASS_NAME::_class; }
 
@@ -970,7 +974,7 @@ public:\
 		typedef gemini::PropertyRef<CLASS_NAME, gemini::RefType::Entity> base_type;\
 	public:\
 		FIELD_NAME(): base_type() { index();\
-			static gemini::__register_field__ reg(gemini::Class::forName(gemini::Class::getName<CLASS_NAME>()), __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, index());\
+			static gemini::__register_field__ reg(gemini::Class::forName(#CLASS_NAME), __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, index());\
 		}\
 		~FIELD_NAME() {}\
 		FIELD_NAME& operator= (const_reference val) {\
@@ -989,7 +993,7 @@ public:\
 		typedef gemini::PropertyRef<CLASS_NAME, gemini::RefType::Vector> base_type;\
 	public:\
 		FIELD_NAME(): base_type() { index();\
-			static gemini::__register_field__ reg(gemini::Class::forName(gemini::Class::getName<CLASS_NAME>()), __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, index());\
+			static gemini::__register_field__ reg(gemini::Class::forName(#CLASS_NAME), __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, index(), true);\
 		}\
 		~FIELD_NAME() {}\
 		operator const_reference() { return base_type::get(cur(), index()); }\

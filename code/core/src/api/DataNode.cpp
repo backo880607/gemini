@@ -1,4 +1,4 @@
-#include "../../public/api/DataNode.h"
+#include "api/DataNode.h"
 
 #include <boost/property_tree/ptree.hpp>
 
@@ -21,19 +21,19 @@ DataNode DataNode::getNode(const Char* tagName, Boolean bCreate /* = false */)
 		return &(*rt);
 
 	if (bCreate)
-		return &_pNode->put_child(tagName, node_type(u8""));
+		return &_pNode->put_child(tagName, node_type(""));
 
 	return DataNode();
 }
 
 DataNode DataNode::createNode()
 {
-	return &_pNode->add_child(u8"", node_type());
+	return &_pNode->add_child("", node_type());
 }
 
 DataNode DataNode::createNode(const Char* tagName)
 {
-	return &_pNode->put_child(tagName, node_type(u8""));
+	return &_pNode->put_child(tagName, node_type(""));
 }
 
 void DataNode::removeNode(const Char* tagName)

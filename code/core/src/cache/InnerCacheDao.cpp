@@ -1,7 +1,9 @@
-#include "../../include/cache/InnerCacheDao.h"
+#include "cache/InnerCacheDao.h"
+#include "entities/RefVector.h"
 
 namespace gemini {
 
+thread_local RefVector tl_ref_dynamic;
 InnerCacheDao::InnerCacheDao()
 {
 
@@ -12,14 +14,14 @@ InnerCacheDao::~InnerCacheDao()
 
 }
 
-std::vector<EntityObject::SPtr> InnerCacheDao::select()
+const IList& InnerCacheDao::select()
 {
-	std::vector<EntityObject::SPtr> result;
+	tl_ref_dynamic.remove();
 	std::shared_lock<std::shared_mutex> locker(_mutex);
 	for (auto iter : _entities) {
-		result.push_back(iter.second);
+		tl_ref_dynamic.add(iter.second);
 	}
-	return result;
+	return tl_ref_dynamic;
 }
 
 EntityObject::SPtr InnerCacheDao::select(ID id)
@@ -27,6 +29,24 @@ EntityObject::SPtr InnerCacheDao::select(ID id)
 	std::shared_lock<std::shared_mutex> locker(_mutex);
 	entities_type::const_iterator iter = _entities.find(id);
 	return iter != _entities.end() ? iter->second : nullptr;
+}
+
+void InnerCacheDao::insert(EntityObject::SPtr entity)
+{
+	std::shared_lock<std::shared_mutex> locker(_mutex);
+	_entities.insert(std::make_pair(entity->getID(), entity));
+}
+
+void InnerCacheDao::erase(ID id)
+{
+	std::shared_lock<std::shared_mutex> locker(_mutex);
+	_entities.erase(id);
+}
+
+void InnerCacheDao::erase(EntityObject::SPtr entity)
+{
+	std::shared_lock<std::shared_mutex> locker(_mutex);
+	_entities.erase(entity->getID());
 }
 
 void InnerCacheDao::clear()
@@ -37,23 +57,14 @@ void InnerCacheDao::clear()
 
 void InnerCacheDao::insert(const std::map<ID, EntityObject::SPtr>& entities)
 {
-	std::unique_lock<std::shared_mutex> lock(_mutex);
-	for (auto iter : entities) {
-		_entities[iter.first] = iter.second;
-	}
 }
 
 void InnerCacheDao::update(const std::map<ID, EntityObject::SPtr>& entities)
 {
-
 }
 
 void InnerCacheDao::erase(const std::vector<EntityObject::SPtr>& entities)
 {
-	std::unique_lock<std::shared_mutex> lock(_mutex);
-	for (EntityObject::SPtr entity : entities) {
-		_entities.erase(entity.getID());
-	}
 }
 
 }

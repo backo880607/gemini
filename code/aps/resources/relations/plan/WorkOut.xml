@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Class name="WorkOut">
+    <Relation field="workRels" relationClass="WorkRel" relationField="WorkOut" type="OneToMulti" owner="true" />
+    <Relation field="outputItem" relationClass="Item" type="MultiToOne" owner="false" />
+    <Relation field="routeStepOut" relationClass="RouteStepOut" type="MultiToOne" owner="false" />
+</Class>

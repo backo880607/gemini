@@ -1,5 +1,5 @@
-#include "../../include/api/Process_WINDOWS_NT.h"
-#include "../../include/api/Errors.h"
+#include "api/Process_WINDOWS_NT.h"
+#include "api/Errors.h"
 
 namespace gemini {
 
@@ -28,7 +28,7 @@ HANDLE ProcessImpl::process() const
 
 Boolean ProcessImpl::running() const
 {
-	HANDLE hProc = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, _pid);
+	HANDLE hProc = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, (DWORD)_pid);
 	bool result = true;
 	DWORD exitCode;
 	BOOL rc = GetExitCodeProcess(hProc, &exitCode);

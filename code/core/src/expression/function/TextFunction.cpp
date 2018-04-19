@@ -1,4 +1,4 @@
-#include "../../../include/expression/function/TextFunction.h"
+#include "expression/function/TextFunction.h"
 
 namespace gemini {
 

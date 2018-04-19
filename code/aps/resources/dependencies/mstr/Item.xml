@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Class name="Item">
+    <dependency field="level" serviceClass="ItemService" method="calcLevel">
+        <path name="routeStepIns.routeStep.route.item.level" />
+    </dependency>
+    <dependency field="active" serviceClass="ItemService" method="calcActive">
+        <path name="routeStepIns.routeStep.route.item" />
+    </dependency>
+</Class>

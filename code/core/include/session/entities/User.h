@@ -10,9 +10,6 @@ namespace gemini {
  */
 class User : public EntityObject {
 	DECLARE_CLASS(User, EntityObject)
-public:
-	User() {}
-	~User() {}
 
 	DECLARE_FIELD(Boolean, blocked)
 	DECLARE_FIELD(String, name)

@@ -1,6 +1,6 @@
-#include "../../include/cache/Cache.h"
-#include "../../public/session/Subject.h"
-#include "../../include/entities/FactoryMgr.h"
+#include "cache/Cache.h"
+#include "session/Subject.h"
+#include "entities/FactoryMgr.h"
 
 namespace gemini {
 	
@@ -44,6 +44,14 @@ EntityObject::SPtr Cache::create(const Class& cls, Long id)
 	return createImpl(cls, id);
 }
 
+EntityObject::SPtr Cache::createTemp(const Class & cls)
+{
+	EntityObject* pEntity = (EntityObject*)cls.newInstance();
+	EntityObject::SPtr entity;
+	entity.wrapRawPointer(pEntity);
+	return entity;
+}
+
 EntityObject::SPtr Cache::get(const Class& cls, Long id)
 {
 	EntityObject::SPtr entity = getDao(cls)->select(id);
@@ -64,9 +72,9 @@ EntityObject::SPtr Cache::get(const Class& cls, Long id)
 std::vector<EntityObject::SPtr> Cache::getList(const Class& cls)
 {
 	std::vector<EntityObject::SPtr> result;
-	for (EntityObject::SPtr entity : getDao(cls)->select()) {
+	/*for (EntityObject::SPtr entity : getDao(cls)->select()) {
 		result.push_back(entity);
-	}
+	}*/
 
 	Collector& collector = getCollector(cls);
 	collector._mutex.lock();

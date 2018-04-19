@@ -25,6 +25,7 @@ enum class DataType {
 	DT_None = 0,
 	DT_MEMSEQ,				///< 内存字节序
 	DT_JSON,				///< Json格式
+	DT_XML,					///< XML格式
 };
 
 /**
@@ -43,8 +44,10 @@ enum class EncodingType {
 * @note 最大枚举值不应超过3。
 */
 enum class CompressType {
-	CPT_NONE = 0,				///< 不进行数据压缩
-	CPT_ZLIB,					///< zlib压缩
+	CPT_NONE = 0,			///< 不进行数据压缩
+	CPT_ZLIB,				///< zlib压缩
+	CPT_GZIP,				///< gzip压缩
+	CPT_DEFLATE				///< deflate压缩
 };
 
 /**

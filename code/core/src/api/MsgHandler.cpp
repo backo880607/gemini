@@ -1,6 +1,6 @@
-#include "../../include/api/MsgHandler.h"
-#include "../../public/tools/Json.h"
-#include "../../public/tools/StringUtil.h"
+#include "api/MsgHandler.h"
+#include "tools/Json.h"
+#include "tools/StringUtil.h"
 
 namespace gemini {
 

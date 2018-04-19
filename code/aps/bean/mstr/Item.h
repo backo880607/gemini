@@ -12,10 +12,6 @@ class APS_API Item : public gemini::EntityObject {
 #define MODULE_API APS_API
 	DECLARE_CLASS(Item, gemini::EntityObject)
 
-public:
-	Item();
-	~Item();
-
 	DECLARE_FIELD(gemini::String, code)
 	DECLARE_FIELD(ItemType, type)
 	DECLARE_FIELD(gemini::UInt, level)
@@ -26,11 +22,12 @@ public:
 	DECLARE_FIELD(gemini::Int, unitPur)
 	DECLARE_FIELD(gemini::Int, unitManuf)
 	DECLARE_FIELD(gemini::Int, unitShipments)
-	
+	DECLARE_FIELD(gemini::Boolean, active)
 
 	DECLARE_VECTOR(Order, orders)
 	DECLARE_VECTOR(Route, routes)
 	DECLARE_VECTOR(RouteStepIn, routeStepIns)
+	DECLARE_VECTOR(RouteStepOut, routeStepOuts)
 };
 
 }

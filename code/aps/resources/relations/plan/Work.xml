@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Class name="Work">
+    <Relation field="workIns" relationClass="WorkIn" relationField="work" type="OneToMulti" owner="true" />
+    <Relation field="workOuts" relationClass="WorkOut" relationField="work" type="OneToMulti" owner="true" />
+    <Relation field="workReses" relationClass="WorkRes" relationField="work" type="OneToMulti" owner="true" />
+    <Relation field="Task" relationClass="Task" relationField="work" type="OneToMulti" owner="true" />
+    <Relation field="toolTasks" relationClass="ToolTask" relationField="work" type="OneToMulti" owner="true" />
+    <Relation field="routeStep" relationClass="RouteStep" type="MultiToOne" owner="false" />
+    <Relation field="workFdbk" relationClass="WorkFdbk" relationField="work" type="OneToMulti" owner="true" />
+</Class>

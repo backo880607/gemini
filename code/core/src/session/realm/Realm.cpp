@@ -1,4 +1,4 @@
-#include "../../../include/session/realm/Realm.h"
+#include "session/realm/Realm.h"
 
 namespace gemini {
 

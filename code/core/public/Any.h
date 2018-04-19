@@ -70,6 +70,7 @@ public:
 	PlaceHolder* create(const String& value);
 	PlaceHolder* create(const Char* value);
 	PlaceHolder* create(const SmartPtr<EntityObject>& value);
+	PlaceHolder* create(const IList& value);
 
 	template <typename T, Boolean BEntity>
 	struct ObtainHolderTypeImpl{
@@ -82,6 +83,10 @@ public:
 	template <typename T>
 	struct ObtainHolderType {
 		typedef typename ObtainHolderTypeImpl<T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
+	};
+	template <>
+	struct ObtainHolderType<IList> {
+		typedef const IList& holder_type;
 	};
 public:
 	Any() : _holder(nullptr) {};

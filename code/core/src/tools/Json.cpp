@@ -1,12 +1,11 @@
-#include "../../public/tools/Json.h"
+#include "tools/Json.h"
 
-#include "../../public/tools/StringUtil.h"
-#include "../../public/tools/File.h"
-#include "../../public/message/Message.h"
+#include "tools/StringUtil.h"
+#include "tools/File.h"
+#include "message/Message.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/program_options/detail/utf8_codecvt_facet.hpp>
-#include <boost/property_tree/xml_parser.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
 namespace gemini {
@@ -28,6 +27,9 @@ Boolean JsonFile::open(const String& name, File_Mode mode /*= File_Mode::NormalF
 		return false;
 
 	try {
+		if (_ptree == nullptr) {
+			_ptree.reset(new boost::property_tree::iptree());
+		}
 		std::locale utf8Locale(std::locale(), new boost::program_options::detail::utf8_codecvt_facet());
 		boost::property_tree::json_parser::read_json(xmlName, *_ptree, utf8Locale);
 	} catch (boost::property_tree::json_parser_error& err) {
@@ -42,16 +44,15 @@ Boolean JsonFile::ProJsonFile(String& path, File_Mode mode)
 	if (path.empty())
 		return false;
 
-	const String strExtension = StringUtil::find_last(path, u8".");
+	const String strExtension = StringUtil::get_tail(path.c_str(), ".");
 	if (strExtension.empty())
-		path += u8".json";
-	else if (strExtension != u8"json")
+		path += ".json";
+	else if (strExtension != "json")
 		return false;
 
 	File file(path.c_str());
-	switch (mode)
-	{
-	case File_Mode::FM_NormalFile:
+	switch (mode) {
+	case File_Mode::FM_NormalFile: 
 	{
 		if (!file.getFilePath().isExist() || !file.open(std::ios_base::in | std::ios_base::out))
 			return false;
@@ -59,7 +60,7 @@ Boolean JsonFile::ProJsonFile(String& path, File_Mode mode)
 		file.close();
 	}
 	break;
-	case File_Mode::FM_CreateFile:
+	case File_Mode::FM_CreateFile: 
 	{
 		if (!file.getFilePath().isExist())
 		{

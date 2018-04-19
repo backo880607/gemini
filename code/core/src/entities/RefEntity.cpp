@@ -1,4 +1,4 @@
-#include "../../include/Entities/RefEntity.h"
+#include "entities/RefEntity.h"
 
 namespace gemini {
 

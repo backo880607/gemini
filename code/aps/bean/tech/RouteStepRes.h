@@ -13,6 +13,7 @@ public:
 	~RouteStepRes();
 
 	DECLARE_ENTITY(RouteStep, routeStep)
+	DECLARE_ENTITY(Resource, res)
 };
 
 }

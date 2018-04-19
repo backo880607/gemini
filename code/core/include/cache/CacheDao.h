@@ -4,17 +4,17 @@
 
 namespace gemini {
 
-class CacheDao : noncopyable {
+class CORE_API CacheDao : noncopyable {
 protected:
 	CacheDao() {}
 public:
 	virtual ~CacheDao() {}
 
-	virtual std::vector<EntityObject::SPtr> select() = 0;
+	virtual const IList& select() = 0;
 	virtual EntityObject::SPtr select(ID id) = 0;
-	//virtual void insert(EntityObject::SPtr entity) = 0;
-	//virtual void erase(ID id) = 0;
-	//virtual void erase(EntityObject::SPtr entity) = 0;
+	virtual void insert(EntityObject::SPtr entity) = 0;
+	virtual void erase(ID id) = 0;
+	virtual void erase(EntityObject::SPtr entity) = 0;
 	virtual void clear() = 0;
 
 	virtual void insert(const std::map<ID, EntityObject::SPtr>& entities) = 0;

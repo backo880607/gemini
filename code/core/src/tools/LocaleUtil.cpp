@@ -1,15 +1,22 @@
-#include "../../include/tools/LocaleUtil.h"
+#include "tools/LocaleUtil.h"
 
 namespace gemini {
 
-std::ostringstream& LocaleUtil::getOSS()
+std::ostringstream& LocaleUtil::getOSS(Boolean bReset /* = false */)
 {
-	_ssout.str(u8"");
+	if (bReset) {
+		_ssout.clear();
+		_ssout.str(u8"");
+	}
 	return _ssout;
 }
 
-std::istringstream& LocaleUtil::getISS()
+std::istringstream& LocaleUtil::getISS(const Char* str /* = nullptr */)
 {
+	if (str != nullptr) {
+		_ssin.clear();
+		_ssin.str(str);
+	}
 	return _ssin;
 }
 
