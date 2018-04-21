@@ -238,13 +238,13 @@ void File::setFilePath(const String& path)
 	_path.reset(path);
 }
 
-ULong File::getSize() const
+Long File::getSize() const
 {
 	boost::system::error_code err;
 	return boost::filesystem::file_size(_path.path(), err);
 }
 
-File& File::setSize(ULong size)
+File& File::setSize(Long size)
 {
 	boost::system::error_code err;
 	boost::filesystem::resize_file(_path.path(), size, err);
@@ -309,7 +309,7 @@ String File::readLine()
 	return buffer.begin();
 }
 
-void File::read(Char* pBuf, ULong size)
+void File::read(Char* pBuf, Long size)
 {
 	_file.read(pBuf, size);
 }

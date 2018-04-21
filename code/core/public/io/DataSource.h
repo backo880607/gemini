@@ -15,7 +15,7 @@ public:
 	virtual void close() = 0;
 
 	virtual Boolean step() = 0;
-	virtual String getData(UInt index) = 0;
+	virtual String getData(Int index) = 0;
 
 	virtual Boolean write(const Field* fd, const String& data) = 0;
 

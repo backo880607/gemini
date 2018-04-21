@@ -37,12 +37,12 @@ const IList& BaseService::getListImpl(const Class & cls) const
 	//return Cache::getList(cls);
 }
 
-EntityObject::SPtr BaseService::getImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const
+EntityObject::SPtr BaseService::getImpl(EntityObject::SPtr entity, const std::vector<Int>& signs) const
 {
 	return IocRelation::get(entity, signs);
 }
 
-const IList& BaseService::getListImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const
+const IList& BaseService::getListImpl(EntityObject::SPtr entity, const std::vector<Int>& signs) const
 {
 	return IocRelation::getList(entity, signs);
 }

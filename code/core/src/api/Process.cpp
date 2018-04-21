@@ -28,7 +28,7 @@ struct ProcessBuffer {
 	~ProcessBuffer() {}
 };
 
-Boolean Process::SharedMemory::open(ULong id /* = 0 */)
+Boolean Process::SharedMemory::open(Long id /* = 0 */)
 {
 	using namespace boost::interprocess;
 	String strSharedMemName = u8"Process_Shared_";
@@ -84,7 +84,7 @@ Process::~Process()
 
 }
 
-ULong Process::currentId()
+Long Process::currentId()
 {
 	return ProcessImpl::currentId();
 }
@@ -99,7 +99,7 @@ Process Process::launch(const String& command, const Args& args)
 	return ProcessImpl::launch(command, args);
 }
 
-ULong Process::id() const
+Long Process::id() const
 {
 	return _impl->id();
 }

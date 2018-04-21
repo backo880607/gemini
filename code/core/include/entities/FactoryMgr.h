@@ -25,7 +25,7 @@ public:
 		}
 	}
 
-	const EntityFactory::Data* getRelaData(const Class& cls, UInt sign) const;
+	const EntityFactory::Data* getRelaData(const Class& cls, Int sign) const;
 
 private:
 	std::vector<EntityFactory*> _factories;

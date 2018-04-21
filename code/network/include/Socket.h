@@ -30,7 +30,7 @@ public:
 		S_Termination 	///< 未连接
 	};
 
-	Socket(service_type& ios, TCPConnection* conn, UInt hbTimeout);
+	Socket(service_type& ios, TCPConnection* conn, Int hbTimeout);
 	~Socket();
 
 	socket_type& getSocket() { return _socket; }
@@ -49,12 +49,12 @@ public:
 	*        -<em>false</em> 异步写入失败
 	*        -<em>true</em> 异步写入成功
 	*/
-	Boolean asyncWrite(const void* pData, std::size_t size, UChar msgType = MSG_TYPE_NORMAL, UChar funcID = 0,
-		UShort priority = 0, DataType dataType = DataType::DT_MEMSEQ, CompressType cpt = CompressType::CPT_ZLIB) {
+	Boolean asyncWrite(const void* pData, std::size_t size, MSG_UINT8 msgType = MSG_TYPE_NORMAL, MSG_UINT8 funcID = 0,
+		MSG_UINT8 priority = 0, DataType dataType = DataType::DT_MEMSEQ, CompressType cpt = CompressType::CPT_ZLIB) {
 		MsgData msg;
 		msg.setType(msgType);
 		msg.setFunctionID(funcID);
-		msg.setPriority((UChar)priority);
+		msg.setPriority(priority);
 		msg.setDataType(dataType);
 		msg.setCompressType(cpt);
 		msg.setCompressType(CompressType::CPT_NONE);
@@ -108,10 +108,10 @@ private:
 	void async_handle_read_body(const boost::system::error_code& err, std::size_t len);
 
 	Boolean write(MsgData msg);
-	Boolean writeImpl(const Char* data, UInt size);
+	Boolean writeImpl(const Char* data, Long size);
 
 	void do_write(MsgData msg);
-	void async_handle_write(const boost::system::error_code& err, UInt pos);
+	void async_handle_write(const boost::system::error_code& err, Int pos);
 
 	/**
 	 * @brief 心跳回调函数
@@ -130,7 +130,7 @@ private:
 
 private:
 	Status _status; 	///< socket状态
-	UInt _heartbeatTimeout;	///< ������ʱʱ�䣬��λΪ��
+	Int _heartbeatTimeout;	///< ������ʱʱ�䣬��λΪ��
 	boost::asio::deadline_timer _heartbeat;	///< ������ʱ��
 	socket_type _socket;
 	boost::asio::io_service::strand _strand;

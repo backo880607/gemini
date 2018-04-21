@@ -62,9 +62,7 @@ class gemini_logger :
 	typedef typename gemini_logger::logger_base base_type;
 	BOOST_LOG_FORWARD_LOGGER_MEMBERS(gemini_logger)
 public:
-	explicit gemini_logger(severity_level level) : base_type(keywords::severity = level)
-	{
-	}
+	explicit gemini_logger(severity_level level) : base_type(keywords::severity = level) {}
 };
 
 Logger::Logger(const char* file, int line, Level level /* = Level::LOG_INFO */)
@@ -77,8 +75,7 @@ Logger::~Logger(void)
 {
 }
 
-void Logger::init()
-{
+void Logger::init() {
 	FilePath filePath = FilePath::currentPath().append("LOG");
 	if (!filePath.isExist())
 		filePath.createDirectories();
@@ -107,25 +104,20 @@ void Logger::init()
 	boost::log::core::get()->add_sink(file_sink);
 }
 
-void Logger::unInit()
-{
+void Logger::unInit() {
 }
 
-Logger& Logger::log(const Char* str)
-{
-	
+Logger& Logger::log(const Char* str) {
 	BOOST_LOG(*_logger) << str;
 	return *this;
 }
 
-Logger& gemini::Logger::log(const Exception & exc)
-{
+Logger& gemini::Logger::log(const Exception & exc) {
 	//BOOST_LOG(*_logger) << exc.what();
 	return *this;
 }
 
-void Logger::setMinLevel(Level level)
-{
+void Logger::setMinLevel(Level level) {
 	boost::log::core::get()->set_filter(
 		expr::attr<Level>("Severity").or_default(Level::INFO) >= level // Write all records with "warning" severity or higher
 		|| expr::begins_with(expr::attr<std::string>("Tag").or_default(std::string()), "IMPORTANT")); // ...or specifically tagged

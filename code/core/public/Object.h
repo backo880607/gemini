@@ -20,7 +20,7 @@ public:
 	virtual const Class& getClass() const { return s_class; }
 
 protected:
-	virtual gemini::UInt signMaxIndex() = 0;
+	virtual Int signMaxIndex() = 0;
 
 private:
 	static const Class s_class;
@@ -30,7 +30,7 @@ class RefBase;
 class CORE_API EntityObject : public Object, public AnyAbstract
 {
 protected:
-	static UInt s_index;
+	static Int s_index;
 	EntityObject();
 public:
 	typedef SmartPtr<EntityObject> SPtr;
@@ -77,7 +77,7 @@ public:
 	};
 
 	virtual Boolean empty() = 0;
-	virtual ULong size() = 0;
+	virtual Long size() = 0;
 	virtual Iterator iterator() const = 0;
 
 	virtual Boolean operator== (const Any& rhs) const;

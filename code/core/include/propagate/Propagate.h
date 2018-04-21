@@ -8,8 +8,8 @@ class Propagate final : public noncopyable
 {
 public:
 	struct Data {
-		const UInt id = ++Propagate::s_maxID;
-		std::vector<std::vector<UInt>> paths;
+		const Int id = ++Propagate::s_maxID;
+		std::vector<std::vector<Int>> paths;
 		std::vector<const Field*> properties;
 		const BaseService* service;
 		service::callable* method;
@@ -27,7 +27,7 @@ public:
 
 private:
 	friend class PropagateHelper;
-	static MT_UInt s_maxID;
+	static MT_Int s_maxID;
 	std::vector<std::map<const Field*, Data>> _datas;
 };
 

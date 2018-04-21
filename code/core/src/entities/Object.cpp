@@ -30,8 +30,8 @@ public:
 		if (0 != id) return id;
 
 		std::chrono::steady_clock::duration dur = std::chrono::steady_clock::now() - s_startTime;
-		ULong totalMilliseconds = std::chrono::duration_cast<std::chrono::microseconds>(dur).count();
-		ULong seqID = 0;
+		Long totalMilliseconds = std::chrono::duration_cast<std::chrono::microseconds>(dur).count();
+		Long seqID = 0;
 		if (totalMilliseconds > m_lastMilliseconds) {
 			m_lastMilliseconds = totalMilliseconds;
 			_seq_id = 0;
@@ -48,16 +48,16 @@ public:
 		id |= seqID;
 		return id;
 	}
-	ULong getLogicalSlice() const { return _logicSlice; }
+	Long getLogicalSlice() const { return _logicSlice; }
 
 private:
-	ULong m_lastMilliseconds;
-	ULong _logicSlice;
-	ULong _seq_id;
+	Long m_lastMilliseconds;
+	Long _logicSlice;
+	Long _seq_id;
 };
 
 const Class EntityObject::_class("EntityObject", &Object::getClassStatic(), createObject);
-UInt EntityObject::s_index = 1;
+Int EntityObject::s_index = 1;
 EntityObject::EntityObject()
 	: _id(IDGenerator::instance().getID())
 {

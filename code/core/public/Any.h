@@ -54,19 +54,13 @@ public:
 	PlaceHolder* create(const T& value) { return new HolderClass<T>(value); }
 	PlaceHolder* create(Boolean value);
 	PlaceHolder* create(Char value);
-	PlaceHolder* create(UChar value);
-	PlaceHolder* create(WChar value);
 	PlaceHolder* create(Char16 value);
 	PlaceHolder* create(Char32 value);
 	PlaceHolder* create(Short value);
-	PlaceHolder* create(UShort value);
 	PlaceHolder* create(Int value);
-	PlaceHolder* create(UInt value);
 	PlaceHolder* create(Long value);
-	PlaceHolder* create(ULong value);
 	PlaceHolder* create(Float value);
 	PlaceHolder* create(Double value);
-	PlaceHolder* create(LDouble value);
 	PlaceHolder* create(const String& value);
 	PlaceHolder* create(const Char* value);
 	PlaceHolder* create(const SmartPtr<EntityObject>& value);

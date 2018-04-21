@@ -11,7 +11,7 @@ public:
 	virtual Graph* createGraph() = 0;
 protected:
 	Graph* _graph = nullptr;
-	ULong _adjvex = -1;
+	Long _adjvex = -1;
 
 	friend class Graph;
 };

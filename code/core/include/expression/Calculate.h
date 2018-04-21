@@ -97,6 +97,7 @@ private:
 	Any getResult(const EntityObject* entity);
 
 private:
+	Boolean _isList;
 	const Class* _propertyCls;
 	const Field* _field;
 	std::vector<const Field*> _paths;

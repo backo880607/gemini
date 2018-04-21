@@ -14,14 +14,14 @@ class CORE_API BaseService
 	EntityObject::SPtr getInheritImpl(const Class& cls, Long id) const;
 	const IList& getListImpl(const Class& cls) const;
 
-	EntityObject::SPtr getImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const;
-	const IList& getListImpl(EntityObject::SPtr entity, const std::vector<UInt>& signs) const;
+	EntityObject::SPtr getImpl(EntityObject::SPtr entity, const std::vector<Int>& signs) const;
+	const IList& getListImpl(EntityObject::SPtr entity, const std::vector<Int>& signs) const;
 
 	template<typename... A> class RefSign {};
 	template<typename Head, typename... Tail> class RefSign<Head, Tail...> {
 	public:
 		typedef typename RefSign<Tail...>::value_type value_type;
-		static void collect(std::vector<gemini::UInt>& vals) {
+		static void collect(std::vector<gemini::Int>& vals) {
 			vals.push_back(Head::index());
 			RefSign<Tail...>::collect(vals);
 		}
@@ -29,7 +29,7 @@ class CORE_API BaseService
 	template<typename Tail> class RefSign<Tail> {
 	public:
 		typedef typename Tail value_type;
-		static void collect(std::vector<gemini::UInt>& vals) {
+		static void collect(std::vector<gemini::Int>& vals) {
 			vals.push_back(Tail::index());
 		}
 	};
@@ -103,14 +103,14 @@ public:
 
 	template <typename T, typename... Ref>
 	typename T::SPtr get(EntityObject::SPtr entity) const {
-		std::vector<gemini::UInt> signs;
+		std::vector<gemini::Int> signs;
 		RefSign<Ref...>::collect(signs);
 		return getImpl(entity, signs);
 	}
 
 	template <typename T, typename... Ref>
 	typename T::SPtr get(EntityObject::SPtr entity, std::function<Boolean(typename T::SPtr)> filter) const {
-		std::vector<gemini::UInt> signs;
+		std::vector<gemini::Int> signs;
 		RefSign<Ref...>::collect(signs);
 		for (typename T::SPtr target : getListImpl(entity, signs)) {
 			if (filter(target)) {
@@ -131,7 +131,7 @@ public:
 
 	template <typename T, typename... Ref>
 	std::list<typename T::SPtr> getList(EntityObject::SPtr entity) const {
-		std::vector<gemini::UInt> signs;
+		std::vector<gemini::Int> signs;
 		RefSign<Ref...>::collect(signs);
 		std::list<typename T::SPtr> entities;
 		for (typename T::SPtr entity : getListImpl(entity, signs)) {

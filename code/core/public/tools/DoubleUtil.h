@@ -10,23 +10,23 @@ class CORE_API DoubleUtil final
 	DoubleUtil(const DoubleUtil&) = delete;
 	DoubleUtil& operator=(const DoubleUtil&) = delete;
 public:
-	static void setPrecision(LDouble precision);
+	static void setPrecision(Double precision);
 
-	static Boolean isZero(LDouble value);
-	static Boolean isZero(LDouble value, LDouble precision);
+	static Boolean isZero(Double value);
+	static Boolean isZero(Double value, Double precision);
 
-	static Boolean equal(LDouble lhs, LDouble rhs);
-	static Boolean equal(LDouble lhs, LDouble rhs, LDouble precision);
-	static Boolean notEqual(LDouble lhs, LDouble rhs) { return !DoubleUtil::equal(lhs, rhs); }
-	static Boolean notEqual(LDouble lhs, LDouble rhs, LDouble precision) { return !DoubleUtil::equal(lhs, rhs, precision); }
-	static Boolean less(LDouble lhs, LDouble rhs);
-	static Boolean less(LDouble lhs, LDouble rhs, LDouble precision);
-	static Boolean lessEqual(LDouble lhs, LDouble rhs) { return !DoubleUtil::less(rhs, lhs); }
-	static Boolean lessEqual(LDouble lhs, LDouble rhs, LDouble precision) { return !DoubleUtil::less(rhs, lhs, precision); }
-	static Boolean greater(LDouble lhs, LDouble rhs) { return DoubleUtil::less(rhs, lhs); }
-	static Boolean greater(LDouble lhs, LDouble rhs, LDouble precision) { return DoubleUtil::less(rhs, lhs, precision); }
-	static Boolean greaterEqual(LDouble lhs, LDouble rhs) { return !DoubleUtil::less(lhs, rhs); }
-	static Boolean greaterEqual(LDouble lhs, LDouble rhs, LDouble precision) { return !DoubleUtil::less(lhs, rhs, precision); }
+	static Boolean equal(Double lhs, Double rhs);
+	static Boolean equal(Double lhs, Double rhs, Double precision);
+	static Boolean notEqual(Double lhs, Double rhs) { return !DoubleUtil::equal(lhs, rhs); }
+	static Boolean notEqual(Double lhs, Double rhs, Double precision) { return !DoubleUtil::equal(lhs, rhs, precision); }
+	static Boolean less(Double lhs, Double rhs);
+	static Boolean less(Double lhs, Double rhs, Double precision);
+	static Boolean lessEqual(Double lhs, Double rhs) { return !DoubleUtil::less(rhs, lhs); }
+	static Boolean lessEqual(Double lhs, Double rhs, Double precision) { return !DoubleUtil::less(rhs, lhs, precision); }
+	static Boolean greater(Double lhs, Double rhs) { return DoubleUtil::less(rhs, lhs); }
+	static Boolean greater(Double lhs, Double rhs, Double precision) { return DoubleUtil::less(rhs, lhs, precision); }
+	static Boolean greaterEqual(Double lhs, Double rhs) { return !DoubleUtil::less(lhs, rhs); }
+	static Boolean greaterEqual(Double lhs, Double rhs, Double precision) { return !DoubleUtil::less(lhs, rhs, precision); }
 
 	//////////////////////////////////////////////////////////////////////////
 	//  以下部分用到的索引表示：小数点为索引0，小数部分索引为负值，整数部分索引为正值

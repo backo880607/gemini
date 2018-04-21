@@ -4,14 +4,12 @@
 
 namespace gemini {
 
-Boolean ServerUtil::startTCPServer()
-{
+Boolean ServerUtil::startTCPServer() {
 	TCPServer server;
 	return server.start();
 }
 
-Boolean ServerUtil::startHTTPServer()
-{
+Boolean ServerUtil::startHTTPServer() {
 	HTTPServer server;
 	return server.start();
 }

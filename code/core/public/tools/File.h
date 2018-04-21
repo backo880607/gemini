@@ -76,8 +76,8 @@ public:
 	const FilePath& getFilePath() const { return _path; }
 	void setFilePath(const String& path);
 
-	ULong getSize() const;
-	File& setSize(ULong size);
+	Long getSize() const;
+	File& setSize(Long size);
 
 	Boolean remove() { return _path.remove(); }
 	void removeTo(const String& path);
@@ -105,7 +105,7 @@ public:
 	String readLine();
 	template <typename T>
 	void read(T& val) { _file >> val; }
-	void read(Char* pBuf, ULong size);
+	void read(Char* pBuf, Long size);
 
 	Boolean isEnd() const;
 

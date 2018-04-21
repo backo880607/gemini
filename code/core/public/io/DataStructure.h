@@ -7,8 +7,8 @@ namespace io {
 
 struct DataHeader
 {
-	UInt _size;
-	UInt _version;
+	Int _size;
+	Int _version;
 	DateTime _time;
 };
 

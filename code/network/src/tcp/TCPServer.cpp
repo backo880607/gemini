@@ -28,8 +28,7 @@ TCPServer::~TCPServer()
 
 }
 
-Boolean TCPServer::start()
-{
+Boolean TCPServer::start() {
 	_isClose = false;
 	if (!_acceptor.is_open()) {
 		return false;
@@ -41,34 +40,29 @@ Boolean TCPServer::start()
 	return true;
 }
 
-void TCPServer::stop()
-{
+void TCPServer::stop() {
 	_isClose = true;
 	_acceptor.close();
 	_ios.stop();
 	IOServicePool::instance().stop();
 }
 
-std::shared_ptr<TCPServerConnection> TCPServer::createConnection()
-{
+std::shared_ptr<TCPServerConnection> TCPServer::createConnection() {
 	return std::shared_ptr<TCPServerConnection>(new TCPServerConnection());
 }
 
-void TCPServer::async_accept()
-{
+void TCPServer::async_accept() {
 	std::shared_ptr<TCPServerConnection> conn = createConnection();
 	conn->bindIOS(IOServicePool::instance().get_io_service());
 	_acceptor.async_accept(conn->get()->getSocket(),
 		boost::bind(&TCPServer::handle_accept, this, conn, boost::asio::placeholders::error));
 }
 
-void TCPServer::handle_accept(std::shared_ptr<TCPServerConnection> conn, const boost::system::error_code & error)
-{
+void TCPServer::handle_accept(std::shared_ptr<TCPServerConnection> conn, const boost::system::error_code & error) {
 	if (error || _isClose)
 		return;
 
 	conn->get()->start();
-
 	async_accept();
 }
 

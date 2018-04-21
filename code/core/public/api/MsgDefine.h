@@ -62,5 +62,92 @@ enum class Encryption {
 #define STRUCT_VAR_SIZE(tag, property) sizeof(((tag*)0)->property)
 #define STRUCT_VAR_SIZE_NS(ns, tag, property) sizeof(((ns::tag*)0)->property)
 
+#if defined(_MSC_VER)
+//
+// Windows/Visual C++
+//
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+typedef unsigned __int64       MSG_UINT64;
+#elif defined(__GNUC__) || defined(__clang__)
+//
+// Unix/GCC/Clang
+//
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+#if defined(_WIN64)
+typedef unsigned long long     MSG_UINT64;
+#else
+#if defined(__LP64__)
+typedef unsigned long          MSG_UINT64;
+#else
+typedef unsigned long long     MSG_UINT64;
+#endif
+#endif
+#elif defined(__DECCXX)
+//
+// Compaq C++
+//
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+typedef unsigned __int64       MSG_UINT64;
+#elif defined(__HP_aCC)
+//
+// HP Ansi C++
+//
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+#if defined(__LP64__)
+typedef unsigned long          MSG_UINT64;
+#else
+typedef unsigned long long     MSG_UINT64;
+#endif
+#elif defined(__SUNPRO_CC)
+//
+// SUN Forte C++
+//
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+#if defined(__sparcv9)
+typedef unsigned long          MSG_UINT64;
+#else
+typedef unsigned long long     MSG_UINT64;
+#endif
+#elif defined(__IBMCPP__) 
+//
+// IBM XL C++
+//
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+#if defined(__64BIT__)
+typedef unsigned long          MSG_UINT64;
+#else
+typedef unsigned long long     MSG_UINT64;
+#endif
+#elif defined(__sgi) 
+//
+// MIPSpro C++
+//
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+#if _MIPS_SZLONG == 64
+typedef unsigned long          MSG_UINT64;
+#else
+typedef unsigned long long     MSG_UINT64;
+#endif
+#elif defined(_DIAB_TOOL)
+typedef unsigned char          MSG_UINT8;
+typedef unsigned short         MSG_UINT16;
+typedef unsigned int           MSG_UINT32;
+typedef unsigned long long     MSG_UINT64;
+#endif
+
 }
 #endif // !GEMINI_MsgDefine_INCLUDE

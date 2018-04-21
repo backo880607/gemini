@@ -30,7 +30,7 @@ void Graph::merge(Graph* val)
 	if (val == nullptr || this == val)
 		return;
 
-	ULong count = getNodeSize();
+	Long count = getNodeSize();
 	_nodes.insert(_nodes.end(), val->_nodes.begin(), val->_nodes.end());
 	for (VertexNode* vertexNode : val->_nodes) {
 		if (vertexNode->vertex != nullptr) {
@@ -101,7 +101,7 @@ Graph::VertexNode* Graph::getNode(Vertex* vertex, Boolean bCreate /* = false */)
 	return node;
 }
 
-Vertex* Graph::get(ULong adjvex)
+Vertex* Graph::get(Long adjvex)
 {
 	if (adjvex <= 0 || adjvex >= getNodeSize()) {
 		return nullptr;

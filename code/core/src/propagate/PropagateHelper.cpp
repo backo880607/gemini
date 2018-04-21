@@ -59,7 +59,7 @@ void PropagateHelper::loadConfig()
 			THROW_IF(!dependencesNode.valid(), Exception, u8"lost the dependence path: ", clsName)
 			dependencesNode.foreach([&](XMLNode depNode) {
 				String strDep = depNode.getValue();
-				std::vector<UInt> pathSigns;
+				std::vector<Int> pathSigns;
 				Boolean bLastField = false;
 				StringUtil::parse<String>(strDep, u8";", [&](const String& strField) {
 					THROW_IF(bLastField, Exception, u8"invalid dependence path: ", strDep)

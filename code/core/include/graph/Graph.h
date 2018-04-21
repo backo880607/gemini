@@ -23,14 +23,14 @@ protected:
 public:
 	virtual ~Graph();
 
-	ULong getNodeSize() const { return _nodes.size(); }
+	Long getNodeSize() const { return _nodes.size(); }
 
 	static Graph* create(Vertex* vertex);
 	static void createEdge(Vertex* first, Int firstSign, Vertex* second, Int secondSign);
 
 	VertexNode* getNode(Vertex* vertex, Boolean bCreate = false);
 
-	Vertex* get(ULong adjvex);
+	Vertex* get(Long adjvex);
 
 	Edge* getOutEdge(Vertex* vertex, Int sign);
 	Edge* getInEdge(Vertex* vertex, Int sign);

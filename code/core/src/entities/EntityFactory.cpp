@@ -26,7 +26,7 @@ EntityFactory::~EntityFactory()
 
 }
 
-UInt EntityFactory::getRelaSign(const String& signName) const
+Int EntityFactory::getRelaSign(const String& signName) const
 {
 	for (auto iter : _relations) {
 		const Data& relaData = iter.second;
@@ -38,7 +38,7 @@ UInt EntityFactory::getRelaSign(const String& signName) const
 	return _super != nullptr ? _super->getRelaSign(signName) : 0;
 }
 
-const EntityFactory::Data* EntityFactory::getRelaData(UInt sign) const
+const EntityFactory::Data* EntityFactory::getRelaData(Int sign) const
 {
 	auto iter = _relations.find(sign);
 	if (iter != _relations.end()) {

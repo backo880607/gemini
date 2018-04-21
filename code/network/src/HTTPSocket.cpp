@@ -2,7 +2,7 @@
 
 namespace gemini {
 
-HTTPSocket::HTTPSocket(service_type& ios, TCPConnection* conn, UInt hbTimeout)
+HTTPSocket::HTTPSocket(service_type& ios, TCPConnection* conn, Int hbTimeout)
 	: Socket(ios, conn, hbTimeout)
 {
 
@@ -13,8 +13,7 @@ HTTPSocket::~HTTPSocket()
 
 }
 
-void HTTPSocket::do_read()
-{
+void HTTPSocket::do_read() {
 	using namespace boost::beast;
 
 	// Read a request
@@ -28,14 +27,18 @@ void HTTPSocket::do_read()
 				std::placeholders::_2)));
 }
 
-void HTTPSocket::on_read(boost::system::error_code ec, std::size_t bytes_transferred)
-{
+void HTTPSocket::on_read(boost::system::error_code ec, std::size_t bytes_transferred) {
 	using namespace boost::beast;
 	boost::ignore_unused(bytes_transferred);
 
 	// This means they closed the connection
-	if (ec == http::error::end_of_stream)
+	if (ec == http::error::end_of_stream || ec == boost::asio::error::eof ||
+		ec == boost::asio::error::connection_aborted || ec == boost::asio::error::connection_reset ||
+		ec == boost::asio::error::connection_refused || ec == boost::asio::error::network_down ||
+		ec == boost::asio::error::network_reset || ec == boost::asio::error::network_unreachable ||
+		ec == boost::asio::error::not_connected || ec == boost::asio::error::shut_down) {
 		return stop();
+	}
 
 	if (ec)
 		return fail(ec, "read");
@@ -53,13 +56,21 @@ void HTTPSocket::on_read(boost::system::error_code ec, std::size_t bytes_transfe
 	case http::verb::post:
 		handle_post();
 		break;
+	case http::verb::put:
+		handle_put();
+		break;
+	case http::verb::delete_:
+		handle_delete();
+		break;
+	case http::verb::options:
+		handle_options();
+		break;
 	default:
 		break;
 	}
 }
 
-void HTTPSocket::on_write(boost::system::error_code ec, std::size_t bytes_transferred, bool close)
-{
+void HTTPSocket::on_write(boost::system::error_code ec, std::size_t bytes_transferred, bool close) {
 	boost::ignore_unused(bytes_transferred);
 
 	if (ec)
@@ -79,16 +90,13 @@ void HTTPSocket::on_write(boost::system::error_code ec, std::size_t bytes_transf
 	do_read();
 }
 
-void HTTPSocket::fail(boost::system::error_code ec, char const * what)
-{
+void HTTPSocket::fail(boost::system::error_code ec, char const * what) {
 }
 
-void HTTPSocket::handle_head()
-{
+void HTTPSocket::handle_head() {
 }
 
-void HTTPSocket::handle_get()
-{
+void HTTPSocket::handle_get() {
 	using namespace boost::beast;
 
 	// Attempt to open the file
@@ -108,13 +116,23 @@ void HTTPSocket::handle_get()
 	send_lambda(*this)(std::move(res));
 }
 
-void HTTPSocket::handle_post()
-{
+void HTTPSocket::handle_post() {
 	using namespace boost::beast;
 }
 
-boost::beast::string_view HTTPSocket::mime_type(const boost::beast::string_view & path)
-{
+void HTTPSocket::handle_put() {
+
+}
+
+void HTTPSocket::handle_delete() {
+
+}
+
+void HTTPSocket::handle_options() {
+
+}
+
+boost::beast::string_view HTTPSocket::mime_type(const boost::beast::string_view & path) {
 	using boost::beast::iequals;
 	auto const ext = [&path]
 	{

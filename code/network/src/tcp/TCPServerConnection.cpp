@@ -11,22 +11,18 @@ TCPServerConnection::~TCPServerConnection()
 {
 }
 
-std::shared_ptr<Socket> TCPServerConnection::createSocket(boost::asio::io_service & ios)
-{
+std::shared_ptr<Socket> TCPServerConnection::createSocket(boost::asio::io_service & ios) {
 	return std::shared_ptr<Socket>(new Socket(ios, this, 100));
 }
 
-Boolean TCPServerConnection::execute(const MsgData & msg)
-{
+Boolean TCPServerConnection::execute(const MsgData & msg) {
 	return Boolean();
 }
 
-void TCPServerConnection::close()
-{
+void TCPServerConnection::close() {
 }
 
-Boolean TCPServerConnection::proHeartBeatTimeout()
-{
+Boolean TCPServerConnection::proHeartBeatTimeout() {
 	return Boolean();
 }
 

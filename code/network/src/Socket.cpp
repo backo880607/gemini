@@ -7,7 +7,7 @@
 using namespace boost::asio;
 namespace gemini {
 
-Socket::Socket(service_type& ios, TCPConnection* conn, UInt hbTimeout)
+Socket::Socket(service_type& ios, TCPConnection* conn, Int hbTimeout)
 	: _strand(ios)
 	, _heartbeatTimeout(hbTimeout)
 	//, _msgIDMax(0)
@@ -23,8 +23,7 @@ Socket::~Socket()
 
 }
 
-Boolean Socket::start()
-{
+Boolean Socket::start() {
 	boost::system::error_code set_option_err;
 	boost::asio::ip::tcp::no_delay no_delay(true);
 	_socket.set_option(no_delay, set_option_err);
@@ -37,29 +36,26 @@ Boolean Socket::start()
 	return true;
 }
 
-void Socket::stop()
-{
+void Socket::stop() {
 	_heartbeat.cancel();
 	boost::system::error_code ignored_ec;
 	_socket.shutdown(ip::tcp::socket::shutdown_both, ignored_ec);
 	_socket.close(ignored_ec);
 }
 
-void Socket::do_read()
-{
+void Socket::do_read() {
 	async_read_head();
 	_heartbeat.async_wait(boost::bind(&Socket::checkHeartBeat, shared_from_this(), boost::asio::placeholders::error));
 }
 
-Boolean Socket::async_read_head()
-{
+Boolean Socket::async_read_head() {
 	if (_status == Status::S_Termination)
 		return false;
 
 	_heartbeat.expires_from_now(boost::posix_time::seconds(_heartbeatTimeout));
 	_readMsg.reset();
 	Char* buf = _readMsg.getHeadBuffer();
-	UInt headSize = _readMsg.getHeadSize();
+	Int headSize = _readMsg.getHeadSize();
 	async_read(_socket, buffer(buf, headSize), transfer_all(),
 		_strand.wrap(boost::bind(&Socket::async_handle_read_head, shared_from_this(), 
 			placeholders::error, placeholders::bytes_transferred)));
@@ -67,22 +63,20 @@ Boolean Socket::async_read_head()
 	return true;
 }
 
-Boolean Socket::async_read_body()
-{
+Boolean Socket::async_read_body() {
 	if (_status == Status::S_Termination)
 		return false;
 
 	_heartbeat.expires_from_now(boost::posix_time::seconds(_heartbeatTimeout));
 	MsgData::mutable_buffer buf = _readMsg.prepare();
- 	async_read(_socket, buffer(buf.data_, buf.size_), transfer_all(),
+ 	async_read(_socket, buffer(buf._data, buf._size), transfer_all(),
 		_strand.wrap(boost::bind(&Socket::async_handle_read_body, shared_from_this(),
 			placeholders::error, placeholders::bytes_transferred)));
 	return true;
 }
 
 
-void Socket::async_handle_read_head( const boost::system::error_code& err, std::size_t len )
-{
+void Socket::async_handle_read_head( const boost::system::error_code& err, std::size_t len ) {
 	if (err && proError(err))
 		return;
 
@@ -91,8 +85,7 @@ void Socket::async_handle_read_head( const boost::system::error_code& err, std::
 	async_read_body();
 }
 
-void Socket::async_handle_read_body( const boost::system::error_code& err, std::size_t len )
-{
+void Socket::async_handle_read_body( const boost::system::error_code& err, std::size_t len ) {
 	if (err && proError(err))
 		return;
 
@@ -111,7 +104,7 @@ void Socket::async_handle_read_body( const boost::system::error_code& err, std::
 	} catch (NetworkException& exc) {
 		LOG_ERROR.log(exc);
 	} catch (Exception& exc) {
-
+		LOG_ERROR.log(exc);
 	} catch (std::exception& exc) {
 		LOG_ERROR.log(exc);
 	} catch (...) {
@@ -120,8 +113,7 @@ void Socket::async_handle_read_body( const boost::system::error_code& err, std::
 	async_read_head();
 }
 
-Boolean Socket::write(MsgData msg)
-{
+Boolean Socket::write(MsgData msg) {
 	if (_status == Status::S_Termination)
 		return false;
 
@@ -130,9 +122,9 @@ Boolean Socket::write(MsgData msg)
 		return false;
 
 	// 写入消息体
-	UInt pos = 0;
+	Int pos = 0;
 	const Char* data = nullptr;
-	UInt size = 0;
+	MSG_UINT32 size = 0;
 	while (msg.step(pos, data, size)) {
 		if (!writeImpl(data, size)) {
 			return false;
@@ -144,15 +136,13 @@ Boolean Socket::write(MsgData msg)
 	return true;
 }
 
-Boolean Socket::writeImpl(const Char* data, UInt size)
-{
+Boolean Socket::writeImpl(const Char* data, Long size) {
 	boost::system::error_code err;
 	boost::asio::write(_socket, buffer(data, size), transfer_all(), err);
 	return true;
 }
 
-Boolean Socket::asyncWrite(MsgData& msg)
-{
+Boolean Socket::asyncWrite(MsgData& msg) {
 	if (_status == Status::S_Termination)
 		return false;
 
@@ -164,8 +154,7 @@ Boolean Socket::asyncWrite(MsgData& msg)
 	return true;
 }
 
-void Socket::do_write(MsgData msg)
-{
+void Socket::do_write(MsgData msg) {
 	Boolean write_in_progress = !_writeMsg.empty();
     _writeMsg.push_back(msg);
     if (!write_in_progress) {
@@ -177,14 +166,13 @@ void Socket::do_write(MsgData msg)
     }
 }
 
-void Socket::async_handle_write(const boost::system::error_code& err, UInt pos)
-{
+void Socket::async_handle_write(const boost::system::error_code& err, Int pos) {
 	if (err && proError(err)) {
 		return;
 	}
 
 	const Char* data = nullptr;
-	UInt size = 0;
+	MSG_UINT32 size = 0;
 	if (_writeMsg.front().step(pos, data, size)) {
 		_heartbeat.expires_from_now(boost::posix_time::seconds(_heartbeatTimeout));
 		async_write(_socket, buffer(data, size),
@@ -202,8 +190,7 @@ void Socket::async_handle_write(const boost::system::error_code& err, UInt pos)
 	}
 }
 
-void Socket::checkHeartBeat(const boost::system::error_code& err)
-{
+void Socket::checkHeartBeat(const boost::system::error_code& err) {
 	// TCP连接已终止或取消了心跳定时器
 	if (_status == Status::S_Termination)
 		return;
@@ -221,8 +208,7 @@ void Socket::checkHeartBeat(const boost::system::error_code& err)
 	_heartbeat.async_wait(boost::bind(&Socket::checkHeartBeat, shared_from_this(), boost::asio::placeholders::error));
 }
 
-Boolean Socket::proError(const boost::system::error_code& err)
-{
+Boolean Socket::proError(const boost::system::error_code& err) {
 	if (!err)
 		return false;
 	

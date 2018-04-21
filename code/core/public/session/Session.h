@@ -13,7 +13,7 @@ class CORE_API Session : public EntityObject {
 	template <typename T>
 	class Holder : public PlaceHolder {
 	public:
-		static UInt index;
+		static Int index;
 		Holder() {}
 		virtual ~Holder() {}
 		virtual const std::type_info& type() const { return typeid(T); }
@@ -27,7 +27,7 @@ class CORE_API Session : public EntityObject {
 	DECLARE_FIELD(DateTime, startTime)
 	DECLARE_FIELD(DateTime, stopTime)
 	DECLARE_FIELD(DateTime, accessTime)
-	DECLARE_FIELD(ULong, timeout)
+	DECLARE_FIELD(Long, timeout)
 	DECLARE_FIELD(Boolean, expired)
 	DECLARE_FIELD(String, host)
 
@@ -35,8 +35,8 @@ class CORE_API Session : public EntityObject {
 	T& get() {
 		if (0 == Holder<T>::index) {
 			const std::type_info& typeinfo = typeid(T);
-			UInt i = 0;
-			const UInt len = (UInt)_holders.size();
+			Int i = 0;
+			const Int len = (Int)_holders.size();
 			for (; i < len; ++i) {
 				if (_holders[i]->type() == typeinfo)
 					break;
@@ -53,6 +53,6 @@ class CORE_API Session : public EntityObject {
 private:
 	std::vector<PlaceHolder*> _holders;
 };
-template <class T> UInt Session::Holder<T>::index = 0;
+template <class T> Int Session::Holder<T>::index = 0;
 
 }

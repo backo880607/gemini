@@ -7,6 +7,7 @@ namespace aps {
 class Task
 class APS_API Resource : public gemini::EntityObject
 {
+#define MODULE_API APS_API
 	DECLARE_CLASS(Resource, gemini::EntityObject)
 public:
 	Resource();

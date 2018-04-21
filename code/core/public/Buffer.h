@@ -25,7 +25,7 @@ public:
 		pointer ptr = new value_type[newSize];
 		if (bKeep) {
 			size_type n = newSize > _size ? _size : newSize;
-			std::memcpy(ptr, _pt, n);
+			std::memcpy(ptr, _pt, sizeof(value_type) * n);
 		}
 
 		delete[] _pt;
@@ -34,7 +34,7 @@ public:
 	}
 
 	void reset()
-	{ std::memset(_pt, 0, _size); }
+	{ std::memset(_pt, 0, sizeof(value_type) * _size); }
 
 	size_type size() const { return _size; }
 

@@ -104,7 +104,7 @@ Any FieldCalculate::getValue(const EntityObject::SPtr& entity)
 	}
 
 	Boolean multiRef = false;
-	std::vector<UInt> signs;
+	std::vector<Int> signs;
 	for (const Field* path : _paths) {
 		multiRef = path->getMultiRef();
 		signs.push_back(path->index());
@@ -123,6 +123,7 @@ Any FieldCalculate::getValue(const EntityObject::SPtr& entity)
 
 Boolean FieldCalculate::parse(const Char*& str)
 {
+	_isList;
 	_propertyCls = nullptr;
 	_field = nullptr;
 	_paths.clear();
@@ -179,26 +180,18 @@ Any FieldCalculate::getResult(const EntityObject* entity)
 		return _field->get<Boolean>(entity);
 	} else if (_propertyCls == &Class::forType<Char>()) {
 		return _field->get<Char>(entity);
-	} else if (_propertyCls == &Class::forType<UChar>()) {
-		return _field->get<UChar>(entity);
 	} else if (_propertyCls == &Class::forType<Short>()) {
 		return _field->get<Short>(entity);
-	} else if (_propertyCls == &Class::forType<UShort>()) {
-		return _field->get<UShort>(entity);
 	} else if (_propertyCls == &Class::forType<Int>()) {
 		return _field->get<Int>(entity);
-	} else if (_propertyCls == &Class::forType<UInt>()) {
-		return _field->get<UInt>(entity);
+	} else if (_propertyCls == &Class::forType<Int>()) {
+		return _field->get<Int>(entity);
 	} else if (_propertyCls == &Class::forType<Long>()) {
 		return _field->get<Long>(entity);
-	} else if (_propertyCls == &Class::forType<ULong>()) {
-		return _field->get<ULong>(entity);
 	} else if (_propertyCls == &Class::forType<Float>()) {
 		return _field->get<Float>(entity);
 	} else if (_propertyCls == &Class::forType<Double>()) {
 		return _field->get<Double>(entity);
-	} else if (_propertyCls == &Class::forType<LDouble>()) {
-		return _field->get<LDouble>(entity);
 	} else if (_propertyCls == &Class::forType<String>()) {
 		return _field->get<String>(entity);
 	} else if (_propertyCls->isBase(Class::forType<EntityObject>())) {
@@ -215,7 +208,7 @@ Any FunctionCalculate::getValue(const EntityObject::SPtr& entity)
 		return _fun.invoke(params);
 	}
 
-	UInt index = 0;
+	Int index = 0;
 	Any paramVal = _params[index].getValue(entity);
 	if (!paramVal) {
 		return nullptr;

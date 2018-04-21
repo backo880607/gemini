@@ -3,7 +3,7 @@
 
 namespace gemini {
 
-ProcessImpl::ProcessImpl(HANDLE hProcess, ULong pid)
+ProcessImpl::ProcessImpl(HANDLE hProcess, Long pid)
 	: _hProcess(hProcess)
 	, _pid(pid)
 {
@@ -15,7 +15,7 @@ ProcessImpl::~ProcessImpl()
 	kill();
 }
 
-ULong ProcessImpl::id() const
+Long ProcessImpl::id() const
 {
 	return _pid;
 }
@@ -69,7 +69,7 @@ void ProcessImpl::kill()
 	}
 }
 
-ULong ProcessImpl::currentId()
+Long ProcessImpl::currentId()
 {
 	return GetCurrentProcessId();
 }

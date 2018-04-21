@@ -30,13 +30,13 @@ void FactoryHelper::loadConfig()
 		THROW_IF(firstFactory == nullptr, Exception, u8"invalid bean name: ", clsName)
 		rootNode.foreach([&](XMLNode relaNode) {
 			String firstSignName = relaNode.getAttribute(u8"field");
-			UInt firstSign = firstFactory->getRelaSign(firstSignName);
+			Int firstSign = firstFactory->getRelaSign(firstSignName);
 			THROW_IF(firstSign == 0, Exception, u8"invalid field name: ", firstSignName, u8" which bean is: ", clsName)
 			String secondFactoryName = relaNode.getAttribute(u8"name");
 			EntityFactory* secondFactory = FactoryMgr::instance().getFactory(secondFactoryName);
 			THROW_IF(secondFactory == nullptr, Exception, u8"invalid bean name: ", secondFactoryName)
 			String secondSignName = relaNode.getAttribute(u8"reverse");
-			UInt secondSign = secondFactory->getRelaSign(secondSignName);
+			Int secondSign = secondFactory->getRelaSign(secondSignName);
 			THROW_IF(secondSign == 0, Exception, u8"invalid field name: ", secondSignName, u8" which bean is: ", secondFactoryName)
 			EntityFactory::Data* firstData = const_cast<EntityFactory::Data*>(firstFactory->getRelaData(firstSign));
 			THROW_IF(firstData == nullptr, Exception, u8"entity factory relaData init failed.")

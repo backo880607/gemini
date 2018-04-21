@@ -14,7 +14,7 @@ public:
 	virtual const gemini::Class& getClass() const { return _class; }
 
 protected:
-	virtual gemini::UInt signMaxIndex() { return 0; }
+	virtual gemini::Int signMaxIndex() { return 0; }
 
 private:
 	static const Class _class;
@@ -23,7 +23,7 @@ private:
 class CORE_API BaseController : public Object
 {
 protected:
-	static UInt s_index;
+	static Int s_index;
 	BaseController();
 public:
 	typedef SmartPtr<BaseController> SPtr;
@@ -37,6 +37,9 @@ public:
 private:
 	static const Class _class;
 };
+
+#define CONTROLLER_METHOD(RETURN_TYPE, METHOD_NAME, METHOD_ARGS)\
+	METHOD(RETURN_TYPE, METHOD_NAME, METHOD_ARGS)
 
 }
 #endif // GEMINI_BaseController_INCLUDE

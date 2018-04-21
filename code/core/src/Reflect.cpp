@@ -5,7 +5,7 @@
 
 namespace gemini {
 	
-Field::Field(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index /* = 0 */, Boolean multiRef /* = 0 */)
+Field::Field(const Class& type, Long offset, const Class& cls, const Char* name, Int index /* = 0 */, Boolean multiRef /* = 0 */)
 	: _multiRef(multiRef)
 	, _index(index)
 	, _type(type)
@@ -20,10 +20,63 @@ Field::~Field() {
 	
 }
 
-__register_field__::__register_field__(const Class& type, ULong offset, const Class& cls, const Char* name, UInt index /* = 0 */, Boolean multiRef /* = 0 */)
+__register_field__::__register_field__(const Class& type, Long offset, const Class& cls, const Char* name, Int index /* = 0 */, Boolean multiRef /* = 0 */)
 {
 	const Field* field = new Field(type, offset, cls, name, index, multiRef);
 	const_cast<Class&>(cls).addField(field);
+}
+
+Method::Method(const Class& cls, const Class& returnCls, const char *name, const char *args)
+	: _class(cls)
+	, _name(name)
+	, _returnCls(returnCls)
+{
+
+}
+
+Method::~Method()
+{
+
+}
+
+void Method::set_callable(__callable__ *cb)
+{
+	m_callable = cb;
+	/*if (cb) {
+		m_id = getName();
+		m_long_id = getPrefix(cb->get_ret_type());
+		m_long_id += '(';
+		if (cb->get_args_count() == 0) {
+			m_id += "__";
+			m_id += typeid(void).name();
+		}
+		else {
+			const arglist& list = cb->get_args();
+			arglist::const_iterator i = list.begin();
+			bool notfirst = false;
+			while (i != list.end()) {
+				const std::type_info* ti = *i++;
+				m_id += "__";
+				m_id += ti->name();
+				if (notfirst) m_long_id += ", ";
+				m_long_id += unmangle(ti->name());
+				notfirst = true;
+			}
+		}
+		m_long_id += ')';
+	}*/
+}
+
+__register_method__::__register_method__(__callable__ *cb, const Class& cls, const Class& returnCls, const char *name, const char *args, const char *virt) {
+	Method* method = new Method(cls, returnCls, name, args);
+	method->set_callable(cb);
+	const_cast<Class&>(cls).addMethod(method);
+}
+
+
+__register_static_method__::__register_static_method__(__callable__ *cb, const Class *pclass, const char *type, const char *name, const char *args) {
+	//StaticMethod* method = new StaticMethod(pclass, type, name, args);
+	//(const_cast<Class *>(pclass))->_addStaticMethod(method, cb);
 }
 
 class ClassManager final
@@ -75,12 +128,12 @@ const std::map<String, const Class* const>& geminiAfxControllerClasses()
 	return geminiAfxGetClassManager().getControllerClasses();
 }
 
-SmartPtr<EntityObject> afxGetRelation(SmartPtr<EntityObject> entity, UInt sign)
+SmartPtr<EntityObject> afxGetRelation(SmartPtr<EntityObject> entity, Int sign)
 {
 	return IocRelation::get(entity, sign);
 }
 
-void afxSetRelation(SmartPtr<EntityObject> entity, UInt sign, SmartPtr<EntityObject> relaEntity)
+void afxSetRelation(SmartPtr<EntityObject> entity, Int sign, SmartPtr<EntityObject> relaEntity)
 {
 	IocRelation::set(entity, sign, relaEntity);
 }
@@ -90,18 +143,7 @@ void afxModifyProperty(SmartPtr<EntityObject> entity, const Field* field)
 	Propagate::instance().modify(entity, field);
 }
 
-__register_method__::__register_method__(__callable__ *cb, const Class *pclass, const char *type, const char *name, const char *args, const char *virt) {
-	//Method* method = new Method(pclass, type, name, args, virt[0] == 'v' ? true : false);
-	//(const_cast<Class *>(pclass))->_addMethod(method, cb);
-}
-
-
-__register_static_method__::__register_static_method__(__callable__ *cb, const Class *pclass, const char *type, const char *name, const char *args) {
-	//StaticMethod* method = new StaticMethod(pclass, type, name, args);
-	//(const_cast<Class *>(pclass))->_addStaticMethod(method, cb);
-}
-
-UInt Class::s_maxIndex = 0;
+Int Class::s_maxIndex = 0;
 
 Class::Class(const Char* name, const Class* superClass, PNewInstance instance) 
 	: _index(s_maxIndex++)
@@ -116,7 +158,7 @@ Class::~Class() {
 
 }
 
-UInt Class::max_limits() {
+Int Class::max_limits() {
 	return 1024;
 }
 
@@ -169,6 +211,15 @@ void Class::addField(const Field* field)
 	}
 
 	_fields.insert(std::make_pair(field->getName(), field));
+}
+
+void Class::addMethod(const Method* method)
+{
+	std::map<String, const Method*>::iterator iter = _methods.find(method->getName());
+	if (iter != _methods.end()) {
+
+	}
+	_methods.insert(std::make_pair(method->getName(), method));
 }
 
 }

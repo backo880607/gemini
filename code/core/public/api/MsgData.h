@@ -15,22 +15,22 @@ namespace gemini {
 class CORE_API MsgData
 {
 	/**
-	* @brief 消息头-8字节
+	* @brief 消息头-128字节
 	*/
 	struct MsgHead {
-		UChar 	type;			///< 传输的消息类型
-		UChar   funcID;			///< 功能号
-		UChar 	dataEncode;		///< 数据类型(4bits)，及数据编码类型(4bits)
-		UChar 	cptEncryPri;	///< 数据压缩类型(2bits)，加密类型(2bits)及优先级(4bits)
+		MSG_UINT8 	type;			///< 传输的消息类型
+		MSG_UINT8   funcID;			///< 功能号
+		MSG_UINT8 	dataEncode;		///< 数据类型(4bits)，及数据编码类型(4bits)
+		MSG_UINT8 	cptEncryPri;	///< 数据压缩类型(2bits)，加密类型(2bits)及优先级(4bits)
 		//UShort  seq;			///< 消息块序号
-		UInt 	size;			///< 实际传输的数据大小
-		UInt 	originSize;		///< 原始数据大小，即压缩前的数据大小
-		UInt 	id;				///< 客户端消息ID(12bits)，服务端会话ID(20bits)
+		MSG_UINT32 	size;			///< 实际传输的数据大小
+		MSG_UINT32 	originSize;		///< 原始数据大小，即压缩前的数据大小
+		MSG_UINT32 	id;				///< 客户端消息ID(12bits)，服务端会话ID(20bits)
 		Char	path[120];		///< 处理路径
 	};
 
 public:
-	typedef UChar T_TYPE;
+	typedef MSG_UINT8 T_TYPE;
 
 	class mutable_buffer {
 	public:
@@ -43,8 +43,8 @@ public:
 		std::size_t _size;
 	};
 
-	static const UInt s_maxBlock = 64*1024; 	///< 最大的消息传输块大小，超过该长度的消息，分块传输
-	static const UInt s_msgHeadSize = sizeof(MsgHead);
+	static const MSG_UINT32 s_maxBlock = 64*1024; 	///< 最大的消息传输块大小，超过该长度的消息，分块传输
+	static const MSG_UINT32 s_msgHeadSize = sizeof(MsgHead);
 private:
     MsgHead& getHead() { return _head; }
 	const MsgHead& getHead() const { return _head; }
@@ -61,21 +61,21 @@ public:
 	 * @brief 获取消息类型
 	 * @see MsgType
 	 */
-	UChar getType() const { return getHead().type; }
+	MSG_UINT8 getType() const { return getHead().type; }
 	/**
 	 * @brief 设置消息类型
 	 * @see MsgType
 	 */
-	void setType(UChar type) { getHead().type = type; }
+	void setType(MSG_UINT8 type) { getHead().type = type; }
 
 	/**
 	 * @brief 获取功能号
 	 */
-	UChar getFunctionID() const { return getHead().funcID; }
+	MSG_UINT8 getFunctionID() const { return getHead().funcID; }
 	/**
 	 * @brief 设置功能号
 	 */
-	void setFunctionID(UChar id) { getHead().funcID = id; }
+	void setFunctionID(MSG_UINT8 id) { getHead().funcID = id; }
 
 	/**
 	 * @brief 获取数据类型
@@ -87,7 +87,7 @@ public:
 	 * @see DataType
 	 */
 	void setDataType(DataType dt)
-	{ getHead().dataEncode = (getHead().dataEncode & 15) | ((UChar)dt << 4); }
+	{ getHead().dataEncode = (getHead().dataEncode & 15) | ((MSG_UINT8)dt << 4); }
 
 	/**
 	 * @brief 获取数据编码类型
@@ -99,7 +99,7 @@ public:
 	 * @see EncodingType
 	 */
 	void setEncoding(EncodingType enType)
-	{ getHead().dataEncode = ((getHead().dataEncode >> 4) << 4) | (UChar)enType; }
+	{ getHead().dataEncode = ((getHead().dataEncode >> 4) << 4) | (MSG_UINT8)enType; }
 	
 	/**
 	 * @brief 获取数据压缩类型
@@ -111,7 +111,7 @@ public:
 	 * @see CompressType
 	 */
 	void setCompressType(CompressType cpt)
-	{ getHead().cptEncryPri = (getHead().cptEncryPri & 63) | ((UChar)cpt << 6); }
+	{ getHead().cptEncryPri = (getHead().cptEncryPri & 63) | ((MSG_UINT8)cpt << 6); }
 
 	/**
 	 * @brief 获取数据加密类型
@@ -124,17 +124,17 @@ public:
 	 * @see Encryption
 	 */
 	void setEncryption(Encryption encry)
-	{ getHead().cptEncryPri = ((getHead().cptEncryPri >> 6) << 6) | (((UChar)encry << 4) | getPriority()); }
+	{ getHead().cptEncryPri = ((getHead().cptEncryPri >> 6) << 6) | (((MSG_UINT8)encry << 4) | getPriority()); }
 
 	/**
 	 * @brief 获取消息优先级
 	 */
-	UChar getPriority() const { return UChar(getHead().cptEncryPri & 15); }
+	MSG_UINT8 getPriority() const { return MSG_UINT8(getHead().cptEncryPri & 15); }
 	/**
 	 * @brief 设置消息优先级
 	 * @param [in] priority 值越大，优先级越高
 	 */
-	void setPriority(UChar priority)
+	void setPriority(MSG_UINT8 priority)
 	{ getHead().cptEncryPri = ((getHead().cptEncryPri >> 4) << 4) | priority; }
 
 	/**
@@ -149,27 +149,27 @@ public:
 	/**
 	 * @brief 获取ID
 	 */
-	UInt getID() const { return getHead().id; }
+	MSG_UINT32 getID() const { return getHead().id; }
 	/**
 	 * @brief 获取传输的消息ID
 	 */
-	UInt getMsgID() const { return getHead().id >> 20; }
+	MSG_UINT32 getMsgID() const { return getHead().id >> 20; }
 	/**
 	 * @brief 设置传输的消息ID
 	 * @param id 消息ID
 	 * @note 消息ID应小于4096
 	 */
-	void setMsgID(UInt id)
-	{ getHead().id = ((getHead().id << 12) >> 12) | ((UInt)id << 20); }
+	void setMsgID(MSG_UINT32 id)
+	{ getHead().id = ((getHead().id << 12) >> 12) | ((MSG_UINT32)id << 20); }
 
 	/**
 	 * @brief 获取会话ID
 	 */
-	UInt getSessionID() const { return (getHead().id << 12) >> 12; }
+	MSG_UINT32 getSessionID() const { return (getHead().id << 12) >> 12; }
 	/**
 	 * @brief 设置会话ID
 	 */
-	void setSessionID(UInt id)
+	void setSessionID(MSG_UINT32 id)
 	{ getHead().id = ((getHead().id >> 20) << 20) | id; }
 
 	String getPath() const { return getHead().path; }
@@ -182,7 +182,7 @@ public:
 	/**
 	 * @brief 获取头部大小，字节为单位
 	 */
-	UInt getHeadSize() const { return s_msgHeadSize; }
+	MSG_UINT32 getHeadSize() const { return s_msgHeadSize; }
 	/**
 	 * @brief 获取数据区首地址
 	 */
@@ -191,16 +191,16 @@ public:
 	/**
 	 * @brief 获取实际缓冲区的或则传输的数据大小
 	 */
-	UInt getDataSize() const { return (getHead().size); }
+	MSG_UINT32 getDataSize() const { return (getHead().size); }
 	/**
 	 * @brief 获取压缩之前的数据大小
 	 */
-	UInt getOriginSize() const { return getHead().originSize; }
+	MSG_UINT32 getOriginSize() const { return getHead().originSize; }
 
 	/**
 	 * @brief 获得AES CBC模式加密的长度
 	 */
-	UInt getAESCBCSize() const;
+	MSG_UINT32 getAESCBCSize() const;
 
 	/**
 	 * @brief 将消息头进行网络字节顺序到主机字节顺序的转换
@@ -242,7 +242,7 @@ public:
 	* @retval false	没有取到数据
 	* @retval true	取到数据
 	*/
-	Boolean step(UInt pos, const Char*& data, UInt& size);
+	Boolean step(MSG_UINT32 pos, const Char*& data, MSG_UINT32& size);
 
 	/**
 	 * @brief 处理流程 1.编码 2.压缩 3.加密

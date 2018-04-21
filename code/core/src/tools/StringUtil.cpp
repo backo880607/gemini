@@ -14,79 +14,64 @@
 
 namespace gemini {
 
-void StringUtil::to_upper(String& str)
-{
+void StringUtil::to_upper(String& str) {
 	boost::lexical_cast<int>(str.c_str());
 	boost::to_upper(str, g_app.getLocale());
 }
 
-void StringUtil::to_lower(String& str)
-{
+void StringUtil::to_lower(String& str) {
 	return boost::to_lower(str, g_app.getLocale());
 }
 
-void StringUtil::trim_lift(String& str)
-{
+void StringUtil::trim_lift(String& str) {
 	boost::trim_left(str, g_app.getLocale());
 }
 
-void StringUtil::trim_right(String& str)
-{
+void StringUtil::trim_right(String& str) {
 	boost::trim_right(str, g_app.getLocale());
 }
 
-void StringUtil::trim(String& str)
-{
+void StringUtil::trim(String& str) {
 	boost::trim(str, g_app.getLocale());
 }
 
-Boolean StringUtil::starts_with(const Char* str, const Char* test)
-{
+Boolean StringUtil::starts_with(const Char* str, const Char* test) {
 	return boost::starts_with(str, test);
 }
 
-Boolean StringUtil::istarts_with(const Char * str, const Char * test)
-{
+Boolean StringUtil::istarts_with(const Char * str, const Char * test) {
 	return boost::istarts_with(str, test, g_app.getLocale());
 }
 
-Boolean StringUtil::ends_with(const Char* str, const Char* test)
-{
+Boolean StringUtil::ends_with(const Char* str, const Char* test) {
 	return boost::ends_with(str, test);
 }
 
-Boolean StringUtil::iends_with(const Char * str, const Char * test)
-{
+Boolean StringUtil::iends_with(const Char * str, const Char * test) {
 	return boost::iends_with(str, test, g_app.getLocale());
 }
 
-Boolean StringUtil::contains(const Char * str, const Char * test)
-{
+Boolean StringUtil::contains(const Char * str, const Char * test) {
 	return boost::contains(str, test);
 }
 
-Boolean StringUtil::icontains(const Char * str, const Char * test)
-{
+Boolean StringUtil::icontains(const Char * str, const Char * test) {
 	return boost::icontains(str, test, g_app.getLocale());
 }
 
-Boolean StringUtil::equals(const Char* str, const Char* test)
-{
+Boolean StringUtil::equals(const Char* str, const Char* test) {
 	return boost::equals(str, test);
 }
 
-Boolean StringUtil::iequals(const Char * str, const Char * test)
-{
+Boolean StringUtil::iequals(const Char * str, const Char * test) {
 	return boost::iequals(str, test, g_app.getLocale());
 }
 
-Int StringUtil::compare(const Char * str, const Char * test)
-{
+Int StringUtil::compare(const Char * str, const Char * test) {
 	return String(str).compare(test);
 }
 
-Int StringUtil::icompare(const Char * str, const Char * test)
-{
+Int StringUtil::icompare(const Char * str, const Char * test) {
 	Char f, l;
 	const Char * dst = str;
 	const Char * src = test;
@@ -99,61 +84,50 @@ Int StringUtil::icompare(const Char * str, const Char * test)
 	return (Int)(f - l);
 }
 
-String::size_type StringUtil::ifind_first(const Char * str, const Char * test)
-{
+String::size_type StringUtil::ifind_first(const Char * str, const Char * test) {
 	boost::algorithm::ifind_first(str, test, g_app.getLocale());
 	return String::size_type();
 }
 
-String::size_type StringUtil::ifind_last(const Char * str, const Char * test)
-{
+String::size_type StringUtil::ifind_last(const Char * str, const Char * test) {
 	return String::size_type();
 }
 
-String StringUtil::get_head(const Char * str, const Char * sep)
-{
+String StringUtil::get_head(const Char * str, const Char * sep) {
 	return String();
 }
 
-String StringUtil::iget_head(const Char * str, const Char * sep)
-{
+String StringUtil::iget_head(const Char * str, const Char * sep) {
 	return String();
 }
 
-String StringUtil::get_tail(const Char * str, const Char * sep)
-{
+String StringUtil::get_tail(const Char * str, const Char * sep) {
 	String origin(str);
 	const String::size_type pos = origin.find_last_of(sep);
 	return pos != String::npos ? origin.substr(pos + strlen(sep)) : "";
 }
 
-String StringUtil::iget_tail(const Char * str, const Char * sep)
-{
+String StringUtil::iget_tail(const Char * str, const Char * sep) {
 	return String();
 }
 
-void StringUtil::erase_all(String & str, const Char * dest)
-{
+void StringUtil::erase_all(String & str, const Char * dest) {
 	boost::algorithm::erase_all(str, dest);
 }
 
-void StringUtil::ierase_all(String & str, const Char * dest)
-{
+void StringUtil::ierase_all(String & str, const Char * dest) {
 	boost::algorithm::ierase_all(str, dest, g_app.getLocale());
 }
 
-void StringUtil::erase_first(String & str, const Char * dest)
-{
+void StringUtil::erase_first(String & str, const Char * dest) {
 	boost::algorithm::erase_first(str, dest);
 }
 
-void StringUtil::ierase_first(String & str, const Char * dest)
-{
+void StringUtil::ierase_first(String & str, const Char * dest) {
 	boost::algorithm::ierase_first(str, dest, g_app.getLocale());
 }
 
-const Char* StringUtil::increment(const Char* str)
-{
+const Char* StringUtil::increment(const Char* str) {
 	while (*++str != '\0') {
 		if (*str & 0xc0 != 0x80) {
 			break;
@@ -163,8 +137,7 @@ const Char* StringUtil::increment(const Char* str)
 	return str;
 }
 
-const Char* StringUtil::descending(const Char* str)
-{
+const Char* StringUtil::descending(const Char* str) {
 	while (--str) {
 		if (*str & 0xc0 != 0x80) {
 			break;
@@ -174,8 +147,7 @@ const Char* StringUtil::descending(const Char* str)
 	return str;
 }
 
-void StringUtil::replace(String& str, const Char* origin, const Char* des)
-{
+void StringUtil::replace(String& str, const Char* origin, const Char* des) {
 	String::size_type lastpos = 0, thispos;
 	const String::size_type lLen = strlen(origin);
 	const String::size_type rLen = strlen(des);
@@ -186,8 +158,7 @@ void StringUtil::replace(String& str, const Char* origin, const Char* des)
 	}
 }
 
-String StringUtil::SPrintf(const Char * pFormat, ...)
-{
+String StringUtil::SPrintf(const Char * pFormat, ...) {
 	va_list argList;
 	va_start(argList, pFormat);
 
@@ -204,13 +175,11 @@ String StringUtil::SPrintf(const Char * pFormat, ...)
 	return buffer.begin();
 }
 
-std::wstring StringUtil::utf8_to_unicode(const Char * src)
-{
+std::wstring StringUtil::utf8_to_unicode(const Char * src) {
 	return boost::locale::conv::to_utf<wchar_t>(src, "UTF-8");
 }
 
-String StringUtil::uuid()
-{
+String StringUtil::uuid() {
 	boost::uuids::random_generator gen;
 	boost::uuids::uuid u = gen();
 	return boost::uuids::to_string(u);
@@ -219,44 +188,22 @@ String StringUtil::uuid()
 std::ostringstream& getStringOSStream() {
 	return Subject::get().getSession()->get<LocaleUtil>().getOSS(true);
 }
-String StringUtil::formatImpl(Boolean val)
-{
+String StringUtil::formatImpl(Boolean val) {
 	std::ostringstream& ss = getStringOSStream();
 	ss << boost::locale::as::number << val;
 	return ss.str();
 }
-String StringUtil::formatImpl(Short val)
-{
+String StringUtil::formatImpl(Short val) {
 	std::ostringstream& ss = getStringOSStream();
 	ss << boost::locale::as::number << val;
 	return ss.str();
 }
-String StringUtil::formatImpl(UShort val)
-{
+String StringUtil::formatImpl(Int val) {
 	std::ostringstream& ss = getStringOSStream();
 	ss << boost::locale::as::number << val;
 	return ss.str();
 }
-String StringUtil::formatImpl(Int val)
-{
-	std::ostringstream& ss = getStringOSStream();
-	ss << boost::locale::as::number << val;
-	return ss.str();
-}
-String StringUtil::formatImpl(UInt val)
-{
-	std::ostringstream& ss = getStringOSStream();
-	ss << boost::locale::as::number << val;
-	return ss.str();
-}
-String StringUtil::formatImpl(Long val)
-{
-	std::ostringstream& ss = getStringOSStream();
-	ss << boost::locale::as::number << val;
-	return ss.str();
-}
-String StringUtil::formatImpl(ULong val)
-{
+String StringUtil::formatImpl(Long val) {
 	std::ostringstream& ss = getStringOSStream();
 	ss << boost::locale::as::number << val;
 	return ss.str();
@@ -271,21 +218,8 @@ String StringUtil::formatImpl(Double val) {
 	ss << std::fixed << boost::locale::as::number << val;
 	return ss.str();
 }
-String StringUtil::formatImpl(LDouble val) {
-	std::ostringstream& ss = getStringOSStream();
-	ss << std::fixed << boost::locale::as::number << val;
-	return ss.str();
-}
 String StringUtil::formatImpl(Char val) {
 	return String(1, val);
-}
-String StringUtil::formatImpl(UChar val)
-{
-	return String(1, val);
-}
-String StringUtil::formatImpl(WChar val) {
-	//return val;
-	return "";
 }
 String StringUtil::formatImpl(Char16 val) {
 	//return val;
@@ -295,8 +229,7 @@ String StringUtil::formatImpl(Char32 val) {
 	//return val;
 	return "";
 }
-String StringUtil::formatImpl(WChar* val)
-{
+String StringUtil::formatImpl(WChar* val) {
 	return boost::locale::conv::utf_to_utf<Char>(val);
 }
 String StringUtil::formatImpl(const WChar* val) {
@@ -312,57 +245,27 @@ String StringUtil::format(Double val, Int precision) {
 	ss << std::fixed << std::setprecision(precision) << boost::locale::as::number << val;
 	return ss.str();
 }
-String StringUtil::format(LDouble val, Int precision) {
-	std::ostringstream& ss = getStringOSStream();
-	ss << std::fixed << std::setprecision(precision) << boost::locale::as::number << val;
-	return ss.str();
-}
 
 std::istringstream& getStringISStream(const Char* str) {
 	return Subject::get().getSession()->get<LocaleUtil>().getISS(str);
 }
-void StringUtil::convertImpl(Short & val, const Char * str)
-{
+void StringUtil::convertImpl(Short & val, const Char * str) {
 	std::istringstream& ss = getStringISStream(str);
 	ss >> boost::locale::as::number >> val;
 }
-void StringUtil::convertImpl(UShort & val, const Char * str)
-{
+void StringUtil::convertImpl(Int & val, const Char * str) {
 	std::istringstream& ss = getStringISStream(str);
 	ss >> boost::locale::as::number >> val;
 }
-void StringUtil::convertImpl(Int & val, const Char * str)
-{
+void StringUtil::convertImpl(Long & val, const Char * str) {
 	std::istringstream& ss = getStringISStream(str);
 	ss >> boost::locale::as::number >> val;
 }
-void StringUtil::convertImpl(UInt & val, const Char * str)
-{
-	std::istringstream& ss = getStringISStream(str);
-	ss >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(Long & val, const Char * str)
-{
-	std::istringstream& ss = getStringISStream(str);
-	ss >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(ULong & val, const Char * str)
-{
-	std::istringstream& ss = getStringISStream(str);
-	ss >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(Float & val, const Char * str)
-{
+void StringUtil::convertImpl(Float & val, const Char * str) {
 	std::istringstream& ss = getStringISStream(str);
 	ss >> std::fixed >> boost::locale::as::number >> val;
 }
-void StringUtil::convertImpl(Double & val, const Char * str)
-{
-	std::istringstream& ss = getStringISStream(str);
-	ss >> std::fixed >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(LDouble & val, const Char * str)
-{
+void StringUtil::convertImpl(Double & val, const Char * str) {
 	std::istringstream& ss = getStringISStream(str);
 	ss >> std::fixed >> boost::locale::as::number >> val;
 }
@@ -373,35 +276,17 @@ static String StringUtil::convert<String>(const Char* str, std::size_t fPos, std
 	return String(str + fPos, lPos - fPos);
 }
 #endif
-void StringUtil::convertImpl(Boolean & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
+void StringUtil::convertImpl(Boolean & val, const Char * str, std::size_t fPos, std::size_t lPos) {
 }
-void StringUtil::convertImpl(Short & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
+void StringUtil::convertImpl(Short & val, const Char * str, std::size_t fPos, std::size_t lPos) {
 }
-void StringUtil::convertImpl(UShort & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
+void StringUtil::convertImpl(Int & val, const Char * str, std::size_t fPos, std::size_t lPos) {
 }
-void StringUtil::convertImpl(Int & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
+void StringUtil::convertImpl(Long & val, const Char * str, std::size_t fPos, std::size_t lPos) {
 }
-void StringUtil::convertImpl(UInt & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
+void StringUtil::convertImpl(Float & val, const Char * str, std::size_t fPos, std::size_t lPos) {
 }
-void StringUtil::convertImpl(Long & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
-}
-void StringUtil::convertImpl(ULong & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
-}
-void StringUtil::convertImpl(Float & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
-}
-void StringUtil::convertImpl(Double & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
-}
-void StringUtil::convertImpl(LDouble & val, const Char * str, std::size_t fPos, std::size_t lPos)
-{
+void StringUtil::convertImpl(Double & val, const Char * str, std::size_t fPos, std::size_t lPos) {
 }
 
 }

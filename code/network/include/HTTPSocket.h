@@ -37,7 +37,7 @@ class HTTPSocket : public Socket
 		}
 	};
 public:
-	HTTPSocket(service_type& ios, TCPConnection* conn, UInt hbTimeout);
+	HTTPSocket(service_type& ios, TCPConnection* conn, Int hbTimeout);
 	~HTTPSocket();
 
 protected:
@@ -53,6 +53,9 @@ private:
 	void handle_head();
 	void handle_get();
 	void handle_post();
+	void handle_put();
+	void handle_delete();
+	void handle_options();
 
 	boost::beast::string_view mime_type(const boost::beast::string_view& path);
 	boost::beast::http::response<boost::beast::http::string_body> bad_request(boost::beast::string_view why);

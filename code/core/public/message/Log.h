@@ -15,7 +15,7 @@ public:
 		DEBUG,
 		INFO,
 		WARNING,
-		ERROR,
+		ERROR_,
 		FATAL,
 	};
 	Logger(const char* file, int line, Level level = Level::INFO);
@@ -45,7 +45,7 @@ protected:
 #define LOG_DEBUG Logger(__FILE__, __LINE__, Logger::Level::DEBUG)
 #define LOG_INFO Logger(__FILE__, __LINE__, Logger::Level::INFO)
 #define LOG_WARNING	Logger(__FILE__, __LINE__, Logger::Level::WARNING)
-#define LOG_ERROR Logger(__FILE__, __LINE__, Logger::Level::ERROR)
+#define LOG_ERROR Logger(__FILE__, __LINE__, Logger::Level::ERROR_)
 #define LOG_FATAL Logger(__FILE__, __LINE__, Logger::Level::FATAL)
 
 

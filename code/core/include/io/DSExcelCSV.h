@@ -16,7 +16,7 @@ public:
 	virtual void close() override;
 
 	virtual Boolean step() override;
-	virtual String getData(UInt index) override;
+	virtual String getData(Int index) override;
 
 	virtual Boolean write(const Field* fd, const String& data) override;
 

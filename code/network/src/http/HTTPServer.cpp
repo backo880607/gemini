@@ -13,8 +13,7 @@ HTTPServer::~HTTPServer()
 
 }
 
-std::shared_ptr<TCPServerConnection> HTTPServer::createConnection()
-{
+std::shared_ptr<TCPServerConnection> HTTPServer::createConnection() {
 	return std::shared_ptr<TCPServerConnection>(new HTTPServerConnection());
 }
 

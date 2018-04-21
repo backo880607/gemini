@@ -20,8 +20,8 @@ public:
 		T_Set
 	};
 	struct Data {
-		UInt sign;
-		UInt reverseSign;
+		Int sign;
+		Int reverseSign;
 		Relation rela;
 		Boolean owner;
 		EntityFactory* relaFactory;
@@ -36,8 +36,8 @@ public:
 
 	EntityFactory* getSuper() const { return _super; }
 
-	UInt getRelaSign(const String& signName) const;
-	const Data* getRelaData(UInt sign) const;
+	Int getRelaSign(const String& signName) const;
+	const Data* getRelaData(Int sign) const;
 	const Data* getRelaData(const String& signName) const;
 
 	void createRelation(const EntityObject::SPtr& entity);
@@ -47,7 +47,7 @@ private:
 	EntityObject::SPtr _all;
 	EntityFactory* _super;
 	std::vector<EntityFactory*> _childs;
-	std::map<UInt, Data> _relations;
+	std::map<Int, Data> _relations;
 };
 
 }

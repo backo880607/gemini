@@ -1,4 +1,5 @@
 #include "../../public/tcp/TCPClientConnection.h"
+#include "../../include/Socket.h"
 
 #include <boost/asio.hpp>
 
@@ -14,32 +15,30 @@ TCPClientConnection::~TCPClientConnection()
 {
 }
 
-Boolean TCPClientConnection::login(const String & user, const String & password)
-{
+Boolean TCPClientConnection::login(const String & user, const String & password) {
 	return Boolean();
 }
 
-Boolean TCPClientConnection::login(const String & user, const String & password, String & errMsg)
-{
+Boolean TCPClientConnection::login(const String & user, const String & password, String & errMsg) {
 	return Boolean();
 }
 
-Boolean TCPClientConnection::logout()
-{
+Boolean TCPClientConnection::logout() {
 	return Boolean();
 }
 
-Boolean TCPClientConnection::execute(const MsgData & msg)
-{
+std::shared_ptr<Socket> TCPClientConnection::createSocket(boost::asio::io_service & ios) {
+	return std::shared_ptr<Socket>(new Socket(ios, this, 100));
+}
+
+Boolean TCPClientConnection::execute(const MsgData & msg) {
 	return Boolean();
 }
 
-void TCPClientConnection::close()
-{
+void TCPClientConnection::close() {
 }
 
-Boolean TCPClientConnection::proHeartBeatTimeout()
-{
+Boolean TCPClientConnection::proHeartBeatTimeout() {
 	return Boolean();
 }
 

@@ -10,6 +10,9 @@ class Role : public EntityObject
 
 	DECLARE_FIELD(String, name)
 	DECLARE_FIELD(String, remark)
+
+	DECLARE_ENTITY(Role, parent)
+	DECLARE_VECTOR(Role, childs)
 };
 
 }

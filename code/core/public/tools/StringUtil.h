@@ -50,7 +50,6 @@ public:
 	static String format(T val) { return formatImpl(val); }
 	static String format(Float val, Int precision);
 	static String format(Double val, Int precision);
-	static String format(LDouble val, Int precision);
 
 	template <typename T>
 	static T convert(const Char* str) { 
@@ -151,17 +150,11 @@ private:
 	static String formatImpl(const T& val) { return val.str(); }
 	static String formatImpl(Boolean val);
 	static String formatImpl(Short val);
-	static String formatImpl(UShort val);
 	static String formatImpl(Int val);
-	static String formatImpl(UInt val);
 	static String formatImpl(Long val);
-	static String formatImpl(ULong val);
 	static String formatImpl(Float val);
 	static String formatImpl(Double val);
-	static String formatImpl(LDouble val);
 	static String formatImpl(Char val);
-	static String formatImpl(UChar val);
-	static String formatImpl(WChar val);
 	static String formatImpl(Char16 val);
 	static String formatImpl(Char32 val);
 	static String formatImpl(Char* val) { return val; }
@@ -174,28 +167,20 @@ private:
 	static void convertImpl(T& val, const Char* str) { val = T::valueOf(str); }
 	static void convertImpl(Boolean& val, const Char* str) { val = std::strtol(str, nullptr, 0) != 0; }
 	static void convertImpl(Short& val, const Char* str);
-	static void convertImpl(UShort& val, const Char* str);
 	static void convertImpl(Int& val, const Char* str);
-	static void convertImpl(UInt& val, const Char* str);
 	static void convertImpl(Long& val, const Char* str);
-	static void convertImpl(ULong& val, const Char* str);
 	static void convertImpl(Float& val, const Char* str);
 	static void convertImpl(Double& val, const Char* str);
-	static void convertImpl(LDouble& val, const Char* str);
 	static void convertImpl(String& val, const Char* str) { val = str; }
 
 	template <typename T>
 	static void convertImpl(T& val, const Char* str, std::size_t fPos, std::size_t lPos) { val = T::valueOf(String(str + fPos, lPos - fPos)); }
 	static void convertImpl(Boolean& val, const Char* str, std::size_t fPos, std::size_t lPos);
 	static void convertImpl(Short& val, const Char* str, std::size_t fPos, std::size_t lPos);
-	static void convertImpl(UShort& val, const Char* str, std::size_t fPos, std::size_t lPos);
 	static void convertImpl(Int& val, const Char* str, std::size_t fPos, std::size_t lPos);
-	static void convertImpl(UInt& val, const Char* str, std::size_t fPos, std::size_t lPos);
 	static void convertImpl(Long& val, const Char* str, std::size_t fPos, std::size_t lPos);
-	static void convertImpl(ULong& val, const Char* str, std::size_t fPos, std::size_t lPos);
 	static void convertImpl(Float& val, const Char* str, std::size_t fPos, std::size_t lPos);
 	static void convertImpl(Double& val, const Char* str, std::size_t fPos, std::size_t lPos);
-	static void convertImpl(LDouble& val, const Char* str, std::size_t fPos, std::size_t lPos);
 	static void convertImpl(String& val, const Char* str, std::size_t fPos, std::size_t lPos) { val = String(str + fPos, lPos - fPos); }
 };
 

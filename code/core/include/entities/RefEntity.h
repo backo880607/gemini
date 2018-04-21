@@ -14,7 +14,7 @@ public:
 	virtual void remove();
 
 	virtual Boolean empty() { return !_entity.valid(); }
-	virtual ULong size() { return empty() ? 0 : 1; }
+	virtual Long size() { return empty() ? 0 : 1; }
 	virtual Iterator iterator() const;
 private:
 	EntityObject::SPtr _entity;

@@ -8,14 +8,15 @@ namespace aps {
 class Order;
 class Route;
 class RouteStepIn;
+class RouteStepOut;
 class APS_API Item : public gemini::EntityObject {
 #define MODULE_API APS_API
 	DECLARE_CLASS(Item, gemini::EntityObject)
 
 	DECLARE_FIELD(gemini::String, code)
 	DECLARE_FIELD(ItemType, type)
-	DECLARE_FIELD(gemini::UInt, level)
-	DECLARE_FIELD(gemini::UInt, priority)
+	DECLARE_FIELD(gemini::Int, level)
+	DECLARE_FIELD(gemini::Int, priority)
 	DECLARE_FIELD(gemini::String, purLT)
 	DECLARE_FIELD(gemini::String, manufLT)
 	DECLARE_FIELD(gemini::String, shipmentLT)

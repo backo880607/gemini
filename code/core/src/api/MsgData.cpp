@@ -18,7 +18,7 @@ namespace gemini {
 
 uint8_t s_key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
 uint8_t s_iv[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
-const UInt AES_BLOCK_LEN = 16;
+const MSG_UINT32 AES_BLOCK_LEN = 16;
 
 MsgData::MsgData()
 {
@@ -42,18 +42,18 @@ const Char* MsgData::getDataBuffer()
 	return boost::asio::buffer_cast<const Char*>(_data->data());
 }
 
-UInt MsgData::getAESCBCSize() const
+MSG_UINT32 MsgData::getAESCBCSize() const
 {
 	if (getEncryption() != Encryption::Encry_AES)
 		return getDataSize();
 
-	UInt remainders = getDataSize() % AES_BLOCK_LEN;
+	MSG_UINT32 remainders = getDataSize() % AES_BLOCK_LEN;
 	return remainders == 0 ? getDataSize() : (getDataSize() + (AES_BLOCK_LEN - remainders));
 }
 
 void MsgData::networkToHost()
 {
-	UShort* ptr = (UShort*)&getHead();
+	MSG_UINT16* ptr = (MSG_UINT16*)&getHead();
 	*ptr = ntohs(*ptr);
 	++ptr;
 	*ptr = ntohs(*ptr);
@@ -65,7 +65,7 @@ void MsgData::networkToHost()
 
 void MsgData::hostToNetwork()
 {
-	UShort* ptr = (UShort*)&getHead();
+	MSG_UINT16* ptr = (MSG_UINT16*)&getHead();
 	*ptr = htons(*ptr);
 	++ptr;
 	*ptr = htons(*ptr);
@@ -94,13 +94,13 @@ Boolean MsgData::commit(std::size_t size)
 	return getAESCBCSize() == boost::asio::buffer_size(_data->data());
 }
 
-Boolean MsgData::step(UInt pos, const Char*& data, UInt& size)
+Boolean MsgData::step(MSG_UINT32 pos, const Char*& data, MSG_UINT32& size)
 {
-	UInt buffSize = (UInt)boost::asio::buffer_size(_data->data());
+	MSG_UINT32 buffSize = (MSG_UINT32)boost::asio::buffer_size(_data->data());
 	if (pos >= buffSize)
 		return false;
 
-	UInt len = buffSize - pos;
+	MSG_UINT32 len = buffSize - pos;
 	data = boost::asio::buffer_cast<const Char*>(_data->data()) + pos;
 	size = len > s_maxBlock ? s_maxBlock : len;
 	return true;
@@ -114,7 +114,7 @@ Boolean MsgData::valid() const
 Boolean MsgData::format()
 {
 	const Char* pData = boost::asio::buffer_cast<const Char*>(_data->data());
-	const UInt size = (UInt)boost::asio::buffer_size(_data->data());
+	const MSG_UINT32 size = (MSG_UINT32)boost::asio::buffer_size(_data->data());
 	return format(pData, size);
 }
 
@@ -125,8 +125,8 @@ Boolean MsgData::format(const void* pData, std::size_t size)
 	const Encryption encry = getEncryption();
 	if (cpt == CompressType::CPT_NONE && encry == Encryption::Encry_None)
 	{
-		getHead().size = (UInt)size;
-		getHead().originSize = (UInt)size;
+		getHead().size = (MSG_UINT32)size;
+		getHead().originSize = (MSG_UINT32)size;
 		if (pData != boost::asio::buffer_cast<const Char*>(_data->data()))
 		{
 			_data->consume(_data->size());
@@ -136,7 +136,7 @@ Boolean MsgData::format(const void* pData, std::size_t size)
 		return true;
 	}
 
-	std::size_t postCompressSize = (UInt)((size + 12) * 1.1);
+	std::size_t postCompressSize = (MSG_UINT32)((size + 12) * 1.1);
 	//Char* comBuf = (Char*)malloc(postCompressSize*sizeof(Char));
 	Buffer<Char> comBuf(postCompressSize + 16);
 	const Char* data = nullptr;
@@ -151,14 +151,14 @@ Boolean MsgData::format(const void* pData, std::size_t size)
 		comBuf[postCompressSize / sizeof(Char)] = 0;
 
 		data = comBuf.begin();
-		getHead().size = (UInt)postCompressSize;
-		getHead().originSize = (UInt)size;
+		getHead().size = (MSG_UINT32)postCompressSize;
+		getHead().originSize = (MSG_UINT32)size;
 	}
 	else if (cpt == CompressType::CPT_NONE) {
 		memcpy(comBuf.begin(), pData, size);
 		data = comBuf.begin();
-		getHead().size = (UInt)size;
-		getHead().originSize = (UInt)size;
+		getHead().size = (MSG_UINT32)size;
+		getHead().originSize = (MSG_UINT32)size;
 	}
 	else {
 		return false;
@@ -214,7 +214,7 @@ Boolean MsgData::parse()
 	const CompressType cpt = getCompressType();
 	if (cpt == CompressType::CPT_ZLIB)
 	{
-		UInt originSize = getOriginSize();
+		MSG_UINT32 originSize = getOriginSize();
 		uLongf bufSize = (uLongf)(originSize*1.1 + 12);
 		Buffer<Char> buf(bufSize);
 		Int rt = uncompress((Bytef*)buf.begin(), &bufSize,

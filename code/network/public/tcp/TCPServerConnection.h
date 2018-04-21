@@ -10,11 +10,11 @@ public:
 	TCPServerConnection();
 	~TCPServerConnection();
 
+	Short getClientPort() const { return _clientPort; }
+	void setClientPort(Short port) { _clientPort = port; }
+
 	const String& getClientIP() const { return _clientIP; }
 	void setClientIP(const String& ip) { _clientIP = ip; }
-
-	UShort getClientPort() const { return _clientPort; }
-	void setClientPort(UShort port) { _clientPort = port; }
 
 protected:
 	virtual std::shared_ptr<Socket> createSocket(boost::asio::io_service& ios) override;
@@ -23,8 +23,8 @@ protected:
 	virtual Boolean proHeartBeatTimeout();
 
 private:
+	Short _clientPort;
 	String _clientIP;
-	UShort _clientPort;
 };
 
 }

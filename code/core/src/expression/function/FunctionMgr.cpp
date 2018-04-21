@@ -25,4 +25,9 @@ void FunctionMgr::registerFunction(const Char* name, Function::FunCall fun)
 	_functions.insert(std::make_pair(name, fun));
 }
 
+__register_expression_method__::__register_expression_method__(const String & methodName, const String & returnType, const String & paramsType)
+{
+
+}
+
 }

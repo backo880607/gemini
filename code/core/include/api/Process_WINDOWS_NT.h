@@ -11,20 +11,20 @@ class ProcessImpl
 {
 	typedef std::vector<String> Args;
 public:
-	ProcessImpl(HANDLE _hProcess, ULong pid);
+	ProcessImpl(HANDLE _hProcess, Long pid);
 	~ProcessImpl();
 
-	ULong id() const;
+	Long id() const;
 	HANDLE process() const;
 	Boolean running() const;
 	Int wait() const;
 	void kill();
 
-	static ULong currentId();
+	static Long currentId();
 	static std::shared_ptr<ProcessImpl> launch(const String& command, const Args& args);
 private:
 	HANDLE _hProcess;
-	ULong _pid;
+	Long _pid;
 };
 
 }

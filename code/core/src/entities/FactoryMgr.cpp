@@ -71,7 +71,7 @@ EntityFactory* FactoryMgr::getFactory(const String& name) const
 	return iter != _factoryNames.end() ? iter->second : nullptr;
 }
 
-const EntityFactory::Data* FactoryMgr::getRelaData(const Class& cls, UInt sign) const
+const EntityFactory::Data* FactoryMgr::getRelaData(const Class& cls, Int sign) const
 {
 	EntityFactory* factory = getFactory(cls);
 	if (factory != nullptr) {

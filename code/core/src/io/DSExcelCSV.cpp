@@ -41,7 +41,7 @@ Boolean DSExcelCSV::step()
 	return !_rowDatas.empty();
 }
 
-String DSExcelCSV::getData(UInt index)
+String DSExcelCSV::getData(Int index)
 {
 	if (index >= _rowDatas.size()) {
 

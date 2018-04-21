@@ -7,7 +7,7 @@
 
 namespace gemini {
 
-MT_UInt Propagate::s_maxID(0);
+MT_Int Propagate::s_maxID(0);
 Propagate::Propagate()
 	: _datas(Class::max_limits())
 {
@@ -18,7 +18,7 @@ Propagate::~Propagate()
 
 }
 
-void getEntities(const EntityObject::SPtr& entity, std::vector<UInt>::const_iterator iter, const std::vector<UInt>& signs,
+void getEntities(const EntityObject::SPtr& entity, std::vector<Int>::const_iterator iter, const std::vector<Int>& signs,
 	std::set<EntityObject::SPtr>& result)
 {
 	if (iter == signs.end()) {
@@ -41,8 +41,8 @@ std::vector<VertexPropagate*> buildVertex(VertexPropagate* trigger)
 		return result;
 	}
 
-	UInt index = 0;
-	for (const std::vector<UInt>& path : triggerData->paths) {
+	Int index = 0;
+	for (const std::vector<Int>& path : triggerData->paths) {
 		std::set<EntityObject::SPtr> entities;
 		getEntities(trigger->getEntityObject(), path.begin(), path, entities);
 

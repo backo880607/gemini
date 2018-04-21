@@ -11,10 +11,10 @@ class GEMINI_NETWORK_API TCPClientConnection : public TCPConnection
 	*/
 	struct ClientConfig {
 		String ip;					///< 服务器IP
-		UInt port;					///< 服务器端口号
-		UInt connectionTimeout;		///< 连接超时
-		UInt readTimeout;			///< 接收TCP数据超时
-		UInt writeTimeout;			///< 发送TCP数据超时
+		Int port;					///< 服务器端口号
+		Int connectionTimeout;		///< 连接超时
+		Int readTimeout;			///< 接收TCP数据超时
+		Int writeTimeout;			///< 发送TCP数据超时
 	};
 
 public:
@@ -58,6 +58,7 @@ public:
 	Boolean logout();
 
 protected:
+	virtual std::shared_ptr<Socket> createSocket(boost::asio::io_service& ios);
 	virtual Boolean execute(const MsgData& msg);
 	virtual void close();
 	virtual Boolean proHeartBeatTimeout();

@@ -15,7 +15,7 @@ public:
 	virtual void remove();
 
 	virtual Boolean empty() { return base_type::empty(); }
-	virtual ULong size() { return base_type::size(); }
+	virtual Long size() { return base_type::size(); }
 	virtual Iterator iterator() const;
 };
 
