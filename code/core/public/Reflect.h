@@ -936,7 +936,7 @@ protected:
 		}
 
 		_value = new Char[val.size()];
-		std::memcpy(_value, val.c_str(), val.size());
+		memcpy(_value, val.c_str(), val.size());
 		return *this;
 	}
 
@@ -992,12 +992,12 @@ class EnumHelper {
 private:
 	static void SplitEnumString(const char* str) {
 		const char * p = str;
-		gemini::Int index = 0;
+		Int index = 0;
 		while (std::isspace(*p)) p++;
 		while (*p != '\0') {
 			const char* temp = p;
 			while (*p == '_' || std::isdigit(*p) || std::isalpha(*p)) p++;
-			gemini::String name(temp, p - temp);
+			String name(temp, p - temp);
 			while (std::isspace(*p)) p++;
 
 			if (*p == '\0') {
@@ -1010,8 +1010,8 @@ private:
 				while (std::isspace(*p)) p++;
 				temp = p;
 				while (std::isdigit(*p)) p++;
-				gemini::String value(temp, p - temp);
-				index = gemini::StringUtil::convert<gemini::Int>(value.c_str());
+				String value(temp, p - temp);
+				index = StringUtil::convert<Int>(value.c_str());
 				while (std::isspace(*p)) p++;
 			}
 

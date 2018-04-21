@@ -78,10 +78,12 @@ public:
 	struct ObtainHolderType {
 		typedef typename ObtainHolderTypeImpl<T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
 	};
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template <>
 	struct ObtainHolderType<IList> {
 		typedef const IList& holder_type;
 	};
+#endif
 public:
 	Any() : _holder(nullptr) {};
 	Any(std::nullptr_t rhs) : _holder(nullptr) {}

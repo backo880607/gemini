@@ -68,7 +68,6 @@ public:
 	static String convert<String>(const Char* str, std::size_t fPos, std::size_t lPos) {
 		return String(str + fPos, lPos - fPos);
 	}
-#else
 #endif
 
 	static void append(String& str) {}

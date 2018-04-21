@@ -512,6 +512,13 @@ Any::~Any()
 	if (_holder != nullptr) delete _holder;
 }
 
+#if GEMINI_OS == GEMINI_OS_LINUX
+template <>
+struct ObtainHolderType<IList> {
+	typedef const IList& holder_type;
+};
+#endif
+
 Any::PlaceHolder* Any::create(Boolean value) {
 	return new HolderBoolean(value);
 }
