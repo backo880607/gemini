@@ -929,7 +929,7 @@ protected:
 		}
 
 		_value = new Char[val.size()];
-		memcpy(_value, val.c_str(), val.size());
+		std::memcpy(_value, val.c_str(), val.size());
 		return *this;
 	}
 

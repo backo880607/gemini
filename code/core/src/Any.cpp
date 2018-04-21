@@ -515,7 +515,7 @@ Any::~Any()
 #if GEMINI_OS == GEMINI_OS_LINUX
 template <>
 struct ObtainHolderType<IList> {
-	typedef const IList& holder_type;
+	typedef IList& holder_type;
 };
 #endif
 
@@ -578,7 +578,7 @@ Any Any::operator+ (const Any& rhs) const {
 	try {
 		return _holder->operator+(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator+ : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator+ : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 }
 
@@ -588,7 +588,7 @@ Any& Any::operator+= (const Any& rhs) {
     try {
         _holder->operator+=(rhs);
     } catch (OperandException& exc) {
-		throw exc << u8"operator+= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator+= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 
 	return *this;
@@ -600,7 +600,7 @@ Any Any::operator- (const Any& rhs) const {
 	try {
 		return _holder->operator-(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator- : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator- : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 }
 
@@ -610,7 +610,7 @@ Any& Any::operator-= (const Any& rhs) {
 	try {
 		_holder->operator-=(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator-= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator-= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 
 	return *this;
@@ -622,7 +622,7 @@ Any Any::operator* (const Any& rhs) const {
 	try {
 		return _holder->operator*(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator* : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator* : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 }
 
@@ -632,7 +632,7 @@ Any& Any::operator*= (const Any& rhs) {
 	try {
 		_holder->operator*=(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator*= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator*= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 
 	return *this;
@@ -644,7 +644,7 @@ Any Any::operator/ (const Any& rhs) const {
 	try {
 		return _holder->operator/(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator/ : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator/ : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 }
 
@@ -654,7 +654,7 @@ Any& Any::operator/= (const Any& rhs) {
 	try {
 		_holder->operator/=(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator/= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator/= : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 
 	return *this;
@@ -666,7 +666,7 @@ Boolean Any::operator== (const Any& rhs) const {
 	try {
 		return _holder->operator==(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator== : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator== : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 }
 
@@ -676,12 +676,12 @@ Boolean Any::operator< (const Any& rhs) const {
 	try {
 		return _holder->operator<(rhs);
 	} catch (OperandException& exc) {
-		throw exc << u8"operator< : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
+		throw exc << "operator< : not support type " << getClass().getName() << " or " << rhs.getClass().getName();
 	}
 }
 
 String Any::str() const {
-	return *this ? _holder->str() : u8"";
+	return *this ? _holder->str() : "";
 }
 
 Any AnyAbstract::operator+(const Any & rhs) const {

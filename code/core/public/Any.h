@@ -36,18 +36,18 @@ public:
 	class HolderClass : public Holder<T> {
 	public:
 		HolderClass(const T& value) : Holder<T>(value) {}
-		virtual PlaceHolder* clone() const { return new HolderClass(_value); }
-		virtual Any operator+ (const Any& rhs) const { return _value + rhs; }
-		virtual void operator+= (const Any& rhs) { _value += rhs; }
-		virtual Any operator- (const Any& rhs) const { return _value - rhs; }
-		virtual void operator-= (const Any& rhs) { _value -= rhs; }
-		virtual Any operator* (const Any& rhs) const { return _value * rhs; }
-		virtual void operator*= (const Any& rhs) { _value *= rhs; }
-		virtual Any operator/ (const Any& rhs) const { return _value / rhs; }
-		virtual void operator/= (const Any& rhs) { _value /= rhs; }
-		virtual Boolean operator== (const Any& rhs) const { return _value == rhs; }
-		virtual Boolean operator< (const Any& rhs) const { return _value < rhs; }
-		virtual String str() const { return _value.str(); }
+		virtual PlaceHolder* clone() const { return new HolderClass(Holder<T>::_value); }
+		virtual Any operator+ (const Any& rhs) const { return Holder<T>::_value + rhs; }
+		virtual void operator+= (const Any& rhs) { Holder<T>::_value += rhs; }
+		virtual Any operator- (const Any& rhs) const { return Holder<T>::_value - rhs; }
+		virtual void operator-= (const Any& rhs) { Holder<T>::_value -= rhs; }
+		virtual Any operator* (const Any& rhs) const { return Holder<T>::_value * rhs; }
+		virtual void operator*= (const Any& rhs) { Holder<T>::_value *= rhs; }
+		virtual Any operator/ (const Any& rhs) const { return Holder<T>::_value / rhs; }
+		virtual void operator/= (const Any& rhs) { Holder<T>::_value /= rhs; }
+		virtual Boolean operator== (const Any& rhs) const { return Holder<T>::_value == rhs; }
+		virtual Boolean operator< (const Any& rhs) const { return Holder<T>::_value < rhs; }
+		virtual String str() const { return Holder<T>::_value.str(); }
 	};
 
 	template <typename T>
@@ -77,11 +77,13 @@ public:
 	template <typename T>
 	struct ObtainHolderType {
 		typedef typename ObtainHolderTypeImpl<T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
+		typedef const typename holder_type const_reference;
 	};
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template <>
 	struct ObtainHolderType<IList> {
 		typedef const IList& holder_type;
+		typedef const IList& const_reference;
 	};
 #endif
 public:
@@ -132,7 +134,7 @@ public:
 	Boolean isType() const { return isType<T1>() || isType<T2>() || isType<T3>() || isType<T4>() || isType<T5>(); }
 
 	template <typename T>
-	typename const ObtainHolderType<T>::holder_type& cast() const { 
+	typename ObtainHolderType<T>::const_reference& cast() const {
 		return static_cast<typename Holder<ObtainHolderType<T>::holder_type>*>(_holder)->_value; 
 	}
 

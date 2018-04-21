@@ -28,7 +28,7 @@ class CORE_API BaseService
 	};
 	template<typename Tail> class RefSign<Tail> {
 	public:
-		typedef typename Tail value_type;
+		typedef Tail value_type;
 		static void collect(std::vector<gemini::Int>& vals) {
 			vals.push_back(Tail::index());
 		}

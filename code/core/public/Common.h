@@ -7,6 +7,7 @@
 #include <type_traits>
 #include <memory>
 #include <string>
+#include <cstring>
 #include <atomic>
 
 #include <map>
@@ -50,7 +51,11 @@ typedef std::atomic_char16_t	MT_Char16;
 typedef std::atomic_char32_t	MT_Char32;
 typedef std::atomic_short		MT_Short;
 typedef std::atomic_int			MT_Int;
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 typedef std::atomic_int64_t		MT_Long;
+#elif GEMINI_OS == GEMINI_OS_LINUX
+typedef std::atomic_llong		MT_Long;
+#endif
 
 /**
  * @brief 以下定义各数据类型的最小值及最大值

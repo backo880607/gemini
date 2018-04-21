@@ -196,8 +196,7 @@ Int Class::max_limits() {
 	return 1024;
 }
 
-String Class::getName(const Char* name)
-{
+String Class::getName(const Char* name) {
 	const Char* pLastSlash = strrchr(name, ':');
 	if (pLastSlash == nullptr) {
 		pLastSlash = strrchr(name, ' ');
@@ -205,13 +204,11 @@ String Class::getName(const Char* name)
 	return pLastSlash != nullptr ? pLastSlash + 1 : name;
 }
 
-Boolean Class::hasSuper() const
-{
+Boolean Class::hasSuper() const {
 	return _superClass != nullptr;
 }
 
-Boolean Class::isBase(const Class& cls) const
-{
+Boolean Class::isBase(const Class& cls) const {
 	const Class* temp = this;
 	while (temp->hasSuper()) {
 		temp = &temp->getSuperClass();
@@ -222,13 +219,11 @@ Boolean Class::isBase(const Class& cls) const
 	return false;
 }
 
-const Class& Class::forName(const String& name)
-{
+const Class& Class::forName(const String& name) {
 	return geminiAfxGetClassManager().forName(name);
 }
 
-const Field& Class::getField(const String& name) const
-{
+const Field& Class::getField(const String& name) const {
 	std::map<String, const Field*>::const_iterator iter = _fields.find(name);
 	if (iter == _fields.end()) {
 
@@ -237,8 +232,7 @@ const Field& Class::getField(const String& name) const
 	return *(iter->second);
 }
 
-void Class::addField(const Field* field)
-{
+void Class::addField(const Field* field) {
 	std::map<String, const Field*>::iterator iter = _fields.find(field->getName());
 	if (iter != _fields.end()) {
 
@@ -247,8 +241,7 @@ void Class::addField(const Field* field)
 	_fields.insert(std::make_pair(field->getName(), field));
 }
 
-void Class::addMethod(const Method* method)
-{
+void Class::addMethod(const Method* method) {
 	std::map<String, const Method*>::iterator iter = _methods.find(method->getName());
 	if (iter != _methods.end()) {
 
