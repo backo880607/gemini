@@ -135,7 +135,7 @@ public:
 
 	template <typename T>
 	typename ObtainHolderType<T>::const_reference& cast() const {
-		return static_cast<typename Holder<ObtainHolderType<T>::holder_type>*>(_holder)->_value; 
+		return static_cast<Holder<typename ObtainHolderType<T>::holder_type>*>(_holder)->_value;
 	}
 
 	Any operator+ (const Any& rhs) const;
