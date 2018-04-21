@@ -48,6 +48,122 @@ template <class Value> void Field::set(Object *object, const Value &value) const
 	*(Value *)(((char *)object) + _offset) = value;
 }
 
+class Method;
+class CORE_API Class final
+{
+	typedef void* (*PNewInstance)();
+	template <typename T>
+	static void* create() { return new T; }
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
+	template<>
+	static void* create<void>() { return nullptr; }
+	template<>
+	static void* create<Object>() { return nullptr; }
+	template<>
+	static void* create<EntityObject>() { return nullptr; }
+	template<>
+	static void* create<IList>() { return nullptr; }
+	template<>
+	static void* create<const IList&>() { return nullptr; }
+#endif
+	template <typename T, Boolean BEntity>
+	struct forTypeImpl {
+		static const Class& value() { return T::getClassStatic(); }
+	};
+	template <typename T>
+	struct forTypeImpl<T, false> {
+		static const Class& value() { static const Class _class(getName<T>().c_str(), nullptr, create<T>); return _class; }
+	};
+
+	Class(const Class& rhs) = delete;
+	Class& operator= (const Class& rhs) = delete;
+public:
+	Class(const Char* name, const Class* superClass, PNewInstance instance);
+	~Class();
+
+	static String getName(const Char* name);
+	template<typename T>
+	static String getName() {
+		return getName(typeid(T).name());
+	}
+
+	static Int max_limits();
+	static Int maxIndex() { return s_maxIndex; }
+	Int index() const { return _index; }
+	const String& getName() const { return _name; }
+	const Class& getSuperClass() const { return *_superClass; }
+	Boolean hasSuper() const;
+	Boolean isBase(const Class& cls) const;
+
+	operator Int() const { return _index; }
+
+	static const Class& forName(const String& name);
+	template <typename T>
+	static const Class& forType() { return forTypeImpl<T, std::is_base_of<Object, T>::value>::value(); }
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
+	template <>
+	static const Class& forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
+	template <>
+	static const Class& forType<Boolean>() { static const Class _class("Boolean", nullptr, create<Boolean>); return _class; }
+	template <>
+	static const Class& forType<Char>() { static const Class _class("Char", nullptr, create<Char>); return _class; }
+	template <>
+	static const Class& forType<Short>() { static const Class _class("Short", nullptr, create<Short>); return _class; }
+	template <>
+	static const Class& forType<Int>() { static const Class _class("Int", nullptr, create<Int>); return _class; }
+	template <>
+	static const Class& forType<Long>() { static const Class _class("Long", nullptr, create<Long>); return _class; }
+	template <>
+	static const Class& forType<Float>() { static const Class _class("Float", nullptr, create<Float>); return _class; }
+	template <>
+	static const Class& forType<Double>() { static const Class _class("Double", nullptr, create<Double>); return _class; }
+	template <>
+	static const Class& forType<String>() { static const Class _class("String", nullptr, create<String>); return _class; }
+	template <>
+	static const Class& forType<const Char*>() { return forType<String>(); }
+#endif
+
+	const Field& getField(const String& name) const;
+
+	template <typename FUN>
+	void foreach_fields(FUN fun) const {
+		for (std::map<String, const Field*>::const_iterator iter = _fields.begin();
+			iter != _fields.end(); ++iter) {
+			fun(iter->second);
+		}
+	}
+
+	Boolean operator== (const Class& rhs) const { return this == &rhs; }
+	Boolean operator!= (const Class& rhs) const { return !(*this == rhs); }
+	Boolean operator< (const Class& rhs) const { return this < &rhs; }
+	Boolean operator> (const Class& rhs) const { return rhs < *this; }
+	Boolean operator<= (const Class& rhs) const { return !(*this > rhs); }
+	Boolean operator>= (const Class& rhs) const { return !(*this < rhs); }
+
+	void* newInstance() const { return (*_instance)(); }
+
+private:
+	void addField(const Field* field);
+	void addMethod(const Method* method);
+
+	friend class Object;
+	friend class DtoBase;
+	friend class EntityObject;
+	friend struct __register_field__;
+	friend struct __register_method__;
+private:
+	static Int s_maxIndex;
+	Int _index;
+	const Class* _superClass;
+	PNewInstance _instance;
+	String _name;
+
+	std::map<String, const Field*> _fields;
+	std::map<String, const Method*> _methods;
+};
+CORE_API const std::map<String, const Class* const>& geminiAfxEntityClasses();
+CORE_API const std::map<String, const Class* const>& geminiAfxControllerClasses();
+
 //root of all callables
 struct __callable__ {
 	typedef std::vector<const Class*> arg_list_cls;
@@ -345,122 +461,6 @@ struct CORE_API __register_method__ {
 struct CORE_API __register_static_method__ {
 	__register_static_method__(__callable__ *cb, const Class *pclass, const char *type, const char *name, const char *args);
 };
-
-class Method;
-class CORE_API Class final
-{
-	typedef void* (*PNewInstance)();
-	template <typename T>
-	static void* create() { return new T; }
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-	template<>
-	static void* create<void>() { return nullptr; }
-	template<>
-	static void* create<Object>() { return nullptr; }
-	template<>
-	static void* create<EntityObject>() { return nullptr; }
-	template<>
-	static void* create<IList>() { return nullptr; }
-	template<>
-	static void* create<const IList&>() { return nullptr; }
-#endif
-	template <typename T, Boolean BEntity>
-	struct forTypeImpl {
-		static const Class& value() { return T::getClassStatic(); }
-	};
-	template <typename T>
-	struct forTypeImpl<T, false> {
-		static const Class& value() { static const Class _class(getName<T>().c_str(), nullptr, create<T>); return _class; }
-	};
-
-	Class(const Class& rhs) = delete;
-	Class& operator= (const Class& rhs) = delete;
-public:
-	Class(const Char* name, const Class* superClass, PNewInstance instance);
-	~Class();
-	
-	static String getName(const Char* name);
-    template<typename T>
-    static String getName() {
-        return getName(typeid(T).name());
-	}
-	
-	static Int max_limits();
-	static Int maxIndex() { return s_maxIndex; }
-	Int index() const { return _index; }
-	const String& getName() const { return _name; }
-	const Class& getSuperClass() const { return *_superClass; }
-	Boolean hasSuper() const;
-	Boolean isBase(const Class& cls) const;
-
-	operator Int() const { return _index; }
-
-	static const Class& forName(const String& name);
-	template <typename T>
-	static const Class& forType() { return forTypeImpl<T, std::is_base_of<Object, T>::value>::value(); }
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-	template <>
-	static const Class& forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
-	template <>
-	static const Class& forType<Boolean>() { static const Class _class("Boolean", nullptr, create<Boolean>); return _class; }
-	template <>
-	static const Class& forType<Char>() { static const Class _class("Char", nullptr, create<Char>); return _class; }
-	template <>
-	static const Class& forType<Short>() { static const Class _class("Short", nullptr, create<Short>); return _class; }
-	template <>
-	static const Class& forType<Int>() { static const Class _class("Int", nullptr, create<Int>); return _class; }
-	template <>
-	static const Class& forType<Long>() { static const Class _class("Long", nullptr, create<Long>); return _class; }
-	template <>
-	static const Class& forType<Float>() { static const Class _class("Float", nullptr, create<Float>); return _class; }
-	template <>
-	static const Class& forType<Double>() { static const Class _class("Double", nullptr, create<Double>); return _class; }
-	template <>
-	static const Class& forType<String>() { static const Class _class("String", nullptr, create<String>); return _class; }
-	template <>
-	static const Class& forType<const Char*>() { return forType<String>(); }
-#endif
-
-	const Field& getField(const String& name) const;
-
-	template <typename FUN>
-	void foreach_fields(FUN fun) const {
-		for (std::map<String, const Field*>::const_iterator iter = _fields.begin(); 
-			iter != _fields.end(); ++iter) {
-			fun(iter->second);
-		}
-	}
-
-	Boolean operator== (const Class& rhs) const { return this == &rhs; }
-	Boolean operator!= (const Class& rhs) const { return !(*this == rhs); }
-	Boolean operator< (const Class& rhs) const { return this < &rhs; }
-	Boolean operator> (const Class& rhs) const { return rhs < *this; }
-	Boolean operator<= (const Class& rhs) const { return !(*this > rhs); }
-	Boolean operator>= (const Class& rhs) const { return !(*this < rhs); }
-
-	void* newInstance() const { return (*_instance)(); }
-
-private:
-	void addField(const Field* field);
-	void addMethod(const Method* method);
-
-	friend class Object;
-	friend class DtoBase;
-	friend class EntityObject;
-	friend struct __register_field__;
-	friend struct __register_method__;
-private:
-	static Int s_maxIndex;
-	Int _index;
-	const Class* _superClass;
-	PNewInstance _instance;
-	String _name;
-
-	std::map<String, const Field*> _fields;
-	std::map<String, const Method*> _methods;
-};
-CORE_API const std::map<String, const Class* const>& geminiAfxEntityClasses();
-CORE_API const std::map<String, const Class* const>& geminiAfxControllerClasses();
 
 //void version
 #define __STATIC_CALLABLE_VOID__(N)\
