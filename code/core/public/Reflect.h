@@ -351,6 +351,7 @@ class CORE_API Class final
 	typedef void* (*PNewInstance)();
 	template <typename T>
 	static void* create() { return new T; }
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template<>
 	static void* create<void>() { return nullptr; }
 	template<>
@@ -361,6 +362,7 @@ class CORE_API Class final
 	static void* create<IList>() { return nullptr; }
 	template<>
 	static void* create<const IList&>() { return nullptr; }
+#endif
 	template <typename T, Boolean BEntity>
 	struct forTypeImpl {
 		static const Class& value() { return T::getClassStatic(); }
@@ -395,6 +397,7 @@ public:
 	static const Class& forName(const String& name);
 	template <typename T>
 	static const Class& forType() { return forTypeImpl<T, std::is_base_of<Object, T>::value>::value(); }
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template <>
 	static const Class& forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
 	template <>
@@ -415,6 +418,7 @@ public:
 	static const Class& forType<String>() { static const Class _class("String", nullptr, create<String>); return _class; }
 	template <>
 	static const Class& forType<const Char*>() { return forType<String>(); }
+#endif
 
 	const Field& getField(const String& name) const;
 
