@@ -116,6 +116,7 @@ struct __callable__ {
 #define __TEMPLATE_ARG__(N)  class T##N
 #define __ARG__(N)           T##N t##N
 #define __PARAM__(N)         t##N
+#define __PARAM_PTR__(N)     & __PARAM__(N)
 #define ___TEMPLATE_DECLARE_BEGIN__   template <
 #define ___TEMPLATE_BEGIN__   <
 #define ___TEMPLATE_END__     >
