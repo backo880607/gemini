@@ -33,11 +33,9 @@ class CORE_API BaseService
 			vals.push_back(Tail::index());
 		}
 	};
-	template<> class RefSign<> {};  // 边界条件
+	template<> class RefSign<> {};
 
 public:
-
-	// 创建实体对象
 	template <typename T>
 	typename T::SPtr create(Long id = 0) const {
 		return createImpl(T::getClassStatic(), id);
