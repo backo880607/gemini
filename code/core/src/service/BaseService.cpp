@@ -41,6 +41,10 @@ const IList& BaseService::getListImpl(EntityObject::SPtr entity, const std::vect
 
 #if GEMINI_OS == GEMINI_OS_LINUX
 template<> class RefSign<> {};
+
+template <> struct InterfaceHelper<> {
+	static void registerInterface(const IBaseService* service) {}
+};
 #endif
 
 void gemini_afx_service_service(const String& name, const BaseService* service) {

@@ -77,7 +77,7 @@ public:
 	template <typename T>
 	struct ObtainHolderType {
 		typedef typename ObtainHolderTypeImpl<T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
-		typedef const typename holder_type const_reference;
+		typedef const holder_type const_reference;
 	};
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template <>

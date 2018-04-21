@@ -44,7 +44,7 @@ public:
 	}
 	template <typename T>
 	typename T::const_reference create(const EntityObject::SPtr& entity) const {
-		T::const_reference relaEntity = create<typename T::value_type>();
+		typename T::const_reference relaEntity = create<typename T::value_type>();
 		IocRelation::set(entity, T::index(), relaEntity);
 	}
 	template <typename T>
@@ -88,7 +88,7 @@ public:
 	template <class T, typename Filter>
 	const IList& getList(Filter filter) const {
 		std::list<typename T::SPtr> entities = getList<T>();
-		for (std::list<typename T::SPtr>::iterator iter = entities.begin();
+		for (typename std::list<typename T::SPtr>::iterator iter = entities.begin();
 			iter != entities.end(); ++iter) {
 			if (!filter(*iter)) {
 				iter = entities.erase(iter);
@@ -143,7 +143,7 @@ public:
 	template <class T, typename... Ref>
 	std::list<typename T::SPtr> getList(EntityObject::SPtr entity, std::function<Boolean(typename T::SPtr)> filter) const {
 		std::list<typename T::SPtr> entities = getList<T>();
-		for (std::list<typename T::SPtr>::iterator iter = entities.begin();
+		for (typename std::list<typename T::SPtr>::iterator iter = entities.begin();
 			iter != entities.end(); ++iter) {
 			if (!filter(*iter)) {
 				iter = entities.erase(iter);
@@ -164,9 +164,11 @@ class ServiceRegister {
 			InterfaceHelper<Tail...>::registerInterface(service);
 		}
 	};
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template <> struct InterfaceHelper<> {
 		static void registerInterface(const IBaseService* service) {}
 	};
+#endif
 public:
 	ServiceRegister() {
 		String name = Class::getName<T>();
