@@ -789,10 +789,6 @@ __STATIC_CALLABLE_GENERATOR__(20)
         if (cb1) { result = cb1->invoke(object __REPEAT(N, __PARAM__, __COMMA__, __COMMA__, __NOTHING__)); return; }\
         CallableType2 *cb2 = dynamic_cast<CallableType2 *>(m_callable);\
         if (cb2) { result = cb2->invoke(object __REPEAT(N, __PARAM__, __COMMA__, __COMMA__, __NOTHING__)); return; }\
-        if (testCompatible##N (m_callable, getClass().getPtrTypeInfo(), typeid(R), typeid(C*), &object __REPEAT(N, __PARAM_PTR__, __COMMA__, __COMMA__, __NOTHING__) )) {\
-			/* force casting it */ \
-			cb1 = (CallableType1 *) (m_callable); result = cb1->invoke(object __REPEAT(N, __PARAM__, __COMMA__, __COMMA__, __NOTHING__)); return;\
-		}\
     }
 
 
@@ -805,10 +801,6 @@ __STATIC_CALLABLE_GENERATOR__(20)
         if (cb1) { cb1->invoke(object __REPEAT(N, __PARAM__, __COMMA__, __COMMA__, __NOTHING__)); return; }\
         CallableType2 *cb2 = dynamic_cast<CallableType2 *>(m_callable);\
         if (cb2) { cb2->invoke(object __REPEAT(N, __PARAM__, __COMMA__, __COMMA__, __NOTHING__)); return; }\
-        if (testCompatible##N (m_callable, getClass().getPtrTypeInfo(), typeid(void), typeid(C*), &object __REPEAT(N, __PARAM_PTR__, __COMMA__, __COMMA__, __NOTHING__))) {\
-			/* force casting it */ \
-			cb1 = (CallableType1 *) (m_callable); cb1->invoke(object __REPEAT(N, __PARAM__, __COMMA__, __COMMA__, __NOTHING__)); return;\
-        }\
     }
 
 /** The Method class represents an object's method.
