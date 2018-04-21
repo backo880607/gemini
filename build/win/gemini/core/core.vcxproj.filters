@@ -1,0 +1,852 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\tools">
+      <UniqueIdentifier>{3e06f2b8-1e70-4be9-ba6b-4992b2a79c89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools">
+      <UniqueIdentifier>{e76b97bd-14fc-41a7-a4c6-162b55c7f348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public">
+      <UniqueIdentifier>{45d0466b-969b-469a-872d-ec3e0b982083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\expression">
+      <UniqueIdentifier>{1b133897-2dd1-4957-bcb3-42ba94702c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\expression\function">
+      <UniqueIdentifier>{050441cd-c44d-4691-9a43-5aa4797d5666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\expression">
+      <UniqueIdentifier>{0232b77d-48e0-4e80-a9b7-455e49741c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\expression\function">
+      <UniqueIdentifier>{b62edbae-20af-48ef-a10b-1b59214ab948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities">
+      <UniqueIdentifier>{0db8fc56-f3a8-4766-bc40-c490b168d010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities">
+      <UniqueIdentifier>{1a7a2b43-7be2-453a-a137-7ce6655d4829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\tools">
+      <UniqueIdentifier>{993b14e3-43a6-48ab-81f9-8a70978eb0fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graph">
+      <UniqueIdentifier>{c5e2bf71-420c-42b9-b89c-f82d3654d3f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graph">
+      <UniqueIdentifier>{a2c08230-d858-46c8-a04d-e26c079621a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cache">
+      <UniqueIdentifier>{a2b9e29b-9c5e-4058-aa35-babdbc554138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cache">
+      <UniqueIdentifier>{47497897-f546-4deb-9170-18a243b98a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\session">
+      <UniqueIdentifier>{b066f5b4-9aee-475e-a158-b890e84524f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\session">
+      <UniqueIdentifier>{44d9acda-308a-48d7-a456-0fc511c61795}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\session\authc">
+      <UniqueIdentifier>{50f61e1a-0d1f-4349-8be8-7fd6aef2a585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\session\authz">
+      <UniqueIdentifier>{ce7d56dc-f967-4f3d-93a4-959f8de84db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\session\realm">
+      <UniqueIdentifier>{5429d945-11a2-44c8-8521-3be874eee456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\session">
+      <UniqueIdentifier>{4ebab666-6210-4cdb-ab3d-771db09a60bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\session\authc">
+      <UniqueIdentifier>{afe3948b-12ba-48ab-9769-2173a29490cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\session\authz">
+      <UniqueIdentifier>{39a071e6-60e0-4ec3-bf0e-8c3bab7259b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\session\realm">
+      <UniqueIdentifier>{eaa2f7d8-a39c-4f7a-956c-ab6d8d041b5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service">
+      <UniqueIdentifier>{093fc2dd-3cc6-4444-bc11-ea178cb6bc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service">
+      <UniqueIdentifier>{89932976-a5a4-4f85-a633-124ddb983453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\controller">
+      <UniqueIdentifier>{c3ee7d10-8ad1-4ca7-8d05-5bf0d9874e38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller">
+      <UniqueIdentifier>{08e4ec44-6e1d-4c73-b86b-9a1347e8ce50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service">
+      <UniqueIdentifier>{a886a58a-e6fb-4384-8320-ecd5502ef046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\session\entities">
+      <UniqueIdentifier>{6721ca7e-3015-482d-aba7-bc9d3a9768a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\session\service">
+      <UniqueIdentifier>{c2ebd297-d42c-4a2a-84c1-e94bc0741f60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\session\service">
+      <UniqueIdentifier>{d3f2f7ae-efb0-4ee2-a80d-6858e5690a25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\session\entities">
+      <UniqueIdentifier>{f40c0a03-0966-471b-9692-d689afcc9aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\api">
+      <UniqueIdentifier>{106276fd-1391-483d-b0f0-05cb937fb63e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\api">
+      <UniqueIdentifier>{2e120db1-ed92-43e7-8a18-295dd02eb31b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\api">
+      <UniqueIdentifier>{9ecabf20-1ae1-41ba-993e-14b415c5eb3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{5a01bf0e-b20e-4244-88eb-938bf419f480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\DataCompress">
+      <UniqueIdentifier>{7bd8d4dc-f32d-4d38-b524-e5b1b644d0f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\message">
+      <UniqueIdentifier>{60440315-6617-4169-8f74-e9c34dc13bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\message">
+      <UniqueIdentifier>{e8562da5-2c28-404c-91df-e1bde344f38c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\propagate">
+      <UniqueIdentifier>{360fd8fd-9e43-43bc-97ef-eef631ea33a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\propagate">
+      <UniqueIdentifier>{20d5fe53-079a-4746-922c-f2a73894ec49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io">
+      <UniqueIdentifier>{debeea7c-b740-44b9-a8c5-2f6fbbe340ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\io">
+      <UniqueIdentifier>{b861aa34-7089-4344-93ce-86c75c9fe193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io">
+      <UniqueIdentifier>{f4881c65-443a-4d14-b481-c8979304658e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Any.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Buffer.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Common.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Platform.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\SmartPtr.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Reflect.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\DumpFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\IApplication.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\Calculate.h">
+      <Filter>Header Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\Expression.h">
+      <Filter>Header Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\OperType.h">
+      <Filter>Header Files\expression</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\DateTimeFunction.h">
+      <Filter>Header Files\expression\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\EntityFunction.h">
+      <Filter>Header Files\expression\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\FunctionMgr.h">
+      <Filter>Header Files\expression\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\InternalFunction.h">
+      <Filter>Header Files\expression\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\LogicFunction.h">
+      <Filter>Header Files\expression\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\MathFunction.h">
+      <Filter>Header Files\expression\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\TextFunction.h">
+      <Filter>Header Files\expression\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\EntityFactory.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\FactoryHelper.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\FactoryMgr.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\IocRelation.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefBase.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefEntity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefList.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefSet.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefVector.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Object.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\DateTime.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\StringUtil.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\graph\Edge.h">
+      <Filter>Header Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeList.h">
+      <Filter>Header Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeSet.h">
+      <Filter>Header Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeSingleton.h">
+      <Filter>Header Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeVector.h">
+      <Filter>Header Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\graph\Graph.h">
+      <Filter>Header Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\graph\Vertex.h">
+      <Filter>Header Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\cache\Cache.h">
+      <Filter>Header Files\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\DoubleUtil.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\session\AuthenticationToken.h">
+      <Filter>public\session</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\session\Subject.h">
+      <Filter>public\session</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\session\UsernamePasswordToken.h">
+      <Filter>public\session</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authc\Authenticator.h">
+      <Filter>Header Files\session\authc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authc\DefaultAuthenticator.h">
+      <Filter>Header Files\session\authc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\Authorizer.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizer.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\realm\DefaultRealm.h">
+      <Filter>Header Files\session\realm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\realm\Realm.h">
+      <Filter>Header Files\session\realm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\service\IBaseService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Permission.h">
+      <Filter>Header Files\session\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Role.h">
+      <Filter>Header Files\session\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\User.h">
+      <Filter>Header Files\session\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\IPermissionService.h">
+      <Filter>Header Files\session\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\IRoleService.h">
+      <Filter>Header Files\session\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\IUserService.h">
+      <Filter>Header Files\session\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\PermissionService.h">
+      <Filter>Header Files\session\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\RoleService.h">
+      <Filter>Header Files\session\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\UserService.h">
+      <Filter>Header Files\session\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultObjectPermission.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\ObjectPermission.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultPermissionResolver.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\PermissionResolver.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\AuthorizationInfo.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizationInfo.h">
+      <Filter>Header Files\session\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\Json.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\XML.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\File.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\realm\AuthorizingRealm.h">
+      <Filter>Header Files\session\realm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\SecurityMgr.h">
+      <Filter>Header Files\session</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\service\ServiceMgr.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\deflate.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\infblock.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\infcodes.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\inffast.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\inffixed.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\inftrees.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\infutil.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\trees.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\zconf.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\zlib.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\zutil.h">
+      <Filter>third_party\DataCompress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\api\Process_WINDOWS_NT.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgDefine.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\message\Exception.h">
+      <Filter>public\message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\message\Log.h">
+      <Filter>public\message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\message\Message.h">
+      <Filter>public\message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\Errors.h">
+      <Filter>Header Files\session</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\session\Session.h">
+      <Filter>public\session</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgData.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\Process.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\api\Errors.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\EdgePropagate.h">
+      <Filter>Header Files\propagate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\Errors.h">
+      <Filter>Header Files\propagate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\GraphPropagate.h">
+      <Filter>Header Files\propagate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\Propagate.h">
+      <Filter>Header Files\propagate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\VertexPropagate.h">
+      <Filter>Header Files\propagate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\service\BaseService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgQueue.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgTransmit.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheDao.h">
+      <Filter>Header Files\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheMgr.h">
+      <Filter>Header Files\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\cache\InnerCacheDao.h">
+      <Filter>Header Files\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\PropagateHelper.h">
+      <Filter>Header Files\propagate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\api\MsgHandler.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\tools\LocaleUtil.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\tools\AnyUtil.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\EnumMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\DataNode.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\controller\BaseController.h">
+      <Filter>public\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\controller\ControllerMgr.h">
+      <Filter>public\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSExcelCSV.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSLocaleFile.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSXML.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSJson.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\DataStructure.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\ExportHelper.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\ImportHelper.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\DataSourceMgr.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOScheme.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOProject.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOField.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Core.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Department.h">
+      <Filter>Header Files\session\entities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Any.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Reflect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\DumpFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\Calculate.cpp">
+      <Filter>Source Files\expression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\Expression.cpp">
+      <Filter>Source Files\expression</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\DateTimeFunction.cpp">
+      <Filter>Source Files\expression\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\EntityFunction.cpp">
+      <Filter>Source Files\expression\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\FunctionMgr.cpp">
+      <Filter>Source Files\expression\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\InternalFunction.cpp">
+      <Filter>Source Files\expression\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\LogicFunction.cpp">
+      <Filter>Source Files\expression\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\MathFunction.cpp">
+      <Filter>Source Files\expression\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\TextFunction.cpp">
+      <Filter>Source Files\expression\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\EntityFactory.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryHelper.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryMgr.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\IocRelation.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefEntity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefList.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefSet.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefVector.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\DateTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\StringUtil.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\graph\Edge.cpp">
+      <Filter>Source Files\graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\graph\Graph.cpp">
+      <Filter>Source Files\graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\graph\Vertex.cpp">
+      <Filter>Source Files\graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\cache\Cache.cpp">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\cache\CacheMgr.cpp">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\Object.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\DoubleUtil.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\realm\DefaultRealm.cpp">
+      <Filter>Source Files\session\realm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\realm\Realm.cpp">
+      <Filter>Source Files\session\realm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\Authorizer.cpp">
+      <Filter>Source Files\session\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizer.cpp">
+      <Filter>Source Files\session\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\AuthenticationToken.cpp">
+      <Filter>Source Files\session\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\Authenticator.cpp">
+      <Filter>Source Files\session\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\DefaultAuthenticator.cpp">
+      <Filter>Source Files\session\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\UsernamePasswordToken.cpp">
+      <Filter>Source Files\session\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\Session.cpp">
+      <Filter>Source Files\session</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\Subject.cpp">
+      <Filter>Source Files\session</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\service\BaseService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\service\PermissionService.cpp">
+      <Filter>Source Files\session\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\service\RoleService.cpp">
+      <Filter>Source Files\session\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\service\UserService.cpp">
+      <Filter>Source Files\session\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Permission.cpp">
+      <Filter>Source Files\session\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Role.cpp">
+      <Filter>Source Files\session\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\User.cpp">
+      <Filter>Source Files\session\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultObjectPermission.cpp">
+      <Filter>Source Files\session\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultPermissionResolver.cpp">
+      <Filter>Source Files\session\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\PermissionResolver.cpp">
+      <Filter>Source Files\session\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizationInfo.cpp">
+      <Filter>Source Files\session\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\Json.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\XML.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\File.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\realm\AuthorizingRealm.cpp">
+      <Filter>Source Files\session\realm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\SecurityMgr.cpp">
+      <Filter>Source Files\session</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\service\ServiceMgr.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\adler32.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\compress.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\crc32.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\deflate.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\gzio.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\infblock.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\infcodes.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\inffast.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\inflate.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\inftrees.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\infutil.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\trees.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\uncompr.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\zutil.c">
+      <Filter>third_party\DataCompress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\message\Exception.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\message\Log.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\message\Message.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgData.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process_WINDOWS_NT.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\EdgePropagate.cpp">
+      <Filter>Source Files\propagate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\GraphPropagate.cpp">
+      <Filter>Source Files\propagate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\Propagate.cpp">
+      <Filter>Source Files\propagate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\VertexPropagate.cpp">
+      <Filter>Source Files\propagate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgQueue.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgTransmit.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\cache\InnerCacheDao.cpp">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\PropagateHelper.cpp">
+      <Filter>Source Files\propagate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgHandler.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\LocaleUtil.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\DataNode.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\controller\BaseController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSExcelCSV.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSLocaleFile.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\DataSource.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSXML.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSJson.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\ImportHelper.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\DataSourceMgr.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOScheme.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOProject.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOField.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Department.cpp">
+      <Filter>Source Files\session\entities</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

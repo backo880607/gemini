@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="public">
+      <UniqueIdentifier>{948562f6-773f-483c-ba77-7cc0ab0f1e23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\tcp">
+      <UniqueIdentifier>{b1bc2d87-20d8-483c-9497-dc1278643e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tcp">
+      <UniqueIdentifier>{f0fba138-8ddc-4df0-8296-334fc4b3e92a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tcp">
+      <UniqueIdentifier>{1d1abffd-7c23-4e9b-ad61-e43e36ce48ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\http">
+      <UniqueIdentifier>{2bb400cc-a247-4b60-befc-4c03ee5f4d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\http">
+      <UniqueIdentifier>{d8934e12-4f8c-470a-84ec-52cf8bb56c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\http">
+      <UniqueIdentifier>{23615f0e-1eb1-4364-b1a9-52e9c5c57421}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\include\Socket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\NetworkExport.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\tcp\TCPServerConnection.h">
+      <Filter>public\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\tcp\TCPConnection.h">
+      <Filter>public\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\tcp\TCPClientConnection.h">
+      <Filter>public\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\include\Server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\include\tcp\TCPServer.h">
+      <Filter>Header Files\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\include\http\HTTPServer.h">
+      <Filter>Header Files\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\include\IOServicePool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\NetworkError.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\http\HTTPClientConnection.h">
+      <Filter>public\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\http\HTTPServerConnection.h">
+      <Filter>public\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\public\ServerUtil.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\network\include\HTTPSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="network.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\Socket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\tcp\TCPClientConnection.cpp">
+      <Filter>Source Files\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\tcp\TCPServerConnection.cpp">
+      <Filter>Source Files\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\tcp\TCPConnection.cpp">
+      <Filter>Source Files\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\Server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\tcp\TCPServer.cpp">
+      <Filter>Source Files\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\http\HTTPServer.cpp">
+      <Filter>Source Files\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\IOServicePool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\http\HTTPClientConnection.cpp">
+      <Filter>Source Files\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\http\HTTPServerConnection.cpp">
+      <Filter>Source Files\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\ServerUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\network\src\HTTPSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

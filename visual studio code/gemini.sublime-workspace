@@ -1,0 +1,473 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"name",
+				"namespace"
+			],
+			[
+				"_",
+				"_cls"
+			],
+			[
+				"ty",
+				"type"
+			],
+			[
+				"t",
+				"tp\ttemplate <typename ${1:_InputIter}>"
+			],
+			[
+				"in",
+				"inc\t#include \"…\""
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+					""
+				],
+				[
+					"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 443.0,
+		"last_filter": "ins",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"run",
+				"Build With: C++ - Starting Kit - Run"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"ref",
+				"Preferences: Package Control Settings – User"
+			],
+			[
+				"Boxy",
+				"Boxy Theme: Activation"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 615.0
+	},
+	"console":
+	{
+		"height": 186.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/Development/gemini/code",
+		"/E/Development/gemini/code/core",
+		"/E/Development/gemini/code/core/include",
+		"/E/Development/gemini/code/core/include/session",
+		"/E/Development/gemini/code/core/src",
+		"/E/Development/gemini/code/core/src/session",
+		"/E/Development/gemini/code/core/src/session/authc"
+	],
+	"file_history":
+	[
+		"/E/Development/gemini/code/core/src/session/authc/DefaultAuthenticator.cpp",
+		"/E/Development/gemini/code/core/include/session/authc/DefaultAuthenticator.h",
+		"/E/Development/gemini/code/core/src/session/authz/DefaultAuthorizer.cpp",
+		"/E/Development/gemini/code/core/include/session/authz/DefaultAuthorizer.h",
+		"/E/Development/gemini/code/core/include/session/authz/Authorizer.h",
+		"/E/Development/gemini/code/core/src/session/authc/Authenticator.cpp",
+		"/E/Development/gemini/code/core/include/session/authc/Authenticator.h",
+		"/E/Development/gemini/code/core/src/session/authz/Authorizer.cpp",
+		"/E/Development/gemini/code/core/src/session/authc/UsernamePasswordToken.cpp",
+		"/E/Development/gemini/code/core/include/session/authc/UsernamePasswordToken.h",
+		"/E/Development/gemini/code/core/src/session/authc/AuthenticationToken.cpp",
+		"/E/Development/gemini/code/core/include/session/authc/AuthenticationToken.h",
+		"/E/Development/gemini/code/core/src/session/Subject.cpp",
+		"/E/Development/gemini/code/core/include/session/Subject.h",
+		"/E/Development/gemini/code/core/src/session/CachingSessionDAO.cpp",
+		"/E/Development/gemini/code/core/include/session/CachingSessionDAO.h",
+		"/E/Development/gemini/code/core/src/session/SessionDAO.cpp",
+		"/E/Development/gemini/code/core/include/session/SessionDAO.h",
+		"/E/Development/gemini/code/core/src/session/SessionMgr.cpp",
+		"/E/Development/gemini/code/core/include/session/SessionMgr.h",
+		"/E/Development/gemini/code/core/include/session/Session.h",
+		"/E/Development/gemini/code/core/src/session/Session.cpp",
+		"/E/Development/gemini/code/aps/bean/tech/StandRouteStep.cpp",
+		"/E/Development/gemini/code/aps/bean/tech/StandRouteStep.h",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStepRes.cpp",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStepRes.h",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStepOut.cpp",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStepOut.h",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStepIn.cpp",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStepIn.h",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStep.cpp",
+		"/E/Development/gemini/code/aps/bean/tech/RouteStep.h",
+		"/E/Development/gemini/code/aps/bean/tech/Route.cpp",
+		"/E/Development/gemini/code/aps/bean/tech/Route.h",
+		"/E/Development/gemini/code/aps/bean/tech/Route",
+		"/E/Development/gemini/code/aps/bean/mstr/Item.cpp",
+		"/E/Development/gemini/code/aps/bean/mstr/Item.h",
+		"/E/Companies/mainiway/Development/dev/aps-project-mark/src/main/java/com/mwc2m/aps/core/propagate/Propagate.java",
+		"/E/Companies/mainiway/Test/aps-project-mark/src/main/java/com/mwc2m/aps/core/propagate/Propagate.java",
+		"/E/Companies/mainiway/Test/aps-project-mark/src/main/java/com/mwc2m/aps/core/factory/FactoryHelp.java",
+		"/E/Companies/mainiway/Development/dev/aps-project-mark/src/main/java/com/mwc2m/aps/core/factory/FactoryHelp.java",
+		"/E/Development/gemini/code/aps/common/Export.h",
+		"/E/Development/gemini/code/aps/bean/plan/Work.cpp",
+		"/E/Development/gemini/code/aps/bean/plan/Work.h",
+		"/E/Development/gemini/code/aps/bean/order/SaleOrder.cpp",
+		"/E/Development/gemini/code/aps/bean/order/SaleOrder.h",
+		"/E/Development/gemini/code/aps/bean/order/WorkOrder.cpp",
+		"/E/Development/gemini/code/aps/bean/order/WorkOrder.h",
+		"/E/Development/gemini/code/aps/bean/order/Order.cpp",
+		"/E/Development/gemini/code/aps/bean/order/Order.h",
+		"/E/Development/gemini/code/core/src/Application.cpp",
+		"/E/Development/gemini/code/core/include/Application.h",
+		"/E/Development/gemini/code/core/include/IList.h",
+		"/E/Development/gemini/code/core/src/Entities/RefSet.cpp",
+		"/E/Development/gemini/code/core/src/Entities/RefList.cpp",
+		"/E/Development/gemini/code/core/src/Entities/RefVector.cpp",
+		"/E/Development/gemini/code/core/src/Entities/RefEntity.cpp",
+		"/E/Development/gemini/code/core/include/Entities/RefSet.h",
+		"/E/Development/gemini/code/core/include/Entities/RefList.h",
+		"/E/Development/gemini/code/core/include/Entities/RefVector.h",
+		"/E/Development/gemini/code/core/include/Entities/RefEntity.h",
+		"/E/Development/gemini/code/core/src/Entities/RefBase.cpp",
+		"/E/Development/gemini/code/core/include/Entities/RefBase.h",
+		"/E/Development/gemini/code/core/src/IocRelation.cpp",
+		"/E/Development/gemini/code/core/include/IocRelation.h",
+		"/E/Development/gemini/code/core/include/graph/EdgeSet.h",
+		"/E/Development/gemini/code/core/include/graph/EdgeList.h",
+		"/E/Development/gemini/code/core/include/graph/EdgeVertex.h",
+		"/E/Development/gemini/code/core/include/graph/EdgeSingleton.h",
+		"/E/Development/gemini/code/core/test/TestLog.cpp",
+		"/E/Development/gemini/code/core/test/TestException.cpp",
+		"/E/Development/gemini/code/core/test/TestAny.cpp",
+		"/E/Development/gemini/code/core/test/TestJson.cpp",
+		"/E/Development/gemini/code/core/test/TestXML.cpp",
+		"/E/Development/gemini/code/core/src/tools/XML.cpp",
+		"/E/Development/gemini/code/core/include/tools/XML.h",
+		"/E/Development/gemini/code/core/src/tools/Json.cpp",
+		"/E/Development/gemini/code/core/include/tools/Json.h",
+		"/E/Development/gemini/code/core/src/cache/CacheMgr.cpp",
+		"/E/Development/gemini/code/core/include/cache/CacheMgr.h",
+		"/E/Development/gemini/code/core/src/cache/InnerCacheMgr.cpp",
+		"/E/Development/gemini/code/core/include/cache/InnerCacheMgr.h",
+		"/E/Development/gemini/code/core/src/Cache.cpp",
+		"/E/Development/gemini/code/core/include/Cache.h",
+		"/E/Development/gemini/code/core/src/EntityObject.cpp",
+		"/E/Development/gemini/code/core/include/factory/FactoryManager.h",
+		"/E/Development/gemini/code/core/src/factory/FactoryHelper.cpp",
+		"/E/Development/gemini/code/core/include/factory/FactoryHelper",
+		"/E/Development/gemini/code/FactoryManager.cpp",
+		"/E/Development/gemini/code/core/src/factory/EntityFactory.cpp",
+		"/E/Development/gemini/code/core/include/factory/EntityFactory.h",
+		"/E/Development/gemini/code/core/include/factory",
+		"/E/Development/gemini/code/core/test/TestObject.cpp",
+		"/E/Development/gemini/code/core/test/TestString.cpp",
+		"/E/Development/gemini/code/core/test/TestBase.cpp",
+		"/E/Development/gemini/code/core/test/TestFile.cpp",
+		"/E/Development/gemini/code/core/src/graph/Edge.cpp",
+		"/E/Development/gemini/code/core/src/graph/Vertex.cpp",
+		"/E/Development/gemini/code/core/include/graph/Vertex.h",
+		"/E/Development/gemini/code/core/include/graph/Edge.h",
+		"/E/Development/gemini/code/core/include/graph/Graph.h",
+		"/E/Development/gemini/code/core/src/graph/Graph.h",
+		"/E/Development/gemini/code/core/src/File.cpp",
+		"/E/Development/gemini/code/core/src/Exception.cpp",
+		"/E/Development/gemini/code/core/src/SmartPtr.cpp",
+		"/E/Development/gemini/code/core/include/SmartPtr.h",
+		"/E/Development/gemini/code/core/src/tools/StringUtil.cpp",
+		"/E/Development/gemini/code/core/test/base/Root.cpp",
+		"/E/Development/gemini/code/core/test/base/Root.h",
+		"/E/Development/gemini/code/sftp-config.json",
+		"/E/Development/gemini/code/core/src/Reflect.cpp",
+		"/E/Development/gemini/code/core/include/common.h",
+		"/E/Development/gemini/code/core/include/Platform.h",
+		"/E/Development/gemini/code/core/include/Buffer.h",
+		"/E/Development/gemini/code/core/include/Any.h",
+		"/E/Development/gemini/code/core/include/Reflect.h",
+		"/C/Users/niuhaitao/AppData/Roaming/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/E/Development/gemini/code/core/include/Concurrent.h",
+		"/C/Users/niuhaitao/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/niuhaitao/AppData/Roaming/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
+		"/C/Users/niuhaitao/AppData/Roaming/Sublime Text 3/Packages/User/Git.sublime-settings",
+		"/C/Users/niuhaitao/AppData/Roaming/Sublime Text 3/Packages/User/CTags.sublime-settings",
+		"/C/Users/niuhaitao/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.sublime-settings",
+		"/E/Development/gemini/code/core/include/DateTime.h",
+		"/E/Development/gemini/code/core/include/EntityObject.h",
+		"/C/Users/niuhaitao/Downloads/libreflection2_src/LibReflection/include/refcls.hpp",
+		"/C/Users/niuhaitao/Downloads/libreflection2_src/LibReflection/include/reflection.hpp",
+		"/E/Development/gemini/code/core/include/Object.h"
+	],
+	"find":
+	{
+		"height": 86.0
+	},
+	"find_in_files":
+	{
+		"height": 163.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"_BOOL",
+			"_WCHAR",
+			"YK",
+			"FIELD",
+			"Class",
+			"FIELD",
+			"NEWINSTANCE_FUN",
+			"CLASS",
+			"OUBLE",
+			"BOOL",
+			"OOL",
+			"HAR",
+			"HORT",
+			"NT",
+			"MT_UCHAR",
+			"MT_CHAR",
+			"MT_BOOL",
+			"STRING",
+			"LDOUBLE",
+			"DOUBLE",
+			"FLOAT",
+			"ULONG",
+			"LONG",
+			"UINT",
+			"INT",
+			"USHORT",
+			"SHORT",
+			"WCHAR",
+			"UCHAR",
+			"CHAR",
+			"BOOL",
+			"m_size",
+			"m_pt",
+			"();\n",
+			"YK",
+			"POCO",
+			"YK_"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Boolean",
+			"Char",
+			"",
+			"ouble",
+			"Boolean",
+			"oolean",
+			"har",
+			"hort",
+			"nt",
+			"MT_UChar",
+			"MT_Char",
+			"MT_Boolean",
+			"CString",
+			"LDouble",
+			"Double",
+			"Float",
+			"ULong",
+			"Long",
+			"UInt",
+			"Int",
+			"UShort",
+			"Short",
+			"WChar",
+			"UChar",
+			"Char",
+			"Boolean",
+			"_size",
+			"_pt",
+			"GEMINI",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 142.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 198.0
+	},
+	"pinned_build_system": "Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+	"project": "gemini.sublime-project",
+	"replace":
+	{
+		"height": 140.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"re",
+				"core\\include\\Reflect.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 251.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

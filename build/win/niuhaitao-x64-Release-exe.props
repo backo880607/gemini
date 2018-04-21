@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)\$(PlatformName)\$(Configuration)dll\</OutDir>
+    <IntDir>$(SolutionDir)\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <_PropertySheetDisplayName>gemini-x64-Release-exe</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_WIN64;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>..\..\..\..\third_party\boost_1_66_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)\$(PlatformName)\$(Configuration)dll\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\$(PlatformName)\$(Configuration)lib;..\..\Libraries-64-Release</AdditionalLibraryDirectories>
+      <ImportLibrary>$(SolutionDir)\$(PlatformName)\$(Configuration)lib\$(ProjectName).lib</ImportLibrary>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(SolutionDir)\$(PlatformName)\$(Configuration)PDB\$(ProjectName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

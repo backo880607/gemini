@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="bean">
+      <UniqueIdentifier>{1fbf7455-c5bf-4be6-a0a9-b9fc00a27b35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bean\order">
+      <UniqueIdentifier>{387a6e7a-ecba-459d-a430-57df7fc3913d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bean\plan">
+      <UniqueIdentifier>{63a4d7d9-ebb2-4c42-be39-4bb90b9d686f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{cc78e0ec-5df1-4549-96fd-2163ca53aa22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bean\mstr">
+      <UniqueIdentifier>{efd6585b-540f-44fd-aba9-53741cae7342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bean\tech">
+      <UniqueIdentifier>{c290c63d-1e6b-4f6d-adc7-37c16794950e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public">
+      <UniqueIdentifier>{688df9bb-1b2b-4c0d-964d-e3553227198c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service">
+      <UniqueIdentifier>{1a4e1338-51af-45a7-b5af-69618262e818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service\mstr">
+      <UniqueIdentifier>{0d6fbfe3-536e-4db2-8f4f-eb13a66f972d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service">
+      <UniqueIdentifier>{a227d65f-d998-46db-a29d-5617cca9daa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\mstr">
+      <UniqueIdentifier>{165b770f-e467-4b57-b3a2-0d3af57c6b9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service">
+      <UniqueIdentifier>{d0f44b24-ecad-4127-83fe-bb773c0ae72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\mstr">
+      <UniqueIdentifier>{874d8b5e-7508-4ed7-8e17-98d8efcd4b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\enums">
+      <UniqueIdentifier>{c08435a0-7ad2-405b-a5cb-13f9fb903da6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\enums\mstr">
+      <UniqueIdentifier>{163ac574-fbc6-4e34-92dd-8e32d8c76e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\enums\order">
+      <UniqueIdentifier>{6fba427a-6397-485c-a032-301f89835a88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\enums\plan">
+      <UniqueIdentifier>{ee745d47-440c-48c6-bd03-0273218240f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\enums\tech">
+      <UniqueIdentifier>{02762829-c22a-4554-bd67-c8951fc8e719}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\Order.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\SaleOrder.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\WorkOrder.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\plan\Work.h">
+      <Filter>bean\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\common\Export.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\mstr\Item.h">
+      <Filter>bean\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\tech\Route.h">
+      <Filter>bean\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\tech\RouteStep.h">
+      <Filter>bean\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\tech\RouteStepIn.h">
+      <Filter>bean\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\tech\RouteStepOut.h">
+      <Filter>bean\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\tech\RouteStepRes.h">
+      <Filter>bean\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\tech\StandRouteStep.h">
+      <Filter>bean\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\mstr\Resource.h">
+      <Filter>bean\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\plan\WorkIn.h">
+      <Filter>bean\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\plan\WorkOut.h">
+      <Filter>bean\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\plan\WorkRel.h">
+      <Filter>bean\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\plan\WorkRes.h">
+      <Filter>bean\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\mstr\IItemService.h">
+      <Filter>public\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\mstr\ItemService.h">
+      <Filter>Header Files\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\mstr\ItemType.h">
+      <Filter>public\enums\mstr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\Order.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\SaleOrder.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\WorkOrder.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\plan\Work.cpp">
+      <Filter>bean\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\mstr\Item.cpp">
+      <Filter>bean\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\tech\Route.cpp">
+      <Filter>bean\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\tech\RouteStep.cpp">
+      <Filter>bean\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\tech\RouteStepIn.cpp">
+      <Filter>bean\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\tech\RouteStepOut.cpp">
+      <Filter>bean\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\tech\RouteStepRes.cpp">
+      <Filter>bean\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\tech\StandRouteStep.cpp">
+      <Filter>bean\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\mstr\Resource.cpp">
+      <Filter>bean\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\plan\WorkIn.cpp">
+      <Filter>bean\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\plan\WorkOut.cpp">
+      <Filter>bean\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\plan\WorkRel.cpp">
+      <Filter>bean\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\plan\WorkRes.cpp">
+      <Filter>bean\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\mstr\ItemService.cpp">
+      <Filter>Source Files\service\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\mstr\ItemType.cpp">
+      <Filter>public\enums\mstr</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

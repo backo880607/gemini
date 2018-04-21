@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8053911D-60B3-40B0-AF48-F08CA5C517E7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>core</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\niuhaitao-x64-Release-dll.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>CORE_EXPORTS;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\..\..\third_party\glog\src\windows;..\..\..\..\third_party\breakpad;..\..\..\..\code\core\include;..\..\..\..\code\core\public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libglog_static.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\code\core\include\api\Errors.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\api\MsgHandler.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\api\Process_WINDOWS_NT.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\Application.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\cache\Cache.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheDao.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\cache\InnerCacheDao.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\DumpFile.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\EntityFactory.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\EnumMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\FactoryHelper.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\FactoryMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\IocRelation.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefBase.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefEntity.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefList.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefSet.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefVector.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\Calculate.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\Expression.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\DateTimeFunction.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\EntityFunction.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\FunctionMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\InternalFunction.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\LogicFunction.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\MathFunction.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\function\TextFunction.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\expression\OperType.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\graph\Edge.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeList.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeSet.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeSingleton.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeVector.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\graph\Graph.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\graph\Vertex.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\DataSourceMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSExcelCSV.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSJson.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSLocaleFile.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSXML.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\EdgePropagate.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\Errors.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\GraphPropagate.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\Propagate.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\PropagateHelper.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\propagate\VertexPropagate.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\service\ServiceMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authc\Authenticator.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authc\DefaultAuthenticator.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\AuthorizationInfo.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\Authorizer.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizationInfo.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizer.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultObjectPermission.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultPermissionResolver.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\ObjectPermission.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\authz\PermissionResolver.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Department.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Permission.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Role.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\entities\User.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\Errors.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\realm\AuthorizingRealm.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\realm\DefaultRealm.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\realm\Realm.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\SecurityMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\IPermissionService.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\IRoleService.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\IUserService.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\PermissionService.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\RoleService.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\session\service\UserService.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\System.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\tools\AnyUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\tools\LocaleUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Any.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\DataNode.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgData.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgDefine.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgQueue.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\MsgTransmit.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\Process.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Buffer.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Common.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\controller\BaseController.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\controller\ControllerMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Core.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\DateTime.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\IApplication.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\DataStructure.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\ExportHelper.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\ImportHelper.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOField.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOProject.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOScheme.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\message\Exception.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\message\Log.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\message\Message.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Object.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Platform.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Reflect.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\service\BaseService.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\service\IBaseService.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\session\AuthenticationToken.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\session\Session.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\session\Subject.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\session\UsernamePasswordToken.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\SmartPtr.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\DoubleUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\File.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\Json.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\StringUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\XML.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\deflate.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\infblock.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\infcodes.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\inffast.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\inffixed.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\inftrees.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\infutil.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\trees.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\zconf.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\zlib.h" />
+    <ClInclude Include="..\..\..\..\third_party\DataCompress\zutil.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\code\core\src\Any.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\DataNode.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgData.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgHandler.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgQueue.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\MsgTransmit.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process_WINDOWS_NT.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Application.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\cache\Cache.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\cache\CacheMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\cache\InnerCacheDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\controller\BaseController.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\DateTime.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\DumpFile.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\EntityFactory.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\IocRelation.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\Object.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefEntity.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefList.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefSet.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefVector.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\Calculate.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\Expression.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\DateTimeFunction.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\EntityFunction.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\FunctionMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\InternalFunction.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\LogicFunction.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\MathFunction.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\expression\function\TextFunction.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\graph\Edge.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\graph\Graph.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\graph\Vertex.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\DataSource.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\DataSourceMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSExcelCSV.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSJson.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSLocaleFile.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSXML.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\ImportHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOField.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOProject.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOScheme.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\message\Exception.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\message\Log.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\message\Message.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\EdgePropagate.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\GraphPropagate.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\Propagate.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\PropagateHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\propagate\VertexPropagate.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Reflect.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\service\BaseService.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\service\ServiceMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\AuthenticationToken.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\Authenticator.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\DefaultAuthenticator.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authc\UsernamePasswordToken.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\Authorizer.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizationInfo.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizer.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultObjectPermission.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultPermissionResolver.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\authz\PermissionResolver.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Department.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Permission.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Role.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\entities\User.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\realm\AuthorizingRealm.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\realm\DefaultRealm.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\realm\Realm.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\SecurityMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\service\PermissionService.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\service\RoleService.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\service\UserService.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\Session.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\session\Subject.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\DoubleUtil.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\File.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\Json.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\LocaleUtil.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\StringUtil.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\XML.cpp" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\adler32.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\compress.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\crc32.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\deflate.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\gzio.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\infblock.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\infcodes.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\inffast.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\inflate.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\inftrees.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\infutil.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\trees.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\uncompr.c" />
+    <ClCompile Include="..\..\..\..\third_party\DataCompress\zutil.c" />
+    <ClCompile Include="dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

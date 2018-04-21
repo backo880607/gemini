@@ -6,6 +6,10 @@
 *.lo
 *.o
 *.obj
+*.exp
+*.pdb
+*.tlog
+#.log
 
 # Precompiled Headers
 *.gch
@@ -30,8 +34,13 @@
 *.exe
 *.out
 *.app
-/build
-/visual studio code
+
+/build/win/.vs
+/build/win/Libraries-64-Release
+/build/win/gemini/x64
+/build/win/gemini/Debug
 /third_party
 /Permission
 /ddddd
+/build/win/gemini/.vs/gemini/v15
+/build/win/gemini/gemini.VC.db
