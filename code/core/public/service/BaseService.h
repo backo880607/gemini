@@ -33,7 +33,9 @@ class CORE_API BaseService
 			vals.push_back(Tail::index());
 		}
 	};
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template<> class RefSign<> {};
+#endif
 
 public:
 	template <typename T>

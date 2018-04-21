@@ -114,32 +114,26 @@ private:
 	std::map<String, const Class* const> _classEntity;
 	std::map<String, const Class* const> _classController;
 };
-ClassManager& geminiAfxGetClassManager()
-{
+ClassManager& geminiAfxGetClassManager() {
 	static ClassManager manager;
 	return manager;
 }
-const std::map<String, const Class* const>& geminiAfxEntityClasses()
-{
+const std::map<String, const Class* const>& geminiAfxEntityClasses() {
 	return geminiAfxGetClassManager().getEntityClasses();
 }
-const std::map<String, const Class* const>& geminiAfxControllerClasses()
-{
+const std::map<String, const Class* const>& geminiAfxControllerClasses() {
 	return geminiAfxGetClassManager().getControllerClasses();
 }
 
-SmartPtr<EntityObject> afxGetRelation(SmartPtr<EntityObject> entity, Int sign)
-{
+SmartPtr<EntityObject> afxGetRelation(SmartPtr<EntityObject> entity, Int sign) {
 	return IocRelation::get(entity, sign);
 }
 
-void afxSetRelation(SmartPtr<EntityObject> entity, Int sign, SmartPtr<EntityObject> relaEntity)
-{
+void afxSetRelation(SmartPtr<EntityObject> entity, Int sign, SmartPtr<EntityObject> relaEntity) {
 	IocRelation::set(entity, sign, relaEntity);
 }
 
-void afxModifyProperty(SmartPtr<EntityObject> entity, const Field* field)
-{
+void afxModifyProperty(SmartPtr<EntityObject> entity, const Field* field) {
 	Propagate::instance().modify(entity, field);
 }
 
