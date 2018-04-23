@@ -140,9 +140,9 @@ const IList& PropertyRefHelp::getList(const EntityObject* entity, Int sign) {
 Int Class::s_maxIndex = 0;
 Class::Class(const Char* name, const Class* superClass, PNewInstance instance) 
 	: _index(s_maxIndex++)
-	, _name(name)
 	, _superClass(superClass)
 	, _instance(instance)
+	, _name(name)
 {
 	geminiAfxGetClassManager().registerClass(*this);
 }
@@ -163,8 +163,8 @@ void* Class::create<IList>() { return nullptr; }
 template<>
 void* Class::create<const IList&>() { return nullptr; }
 
-template <>
-const Class& Class::forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
+//template <>
+//const Class& Class::forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
 template <>
 const Class& Class::forType<Boolean>() { static const Class _class("Boolean", nullptr, create<Boolean>); return _class; }
 template <>
