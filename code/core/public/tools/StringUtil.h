@@ -74,7 +74,7 @@ public:
 	template <typename T, typename ...Args>
 	static void append(String& str, T val, Args... args) {
 		str.append(format(val));
-		append(str, args);
+		append(str, args...);
 	}
 
 	template <typename T>
