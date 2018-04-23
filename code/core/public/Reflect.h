@@ -884,16 +884,6 @@ private:
 	friend struct __register_method__;
 };
 
-class IList;
-enum class RefType {
-	Entity,
-	Vector,
-	List,
-	Set
-};
-CORE_API SmartPtr<EntityObject> afxGetRelation(SmartPtr<EntityObject> entity, Int sign);
-CORE_API void afxSetRelation(SmartPtr<EntityObject> entity, Int sign, SmartPtr<EntityObject> relaEntity);
-CORE_API void afxModifyProperty(SmartPtr<EntityObject> entity, const Field* field);
 template <class T>
 class Property {
 protected:
@@ -938,6 +928,19 @@ protected:
 private:
 	Char* _value;
 };
+class IList;
+enum class RefType {
+	Entity,
+	Vector,
+	List,
+	Set
+};
+class CORE_API PropertyRefHelp {
+public:
+	static SmartPtr<EntityObject> get(const EntityObject* entity, Int sign);
+	static void set(EntityObject* entity, Int sign, const SmartPtr<EntityObject>& relaEntity);
+	static const IList& getList(const EntityObject* entity, Int sign);
+};
 template <class T, RefType Type>
 class PropertyRef {
 protected:
@@ -948,7 +951,8 @@ protected:
 	~PropertyRef() {}
 	
 	const_reference get(const EntityObject* entity, Int sign) {
-		return *((const IList*)(entity->_relations[sign]));
+		//return *((const IList*)(entity->_relations[sign]));
+		return PropertyRefHelp::getList(entity, sign);
 	}
 };
 template <class T>
@@ -961,15 +965,11 @@ protected:
 	~PropertyRef() {}
 
 	const_reference get(EntityObject* entity, Int sign) {
-		SmartPtr<EntityObject> entitySPtr;
-		entitySPtr.wrapRawPointer(entity);
-		return afxGetRelation(entitySPtr, sign);
+		return PropertyRefHelp::get(entity, sign);
 	}
 
 	void set(EntityObject* entity, Int sign, const_reference val) {
-		SmartPtr<EntityObject> entitySPtr;
-		entitySPtr.wrapRawPointer(entity);
-		afxSetRelation(entitySPtr, sign, val);
+		PropertyRefHelp::set(entity, sign, val);
 	}
 };
 
@@ -984,7 +984,7 @@ template <typename Enum_T>
 class EnumHelper {
 private:
 	static void SplitEnumString(const char* str) {
-		const char * p = str;
+		/*const char * p = str;
 		Int index = 0;
 		while (std::isspace(*p)) p++;
 		while (*p != '\0') {
@@ -1014,7 +1014,7 @@ private:
 			p++;
 
 			while (std::isspace(*p)) p++;
-		}
+		}*/
 	}
 private:
 	static const char * s_name;
@@ -1060,7 +1060,7 @@ public:\
 		}\
 		~__field_##FIELD_NAME() {}\
 		__field_##FIELD_NAME& operator= (const_reference val) { \
-			base_type::operator=(val); afxModifyProperty(nullptr, field()); return *this; \
+			base_type::operator=(val); return *this; \
 		}\
 		operator const_reference() { return base_type::operator const_reference(); }\
 		const gemini::Field* field() { static const gemini::Field* holder = &getClassStatic().getField(#FIELD_NAME); return holder; }\

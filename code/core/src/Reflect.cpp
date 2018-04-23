@@ -125,20 +125,19 @@ const std::map<String, const Class* const>& geminiAfxControllerClasses() {
 	return geminiAfxGetClassManager().getControllerClasses();
 }
 
-SmartPtr<EntityObject> afxGetRelation(SmartPtr<EntityObject> entity, Int sign) {
-	return IocRelation::get(entity, sign);
+SmartPtr<EntityObject> PropertyRefHelp::get(const EntityObject* entity, Int sign) {
+	return entity->_relations[sign]->get();
 }
-
-void afxSetRelation(SmartPtr<EntityObject> entity, Int sign, SmartPtr<EntityObject> relaEntity) {
-	IocRelation::set(entity, sign, relaEntity);
+void PropertyRefHelp::set(EntityObject* entity, Int sign, const SmartPtr<EntityObject>& relaEntity) {
+	SmartPtr<EntityObject> entitySPtr;
+	entitySPtr.wrapRawPointer(entity);
+	IocRelation::set(entitySPtr, sign, relaEntity);
 }
-
-void afxModifyProperty(SmartPtr<EntityObject> entity, const Field* field) {
-	Propagate::instance().modify(entity, field);
+const IList& PropertyRefHelp::getList(const EntityObject* entity, Int sign) {
+	return *((const IList*)(entity->_relations[sign]));
 }
 
 Int Class::s_maxIndex = 0;
-
 Class::Class(const Char* name, const Class* superClass, PNewInstance instance) 
 	: _index(s_maxIndex++)
 	, _name(name)

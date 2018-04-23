@@ -47,6 +47,7 @@ public:
 	virtual Boolean operator< (const Any& rhs) const;
 
 private:
+	friend class PropertyRefHelp;
 	friend class IocRelation;
 	friend class EntityFactory;
 	template <class T, RefType Type> friend class PropertyRef;
