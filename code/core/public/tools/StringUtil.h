@@ -53,13 +53,13 @@ public:
 
 	template <typename T>
 	static T convert(const Char* str) { 
-		std::remove_const<T>::type val;
+		typename std::remove_const<T>::type val;
 		convertImpl(val, str);
 		return val;
 	}
 	template <typename T>
 	static T convert(const Char* str, std::size_t fPos, std::size_t lPos) {
-		std::remove_const<T>::type val;
+		typename std::remove_const<T>::type val;
 		convertImpl(val, str, fPos, lPos);
 		return val;
 	}
