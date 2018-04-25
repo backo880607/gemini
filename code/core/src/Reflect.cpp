@@ -1,39 +1,4 @@
 #include "Reflect.h"
-namespace gemini {
-#if GEMINI_OS == GEMINI_OS_LINUX
-template<>
-void* Class::create<void>() { return nullptr; }
-template<>
-void* Class::create<Object>() { return nullptr; }
-template<>
-void* Class::create<EntityObject>() { return nullptr; }
-template<>
-void* Class::create<IList>() { return nullptr; }
-template<>
-void* Class::create<const IList&>() { return nullptr; }
-
-template <>
-const Class& Class::forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
-template <>
-const Class& Class::forType<Boolean>() { static const Class _class("Boolean", nullptr, create<Boolean>); return _class; }
-template <>
-const Class& Class::forType<Char>() { static const Class _class("Char", nullptr, create<Char>); return _class; }
-template <>
-const Class& Class::forType<Short>() { static const Class _class("Short", nullptr, create<Short>); return _class; }
-template <>
-const Class& Class::forType<Int>() { static const Class _class("Int", nullptr, create<Int>); return _class; }
-template <>
-const Class& Class::forType<Long>() { static const Class _class("Long", nullptr, create<Long>); return _class; }
-template <>
-const Class& Class::forType<Float>() { static const Class _class("Float", nullptr, create<Float>); return _class; }
-template <>
-const Class& Class::forType<Double>() { static const Class _class("Double", nullptr, create<Double>); return _class; }
-template <>
-const Class& Class::forType<String>() { static const Class _class("String", nullptr, create<String>); return _class; }
-template <>
-const Class& Class::forType<const Char*>() { return forType<String>(); }
-#endif
-}
 #include "entities/IocRelation.h"
 #include "propagate/Propagate.h"
 #include "controller/BaseController.h"
@@ -172,6 +137,75 @@ const IList& PropertyRefHelp::getList(const EntityObject* entity, Int sign) {
 	return *((const IList*)(entity->_relations[sign]));
 }
 
+namespace ns_class {
+
+String getNameImpl(const Char* name) {
+	const Char* pLastSlash = strrchr(name, ':');
+	if (pLastSlash == nullptr) {
+		pLastSlash = strrchr(name, ' ');
+	}
+	return pLastSlash != nullptr ? pLastSlash + 1 : name;
+}
+
+#if GEMINI_OS == GEMINI_OS_LINUX
+template<>
+struct Helper<void> {
+	static void* create() { return nullptr; }
+	static String getName() { return "void"; }
+};
+template<>
+struct Helper<Boolean> {
+	static void* create() { return new Boolean(); }
+	static String getName() { return "Boolean"; }
+};
+template<>
+struct Helper<Char> {
+	static void* create() { return new Char(); }
+	static String getName() { return "Char"; }
+};
+template<>
+struct Helper<Short> {
+	static void* create() { return new Short(); }
+	static String getName() { return "Short"; }
+};
+template<>
+struct Helper<Int> {
+	static void* create() { return new Int(); }
+	static String getName() { return "Int"; }
+};
+template<>
+struct Helper<Long> {
+	static void* create() { return new Long(); }
+	static String getName() { return "Long"; }
+};
+template<>
+struct Helper<Float> {
+	static void* create() { return new Float(); }
+	static String getName() { return "Float"; }
+};
+template<>
+struct Helper<Double> {
+	static void* create() { return new Double(); }
+	static String getName() { return "Double"; }
+};
+template<>
+struct Helper<String> {
+	static void* create() { return new String(); }
+	static String getName() { return "String"; }
+};
+template<>
+struct Helper<IList> {
+	static void* create() { return nullptr; }
+	static String getName() { return "IList"; }
+};
+template<>
+struct Helper<const IList&> {
+	static void* create() { return nullptr; }
+	static String getName() { return "IList"; }
+};
+#endif
+}
+
 Int Class::s_maxIndex = 0;
 Class::Class(const Char* name, const Class* superClass, PNewInstance instance) 
 	: _index(s_maxIndex++)
@@ -188,14 +222,6 @@ Class::~Class() {
 
 Int Class::max_limits() {
 	return 1024;
-}
-
-String Class::getName(const Char* name) {
-	const Char* pLastSlash = strrchr(name, ':');
-	if (pLastSlash == nullptr) {
-		pLastSlash = strrchr(name, ' ');
-	}
-	return pLastSlash != nullptr ? pLastSlash + 1 : name;
 }
 
 Boolean Class::hasSuper() const {

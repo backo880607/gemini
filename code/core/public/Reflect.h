@@ -48,31 +48,84 @@ template <class Value> void Field::set(Object *object, const Value &value) const
 	*(Value *)(((char *)object) + _offset) = value;
 }
 
+namespace ns_class {
+
+	String getNameImpl(const Char* name);
+template <typename T>
+struct Helper {
+	static void* create() { return new T; }
+	static String getName() { return getNameImpl(typeid(T).name()); }
+};
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
+template<>
+struct Helper<void> {
+	static void* create() { return nullptr; }
+	static String getName() { return "void"; }
+};
+template<>
+struct Helper<Boolean> {
+	static void* create() { return new Boolean(); }
+	static String getName() { return "Boolean"; }
+};
+template<>
+struct Helper<Char> {
+	static void* create() { return new Char(); }
+	static String getName() { return "Char"; }
+};
+template<>
+struct Helper<Short> {
+	static void* create() { return new Short(); }
+	static String getName() { return "Short"; }
+};
+template<>
+struct Helper<Int> {
+	static void* create() { return new Int(); }
+	static String getName() { return "Int"; }
+};
+template<>
+struct Helper<Long> {
+	static void* create() { return new Long(); }
+	static String getName() { return "Long"; }
+};
+template<>
+struct Helper<Float> {
+	static void* create() { return new Float(); }
+	static String getName() { return "Float"; }
+};
+template<>
+struct Helper<Double> {
+	static void* create() { return new Double(); }
+	static String getName() { return "Double"; }
+};
+template<>
+struct Helper<String> {
+	static void* create() { return new String(); }
+	static String getName() { return "String"; }
+};
+template<>
+struct Helper<IList> {
+	static void* create() { return nullptr; }
+	static String getName() { return "IList"; }
+};
+template<>
+struct Helper<const IList&> {
+	static void* create() { return nullptr; }
+	static String getName() { return "IList"; }
+};
+#endif
+}
 class Method;
 class CORE_API Class final
 {
 	typedef void* (*PNewInstance)();
-	template <typename T>
-	static void* create() { return new T; }
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-	template<>
-	static void* create<void>() { return nullptr; }
-	template<>
-	static void* create<Object>() { return nullptr; }
-	template<>
-	static void* create<EntityObject>() { return nullptr; }
-	template<>
-	static void* create<IList>() { return nullptr; }
-	template<>
-	static void* create<const IList&>() { return nullptr; }
-#endif
+
 	template <typename T, Boolean BEntity>
 	struct forTypeImpl {
 		static const Class& value() { return T::getClassStatic(); }
 	};
 	template <typename T>
 	struct forTypeImpl<T, false> {
-		static const Class& value() { static const Class _class(getName<T>().c_str(), nullptr, create<T>); return _class; }
+		static const Class& value() { static const Class _class(ns_class::Helper<T>::getName().c_str(), nullptr, ns_class::Helper<T>::create); return _class; }
 	};
 
 	Class(const Class& rhs) = delete;
@@ -81,11 +134,8 @@ public:
 	Class(const Char* name, const Class* superClass, PNewInstance instance);
 	~Class();
 
-	static String getName(const Char* name);
 	template<typename T>
-	static String getName() {
-		return getName(typeid(T).name());
-	}
+	static String getName() { return ns_class::Helper<T>::getName(); }
 
 	static Int max_limits();
 	static Int maxIndex() { return s_maxIndex; }
@@ -100,28 +150,6 @@ public:
 	static const Class& forName(const String& name);
 	template <typename T>
 	static const Class& forType() { return forTypeImpl<T, std::is_base_of<Object, T>::value>::value(); }
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-	template <>
-	static const Class& forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
-	template <>
-	static const Class& forType<Boolean>() { static const Class _class("Boolean", nullptr, create<Boolean>); return _class; }
-	template <>
-	static const Class& forType<Char>() { static const Class _class("Char", nullptr, create<Char>); return _class; }
-	template <>
-	static const Class& forType<Short>() { static const Class _class("Short", nullptr, create<Short>); return _class; }
-	template <>
-	static const Class& forType<Int>() { static const Class _class("Int", nullptr, create<Int>); return _class; }
-	template <>
-	static const Class& forType<Long>() { static const Class _class("Long", nullptr, create<Long>); return _class; }
-	template <>
-	static const Class& forType<Float>() { static const Class _class("Float", nullptr, create<Float>); return _class; }
-	template <>
-	static const Class& forType<Double>() { static const Class _class("Double", nullptr, create<Double>); return _class; }
-	template <>
-	static const Class& forType<String>() { static const Class _class("String", nullptr, create<String>); return _class; }
-	template <>
-	static const Class& forType<const Char*>() { return forType<String>(); }
-#endif
 
 	const Field& getField(const String& name) const;
 
