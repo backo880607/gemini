@@ -10,7 +10,7 @@ String getNameImpl(const Char* name) {
 	return pLastSlash != nullptr ? pLastSlash + 1 : name;
 }
 
-#if GEMINI_OS == GEMINI_OS_LINUX
+/*#if GEMINI_OS == GEMINI_OS_LINUX
 template<>
 struct Helper<void> {
 	static void* create() { return nullptr; }
@@ -66,7 +66,7 @@ struct Helper<const IList&> {
 	static void* create() { return nullptr; }
 	static String getName() { return "IList"; }
 };
-#endif
+#endif*/
 }}
 #include "entities/IocRelation.h"
 #include "propagate/Propagate.h"

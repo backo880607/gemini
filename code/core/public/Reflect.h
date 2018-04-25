@@ -56,7 +56,7 @@ struct Helper {
 	static void* create() { return new T; }
 	static String getName() { return getNameImpl(typeid(T).name()); }
 };
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
+//#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 template<>
 struct Helper<void> {
 	static void* create() { return nullptr; }
@@ -112,7 +112,7 @@ struct Helper<const IList&> {
 	static void* create() { return nullptr; }
 	static String getName() { return "IList"; }
 };
-#endif
+//#endif
 }
 class Method;
 class CORE_API Class final
