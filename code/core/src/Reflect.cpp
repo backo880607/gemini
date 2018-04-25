@@ -208,38 +208,4 @@ void Class::addMethod(const Method* method) {
 	_methods.insert(std::make_pair(method->getName(), method));
 }
 
-#if GEMINI_OS == GEMINI_OS_LINUX
-template<>
-void* Class::create<void>() { return nullptr; }
-template<>
-void* Class::create<Object>() { return nullptr; }
-template<>
-void* Class::create<EntityObject>() { return nullptr; }
-template<>
-void* Class::create<IList>() { return nullptr; }
-template<>
-void* Class::create<const IList&>() { return nullptr; }
-
-template <>
-const Class& Class::forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
-template <>
-const Class& Class::forType<Boolean>() { static const Class _class("Boolean", nullptr, create<Boolean>); return _class; }
-template <>
-const Class& Class::forType<Char>() { static const Class _class("Char", nullptr, create<Char>); return _class; }
-template <>
-const Class& Class::forType<Short>() { static const Class _class("Short", nullptr, create<Short>); return _class; }
-template <>
-const Class& Class::forType<Int>() { static const Class _class("Int", nullptr, create<Int>); return _class; }
-template <>
-const Class& Class::forType<Long>() { static const Class _class("Long", nullptr, create<Long>); return _class; }
-template <>
-const Class& Class::forType<Float>() { static const Class _class("Float", nullptr, create<Float>); return _class; }
-template <>
-const Class& Class::forType<Double>() { static const Class _class("Double", nullptr, create<Double>); return _class; }
-template <>
-const Class& Class::forType<String>() { static const Class _class("String", nullptr, create<String>); return _class; }
-template <>
-const Class& Class::forType<const Char*>() { return forType<String>(); }
-#endif
-
 }
