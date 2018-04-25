@@ -1,6 +1,6 @@
 #include "Common.h"
-
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
+#include <sstream>
 #include <winsock2.h>
 #include <wincrypt.h>
 #include <iphlpapi.h>
@@ -55,7 +55,7 @@ String Platform::osDisplayName()
 {
     OSVERSIONINFOEX vi;	// OSVERSIONINFOEX is supported starting at Windows 2000 
 	vi.dwOSVersionInfoSize = sizeof(vi);
-	if (GetVersionEx((OSVERSIONINFO*) &vi) == 0) return u8"";
+	if (GetVersionEx((OSVERSIONINFO*) &vi) == 0) return "";
 	switch (vi.dwMajorVersion)
 	{
 	case 10:
@@ -99,7 +99,7 @@ String Platform::osVersion()
 {
     OSVERSIONINFO vi;
 	vi.dwOSVersionInfoSize = sizeof(vi);
-	if (GetVersionEx(&vi) == 0) return u8"";
+	if (GetVersionEx(&vi) == 0) return "";
 	std::ostringstream str;
 	str << vi.dwMajorVersion << "." << vi.dwMinorVersion << " (Build " << (vi.dwBuildNumber & 0xFFFF);
 	if (vi.szCSDVersion[0]) str << ": " << vi.szCSDVersion;
@@ -140,33 +140,33 @@ String Platform::nodeName()
 {
 	char name[MAX_COMPUTERNAME_LENGTH + 1];
 	DWORD size = sizeof(name);
-	if (GetComputerNameA(name, &size) == 0) return u8"";
+	if (GetComputerNameA(name, &size) == 0) return "";
 	return std::string(name);
 }
 
 String Platform::osID()
 {
-
+	return "";
 }
 
 String Platform::CPUID()
 {
-
+	return "";
 }
 
 String Platform::mainDiskID()
 {
-
+	return "";
 }
 
 String Platform::mainBoardID()
 {
-
+	return "";
 }
 
 String Platform::macAddress()
 {
-
+	return "";
 }
 
 }

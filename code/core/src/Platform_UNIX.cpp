@@ -1,5 +1,4 @@
 #include "Common.h"
-
 #if GEMINI_OS == GEMINI_OS_LINUX
 #include <unistd.h>
 #include <stdlib.h>
@@ -29,8 +28,8 @@ void Platform::setEnv(const Char* name, const Char* value)
     std::string var = name;
 	var.append("=");
 	var.append(value);
-	_map[name] = var;
-	putenv((char*) _map[name].c_str())
+	//_map[name] = var;
+	//putenv((char*) _map[name].c_str())
 }
 
 String Platform::osName()

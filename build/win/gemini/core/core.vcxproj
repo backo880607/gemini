@@ -334,6 +334,8 @@
     <ClCompile Include="..\..\..\..\code\core\src\message\Exception.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Log.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Message.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Platform_UNIX.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Platform_WIN32.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\propagate\EdgePropagate.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\propagate\GraphPropagate.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\propagate\Propagate.cpp" />
