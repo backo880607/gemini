@@ -1,73 +1,4 @@
 #include "Reflect.h"
-namespace gemini {
-namespace ns_class {
-
-String getNameImpl(const Char* name) {
-	const Char* pLastSlash = strrchr(name, ':');
-	if (pLastSlash == nullptr) {
-		pLastSlash = strrchr(name, ' ');
-	}
-	return pLastSlash != nullptr ? pLastSlash + 1 : name;
-}
-
-/*#if GEMINI_OS == GEMINI_OS_LINUX
-template<>
-struct Helper<void> {
-	static void* create() { return nullptr; }
-	static String getName() { return "void"; }
-};
-template<>
-struct Helper<Boolean> {
-	static void* create() { return new Boolean(); }
-	static String getName() { return "Boolean"; }
-};
-template<>
-struct Helper<Char> {
-	static void* create() { return new Char(); }
-	static String getName() { return "Char"; }
-};
-template<>
-struct Helper<Short> {
-	static void* create() { return new Short(); }
-	static String getName() { return "Short"; }
-};
-template<>
-struct Helper<Int> {
-	static void* create() { return new Int(); }
-	static String getName() { return "Int"; }
-};
-template<>
-struct Helper<Long> {
-	static void* create() { return new Long(); }
-	static String getName() { return "Long"; }
-};
-template<>
-struct Helper<Float> {
-	static void* create() { return new Float(); }
-	static String getName() { return "Float"; }
-};
-template<>
-struct Helper<Double> {
-	static void* create() { return new Double(); }
-	static String getName() { return "Double"; }
-};
-template<>
-struct Helper<String> {
-	static void* create() { return new String(); }
-	static String getName() { return "String"; }
-};
-template<>
-struct Helper<IList> {
-	static void* create() { return nullptr; }
-	static String getName() { return "IList"; }
-};
-template<>
-struct Helper<const IList&> {
-	static void* create() { return nullptr; }
-	static String getName() { return "IList"; }
-};
-#endif*/
-}}
 #include "entities/IocRelation.h"
 #include "propagate/Propagate.h"
 #include "controller/BaseController.h"
@@ -204,6 +135,18 @@ void PropertyRefHelp::set(EntityObject* entity, Int sign, const SmartPtr<EntityO
 }
 const IList& PropertyRefHelp::getList(const EntityObject* entity, Int sign) {
 	return *((const IList*)(entity->_relations[sign]));
+}
+
+namespace ns_class {
+
+String getNameImpl(const Char* name) {
+	const Char* pLastSlash = strrchr(name, ':');
+	if (pLastSlash == nullptr) {
+		pLastSlash = strrchr(name, ' ');
+	}
+	return pLastSlash != nullptr ? pLastSlash + 1 : name;
+}
+
 }
 
 Int Class::s_maxIndex = 0;
