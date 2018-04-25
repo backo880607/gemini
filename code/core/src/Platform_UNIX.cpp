@@ -41,7 +41,8 @@ String Platform::osName()
 
 String Platform::osDisplayName()
 {
-    return osNameImpl();
+	return "";
+    //return osNameImpl();
 }
 
 String Platform::osVersion()
@@ -67,27 +68,27 @@ String Platform::nodeName()
 
 String Platform::osID()
 {
-
+	return "";
 }
 
 String Platform::CPUID()
 {
-
+	return "";
 }
 
 String Platform::mainDiskID()
 {
-
+	return "";
 }
 
 String Platform::mainBoardID()
 {
-
+	return "";
 }
 
 String Platform::macAddress()
 {
-
+	return "";
 }
 
 }
