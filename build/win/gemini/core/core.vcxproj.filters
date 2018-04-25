@@ -534,6 +534,9 @@
     <ClInclude Include="..\..\..\..\code\core\include\session\entities\Department.h">
       <Filter>Header Files\session\entities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\ReflectMethod.h">
+      <Filter>public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -847,6 +850,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\session\entities\Department.cpp">
       <Filter>Source Files\session\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\ReflectMethod.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

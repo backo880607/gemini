@@ -255,6 +255,7 @@
     <ClInclude Include="..\..\..\..\code\core\public\Object.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Platform.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Reflect.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\ReflectMethod.h" />
     <ClInclude Include="..\..\..\..\code\core\public\service\BaseService.h" />
     <ClInclude Include="..\..\..\..\code\core\public\service\IBaseService.h" />
     <ClInclude Include="..\..\..\..\code\core\public\session\AuthenticationToken.h" />
@@ -339,6 +340,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\propagate\PropagateHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\propagate\VertexPropagate.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Reflect.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\ReflectMethod.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\service\BaseService.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\service\ServiceMgr.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\session\authc\AuthenticationToken.cpp" />
