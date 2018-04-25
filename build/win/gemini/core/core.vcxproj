@@ -160,7 +160,6 @@
     <ClInclude Include="..\..\..\..\code\core\include\cache\CacheDao.h" />
     <ClInclude Include="..\..\..\..\code\core\include\cache\CacheMgr.h" />
     <ClInclude Include="..\..\..\..\code\core\include\cache\InnerCacheDao.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\DumpFile.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EntityFactory.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EnumMgr.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\FactoryHelper.h" />
@@ -298,7 +297,6 @@
     <ClCompile Include="..\..\..\..\code\core\src\controller\BaseController.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\DateTime.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\DumpFile.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\EntityFactory.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryMgr.cpp" />

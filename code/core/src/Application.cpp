@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "tools/File.h"
-#include "DumpFile.h"
+//#include "DumpFile.h"
 #include "entities/FactoryMgr.h"
 #include "propagate/PropagateHelper.h"
 #include "session/Subject.h"

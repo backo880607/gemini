@@ -177,9 +177,6 @@
     <ClInclude Include="..\..\..\..\code\core\public\Reflect.h">
       <Filter>public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\DumpFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -549,9 +546,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\Reflect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\DumpFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\Application.cpp">
