@@ -171,7 +171,7 @@ public:
 	static DateTime valueOf(const Char* str);
 private:
 	friend class StringUtil;
-    Long _time;
+	time_t _time;
 };
 
 class CORE_API Duration : public AnyAbstract {
