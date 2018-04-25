@@ -97,7 +97,7 @@ public:
 		setData(rest...);
 	}
 
-	virtual char const* what() const;
+	virtual char const* what() const noexcept override;
 	String str() const { return what(); }
 
 	virtual String getName() const { return "Exception"; }

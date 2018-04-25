@@ -515,7 +515,8 @@ Any::~Any()
 #if GEMINI_OS == GEMINI_OS_LINUX
 template <>
 struct ObtainHolderType<IList> {
-	typedef IList& holder_type;
+	typedef const IList& holder_type;
+	typedef const IList& const_reference;
 };
 #endif
 
