@@ -1,6 +1,5 @@
 #ifndef GEMINI_RefVector_INCLUDE
 #define GEMINI_RefVector_INCLUDE
-
 #include "RefBase.h"
 
 namespace gemini {
