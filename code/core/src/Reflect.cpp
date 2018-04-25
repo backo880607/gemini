@@ -163,8 +163,8 @@ void* Class::create<IList>() { return nullptr; }
 template<>
 void* Class::create<const IList&>() { return nullptr; }
 
-//template <>
-//const Class& Class::forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
+template <>
+const Class& Class::forType<void>() { static const Class _class("void", nullptr, create<void>); return _class; }
 template <>
 const Class& Class::forType<Boolean>() { static const Class _class("Boolean", nullptr, create<Boolean>); return _class; }
 template <>
