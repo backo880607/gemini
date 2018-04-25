@@ -513,11 +513,15 @@ Any::~Any()
 }
 
 #if GEMINI_OS == GEMINI_OS_LINUX
+namespace ns_any {
+
 template <>
 struct ObtainHolderType<IList> {
 	typedef const IList& holder_type;
 	typedef const IList& const_reference;
 };
+
+}
 #endif
 
 Any::PlaceHolder* Any::create(Boolean value) {

@@ -3,7 +3,31 @@
 #include "Reflect.h"
 
 namespace gemini {
-	
+
+namespace ns_any {
+
+template <typename T, Boolean BEntity>
+struct ObtainHolderTypeImpl {
+	typedef SmartPtr<EntityObject> holder_type;
+};
+template <typename T>
+struct ObtainHolderTypeImpl<T, false> {
+	typedef T holder_type;
+};
+template <typename T>
+struct ObtainHolderType {
+	typedef typename ObtainHolderTypeImpl<T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
+	typedef const holder_type& const_reference;
+};
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
+template <>
+struct ObtainHolderType<IList> {
+	typedef const IList& holder_type;
+	typedef const IList& const_reference;
+};
+#endif
+
+}
 class CORE_API Any
 {
 public:
@@ -66,26 +90,6 @@ public:
 	PlaceHolder* create(const SmartPtr<EntityObject>& value);
 	PlaceHolder* create(const IList& value);
 
-	template <typename T, Boolean BEntity>
-	struct ObtainHolderTypeImpl{
-		typedef SmartPtr<EntityObject> holder_type;
-	};
-	template <typename T>
-	struct ObtainHolderTypeImpl<T, false>{
-		typedef T holder_type;
-	};
-	template <typename T>
-	struct ObtainHolderType {
-		typedef typename ObtainHolderTypeImpl<T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
-		typedef const holder_type const_reference;
-	};
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-	template <>
-	struct ObtainHolderType<IList> {
-		typedef const IList& holder_type;
-		typedef const IList& const_reference;
-	};
-#endif
 public:
 	Any() : _holder(nullptr) {};
 	Any(std::nullptr_t rhs) : _holder(nullptr) {}
@@ -134,8 +138,8 @@ public:
 	Boolean isType() const { return isType<T1>() || isType<T2>() || isType<T3>() || isType<T4>() || isType<T5>(); }
 
 	template <typename T>
-	typename ObtainHolderType<T>::const_reference& cast() const {
-		return static_cast<Holder<typename ObtainHolderType<T>::holder_type>*>(_holder)->_value;
+	typename ns_any::ObtainHolderType<T>::const_reference cast() const {
+		return static_cast<Holder<typename ns_any::ObtainHolderType<T>::holder_type>*>(_holder)->_value;
 	}
 
 	Any operator+ (const Any& rhs) const;

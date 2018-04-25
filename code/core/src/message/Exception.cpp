@@ -24,7 +24,7 @@ void Exception::setInfo(char const * curFun, char const * file, int line)
 }
 
 thread_local String tl_exception_buffer;
-char const* Exception::what() const
+char const* Exception::what() const noexcept
 {
 	std::stringstream temp;
 	temp.imbue(std::locale("chs_china"));
