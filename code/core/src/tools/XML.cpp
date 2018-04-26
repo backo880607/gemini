@@ -1,5 +1,4 @@
 #include "tools/XML.h"
-
 #include "tools/File.h"
 #include "message/Log.h"
 
@@ -10,43 +9,35 @@
 namespace gemini {
 
 
-String XMLNode::getAttribute(const Char* attr) const
-{
+String XMLNode::getAttribute(const Char* attr) const {
 	return _pNode->get<String>(getXmlAttrName(attr).c_str());
 }
 
-String XMLNode::getValue() const
-{
+String XMLNode::getValue() const {
 	return _pNode->get_value<String>();
 }
 
-void XMLNode::setAttribute(const Char* attr, const Char* val)
-{
+void XMLNode::setAttribute(const Char* attr, const Char* val) {
 	_pNode->put(getXmlAttrName(attr).c_str(), val);
 }
 
-void XMLNode::removeAttribute(const Char* attr)
-{
+void XMLNode::removeAttribute(const Char* attr) {
 	_pNode->erase(getXmlAttrName(attr));
 }
 
 
-XMLFile::XMLFile(const String& name, File_Mode mode /* = File_Mode::NormalFile */)
-{
+XMLFile::XMLFile(const String& name, File_Mode mode /* = File_Mode::NormalFile */) {
 	open(name, mode);
 }
 
-XMLFile::~XMLFile()
-{
+XMLFile::~XMLFile() {
 	clear();
 }
 
-void XMLFile::clear()
-{
+void XMLFile::clear() {
 }
 
-Boolean XMLFile::proXMLFile(String& path, File_Mode mode)
-{
+Boolean XMLFile::proXMLFile(String& path, File_Mode mode) {
 	using namespace boost::property_tree;
 	const String strExtension = StringUtil::get_tail(path.c_str(), ".");
 	if (strExtension.empty())
@@ -55,28 +46,23 @@ Boolean XMLFile::proXMLFile(String& path, File_Mode mode)
 		return false;
 
 	File file(path.c_str());
-	switch (mode)
-	{
-	case File_Mode::NormalFile:
-	{
+	switch (mode) {
+	case File_Mode::NormalFile: {
 		if (!file.getFilePath().isExist() || !file.open(std::ios_base::in | std::ios_base::out))
 			return false;
 
 		file.close();
 	}
 	break;
-	case File_Mode::CreateFile:
-	{
-		if (!file.getFilePath().isExist())
-		{
+	case File_Mode::CreateFile: {
+		if (!file.getFilePath().isExist()) {
 			node_type xml;
 			std::locale utf8Locale(std::locale(), new boost::program_options::detail::utf8_codecvt_facet());
 			write_xml(path.c_str(), xml, utf8Locale);
 		}
 	}
 	break;
-	case File_Mode::ClearFile:
-	{
+	case File_Mode::ClearFile: {
 		file.open();
 		file.close();
 
@@ -92,8 +78,7 @@ Boolean XMLFile::proXMLFile(String& path, File_Mode mode)
 	return true;
 }
 
-Boolean XMLFile::open(const String& name, File_Mode mode /* = File_Mode::NormalFile */)
-{
+Boolean XMLFile::open(const String& name, File_Mode mode /* = File_Mode::NormalFile */) {
 	using namespace boost::property_tree;
 	clear();
 	String xmlName = name;
@@ -114,8 +99,7 @@ Boolean XMLFile::open(const String& name, File_Mode mode /* = File_Mode::NormalF
 	return true;
 }
 
-Boolean XMLFile::write(const String& name, File_Mode mode /* = File_Mode::NormalFile */)
-{
+Boolean XMLFile::write(const String& name, File_Mode mode /* = File_Mode::NormalFile */) {
 	String xmlName = name;
 	if (!proXMLFile(xmlName, mode))
 		return false;
@@ -132,29 +116,24 @@ Boolean XMLFile::write(const String& name, File_Mode mode /* = File_Mode::Normal
 	return true;
 }
 
-DataNode XMLFile::getNode()
-{
+DataNode XMLFile::getNode() {
 	return DataNode(&(*_ptree));
 }
 
-DataNode XMLFile::getNode(const Char* tagName)
-{
+DataNode XMLFile::getNode(const Char* tagName) {
 	return DataNode(&_ptree->get_child(tagName), tagName);
 }
 
-DataNode XMLFile::createNode(const Char* tagName)
-{
+DataNode XMLFile::createNode(const Char* tagName) {
 	return DataNode(&_ptree->add_child(tagName, node_type("")), tagName);
 }
 
-void XMLFile::remove()
-{
+void XMLFile::remove() {
 	File file(_fileName.c_str());
 	file.remove();
 }
 
-void XMLFile::foreach(const Char * directory, std::function<void(XMLFile&)> fun)
-{
+void XMLFile::foreach(const Char * directory, std::function<void(XMLFile&)> fun) {
 	FilePath dirPath(directory);
 	if (dirPath.valid()) {
 		std::vector<FilePath> children = dirPath.getChildren();
@@ -167,8 +146,7 @@ void XMLFile::foreach(const Char * directory, std::function<void(XMLFile&)> fun)
 	}
 }
 
-void XMLFile::foreach_recursion(const Char * directory, std::function<void(XMLFile&)> fun)
-{
+void XMLFile::foreach_recursion(const Char * directory, std::function<void(XMLFile&)> fun) {
 	FilePath dirPath(directory);
 	if (dirPath.valid()) {
 		std::vector<FilePath> children = dirPath.getChildrenRecursion();
@@ -182,13 +160,11 @@ void XMLFile::foreach_recursion(const Char * directory, std::function<void(XMLFi
 }
 
 
-XML::XML()
-{
+XML::XML() {
 	_ptree->add_child("YuKon", node_type(""));
 }
 
-XML::XML(const Char* val)
-{
+XML::XML(const Char* val) {
 	std::stringstream ss(val);
 	try {
 		read_xml(ss, *_ptree);
@@ -198,13 +174,10 @@ XML::XML(const Char* val)
 	}
 }
 
-XML::~XML()
-{
-
+XML::~XML() {
 }
 
-Boolean XML::write(std::ostream& ss)
-{
+Boolean XML::write(std::ostream& ss) {
 	try {
 		boost::property_tree::write_xml(ss, *_ptree);
 	} catch (boost::property_tree::xml_parser_error& err) {
@@ -215,18 +188,16 @@ Boolean XML::write(std::ostream& ss)
 	return true;
 }
 
-DataNode XML::getNode()
-{
+DataNode XML::getNode() {
 	return DataNode(&(*_ptree), "");
 }
 
-DataNode XML::getNode(const Char* tagName)
-{
+DataNode XML::getNode(const Char* tagName) {
 	return DataNode(&_ptree->get_child(tagName), tagName);
 }
 
-DataNode XML::createNode(const Char* tagName)
-{
+DataNode XML::createNode(const Char* tagName) {
 	return DataNode(&_ptree->add_child(tagName, node_type("")), tagName);
 }
+
 }
