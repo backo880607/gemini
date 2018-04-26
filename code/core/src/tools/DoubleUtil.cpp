@@ -38,7 +38,7 @@ Double DoubleUtil::split(Double & fraction, Int index) {
 }
 
 Double DoubleUtil::ceil(Double value, Int index) {
-	return std::ceil(value);
+	return ceil(value);
 }
 
 Double DoubleUtil::floor(Double value, Int index) {
