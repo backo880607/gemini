@@ -1,7 +1,7 @@
 #include "api/Process_UNIX.h"
 
 #if GEMINI_OS == GEMINI_OS_LINUX
-
+#include <sys/wait.h>
 namespace gemini {
 
 ProcessImpl::ProcessImpl(Long pid)
@@ -19,7 +19,7 @@ Long ProcessImpl::id() const {
 }
 
 Boolean ProcessImpl::running() const {
-	return kill(pid, 0) == 0;
+	return kill(_pid, 0) == 0;
 }
 
 Int ProcessImpl::wait() const {
