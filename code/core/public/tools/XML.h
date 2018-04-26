@@ -16,16 +16,15 @@ public:
 	String getAttribute(const String& attr) const { return getAttribute(attr.c_str()); }
 	template <typename T>
 	T getAttribute(const Char* attr) const {
-		return getAttribute(attr).Convert<T>();
+		return StringUtil::convert<T>(getAttribute(attr).c_str());
 	}
 	template <typename T>
-	T getAttribute(const String& attr) const {
-		return getAttribute(attr.c_str()).Convert<T>();
-	}
+	T getAttribute(const String& attr) const { return getAttribute<T>(attr.c_str()); }
+
 	String getValue() const;
 	template <typename T>
 	T getValue() const {
-		return getValue().Convert<T>();
+		return StringUtil::convert<T>(getValue().c_str());
 	}
 
 	void setAttribute(const Char* attr, const Char* val);
@@ -34,11 +33,11 @@ public:
 	void setAttribute(const String& attr, const String& val) { setAttribute(attr.c_str(), val.c_str()); }
 	template <typename T>
 	void setAttribute(const Char* attr, T val) {
-		setAttribute(attr, String::Format(val).c_str());
+		setAttribute(attr, StringUtil::format(val).c_str());
 	}
 	template <typename T>
 	void SetAttribute(const String& attr, T val) {
-		setAttribute(attr.c_str(), String::Format(val).c_str());
+		setAttribute(attr.c_str(), StringUtil::format(val).c_str());
 	}
 
 	void removeAttribute(const Char* attr);
