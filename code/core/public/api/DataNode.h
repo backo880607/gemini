@@ -35,14 +35,14 @@ public:
 	String getValue() const;
 	template <typename T>
 	T getValue() const {
-		return getValue().Convert<T>();
+		return StringUtil::convert<T>(getValue().c_str());
 	}
 
 	void setValue(const Char* val);
 	void setValue(const String& val) { setValue(val.c_str()); }
 	template <typename T>
 	void setValue(T val) {
-		setValue(String::Format(val).c_str());
+		setValue(StringUtil::format(val));
 	}
 
 	DataNode getNode(const Char* tagName, Boolean bCreate = false);
