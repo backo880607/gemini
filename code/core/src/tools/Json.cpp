@@ -1,6 +1,5 @@
 #include "tools/Json.h"
 
-#include "tools/StringUtil.h"
 #include "tools/File.h"
 #include "message/Message.h"
 

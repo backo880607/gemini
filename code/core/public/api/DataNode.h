@@ -8,7 +8,7 @@ namespace boost {
 			template <typename T> struct less_nocase;
 		}
 
-		template < class Key, class Data, class KeyCompare = std::less<Key> > class basic_ptree;
+		template < class Key, class Data, class KeyCompare> class basic_ptree;
 		typedef basic_ptree<std::string, std::string,
 			detail::less_nocase<std::string> >
 			iptree;

@@ -1,6 +1,5 @@
 #include "tools/XML.h"
 
-#include "tools/StringUtil.h"
 #include "tools/File.h"
 #include "message/Log.h"
 
