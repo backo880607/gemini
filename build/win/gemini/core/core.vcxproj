@@ -225,7 +225,6 @@
     <ClInclude Include="..\..\..\..\code\core\include\session\service\RoleService.h" />
     <ClInclude Include="..\..\..\..\code\core\include\session\service\UserService.h" />
     <ClInclude Include="..\..\..\..\code\core\include\System.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\tools\AnyUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\include\tools\LocaleUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Any.h" />
     <ClInclude Include="..\..\..\..\code\core\public\api\DataNode.h" />

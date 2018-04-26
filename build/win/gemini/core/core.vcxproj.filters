@@ -474,9 +474,6 @@
     <ClInclude Include="..\..\..\..\code\core\include\tools\LocaleUtil.h">
       <Filter>Header Files\tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\tools\AnyUtil.h">
-      <Filter>Header Files\tools</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\entities\EnumMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
