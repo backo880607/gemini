@@ -164,7 +164,7 @@ String StringUtil::SPrintf(const Char * pFormat, ...) {
 
 	Buffer<Char> buffer(1028);
 	Int len = 0;
-	//SetLastError(ERROR_SUCCESS);
+
 #pragma warning(push)
 #pragma warning(disable:4995)
 #pragma warning(disable:4996)

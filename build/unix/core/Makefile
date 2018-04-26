@@ -2,7 +2,6 @@
 #
 #
 ######################################
-  
 #target you can change test to what you want
 #共享库文件名，lib*.so
 TARGET  := libcore.so
