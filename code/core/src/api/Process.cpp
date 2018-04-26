@@ -116,7 +116,7 @@ Int Process::wait() const
 
 void Process::kill()
 {
-	_impl->kill();
+	_impl->killImpl();
 }
 
 ProcessPool::ProcessPool()

@@ -13,7 +13,7 @@ ProcessImpl::ProcessImpl(Long pid)
 
 ProcessImpl::~ProcessImpl()
 {
-	kill();
+	killImpl();
 }
 
 Long ProcessImpl::id() const {
@@ -34,14 +34,12 @@ Int ProcessImpl::wait() const {
 	return WEXITSTATUS(status);
 }
 
-void ProcessImpl::kill() {
-	if (kill(_pid, SIGKILL) != 0)
-	{
+void ProcessImpl::killImpl() {
+	if (kill(_pid, SIGKILL) != 0) {
 		switch (errno)
 		{
 		case ESRCH:
 			THROW(SystemExecption, "cannot kill process for not found")
-			throw NotFoundException();
 		case EPERM:
 			THROW(SystemExecption, "cannot kill process for has no permission")
 		default:

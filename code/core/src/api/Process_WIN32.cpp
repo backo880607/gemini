@@ -13,7 +13,7 @@ ProcessImpl::ProcessImpl(HANDLE hProcess, Long pid)
 
 ProcessImpl::~ProcessImpl()
 {
-	kill();
+	killImpl();
 }
 
 Long ProcessImpl::id() const
@@ -53,12 +53,10 @@ int ProcessImpl::wait() const
 	return exitCode;
 }
 
-void ProcessImpl::kill()
+void ProcessImpl::killImpl()
 {
-	if (_hProcess)
-	{
-		if (TerminateProcess(_hProcess, 0) == 0)
-		{
+	if (_hProcess) {
+		if (TerminateProcess(_hProcess, 0) == 0) {
 			CloseHandle(_hProcess);
 			_hProcess = NULL;
 			_pid = 0;

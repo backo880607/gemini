@@ -17,7 +17,7 @@ public:
 	Long id() const;
 	Boolean running() const;
 	Int wait() const;
-	void kill();
+	void killImpl();
 
 	static Long currentId();
 	static std::shared_ptr<ProcessImpl> launch(const String& command, const Args& args);
