@@ -6,6 +6,7 @@
 #include <boost/interprocess/shared_memory_object.hpp>
 #include <boost/interprocess/mapped_region.hpp>
 #include <boost/thread.hpp>
+#include <thread>
 
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 #include "api/Process_WIN32.h"
