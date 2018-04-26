@@ -165,13 +165,12 @@ String StringUtil::SPrintf(const Char * pFormat, ...) {
 	va_start(argList, pFormat);
 
 	Buffer<Char> buffer(1028);
-	Int len = 0;
 
 #pragma warning(push)
 #pragma warning(disable:4995)
 #pragma warning(disable:4996)
 #pragma warning(disable:28719)
-	len = _vsprintf_s_l(buffer.begin(), 1028, pFormat, nullptr, argList);
+	vsnprintf(buffer.begin(), 1028, pFormat, argList);
 #pragma warning(pop)
 	va_end(argList);
 	return buffer.begin();
