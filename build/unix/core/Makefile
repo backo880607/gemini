@@ -10,6 +10,7 @@ TARGET  := libcore.so
 #自定义目录
 DIR_HOME = ../../../code/core
 DIR_SRC = ${DIR_HOME}/src
+#DIR_SRC = $(shell find ${DIR_HOME}/src -maxdepth 3 -type d)
 DIR_INC = -I${DIR_HOME}
 
 DIR_THIRD = ../../../third_party
@@ -40,13 +41,16 @@ SHARE   := -fPIC -shared -o
   
 #source file
 #源文件，自动找所有.c和.cpp文件，并将目标定义为同名.o文件
-SRC  := $(foreach dir, ${DIR_SRC}, $(wildcard ${dir}/*.cpp))
+#SRC  := $(foreach dir, ${DIR_SRC}, $(wildcard ${dir}/*.cpp))
+SRC  := $(wildcard ${DIR_SRC}/*.cpp ${DIR_SRC}/tools/*.cpp)
 OBJS = $(patsubst %.cpp, ${DIR_OBJ}/%.o, $(notdir ${SRC}))
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
 ${BIN_TARGET} : ${OBJS}
 	$(CC) -fPIC -shared $(OBJS)  -o $@ -Wl,-Bstatic ${LDFLAGS} -Wl,-Bdynamic
 ${DIR_OBJ}/%.o : ${DIR_SRC}/%.cpp
+	$(CC) -fPIC $(CFLAGS) -c $< -o $@
+${DIR_OBJ}/%.o : ${DIR_SRC}/tools/%.cpp
 	$(CC) -fPIC $(CFLAGS) -c $< -o $@
 
 .PHONY : clean

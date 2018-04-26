@@ -14,7 +14,6 @@ String FilePath::s_currentPath;
 FilePath::FilePath(const boost::filesystem::path& path)
 	: _path(new boost::filesystem::path(path))
 {
-
 }
 
 FilePath::FilePath(const Char* str)
