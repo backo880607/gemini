@@ -65,7 +65,11 @@ public:
 	~StorageSystem() { }
 
 	void create() { _pT = new value_type; }
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	void destroy() { delete (void *)_pT; _pT = nullptr; }
+#elif GEMINI_OS == GEMINI_OS_LINUX
+	void destroy() { delete _pT; _pT = nullptr; }
+#endif
 
 	pointer operator-> () const { return _pT; }
 	pointer operator-> () { return _pT; }
