@@ -1,6 +1,7 @@
-#include "api/Process_WINDOWS_NT.h"
+#include "api/Process_WIN32.h"
 #include "api/Errors.h"
 
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 namespace gemini {
 
 ProcessImpl::ProcessImpl(HANDLE hProcess, Long pid)
@@ -149,3 +150,4 @@ std::shared_ptr<ProcessImpl> ProcessImpl::launch(const String & command, const A
 }
 
 }
+#endif

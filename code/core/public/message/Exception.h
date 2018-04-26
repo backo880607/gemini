@@ -105,6 +105,11 @@ private:
 	std::shared_ptr<exception_error> _info;
 };
 
+class CORE_API SystemExecption : public Exception
+{
+public:
+	virtual String getName() const override { return "SystemExecption"; }
+};
 class CORE_API ArithmeticExecption : public Exception
 {
 public:

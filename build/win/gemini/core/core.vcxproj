@@ -154,7 +154,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\code\core\include\api\Errors.h" />
     <ClInclude Include="..\..\..\..\code\core\include\api\MsgHandler.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\api\Process_WINDOWS_NT.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\api\Process_UNIX.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\api\Process_WIN32.h" />
     <ClInclude Include="..\..\..\..\code\core\include\Application.h" />
     <ClInclude Include="..\..\..\..\code\core\include\cache\Cache.h" />
     <ClInclude Include="..\..\..\..\code\core\include\cache\CacheDao.h" />
@@ -288,7 +289,8 @@
     <ClCompile Include="..\..\..\..\code\core\src\api\MsgQueue.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\MsgTransmit.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\Process.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\api\Process_WINDOWS_NT.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process_UNIX.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process_WIN32.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Application.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\cache\Cache.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\cache\CacheMgr.cpp" />

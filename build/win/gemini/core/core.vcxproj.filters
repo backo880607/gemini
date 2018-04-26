@@ -402,9 +402,6 @@
     <ClInclude Include="..\..\..\..\third_party\DataCompress\zutil.h">
       <Filter>third_party\DataCompress</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\api\Process_WINDOWS_NT.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\api\MsgDefine.h">
       <Filter>public\api</Filter>
     </ClInclude>
@@ -530,6 +527,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\ReflectMethod.h">
       <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\api\Process_UNIX.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\api\Process_WIN32.h">
+      <Filter>Header Files\api</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -764,9 +767,6 @@
     <ClCompile Include="..\..\..\..\code\core\src\api\Process.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\api\Process_WINDOWS_NT.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\propagate\EdgePropagate.cpp">
       <Filter>Source Files\propagate</Filter>
     </ClCompile>
@@ -850,6 +850,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\Platform_WIN32.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process_UNIX.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\Process_WIN32.cpp">
+      <Filter>Source Files\api</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

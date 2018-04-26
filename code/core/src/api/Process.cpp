@@ -1,5 +1,4 @@
 #include "api/Process.h"
-#include "tools/StringUtil.h"
 #include "message/Exception.h"
 
 #include <boost/interprocess/sync/interprocess_mutex.hpp>
@@ -9,13 +8,14 @@
 #include <boost/thread.hpp>
 
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-#include "../../include/api/Process_WINDOWS_NT.h"
-#endif // GEMINI_OS == GEMINI_OS_WINDOWS_NT
+#include "api/Process_WIN32.h"
+#elif GEMINI_OS == GEMINI_OS_LINUX
+#include "api/Process_UNIX.h"
+#endif
 
 
 namespace gemini {
 
-// �����ڴ��Buffer��ͨ������������ͬ����
 struct ProcessBuffer {
 	boost::interprocess::interprocess_mutex    mutex;
 	boost::interprocess::interprocess_condition  cond_empty;
@@ -31,7 +31,7 @@ struct ProcessBuffer {
 Boolean Process::SharedMemory::open(Long id /* = 0 */)
 {
 	using namespace boost::interprocess;
-	String strSharedMemName = u8"Process_Shared_";
+	String strSharedMemName = "Process_Shared_";
 	//strSharedMemName += m_bServer ? "Server_" : "Client_";
 	try
 	{
@@ -116,6 +116,7 @@ Int Process::wait() const
 
 void Process::kill()
 {
+	_impl->kill();
 }
 
 ProcessPool::ProcessPool()

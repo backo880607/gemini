@@ -1,6 +1,6 @@
 #ifndef GEMINI_MsgData_INCLUDE
 #define GEMINI_MsgData_INCLUDE
-#include "../Common.h"
+#include "../Core.h"
 #include "MsgDefine.h"
 
 namespace boost {

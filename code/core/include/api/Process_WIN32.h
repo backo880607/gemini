@@ -1,7 +1,8 @@
-#ifndef GEMINI_Process_WINDOWS_NT_INCLUDE
-#define GEMINI_Process_WINDOWS_NT_INCLUDE
+#ifndef GEMINI_Process_WIN32_INCLUDE
+#define GEMINI_Process_WIN32_INCLUDE
 #include "../../public/Common.h"
 
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 #include <Windows.h>
 #undef ERROR
 
@@ -28,4 +29,6 @@ private:
 };
 
 }
-#endif // GEMINI_Process_WINDOWS_NT_INCLUDE
+#endif
+
+#endif // GEMINI_Process_WIN32_INCLUDE
