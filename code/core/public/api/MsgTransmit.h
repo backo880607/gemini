@@ -1,6 +1,7 @@
 #ifndef GEMINI_MsgTransmit_INCLUDE
 #define GEMINI_MsgTransmit_INCLUDE
 #include "MsgQueue.h"
+#include <thread>
 
 namespace gemini {
 
