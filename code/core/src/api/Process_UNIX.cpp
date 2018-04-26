@@ -1,6 +1,8 @@
 #include "api/Process_UNIX.h"
 
 #if GEMINI_OS == GEMINI_OS_LINUX
+#include "message/Exception.h"
+#include <sys/types.h>
 #include <sys/wait.h>
 namespace gemini {
 
