@@ -271,12 +271,6 @@ void StringUtil::convertImpl(Double & val, const Char * str) {
 	ss >> std::fixed >> boost::locale::as::number >> val;
 }
 
-#if GEMINI_OS == GEMINI_OS_LINUX
-template <>
-static String StringUtil::convert<String>(const Char* str, std::size_t fPos, std::size_t lPos) {
-	return String(str + fPos, lPos - fPos);
-}
-#endif
 void StringUtil::convertImpl(Boolean & val, const Char * str, std::size_t fPos, std::size_t lPos) {
 }
 void StringUtil::convertImpl(Short & val, const Char * str, std::size_t fPos, std::size_t lPos) {

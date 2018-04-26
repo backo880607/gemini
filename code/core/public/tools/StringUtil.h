@@ -63,12 +63,6 @@ public:
 		convertImpl(val, str, fPos, lPos);
 		return val;
 	}
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-	template <>
-	static String convert<String>(const Char* str, std::size_t fPos, std::size_t lPos) {
-		return String(str + fPos, lPos - fPos);
-	}
-#endif
 
 	static void append(String& str) {}
 	template <typename T, typename ...Args>
