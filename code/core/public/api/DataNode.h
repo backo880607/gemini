@@ -1,6 +1,6 @@
 #ifndef GEMINI_DataNode_INCLUDE
 #define GEMINI_DataNode_INCLUDE
-#include "../Common.h"
+#include "../Core.h"
 
 namespace boost {
 	namespace property_tree {
