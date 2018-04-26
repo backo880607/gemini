@@ -82,7 +82,7 @@ Boolean EntityObject::operator<(const Any & rhs) const
 
 Boolean IList::operator==(const Any & rhs) const
 {
-	const IList& rhsList = rhs.cast<const IList&>();
+	const IList& rhsList = rhs.cast<IList>();
 	IList::Iterator iter = iterator();
 	IList::Iterator rhsIter = rhsList.iterator();
 	while (iter.hasNext()) {

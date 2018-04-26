@@ -138,8 +138,8 @@ public:
 	Boolean isType() const { return isType<T1>() || isType<T2>() || isType<T3>() || isType<T4>() || isType<T5>(); }
 
 	template <typename T>
-	typename ns_any::ObtainHolderType<T>::const_reference cast() const {
-		return static_cast<Holder<typename ns_any::ObtainHolderType<T>::holder_type>*>(_holder)->_value;
+	typename ns_any::ObtainHolderType<typename ns_class::remove_cv<T>::type>::const_reference cast() const {
+		return static_cast<Holder<typename ns_any::ObtainHolderType<typename ns_class::remove_cv<T>::type>::holder_type>*>(_holder)->_value;
 	}
 
 	Any operator+ (const Any& rhs) const;

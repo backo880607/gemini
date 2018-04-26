@@ -51,6 +51,19 @@ template <class Value> void Field::set(Object *object, const Value &value) const
 namespace ns_class {
 
 String getNameImpl(const Char* name);
+
+template <class T> struct remove_cv { typedef T type; };
+template <class T> struct remove_cv<T&> { typedef T type; };
+template <class T> struct remove_cv<const T&> { typedef T type; };
+template <class T> struct remove_cv<T&&> { typedef T type; };
+template <class T> struct remove_cv<const T&&> { typedef T type; };
+template <class T> struct remove_cv<volatile T> { typedef T type; };
+template <class T> struct remove_cv<volatile const T> { typedef T type; };
+
+template <typename T>
+struct FetchImpl { typedef T type; };
+template <> struct FetchImpl<Char*> { typedef String type; };
+
 template <typename T>
 struct Helper {
 	static void* create() { return new T; }
@@ -129,11 +142,16 @@ class CORE_API Class final
 	Class(const Class& rhs) = delete;
 	Class& operator= (const Class& rhs) = delete;
 public:
+	template <typename T>
+	struct Fetch {
+		using type = typename ns_class::FetchImpl<typename ns_class::remove_cv<T>::type>::type;
+	};
+
 	Class(const Char* name, const Class* superClass, PNewInstance instance);
 	~Class();
 
 	template<typename T>
-	static String getName() { return ns_class::Helper<T>::getName(); }
+	static String getName() { return ns_class::Helper<typename Fetch<T>::type>::getName(); }
 
 	static Int max_limits();
 	static Int maxIndex() { return s_maxIndex; }
@@ -147,7 +165,10 @@ public:
 
 	static const Class& forName(const String& name);
 	template <typename T>
-	static const Class& forType() { return forTypeImpl<T, std::is_base_of<Object, T>::value>::value(); }
+	static const Class& forType() { 
+		using type = typename Fetch<T>::type;
+		return forTypeImpl<type, std::is_base_of<Object, type>::value>::value();
+	}
 
 	const Field& getField(const String& name) const;
 
