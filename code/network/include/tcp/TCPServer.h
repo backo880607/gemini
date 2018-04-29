@@ -36,8 +36,8 @@ private:
 	void handle_accept(std::shared_ptr<TCPServerConnection> conn, const boost::system::error_code& error);
 
 private:
-	Boolean _isClose;
-
+	MT_Boolean _isClose;
+	
 	boost::asio::io_service _ios;
 	acceptor_type _acceptor;
 	boost::asio::signal_set _signals;

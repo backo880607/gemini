@@ -31,6 +31,7 @@ TCPServer::~TCPServer()
 Boolean TCPServer::start() {
 	_isClose = false;
 	if (!_acceptor.is_open()) {
+		_isClose = true;
 		return false;
 	}
 	

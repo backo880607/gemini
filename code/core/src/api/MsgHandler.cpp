@@ -1,9 +1,19 @@
 #include "api/MsgHandler.h"
 #include "tools/Json.h"
-#include "tools/StringUtil.h"
 
 namespace gemini {
 
+MsgHandler::MsgHandler() {
+
+}
+
+MsgHandler::~MsgHandler() {
+
+}
+
+MsgData MsgHandler::execute(const MsgData& msg) {
+	return MsgData();
+}
 Boolean MsgHandler::format(MsgData& msg, const EntityObject::SPtr& entity)
 {
 	if (!msg.valid()) {
@@ -28,7 +38,7 @@ Boolean MsgHandler::format(MsgData& msg, const EntityObject::SPtr& entity)
 String MsgHandler::getValue(const EntityObject::SPtr& entity, const Field* field)
 {
 	if (field == nullptr) {
-		return u8"";
+		return "";
 	}
 
 	if (field->getType() == Class::forType<Boolean>()) {
@@ -39,7 +49,7 @@ String MsgHandler::getValue(const EntityObject::SPtr& entity, const Field* field
 		return StringUtil::format(field->get<Int>(entity));
 	}
 
-	return u8"";
+	return "";
 }
 
 Boolean MsgHandler::formatJson(MsgData & msg, const EntityObject::SPtr & entity)
@@ -49,6 +59,26 @@ Boolean MsgHandler::formatJson(MsgData & msg, const EntityObject::SPtr & entity)
 		json.createNode(field->getName()).setValue(getValue(entity, field));
 	});
 	return true;
+}
+
+MsgProcessHandler::MsgProcessHandler()
+{
+
+}
+
+MsgProcessHandler::~MsgProcessHandler()
+{
+
+}
+
+MsgRemoteHandler::MsgRemoteHandler()
+{
+
+}
+
+MsgRemoteHandler::~MsgRemoteHandler()
+{
+
 }
 
 }

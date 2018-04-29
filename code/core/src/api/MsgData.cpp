@@ -1,5 +1,4 @@
 #include "api/MsgData.h"
-#include "Buffer.h"
 
 #include <mutex>
 
@@ -9,6 +8,7 @@
 
 #if GEMINI_OS == GEMINI_OS_LINUX
 #include <netinet/in.h>
+#include "../third_party/DataCompress/zlib.h"
 #elif GEMINI_OS == GEMINI_OS_WINDOWS_NT
 #include <Winsock2.h>
 #include "../../../../third_party/DataCompress/zlib.h"
