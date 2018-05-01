@@ -16,7 +16,7 @@ public:
 	static Any lessEqual(const std::vector<Any>& params);
 	static Any equal(const std::vector<Any>& params);
 	static Any notEqual(const std::vector<Any>& params);
-	static Any and(const std::vector<Any>& params);
+	static Any funAnd(const std::vector<Any>& params);
 	static Any or(const std::vector<Any>& params);
 	static Any not(const std::vector<Any>& params);
 	static Any funToStr(const std::vector<Any>& params);

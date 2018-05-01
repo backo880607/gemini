@@ -54,7 +54,7 @@ Any InternalFunction::notEqual(const std::vector<Any>& params)
 	return params[0] != params[1];
 }
 
-Any InternalFunction::and(const std::vector<Any>& params)
+Any InternalFunction::funAnd(const std::vector<Any>& params)
 {
 	return params[0].cast<Boolean>() && params[1].cast<Boolean>();
 }
