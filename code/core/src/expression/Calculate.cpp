@@ -123,7 +123,7 @@ Any FieldCalculate::getValue(const EntityObject::SPtr& entity)
 
 Boolean FieldCalculate::parse(const Char*& str)
 {
-	_isList;
+	_isList = false;
 	_propertyCls = nullptr;
 	_field = nullptr;
 	_paths.clear();
@@ -224,7 +224,7 @@ Any FunctionCalculate::getValue(const EntityObject::SPtr& entity)
 			}
 			params.push_back(paramVal);
 		}
-	} else if (paramVal.getClass() == Class::forType<IList>()) {
+	} else if (paramVal.isType<IList>()) {
 		const IList& targetEntities = paramVal.cast<IList>();
 		for (++index; index < _params.size(); ++index) {
 			if (!_params[index]._hasField) {

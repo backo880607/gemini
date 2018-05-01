@@ -34,9 +34,7 @@ class CORE_API BaseService
 			vals.push_back(Tail::index());
 		}
 	};
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template<> class RefSign<> {};
-#endif
 
 public:
 	template <typename T>
@@ -165,11 +163,9 @@ class ServiceRegister {
 			InterfaceHelper<Tail...>::registerInterface(service);
 		}
 	};
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 	template <> struct InterfaceHelper<> {
 		static void registerInterface(const IBaseService* service) {}
 	};
-#endif
 public:
 	ServiceRegister() {
 		String name = Class::getName<T>();

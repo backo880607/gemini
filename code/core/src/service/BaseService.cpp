@@ -44,14 +44,6 @@ void BaseService::setImpl(EntityObject::SPtr entity, Int sign, EntityObject::SPt
 	IocRelation::set(entity, sign, relaEntity);
 }
 
-#if GEMINI_OS == GEMINI_OS_LINUX
-template<> class RefSign<> {};
-
-template <> struct InterfaceHelper<> {
-	static void registerInterface(const IBaseService* service) {}
-};
-#endif
-
 void gemini_afx_service_service(const String& name, const BaseService* service) {
 	ServiceMgr::instance().registerService(name, service);
 }
