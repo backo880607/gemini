@@ -19,13 +19,11 @@ struct ObtainHolderType {
 	typedef typename ObtainHolderTypeImpl<T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
 	typedef const holder_type& const_reference;
 };
-#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 template <>
 struct ObtainHolderType<IList> {
 	typedef const IList& holder_type;
 	typedef const IList& const_reference;
 };
-#endif
 
 }
 class CORE_API Any

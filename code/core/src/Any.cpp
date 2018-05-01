@@ -512,7 +512,7 @@ Any::~Any()
 	if (_holder != nullptr) delete _holder;
 }
 
-#if GEMINI_OS == GEMINI_OS_LINUX
+/*#if GEMINI_OS == GEMINI_OS_LINUX
 namespace ns_any {
 
 template <>
@@ -522,7 +522,7 @@ struct ObtainHolderType<IList> {
 };
 
 }
-#endif
+#endif*/
 
 Any::PlaceHolder* Any::create(Boolean value) {
 	return new HolderBoolean(value);
