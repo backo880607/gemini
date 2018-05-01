@@ -35,6 +35,8 @@ typedef int Int;			/// 四字节
 typedef signed __int64 Long;	/// 八字节
 #elif GEMINI_OS == GEMINI_OS_LINUX
 typedef signed long long   Long;
+#elif GEMINI_OS == GEMINI_OS_MAC_OS_X
+typedef signed long long   Long;
 #endif
 typedef float Float;		/// 四字节
 typedef double Double;		/// 八字节
