@@ -303,6 +303,9 @@
 #elif GEMINI_OS == GEMINI_OS_LINUX
 #define CORE_API
 
+#elif GEMINI_OS == GEMINI_OS_MAC_OS_X
+#define CORE_API
+
 #endif
 
 #endif

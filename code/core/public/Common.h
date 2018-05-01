@@ -57,6 +57,8 @@ typedef std::atomic_int			MT_Int;
 typedef std::atomic_int64_t		MT_Long;
 #elif GEMINI_OS == GEMINI_OS_LINUX
 typedef std::atomic_llong		MT_Long;
+#elif GEMINI_OS == GEMINI_OS_MAC_OS_X
+typedef std::atomic_llong		MT_Long;
 #endif
 
 /**
