@@ -39,6 +39,11 @@ const IList& BaseService::getListImpl(EntityObject::SPtr entity, const std::vect
 	return IocRelation::getList(entity, signs);
 }
 
+void BaseService::setImpl(EntityObject::SPtr entity, Int sign, EntityObject::SPtr relaEntity) const
+{
+	IocRelation::set(entity, sign, relaEntity);
+}
+
 #if GEMINI_OS == GEMINI_OS_LINUX
 template<> class RefSign<> {};
 

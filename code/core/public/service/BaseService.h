@@ -16,6 +16,7 @@ class CORE_API BaseService
 
 	EntityObject::SPtr getImpl(EntityObject::SPtr entity, const std::vector<Int>& signs) const;
 	const IList& getListImpl(EntityObject::SPtr entity, const std::vector<Int>& signs) const;
+	void setImpl(EntityObject::SPtr entity, Int sign, EntityObject::SPtr relaEntity) const;
 
 	template<typename... A> class RefSign {};
 	template<typename Head, typename... Tail> class RefSign<Head, Tail...> {
@@ -45,7 +46,7 @@ public:
 	template <typename T>
 	typename T::const_reference create(const EntityObject::SPtr& entity) const {
 		typename T::const_reference relaEntity = create<typename T::value_type>();
-		IocRelation::set(entity, T::index(), relaEntity);
+		setImpl(entity, T::index(), relaEntity);
 	}
 	template <typename T>
 	typename T::SPtr createTemp() const {
