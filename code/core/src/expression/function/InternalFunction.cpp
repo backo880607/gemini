@@ -59,12 +59,12 @@ Any InternalFunction::funAnd(const std::vector<Any>& params)
 	return params[0].cast<Boolean>() && params[1].cast<Boolean>();
 }
 
-Any InternalFunction::or(const std::vector<Any>& params)
+Any InternalFunction::funOr(const std::vector<Any>& params)
 {
 	return params[0].cast<Boolean>() || params[1].cast<Boolean>();
 }
 
-Any InternalFunction::not(const std::vector<Any>& params)
+Any InternalFunction::funNot(const std::vector<Any>& params)
 {
 	return !params[0].cast<Boolean>();
 }
