@@ -34,7 +34,7 @@ class CORE_API BaseService
 			vals.push_back(Tail::index());
 		}
 	};
-	template<> class RefSign<> {};
+	//template<> class RefSign<> {};
 
 public:
 	template <typename T>
