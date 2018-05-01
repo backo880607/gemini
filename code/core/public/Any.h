@@ -31,6 +31,7 @@ class CORE_API Any
 public:
 	class PlaceHolder {
 	public:
+		virtual ~PlaceHolder() {}
 		virtual const Class& getClass() const = 0;
 		virtual PlaceHolder* clone() const = 0;
 		virtual Any operator+ (const Any& rhs) const = 0;

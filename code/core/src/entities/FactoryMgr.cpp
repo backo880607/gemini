@@ -58,7 +58,7 @@ void FactoryMgr::unInit()
 
 EntityFactory* FactoryMgr::getFactory(const Class& cls) const
 {
-	if (cls.index() >= _factories.size()) {
+	if ((std::size_t)cls.index() >= _factories.size()) {
 		return nullptr;
 	}
 

@@ -82,6 +82,9 @@ Boolean EntityObject::operator<(const Any & rhs) const
 
 Boolean IList::operator==(const Any & rhs) const
 {
+	if (!rhs.isType<IList>()) {
+		return  false;
+	}
 	const IList& rhsList = rhs.cast<IList>();
 	IList::Iterator iter = iterator();
 	IList::Iterator rhsIter = rhsList.iterator();

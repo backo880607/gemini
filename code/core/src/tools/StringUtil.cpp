@@ -166,12 +166,16 @@ String StringUtil::SPrintf(const Char * pFormat, ...) {
 
 	Buffer<Char> buffer(1028);
 
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 #pragma warning(push)
 #pragma warning(disable:4995)
 #pragma warning(disable:4996)
 #pragma warning(disable:28719)
+#endif
 	vsnprintf(buffer.begin(), 1028, pFormat, argList);
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 #pragma warning(pop)
+#endif
 	va_end(argList);
 	return buffer.begin();
 }
