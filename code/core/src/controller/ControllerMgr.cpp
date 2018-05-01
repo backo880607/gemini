@@ -1,5 +1,5 @@
 #include "controller/ControllerMgr.h"
-#include "message\Exception.h"
+#include "message/Exception.h"
 
 namespace gemini {
 
