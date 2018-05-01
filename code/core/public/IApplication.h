@@ -1,6 +1,7 @@
 #ifndef GEMINI_IApplication_INCLUDE
 #define GEMINI_IApplication_INCLUDE
 #include "Common.h"
+#include <locale>
 
 namespace gemini {
 
