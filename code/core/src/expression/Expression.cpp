@@ -300,7 +300,7 @@ Calculate* Expression::getFunOrFieldCalculate(const Char*& str)
 			return cal;
 		}
 		else if (*temp == '(') {
-			Calculate* cal = cal = new FunctionCalculate();
+			Calculate* cal = new FunctionCalculate();
 			if (!cal->parse(str)) {
 				delete cal;
 				break;

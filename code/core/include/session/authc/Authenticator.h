@@ -10,7 +10,7 @@ class Authenticator
 {
 public:
 	Authenticator();
-	~Authenticator();
+	virtual ~Authenticator();
 	virtual void authenticate(const AuthenticationToken& token) = 0;
 
 protected:

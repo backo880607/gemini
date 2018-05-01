@@ -9,6 +9,7 @@ namespace gemini {
 class Calculate
 {
 public:
+	virtual ~Calculate() {}
 	virtual Any getValue(const EntityObject::SPtr& entity) = 0;
 	virtual Boolean parse(const Char*& str) = 0;
 };

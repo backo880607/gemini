@@ -208,7 +208,7 @@ Any FunctionCalculate::getValue(const EntityObject::SPtr& entity)
 		return _fun.invoke(params);
 	}
 
-	Int index = 0;
+	std::size_t index = 0;
 	Any paramVal = _params[index].getValue(entity);
 	if (!paramVal) {
 		return nullptr;

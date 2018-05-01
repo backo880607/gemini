@@ -7,6 +7,7 @@ namespace gemini {
 class Authorizer
 {
 public:
+	virtual ~Authorizer() {}
     virtual Boolean isPermitted(const String& principal, const String& permission) = 0;
 };
 

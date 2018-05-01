@@ -1,6 +1,6 @@
 #ifndef GEMINI_Log_INCLUDE
 #define GEMINI_Log_INCLUDE
-#include "../Common.h"
+#include "../Core.h"
 
 namespace gemini {
 
