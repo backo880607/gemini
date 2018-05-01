@@ -6,16 +6,16 @@ namespace gemini {
 class InternalFunction
 {
 public:
-	static Any add(const std::vector<Any>& params);
-	static Any sub(const std::vector<Any>& params);
-	static Any multiply(const std::vector<Any>& params);
-	static Any division(const std::vector<Any>& params);
-	static Any greater(const std::vector<Any>& params);
-	static Any greaterEqual(const std::vector<Any>& params);
-	static Any less(const std::vector<Any>& params);
-	static Any lessEqual(const std::vector<Any>& params);
-	static Any equal(const std::vector<Any>& params);
-	static Any notEqual(const std::vector<Any>& params);
+	static Any funAdd(const std::vector<Any>& params);
+	static Any funSub(const std::vector<Any>& params);
+	static Any funMultiply(const std::vector<Any>& params);
+	static Any funDivision(const std::vector<Any>& params);
+	static Any funGreater(const std::vector<Any>& params);
+	static Any funGreaterEqual(const std::vector<Any>& params);
+	static Any funLess(const std::vector<Any>& params);
+	static Any funLessEqual(const std::vector<Any>& params);
+	static Any funEqual(const std::vector<Any>& params);
+	static Any funNotEqual(const std::vector<Any>& params);
 	static Any funAnd(const std::vector<Any>& params);
 	static Any funOr(const std::vector<Any>& params);
 	static Any funNot(const std::vector<Any>& params);

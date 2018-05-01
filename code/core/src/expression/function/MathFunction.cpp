@@ -5,8 +5,7 @@
 
 namespace gemini {
 
-Any MathFunction::funAbs(const std::vector<Any>& params)
-{
+Any MathFunction::funAbs(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return abs(param1.cast<Long>());
@@ -14,8 +13,7 @@ Any MathFunction::funAbs(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funSin(const std::vector<Any>& params)
-{
+Any MathFunction::funSin(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return sin(param1.cast<Long>());
@@ -25,8 +23,7 @@ Any MathFunction::funSin(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funSinh(const std::vector<Any>& params)
-{
+Any MathFunction::funSinh(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return sinh(param1.cast<Long>());
@@ -36,8 +33,7 @@ Any MathFunction::funSinh(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funCos(const std::vector<Any>& params)
-{
+Any MathFunction::funCos(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return cos(param1.cast<Long>());
@@ -47,8 +43,7 @@ Any MathFunction::funCos(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funTan(const std::vector<Any>& params)
-{
+Any MathFunction::funTan(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return tan(param1.cast<Long>());
@@ -58,8 +53,7 @@ Any MathFunction::funTan(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funTanh(const std::vector<Any>& params)
-{
+Any MathFunction::funTanh(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return tanh(param1.cast<Long>());
@@ -69,8 +63,7 @@ Any MathFunction::funTanh(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funASin(const std::vector<Any>& params)
-{
+Any MathFunction::funASin(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return asin(param1.cast<Long>());
@@ -80,8 +73,7 @@ Any MathFunction::funASin(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funACos(const std::vector<Any>& params)
-{
+Any MathFunction::funACos(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return acos(param1.cast<Long>());
@@ -91,8 +83,7 @@ Any MathFunction::funACos(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funATan(const std::vector<Any>& params)
-{
+Any MathFunction::funATan(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return atan(param1.cast<Long>());
@@ -102,18 +93,15 @@ Any MathFunction::funATan(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funToDegrees(const std::vector<Any>& params)
-{
+Any MathFunction::funToDegrees(const std::vector<Any>& params) {
 
 }
 
-Any MathFunction::funToRadians(const std::vector<Any>& params)
-{
+Any MathFunction::funToRadians(const std::vector<Any>& params) {
 
 }
 
-Any MathFunction::funExp(const std::vector<Any>& params)
-{
+Any MathFunction::funExp(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return exp(param1.cast<Long>());
@@ -123,8 +111,7 @@ Any MathFunction::funExp(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funLog(const std::vector<Any>& params)
-{
+Any MathFunction::funLog(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return log(param1.cast<Long>());
@@ -134,8 +121,7 @@ Any MathFunction::funLog(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funLog10(const std::vector<Any>& params)
-{
+Any MathFunction::funLog10(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return log10(param1.cast<Long>());
@@ -145,8 +131,7 @@ Any MathFunction::funLog10(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funLog1p(const std::vector<Any>& params)
-{
+Any MathFunction::funLog1p(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return log1p(param1.cast<Long>());
@@ -156,8 +141,7 @@ Any MathFunction::funLog1p(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funFloor(const std::vector<Any>& params)
-{
+Any MathFunction::funFloor(const std::vector<Any>& params) {
 	Double digits = 0;
 	if (params.size() == 2) {
 		const Any& param2 = params[1];
@@ -180,8 +164,7 @@ Any MathFunction::funFloor(const std::vector<Any>& params)
 	return params.size() == 1 ? (Long)value : value;
 }
 
-Any MathFunction::funCeil(const std::vector<Any>& params)
-{
+Any MathFunction::funCeil(const std::vector<Any>& params) {
 	Double digits = 0;
 	if (params.size() == 2) {
 		const Any& param2 = params[1];
@@ -204,8 +187,7 @@ Any MathFunction::funCeil(const std::vector<Any>& params)
 	return params.size() == 1 ? (Long)value : value;
 }
 
-Any MathFunction::funRound(const std::vector<Any>& params)
-{
+Any MathFunction::funRound(const std::vector<Any>& params) {
 	Double digits = 0;
 	if (params.size() == 2) {
 		const Any& param2 = params[1];
@@ -228,8 +210,7 @@ Any MathFunction::funRound(const std::vector<Any>& params)
 	return params.size() == 1 ? (Long)value : value;
 }
 
-Any MathFunction::funSqrt(const std::vector<Any>& params)
-{
+Any MathFunction::funSqrt(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return sqrt(param1.cast<Long>());
@@ -239,8 +220,7 @@ Any MathFunction::funSqrt(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funCbrt(const std::vector<Any>& params)
-{
+Any MathFunction::funCbrt(const std::vector<Any>& params) {
 	const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return cbrt(param1.cast<Long>());
@@ -250,15 +230,13 @@ Any MathFunction::funCbrt(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funPow(const std::vector<Any>& params)
-{
+Any MathFunction::funPow(const std::vector<Any>& params) {
 	Double value1 = params[0].isType<Long>() ? params[0].cast<Long>() : params[0].cast<Double>();
 	Double value2 = params[1].isType<Long>() ? params[1].cast<Long>() : params[1].cast<Double>();
 	return pow(value1, value2);
 }
 
-Any MathFunction::funSignum(const std::vector<Any>& params)
-{
+Any MathFunction::funSignum(const std::vector<Any>& params) {
 	/*const Any& param1 = params[0];
 	if (param1.isType<Long>()) {
 		return signum(param1.cast<Long>());
@@ -269,8 +247,7 @@ Any MathFunction::funSignum(const std::vector<Any>& params)
 	return nullptr;
 }
 
-Any MathFunction::funRandom(const std::vector<Any>& params)
-{
+Any MathFunction::funRandom(const std::vector<Any>& params) {
 	return rand();
 }
 

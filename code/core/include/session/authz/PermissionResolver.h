@@ -7,6 +7,7 @@ namespace gemini {
 class PermissionResolver
 {
 public:
+	virtual ~PermissionResolver() {}
 	virtual std::shared_ptr<ObjectPermission> resolve(const String& permission) const = 0;
 
 };
