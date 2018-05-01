@@ -41,7 +41,7 @@ SHARE   := -fPIC -shared -o
 #source file
 #源文件，自动找所有.c和.cpp文件，并将目标定义为同名.o文件
 #SRC  := $(foreach dir, ${DIR_SRC}, $(wildcard ${dir}/*.cpp))
-SRC  := $(wildcard ${DIR_SRC}/*.cpp ${DIR_SRC}/tools/*.cpp ${DIR_SRC}/api/*.cpp ${DIR_SRC}/cache/*.cpp ${DIR_SRC}/entities/*.cpp)
+SRC  := $(wildcard ${DIR_SRC}/*.cpp ${DIR_SRC}/**/*.cpp ${DIR_SRC}/**/**/*cpp)
 OBJS = $(patsubst %.cpp, ${DIR_OBJ}/%.o, $(notdir ${SRC}))
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
@@ -49,14 +49,11 @@ ${BIN_TARGET} : ${OBJS}
 	$(CC) -fPIC -shared $(OBJS)  -o $@ -Wl,-Bstatic ${LDFLAGS} -Wl,-Bdynamic
 ${DIR_OBJ}/%.o : ${DIR_SRC}/%.cpp
 	$(CC) -fPIC $(CFLAGS) -c $< -o $@
-${DIR_OBJ}/%.o : ${DIR_SRC}/tools/%.cpp
+${DIR_OBJ}/%.o : ${DIR_SRC}/**/%.cpp 
 	$(CC) -fPIC $(CFLAGS) -c $< -o $@
-${DIR_OBJ}/%.o : ${DIR_SRC}/api/%.cpp
+${DIR_OBJ}/%.o : ${DIR_SRC}/**/**/%.cpp
 	$(CC) -fPIC $(CFLAGS) -c $< -o $@
-${DIR_OBJ}/%.o : ${DIR_SRC}/cache/%.cpp
-	$(CC) -fPIC $(CFLAGS) -c $< -o $@
-${DIR_OBJ}/%.o : ${DIR_SRC}/entities/%.cpp
-	$(CC) -fPIC $(CFLAGS) -c $< -o $@
+
 
 .PHONY : clean
 clean :
