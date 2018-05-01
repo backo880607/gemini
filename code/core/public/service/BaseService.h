@@ -34,7 +34,6 @@ class CORE_API BaseService
 			vals.push_back(Tail::index());
 		}
 	};
-	//template<> class RefSign<> {};
 
 public:
 	template <typename T>
@@ -163,8 +162,10 @@ class ServiceRegister {
 			InterfaceHelper<Tail...>::registerInterface(service);
 		}
 	};
-	template <> struct InterfaceHelper<> {
-		static void registerInterface(const IBaseService* service) {}
+	template <class Tail> struct InterfaceHelper<Tail> {
+		static void registerInterface(const IBaseService* service) {
+			gemini::gemini_afx_service_interface(Class::getName<Tail>(), service);
+		}
 	};
 public:
 	ServiceRegister() {
