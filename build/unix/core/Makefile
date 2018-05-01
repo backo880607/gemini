@@ -30,7 +30,7 @@ LIBS    :=
 LDFLAGS := -L$(DIR_LIB)/
 DEFINES :=
 INCLUDE := -I. ${DIR_INC}
-CFLAGS  := -g -Wall -O3 -std=c++0x $(DEFINES) $(INCLUDE)
+CFLAGS  := -g -Wall -O3 -std=c++17 $(DEFINES) $(INCLUDE)
 CXXFLAGS:= $(CFLAGS) -DHAVE_CONFIG_H
 SHARE   := -fPIC -shared -o
 
