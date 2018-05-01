@@ -72,7 +72,7 @@ public:
 		}
 	protected:
 		Iterator() : _iter(nullptr) {}
-		virtual const EntityObject::SPtr& nextImpl() { return nullptr; }
+		virtual const EntityObject::SPtr& nextImpl();
 	private:
 		Iterator* _iter;
 	};

@@ -99,4 +99,9 @@ Boolean IList::operator==(const Any & rhs) const
 	return rhsIter.hasNext() ? false : true;
 }
 
+const EntityObject::SPtr & IList::Iterator::nextImpl()
+{
+	return nullptr;
+}
+
 }

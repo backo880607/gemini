@@ -7,7 +7,7 @@ namespace gemini {
 class FactoryMgr final {
 	FactoryMgr();
 	FactoryMgr(const FactoryMgr&) {}
-	FactoryMgr& operator= (const FactoryMgr&) {}
+	FactoryMgr& operator= (const FactoryMgr&) { return *this; }
 public:
 	static FactoryMgr& instance() { static FactoryMgr mgr; return mgr; }
 

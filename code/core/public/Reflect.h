@@ -234,7 +234,7 @@ template <>
 class Property<String> {
 protected:
 	typedef String value_type;
-	typedef const value_type& const_reference;
+	typedef value_type const_reference;
 
 	Property() : _value(nullptr) {}
 	Property(const_reference val) : _value(new Char[val.size()]) {}

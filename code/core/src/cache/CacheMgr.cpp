@@ -24,7 +24,7 @@ void CacheMgr::init()
 
 CacheMgr::dao_type CacheMgr::getDao(const Class& cls)
 {
-	if (cls.index() >= _daoes.size()) {
+	if ((std::size_t)cls.index() >= _daoes.size()) {
 		
 	}
 	return _daoes[cls.index()];
