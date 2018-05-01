@@ -158,7 +158,7 @@ private:
 
 	template <typename T>
 	static void convertImpl(T& val, const Char* str) { val = T::valueOf(str); }
-	static void convertImpl(Boolean& val, const Char* str) { val = std::strtol(str, nullptr, 0) != 0; }
+	static void convertImpl(Boolean& val, const Char* str) { val = strtol(str, nullptr, 0) != 0; }
 	static void convertImpl(Short& val, const Char* str);
 	static void convertImpl(Int& val, const Char* str);
 	static void convertImpl(Long& val, const Char* str);

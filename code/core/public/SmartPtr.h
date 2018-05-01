@@ -69,6 +69,8 @@ public:
 	void destroy() { delete (void *)_pT; _pT = nullptr; }
 #elif GEMINI_OS == GEMINI_OS_LINUX
 	void destroy() { delete _pT; _pT = nullptr; }
+#elif GEMINI_OS == GEMINI_OS_MAC_OS_X
+	void destroy() { delete _pT; _pT = nullptr; }
 #endif
 
 	pointer operator-> () const { return _pT; }
