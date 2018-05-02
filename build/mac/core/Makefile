@@ -4,7 +4,7 @@
 ######################################
 #target you can change test to what you want
 #共享库文件名，lib*.so
-TARGET  := libcore.so
+TARGET  := libcore.dylib
 
 #自定义目录
 DIR_HOME = ../../../code/core
@@ -25,15 +25,14 @@ DIR_LIB = ${DIR_BUILD}/libs
 
 #compile and lib parameter
 #编译参数
-CC      := g++
+CC      := clang
 LIBS    :=
-LDFLAGS := -L$(DIR_LIB)/
-DEFINES :=
+LDFLAGS := -L$(DIR_LIB)/ -lstdc++ -lboost_filesystem -lboost_system -lboost_thread -lboost_locale -lboost_program_options -lboost_log -lboost_chrono -lboost_date_time -lboost_exception -lboost_timer -liconv
+DEFINES := 
 INCLUDE := -I. ${DIR_INC}
-CFLAGS  := -g -Wall -O3 -std=c++17 $(DEFINES) $(INCLUDE)
+CFLAGS  := -g -Wall -O3 -std=c++14 $(DEFINES) $(INCLUDE)
 CXXFLAGS:= $(CFLAGS) -DHAVE_CONFIG_H
 SHARE   := -fPIC -shared -o
-
 
 #i think you should do anything here
 #下面的基本上不需要做任何改动了
@@ -43,6 +42,7 @@ SHARE   := -fPIC -shared -o
 #SRC  := $(foreach dir, ${DIR_SRC}, $(wildcard ${dir}/*.cpp))
 SRC  := $(wildcard ${DIR_SRC}/*.cpp ${DIR_SRC}/**/*.cpp ${DIR_SRC}/**/**/*cpp)
 OBJS = $(patsubst %.cpp, ${DIR_OBJ}/%.o, $(notdir ${SRC}))
+OBJS += $(wildcard ${DIR_THIRD}/DataCompress/objs/*.o)
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
 ${BIN_TARGET} : ${OBJS}
