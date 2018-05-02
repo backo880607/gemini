@@ -16,10 +16,10 @@ public:
 
 	virtual const IList& select() override;
 	virtual EntityObject::SPtr select(ID id) override;
-	virtual void insert(EntityObject::SPtr entity);
-	virtual void erase(ID id);
-	virtual void erase(EntityObject::SPtr entity);
-	virtual void clear();
+	virtual void insert(EntityObject::SPtr entity) override;
+	virtual void erase(ID id) override;
+	virtual void erase(EntityObject::SPtr entity) override;
+	virtual void clear() override;
 
 	virtual void insert(const std::map<ID, EntityObject::SPtr>& entities) override;
 	virtual void update(const std::map<ID, EntityObject::SPtr>& entities) override;
