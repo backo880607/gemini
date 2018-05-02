@@ -365,7 +365,7 @@ public:\
 	typedef gemini::SmartPtr<ClassType, gemini::WeakCounted, gemini::StorageNo>	WPtr;\
 	virtual ~CLASS_NAME() {}\
     static const gemini::Class& getClassStatic() { return CLASS_NAME::_class; }\
-    virtual const gemini::Class& getClass() const { return CLASS_NAME::_class; }
+    virtual const gemini::Class& getClass() const override { return CLASS_NAME::_class; }
 
 
 #define DECLARE_CLASS_IMPL(CLASS_NAME, SUPER_CLASS_NAME)\

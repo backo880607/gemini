@@ -17,7 +17,7 @@ InnerCacheDao::~InnerCacheDao()
 const IList& InnerCacheDao::select()
 {
 	tl_ref_dynamic.remove();
-	std::shared_lock<std::shared_mutex> locker(_mutex);
+	std::shared_lock<boost::shared_mutex> locker(_mutex);
 	for (auto iter : _entities) {
 		tl_ref_dynamic.add(iter.second);
 	}
@@ -26,32 +26,32 @@ const IList& InnerCacheDao::select()
 
 EntityObject::SPtr InnerCacheDao::select(ID id)
 {
-	std::shared_lock<std::shared_mutex> locker(_mutex);
+	std::shared_lock<boost::shared_mutex> locker(_mutex);
 	entities_type::const_iterator iter = _entities.find(id);
 	return iter != _entities.end() ? iter->second : nullptr;
 }
 
 void InnerCacheDao::insert(EntityObject::SPtr entity)
 {
-	std::shared_lock<std::shared_mutex> locker(_mutex);
+	std::shared_lock<boost::shared_mutex> locker(_mutex);
 	_entities.insert(std::make_pair(entity->getID(), entity));
 }
 
 void InnerCacheDao::erase(ID id)
 {
-	std::shared_lock<std::shared_mutex> locker(_mutex);
+	std::shared_lock<boost::shared_mutex> locker(_mutex);
 	_entities.erase(id);
 }
 
 void InnerCacheDao::erase(EntityObject::SPtr entity)
 {
-	std::shared_lock<std::shared_mutex> locker(_mutex);
+	std::shared_lock<boost::shared_mutex> locker(_mutex);
 	_entities.erase(entity->getID());
 }
 
 void InnerCacheDao::clear()
 {
-	std::unique_lock<std::shared_mutex> lock(_mutex);
+	std::unique_lock<boost::shared_mutex> lock(_mutex);
 	_entities.clear();
 }
 

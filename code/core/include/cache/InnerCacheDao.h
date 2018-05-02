@@ -3,6 +3,7 @@
 #include "CacheDao.h"
 
 #include <shared_mutex>
+#include <boost/thread/shared_mutex.hpp>
 
 namespace gemini {
 
@@ -26,7 +27,7 @@ public:
 
 private:
 	entities_type _entities;
-	std::shared_mutex _mutex;
+	boost::shared_mutex _mutex;
 };
 
 }
