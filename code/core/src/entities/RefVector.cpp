@@ -43,8 +43,7 @@ private:
 	const value_type& _value;
 };
 
-IList::Iterator RefVector::iterator() const
-{
+IList::Iterator RefVector::iterator() const {
 	return IList::Iterator(new RefVectorIterator(begin(), *this));
 }
 

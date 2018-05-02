@@ -84,19 +84,21 @@ public:
 	}
 
 	template <class T, typename Filter>
-	const IList& getList(Filter filter) const {
-		std::list<typename T::SPtr> entities = getList<T>();
-		for (typename std::list<typename T::SPtr>::iterator iter = entities.begin();
-			iter != entities.end(); ++iter) {
-			if (!filter(*iter)) {
-				iter = entities.erase(iter);
+	std::list<typename T::SPtr> getList(Filter filter) const {
+		std::list<typename T::SPtr> entities;
+		IList::Iterator iter = getList<T>().iterator();
+		while (iter.hasNext()) {
+			typename T::SPtr entity = iter.next<T>();
+			if (filter(entity)) {
+				entities.push_back(entity);
 			}
 		}
 		return entities;
 	}
 	template <class T>
-	const IList& getList(const Char* strExpression) const {
-
+	std::list<typename T::SPtr> getList(const Char* strExpression) const {
+		std::list<typename T::SPtr> entities;
+		return entities;
 	}
 
 	template <typename T, typename... Ref>
@@ -110,7 +112,9 @@ public:
 	typename T::SPtr get(EntityObject::SPtr entity, std::function<Boolean(typename T::SPtr)> filter) const {
 		std::vector<gemini::Int> signs;
 		RefSign<Ref...>::collect(signs);
-		for (typename T::SPtr target : getListImpl(entity, signs)) {
+		IList::Iterator iter = getListImpl(entity, signs).iterator();
+		while (iter.hasNext()) {
+			typename T::SPtr target = iter.next<T>();
 			if (filter(target)) {
 				return target;
 			}
@@ -129,11 +133,12 @@ public:
 
 	template <typename T, typename... Ref>
 	std::list<typename T::SPtr> getList(EntityObject::SPtr entity) const {
+		std::list<typename T::SPtr> entities;
 		std::vector<gemini::Int> signs;
 		RefSign<Ref...>::collect(signs);
-		std::list<typename T::SPtr> entities;
-		for (typename T::SPtr entity : getListImpl(entity, signs)) {
-			entities.push_back(entity);
+		IList::Iterator iter = getListImpl(entity, signs).iterator();
+		while (iter.hasNext()) {
+			entities.push_back(iter.next<T>());
 		}
 		return entities;
 	}

@@ -24,7 +24,6 @@ class EntityIterator : public IList::Iterator
 public:
 	EntityIterator(const EntityObject::SPtr& entity) : _begin(true), _entity(entity) {}
 	virtual Boolean hasNext() { return _begin == true; }
-
 protected:
 	virtual const EntityObject::SPtr& nextImpl() {
 		_begin = false;

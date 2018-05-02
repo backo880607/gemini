@@ -61,6 +61,7 @@ class CORE_API IList : public AnyAbstract
 public:
 	class CORE_API Iterator {
 	public:
+		virtual ~Iterator() {}
 		Iterator(Iterator* iter) : _iter(iter) {}
 		Iterator(const Iterator& rhs) : _iter(rhs._iter) {}
 		Iterator& operator= (const Iterator& rhs) { _iter = rhs._iter; return *this; }
@@ -74,7 +75,7 @@ public:
 		Iterator() : _iter(nullptr) {}
 		virtual const EntityObject::SPtr& nextImpl();
 	private:
-		Iterator* _iter;
+		std::shared_ptr<Iterator> _iter;
 	};
 
 	virtual Boolean empty() = 0;
