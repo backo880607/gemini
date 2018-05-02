@@ -1,6 +1,6 @@
 #include "api/Process_UNIX.h"
 
-#if GEMINI_OS == GEMINI_OS_LINUX
+#if GEMINI_OS == GEMINI_OS_LINUX || GEMINI_OS == GEMINI_OS_MAC_OS_X
 #include "message/Exception.h"
 #include <sys/types.h>
 #include <sys/wait.h>
