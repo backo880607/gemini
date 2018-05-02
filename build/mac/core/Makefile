@@ -46,7 +46,7 @@ OBJS = $(patsubst %.cpp, ${DIR_OBJ}/%.o, $(notdir ${SRC}))
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
 ${BIN_TARGET} : ${OBJS}
-	$(CC) -fPIC -shared $(OBJS)  -o $@ -Wl,-Bstatic ${LDFLAGS} -Wl,-Bdynamic
+	$(CC) -fPIC -shared $(OBJS)  -o $@ ${LDFLAGS}
 ${DIR_OBJ}/%.o : ${DIR_SRC}/%.cpp
 	$(CC) -fPIC $(CFLAGS) -c $< -o $@
 ${DIR_OBJ}/%.o : ${DIR_SRC}/**/%.cpp 
