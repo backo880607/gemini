@@ -4,14 +4,28 @@
 
 namespace gemini {
 
+TCPServer& getTCPServer()  {
+	static TCPServer server;
+	return server;
+}
 Boolean ServerUtil::startTCPServer() {
-	TCPServer server;
-	return server.start();
+	return getTCPServer().start();
 }
 
+void ServerUtil::stopTCPServer() {
+	return getTCPServer().stop();
+}
+
+HTTPServer& getHTTPServer() {
+	static HTTPServer server;
+	return server;
+}
 Boolean ServerUtil::startHTTPServer() {
-	HTTPServer server;
-	return server.start();
+	return getHTTPServer().start();
+}
+
+void ServerUtil::stopHTTPServer() {
+	return getHTTPServer().stop();
 }
 
 }

@@ -8,7 +8,10 @@ class GEMINI_NETWORK_API ServerUtil
 {
 public:
 	static Boolean startTCPServer();
+	static void stopTCPServer();
+
 	static Boolean startHTTPServer();
+	static void stopHTTPServer();
 };
 
 }
