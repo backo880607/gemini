@@ -665,57 +665,59 @@ public:
 	the ones passed to it
 	*/
 	__INVOKE__(0)
-		__INVOKE__(1)
-		__INVOKE__(2)
-		__INVOKE__(3)
-		__INVOKE__(4)
-		__INVOKE__(5)
-		__INVOKE__(6)
-		__INVOKE__(7)
-		__INVOKE__(8)
-		__INVOKE__(9)
-		__INVOKE__(10)
-		__INVOKE__(11)
-		__INVOKE__(12)
-		__INVOKE__(13)
-		__INVOKE__(14)
-		__INVOKE__(15)
-		__INVOKE__(16)
-		__INVOKE__(17)
-		__INVOKE__(18)
-		__INVOKE__(19)
-		__INVOKE__(20)
+	__INVOKE__(1)
+	__INVOKE__(2)
+	__INVOKE__(3)
+	__INVOKE__(4)
+	__INVOKE__(5)
+	__INVOKE__(6)
+	__INVOKE__(7)
+	__INVOKE__(8)
+	__INVOKE__(9)
+	__INVOKE__(10)
+	__INVOKE__(11)
+	__INVOKE__(12)
+	__INVOKE__(13)
+	__INVOKE__(14)
+	__INVOKE__(15)
+	__INVOKE__(16)
+	__INVOKE__(17)
+	__INVOKE__(18)
+	__INVOKE__(19)
+	__INVOKE__(20)
 
-		/** invokes a method that 'returns' void
-		@param object object to execute the method of
-		@param t1...tn parameters of the invocation
-		@exception IllegalAccessError if the method is not public
-		@exception TypeMismatchError if the method has different arguments than
-		the ones passed to it
-		*/
-		__INVOKE_VOID__(0)
-		__INVOKE_VOID__(1)
-		__INVOKE_VOID__(2)
-		__INVOKE_VOID__(3)
-		__INVOKE_VOID__(4)
-		__INVOKE_VOID__(5)
-		__INVOKE_VOID__(6)
-		__INVOKE_VOID__(7)
-		__INVOKE_VOID__(8)
-		__INVOKE_VOID__(9)
-		__INVOKE_VOID__(10)
-		__INVOKE_VOID__(11)
-		__INVOKE_VOID__(12)
-		__INVOKE_VOID__(13)
-		__INVOKE_VOID__(14)
-		__INVOKE_VOID__(15)
-		__INVOKE_VOID__(16)
-		__INVOKE_VOID__(17)
-		__INVOKE_VOID__(18)
-		__INVOKE_VOID__(19)
-		__INVOKE_VOID__(20)
+	/** invokes a method that 'returns' void
+	@param object object to execute the method of
+	@param t1...tn parameters of the invocation
+	@exception IllegalAccessError if the method is not public
+	@exception TypeMismatchError if the method has different arguments than
+	the ones passed to it
+	*/
+	__INVOKE_VOID__(0)
+	__INVOKE_VOID__(1)
+	__INVOKE_VOID__(2)
+	__INVOKE_VOID__(3)
+	__INVOKE_VOID__(4)
+	__INVOKE_VOID__(5)
+	__INVOKE_VOID__(6)
+	__INVOKE_VOID__(7)
+	__INVOKE_VOID__(8)
+	__INVOKE_VOID__(9)
+	__INVOKE_VOID__(10)
+	__INVOKE_VOID__(11)
+	__INVOKE_VOID__(12)
+	__INVOKE_VOID__(13)
+	__INVOKE_VOID__(14)
+	__INVOKE_VOID__(15)
+	__INVOKE_VOID__(16)
+	__INVOKE_VOID__(17)
+	__INVOKE_VOID__(18)
+	__INVOKE_VOID__(19)
+	__INVOKE_VOID__(20)
 
-		const String& getName() const { return _name; }
+	const Class& getClass() const { return _class; }
+	const String& getName() const { return _name; }
+	const Class& getReturnClass() const { return _returnCls; }
 
 private:
 	//default constructor

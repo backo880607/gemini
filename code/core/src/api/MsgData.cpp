@@ -9,6 +9,9 @@
 #if GEMINI_OS == GEMINI_OS_LINUX
 #include <netinet/in.h>
 #include "../../third_party/DataCompress/zlib.h"
+#elif GEMINI_OS == GEMINI_OS_MAC_OS_X
+#include <netinet/in.h>
+#include "../../third_party/DataCompress/zlib.h"
 #elif GEMINI_OS == GEMINI_OS_WINDOWS_NT
 #include <Winsock2.h>
 #include "../../../../third_party/DataCompress/zlib.h"

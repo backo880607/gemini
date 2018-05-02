@@ -11,12 +11,12 @@ class Buffer
 	Buffer(const Buffer&) = delete;
 	Buffer& operator= (const Buffer&) = delete;
 public:
-	typedef T				value_type;
-	typedef T&				reference;
-	typedef const reference	const_reference;
-	typedef std::size_t		size_type;
-	typedef value_type*		pointer;
-	typedef const pointer	const_pointer;
+	typedef T					value_type;
+	typedef value_type&			reference;
+	typedef const value_type&	const_reference;
+	typedef std::size_t			size_type;
+	typedef value_type*			pointer;
+	typedef const pointer		const_pointer;
 
 	Buffer(size_type size) : _pt(new value_type[size]), _size(size) { reset(); }
 	~Buffer() { delete[] _pt; }
