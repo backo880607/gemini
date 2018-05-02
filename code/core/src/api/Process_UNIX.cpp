@@ -4,6 +4,7 @@
 #include "message/Exception.h"
 #include <sys/types.h>
 #include <signal.h>
+#include <errno.h>
 #include <sys/wait.h>
 namespace gemini {
 
