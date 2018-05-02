@@ -2,7 +2,7 @@
 #define GEMINI_Process_UNIX_include
 #include "../../public/Common.h"
 
-#if GEMINI_OS == GEMINI_OS_LINUX
+#if GEMINI_OS == GEMINI_OS_LINUX || GEMINI_OS == GEMINI_OS_MAC_OS_X
 #include <unistd.h>
 
 namespace gemini {
