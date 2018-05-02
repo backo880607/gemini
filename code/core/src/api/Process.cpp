@@ -12,6 +12,8 @@
 #include "api/Process_WIN32.h"
 #elif GEMINI_OS == GEMINI_OS_LINUX
 #include "api/Process_UNIX.h"
+#elif GEMINI_OS == GEMINI_OS_MAC_OS_X
+#include "api/Process_UNIX.h"
 #endif
 
 
