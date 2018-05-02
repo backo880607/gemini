@@ -3,6 +3,7 @@
 #if GEMINI_OS == GEMINI_OS_LINUX || GEMINI_OS == GEMINI_OS_MAC_OS_X
 #include "message/Exception.h"
 #include <sys/types.h>
+#include <signal.h>
 #include <sys/wait.h>
 namespace gemini {
 

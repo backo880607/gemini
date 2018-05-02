@@ -15,7 +15,7 @@ namespace interprocess {
 namespace gemini {
 
 class ProcessImpl;
-class ProcessBuffer;
+struct ProcessBuffer;
 class CORE_API Process final
 {
 	struct SharedMemory {
