@@ -1,6 +1,6 @@
 #include "WorkOrder.h"
 
-namespace aps {
+namespace aps
+{
 DECLARE_CLASS_IMPL(WorkOrder, Order)
-
 }

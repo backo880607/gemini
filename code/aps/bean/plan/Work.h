@@ -2,8 +2,8 @@
 #define APS_Work_INCLUDE
 #include "../../common/Export.h"
 
-namespace aps {
-
+namespace aps
+{
 class Order;
 class WorkIn;
 class WorkOut;
@@ -14,11 +14,7 @@ class RouteStep;
 class WorkFdbk;
 class APS_API Work : public gemini::EntityObject
 {
-#define MODULE_API APS_API
 	DECLARE_CLASS(Work, gemini::EntityObject)
-public:
-	Work();
-	~Work();
 
 	DECLARE_FIELD(gemini::DateTime, userEST)
 	DECLARE_FIELD(gemini::DateTime, userLET)
@@ -34,6 +30,5 @@ public:
 	DECLARE_ENTITY(RouteStep, routeStep)
 	DECLARE_VECTOR(WorkFdbk, workFdbk)
 };
-
-}
-#endif // APS_Work_INCLUDE
+} // namespace aps
+#endif // !APS_Work_INCLUDE

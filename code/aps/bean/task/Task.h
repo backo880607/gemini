@@ -2,17 +2,13 @@
 #define APS_Task_Include
 #include "../../common/Export.h"
 
-namespace aps {
-
+namespace aps
+{
 class Work;
 class Resource;
 class APS_API Task : public gemini::EntityObject
 {
-#define MODULE_API APS_API
 	DECLARE_CLASS(Task, gemini::EntityObject)
-public:
-	Task();
-	~Task();
 
 	DECLARE_FIELD(gemini::DateTime, boundary)
 	DECLARE_FIELD(gemini::DateTime, prevSetStart)
@@ -34,7 +30,5 @@ public:
 	DECLARE_VECTOR(Task, prevTask)
 	DECLARE_VECTOR(Task, nextTask)
 };
-
-}
-
-#endif // APS_Task_Include
+} // namespace aps
+#endif // !APS_Task_Include

@@ -1,15 +1,6 @@
 #include "SystemParam.h"
 
-namespace aps {
-    
-SystemParam::SystemParam()
+namespace aps
 {
-
-}
-
-SystemParam::~SystemParam()
-{
-
-}
-
+DECLARE_CLASS_IMPL(SystemParam, gemini::EntityObject)
 }

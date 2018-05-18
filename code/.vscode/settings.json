@@ -2,11 +2,5 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "editor.formatOnType": true,
     "editor.snippetSuggestions": "top",
-    "code-runner.runInTerminal": true,
-    "code-runner.executorMap": {
-        "c": "make",
-        "cpp": "../../../build/unix/cmake/core/make && ./main.exe",
-    },
-    "code-runner.saveFileBeforeRun": true,
-    "code-runner.clearPreviousOutput": true
+    "editor.formatOnSave": true
 }

@@ -1,16 +1,6 @@
 #include "WorkRel.h"
 
-namespace aps {
-
+namespace aps
+{
 DECLARE_CLASS_IMPL(WorkRel, gemini::EntityObject)
-WorkRel::WorkRel()
-{
-
-}
-
-WorkRel::~WorkRel()
-{
-
-}
-
 }

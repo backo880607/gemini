@@ -1,15 +1,6 @@
 #include "Task.h"
 
-namespace aps {
-    
-Task::Task()
+namespace aps
 {
-
-}
-
-Task::~Task()
-{
-
-}
-
+DECLARE_CLASS_IMPL(Task, gemini::EntityObject)
 }

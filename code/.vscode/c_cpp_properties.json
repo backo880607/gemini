@@ -1,12 +1,10 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "msvc2017",
             "includePath": [
                 "${workspaceFolder}",
-                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE/VC/Linux/include/usr/include/c++/5",
-                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE/VC/Linux/include/usr/include",
-                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE/VC/Linux/include/usr/include/linux",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.13.26128/include",
                 "${workspaceFolder}/core/include",
                 "${workspaceFolder}/core/public",
                 "${workspaceFolder}/../third_party/boost_1_66_0"
@@ -17,13 +15,11 @@
                 "__GNUC__=7",
                 "__cdecl=__attribute__((__cdecl__))"
             ],
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
                     "${workspaceFolder}",
-                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE/VC/Linux/include/usr/include/c++/5",
-                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE/VC/Linux/include/usr/include",
-                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE/VC/Linux/include/usr/include/linux",
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.13.26128/include",
                     "${workspaceFolder}/core/include",
                     "${workspaceFolder}/core/public",
                     "${workspaceFolder}/../third_party/boost_1_66_0"
@@ -37,5 +33,5 @@
             "cppStandard": "c++17"
         }
     ],
-    "version": 3
+    "version": 4
 }

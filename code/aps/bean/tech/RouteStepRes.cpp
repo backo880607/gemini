@@ -1,16 +1,6 @@
 #include "RouteStepRes.h"
 
-namespace aps {
-	
+namespace aps
+{
 DECLARE_CLASS_IMPL(RouteStepRes, gemini::EntityObject)
-RouteStepRes::RouteStepRes()
-{
-
-}
-
-RouteStepRes::~RouteStepRes()
-{
-
-}
-
 }
