@@ -3,15 +3,14 @@
 #include "../../../public/service/task/TaskService.h"
 #include "service/BaseService.h"
 
-namespace aps {
-    
+namespace aps
+{
 class TaskServiceImpl : public gemini::BaseService, TaskService
 {
-public:
+  public:
 	SERVICE_METHOD(Task, calcBoundaryObverse)
 	SERVICE_METHOD(Task, calcBoundaryReverse)
 };
+} // namespace aps
 
-}
 #endif // APS_TaskServiceImpl_INCLUDE
-#define 

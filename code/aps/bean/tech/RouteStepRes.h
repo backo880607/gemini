@@ -1,6 +1,6 @@
 #ifndef APS_RouteStepRes_INCLUDE
 #define APS_RouteStepRes_INCLUDE
-#include "..\..\common\Export.h"
+#include "../../common/Export.h"
 
 namespace aps
 {
@@ -26,4 +26,5 @@ class APS_API RouteStepRes : public gemini::EntityObject
 };
 
 } // namespace aps
+
 #endif // !APS_RouteStepRes_INCLUDE

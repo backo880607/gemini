@@ -7,22 +7,25 @@
 #include <algorithm>
 
 void initAPS() {}
-namespace aps {
-
-gemini::ServiceRegister<ItemServiceImpl, ItemService> item_service_register();
-gemini::Boolean ItemService::calcLevel(const gemini::SmartPtr<Item>& item) const
+namespace aps
 {
-	if (item->_type == ItemType::SRC_MATERIALS) {
+gemini::ServiceRegister<ItemServiceImpl, ItemService> item_service_register();
+gemini::Boolean ItemService::calcLevel(const gemini::SmartPtr<Item> &item) const
+{
+	if (item->_type == ItemType::SRC_MATERIALS)
+	{
 		item->_level = 255;
 	}
-	else {
+	else
+	{
 		gemini::UInt maxLevel = 0;
-		foreach<Item, Item::routeStepIns, RouteStepIn::routeStep, RouteStep::route, Route::item>(item,
-			[&maxLevel](Item::SPtr upItem) {
-			maxLevel = std::max((gemini::UInt)upItem->_level, maxLevel);
-		});
+		foreach
+			<Item, Item::routeStepIns, RouteStepIn::routeStep, RouteStep::route, Route::item>(item,
+																							  [&maxLevel](Item::SPtr upItem) {
+																								  maxLevel = std::max((gemini::UInt)upItem->_level, maxLevel);
+																							  });
 		item->_level = maxLevel;
 	}
 	return true;
 }
-}
+} // namespace aps

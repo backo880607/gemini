@@ -1,6 +1,6 @@
 #ifndef APS_RouteStepOut_INCLUDE
 #define APS_RouteStepOut_INCLUDE
-#include "..\..\common\Export.h"
+#include "../../common/Export.h"
 
 namespace aps
 {
@@ -18,4 +18,5 @@ class APS_API RouteStepOut : public gemini::EntityObject
 	DECLARE_ENTITY(Item, outputItem)
 };
 } // namespace aps
+
 #endif // !APS_RouteStepOut_INCLUDE

@@ -3,4 +3,4 @@
 namespace aps
 {
 DECLARE_CLASS_IMPL(RouteStep, gemini::EntityObject)
-}
+} // namespace aps

@@ -1,6 +1,6 @@
 #ifndef APS_Route_INCLUDE
 #define APS_Route_INCLUDE
-#include "..\..\common\Export.h"
+#include "../../common/Export.h"
 
 namespace aps
 {
@@ -20,4 +20,5 @@ class APS_API Route : public gemini::EntityObject
 	DECLARE_VECTOR(RouteStep, routeSteps)
 };
 } // namespace aps
+
 #endif // !APS_Route_INCLUDE

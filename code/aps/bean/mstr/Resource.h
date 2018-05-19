@@ -1,6 +1,6 @@
 #ifndef APS_Resource_INCLUDE
 #define APS_Resource_INCLUDE
-#include "..\..\common\Export.h"
+#include "../../common/Export.h"
 
 namespace aps
 {

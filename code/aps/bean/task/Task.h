@@ -31,4 +31,5 @@ class APS_API Task : public gemini::EntityObject
 	DECLARE_VECTOR(Task, nextTask)
 };
 } // namespace aps
+
 #endif // !APS_Task_Include
