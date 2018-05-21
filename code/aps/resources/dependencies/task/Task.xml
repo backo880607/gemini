@@ -14,7 +14,7 @@
             <path value="work.order.EST" />
         </dependency>
         <dependency condition="Reverse" serviceClass="TaskService" method="calcBoundaryReverse">
-            <path name="routeStepIns.routeStep.route.item.level" />
+            <path name="work.workRelOuts.postWork.task.prodStart" />
         </dependency>
     </Field>
     <Field name="prodStart">
@@ -24,8 +24,8 @@
             <path value="prevTask.nextSetEnd" />
         </dependency>
         <dependency condition="Reverse" serviceClass="TaskService" method="calcProdStartReverse">
-            <path value="prodTime" />
-            <path value="prodEnd" />
+            <path value="boundary" />
+            <path value="prevTask.prevSetStart" />
         </dependency>
     </Field>
     <Field name="prodTime">

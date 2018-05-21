@@ -62,7 +62,8 @@
 			"thread": "cpp",
 			"valarray": "cpp",
 			"algorithm": "cpp",
-			"string": "cpp"
+			"string": "cpp",
+			"iterator": "cpp"
 		},
 		"files.defaultLanguage": "cpp"
 	}
