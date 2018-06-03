@@ -5,6 +5,7 @@
 namespace aps
 {
 class RouteStep;
+class Item;
 class APS_API RouteStepOut : public gemini::EntityObject
 {
 	DECLARE_CLASS(RouteStepOut, gemini::EntityObject)
@@ -18,5 +19,4 @@ class APS_API RouteStepOut : public gemini::EntityObject
 	DECLARE_ENTITY(Item, outputItem)
 };
 } // namespace aps
-
 #endif // !APS_RouteStepOut_INCLUDE

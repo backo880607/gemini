@@ -32,5 +32,4 @@ class APS_API RouteStep : public gemini::EntityObject
 	DECLARE_ENTITY(StandRouteStep, stdRouteStep)
 };
 } // namespace aps
-
 #endif // !APS_RouteStep_INCLUDE

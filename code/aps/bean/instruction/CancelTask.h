@@ -9,5 +9,4 @@ class APS_API CancelTask : public Instruction
     DECLARE_CLASS(CancelTask, Instruction)
 };
 } // namespace aps
-
 #endif // !APS_CancelTask_INCLUDE

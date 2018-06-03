@@ -12,5 +12,4 @@ class APS_API Command : public gemini::EntityObject
     DECLARE_VECTOR(Instruction, instructs)
 };
 } // namespace aps
-
 #endif // !APS_Command_INCLUDE

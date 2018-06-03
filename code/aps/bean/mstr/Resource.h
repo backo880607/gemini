@@ -4,7 +4,8 @@
 
 namespace aps
 {
-class Task class APS_API Resource : public gemini::EntityObject
+class Task;
+class APS_API Resource : public gemini::EntityObject
 {
 	DECLARE_CLASS(Resource, gemini::EntityObject)
 

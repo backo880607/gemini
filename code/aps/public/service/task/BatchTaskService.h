@@ -4,9 +4,9 @@
 
 namespace aps
 {
-class BatcTaskService : public TaskService
+class BatchTaskService : public TaskService
 {
 };
 } // namespace aps
 
-#endif // !APS_BatcTaskService_INCLUDE
+#endif // !APS_BatchTaskService_INCLUDE

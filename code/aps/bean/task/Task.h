@@ -6,6 +6,7 @@ namespace aps
 {
 class Work;
 class Resource;
+class WorkRes;
 class APS_API Task : public gemini::EntityObject
 {
 	DECLARE_CLASS(Task, gemini::EntityObject)
@@ -31,5 +32,4 @@ class APS_API Task : public gemini::EntityObject
 	DECLARE_VECTOR(Task, nextTask)
 };
 } // namespace aps
-
 #endif // !APS_Task_Include

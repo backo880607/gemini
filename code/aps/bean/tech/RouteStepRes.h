@@ -5,6 +5,7 @@
 namespace aps
 {
 class RouteStep;
+class Resource;
 class APS_API RouteStepRes : public gemini::EntityObject
 {
 	DECLARE_CLASS(RouteStepRes, gemini::EntityObject)
@@ -26,5 +27,4 @@ class APS_API RouteStepRes : public gemini::EntityObject
 };
 
 } // namespace aps
-
 #endif // !APS_RouteStepRes_INCLUDE

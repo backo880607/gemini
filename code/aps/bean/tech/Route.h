@@ -1,3 +1,9 @@
+/*
+ * @Author: haitao.niu 
+ * @Date: 2018-05-22 22:39:29 
+ * @Last Modified by:   haitao.niu 
+ * @Last Modified time: 2018-05-22 22:39:29 
+ */
 #ifndef APS_Route_INCLUDE
 #define APS_Route_INCLUDE
 #include "../../common/Export.h"
@@ -20,5 +26,4 @@ class APS_API Route : public gemini::EntityObject
 	DECLARE_VECTOR(RouteStep, routeSteps)
 };
 } // namespace aps
-
 #endif // !APS_Route_INCLUDE

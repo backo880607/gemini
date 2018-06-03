@@ -17,5 +17,4 @@ class StandRouteStep : public gemini::EntityObject
 	DECLARE_FIELD(ScheduleDirection, direction)
 };
 } // namespace aps
-
 #endif // !APS_StandRouteStep_INCLUDE

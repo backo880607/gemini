@@ -9,5 +9,4 @@ class APS_API BatchElement : public Task
     DECLARE_CLASS(BatchElement, Task)
 };
 } // namespace aps
-
 #endif // !APS_BatchElement_INCLUDE

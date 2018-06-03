@@ -21,5 +21,4 @@ class APS_API RouteStepIn : public gemini::EntityObject
 	DECLARE_ENTITY(Item, inputItem)
 };
 } // namespace aps
-
 #endif // !APS_RouteStepIn_INCLUDE

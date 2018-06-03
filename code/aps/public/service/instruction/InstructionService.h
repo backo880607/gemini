@@ -8,5 +8,4 @@ class InstructionService : public gemini::IBaseService
 {
 };
 } // namespace aps
-
 #endif // !APS_InstructionService_INCLUDE

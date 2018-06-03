@@ -67,6 +67,87 @@
     <Filter Include="public\enums\tech">
       <UniqueIdentifier>{02762829-c22a-4554-bd67-c8951fc8e719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="bean\task">
+      <UniqueIdentifier>{473fa1df-79ce-47f2-9136-d51370be339b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bean\instruction">
+      <UniqueIdentifier>{7d76fef9-23dd-4751-8e04-3120aacb7326}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bean\system">
+      <UniqueIdentifier>{d7e926a7-0b39-4354-8938-65da24e9d684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service\instruction">
+      <UniqueIdentifier>{9426ac87-7f24-46b8-8e69-40cbe77d4a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service\order">
+      <UniqueIdentifier>{b6dfcb21-4992-4797-8fdb-a1d16d385015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service\plan">
+      <UniqueIdentifier>{f6b7418c-f22c-4485-aa80-61ca8232edcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service\task">
+      <UniqueIdentifier>{e098c956-f995-4a2f-b601-a42f541d21ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service\tech">
+      <UniqueIdentifier>{561537f0-b72c-4e88-ab2f-18376af90395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\enums\task">
+      <UniqueIdentifier>{3ef61f5c-8346-48db-be69-ded329a88127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\instruction">
+      <UniqueIdentifier>{acc1f498-6c03-4d98-b6e9-e9d4287edfcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\order">
+      <UniqueIdentifier>{6ef457db-0608-4c9d-bd8b-1b72e4b5e730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\plan">
+      <UniqueIdentifier>{fabbdcbe-14b0-4452-836e-9880a5ee4cd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\task">
+      <UniqueIdentifier>{3f432438-607c-4e13-a61d-f438bd8acc7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\tech">
+      <UniqueIdentifier>{6c790231-7c11-46cd-9de5-701414bd1446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\instruction">
+      <UniqueIdentifier>{f1128b21-34bf-4ce6-96e0-83be6971d1ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\order">
+      <UniqueIdentifier>{651eaccc-d842-4cb4-a9b7-4eaaebd38c5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\plan">
+      <UniqueIdentifier>{db5f2dd4-c703-4ada-96a5-da6d2db78a31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\task">
+      <UniqueIdentifier>{e1a2358f-944c-4d49-a234-4e8ad0750789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\tech">
+      <UniqueIdentifier>{74e8548e-fe52-442e-a50f-4d7646bc645e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller">
+      <UniqueIdentifier>{4e9de047-a470-41a8-9146-d3927ff65d48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\arithmetic">
+      <UniqueIdentifier>{d8818f9f-ff3f-4c34-92c0-43d10a7f8829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\arithmetic\localsearch">
+      <UniqueIdentifier>{19fbc50d-4f15-4985-9e0e-90698c8e7753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller\instruction">
+      <UniqueIdentifier>{6ac218a3-45de-4f6d-abbf-4b635af17e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller">
+      <UniqueIdentifier>{dd1ae37e-5e08-4487-bae9-58ed041a439f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\arithmetic">
+      <UniqueIdentifier>{5b184a21-0f2f-4c24-acab-ca81cb66b89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller\instruction">
+      <UniqueIdentifier>{1db5ded3-8a89-4a2d-8f3b-8711768a0984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\arithmetic\localsearch">
+      <UniqueIdentifier>{a176da22-5699-413b-9419-14141e70efca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -129,14 +210,251 @@
     <ClInclude Include="..\..\..\..\code\aps\bean\plan\WorkRes.h">
       <Filter>bean\plan</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\aps\public\service\mstr\IItemService.h">
-      <Filter>public\service\mstr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\aps\include\service\mstr\ItemService.h">
-      <Filter>Header Files\service\mstr</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\aps\public\enums\mstr\ItemType.h">
       <Filter>public\enums\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\mstr\ResCalendar.h">
+      <Filter>bean\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\mstr\Shift.h">
+      <Filter>bean\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\mstr\TransTime.h">
+      <Filter>bean\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\Inventory.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\PurchaseOrder.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\plan\WorkFdbk.h">
+      <Filter>bean\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\task\BatchElement.h">
+      <Filter>bean\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\task\BatchTask.h">
+      <Filter>bean\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\task\SingleTask.h">
+      <Filter>bean\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\task\Task.h">
+      <Filter>bean\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\task\ToolTask.h">
+      <Filter>bean\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\instruction\CancelTask.h">
+      <Filter>bean\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\instruction\Command.h">
+      <Filter>bean\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\instruction\Instruction.h">
+      <Filter>bean\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\instruction\MaterialCalculation.h">
+      <Filter>bean\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\instruction\WorkLeading.h">
+      <Filter>bean\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\system\SystemParam.h">
+      <Filter>bean\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\mstr\ResCalendarService.h">
+      <Filter>public\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\mstr\ResourceService.h">
+      <Filter>public\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\mstr\ShiftService.h">
+      <Filter>public\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\mstr\ItemService.h">
+      <Filter>public\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\instruction\CancelTaskService.h">
+      <Filter>public\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\instruction\CommandService.h">
+      <Filter>public\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\instruction\InstructionService.h">
+      <Filter>public\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\instruction\MaterialCalculationService.h">
+      <Filter>public\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\instruction\WorkLeadingService.h">
+      <Filter>public\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\order\InventoryService.h">
+      <Filter>public\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\order\OrderService.h">
+      <Filter>public\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\order\PurchaseOrderService.h">
+      <Filter>public\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\order\SaleOrderService.h">
+      <Filter>public\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\order\WorkOrderService.h">
+      <Filter>public\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\plan\WorkFdbkService.h">
+      <Filter>public\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\plan\WorkInService.h">
+      <Filter>public\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\plan\WorkOutService.h">
+      <Filter>public\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\plan\WorkRelService.h">
+      <Filter>public\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\plan\WorkResService.h">
+      <Filter>public\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\plan\WorkService.h">
+      <Filter>public\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\task\BatchElementService.h">
+      <Filter>public\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\task\BatchTaskService.h">
+      <Filter>public\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\task\SingleTaskService.h">
+      <Filter>public\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\task\TaskService.h">
+      <Filter>public\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\task\ToolTaskService.h">
+      <Filter>public\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\tech\RouteService.h">
+      <Filter>public\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\tech\RouteStepInService.h">
+      <Filter>public\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\tech\RouteStepOutService.h">
+      <Filter>public\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\tech\RouteStepResService.h">
+      <Filter>public\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\tech\RouteStepService.h">
+      <Filter>public\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\tech\StandRouteStepService.h">
+      <Filter>public\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\plan\ContinuousType.h">
+      <Filter>public\enums\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\tech\ScheduleDirection.h">
+      <Filter>public\enums\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\mstr\ItemServiceImpl.h">
+      <Filter>Header Files\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\mstr\ResCalendarServiceImpl.h">
+      <Filter>Header Files\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\mstr\ResourceServiceImpl.h">
+      <Filter>Header Files\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\mstr\ShiftServiceImpl.h">
+      <Filter>Header Files\service\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\CancelTaskServiceImpl.h">
+      <Filter>Header Files\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\CommandServiceImpl.h">
+      <Filter>Header Files\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\InstructionServiceImpl.h">
+      <Filter>Header Files\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\MaterialCalculationServiceImpl.h">
+      <Filter>Header Files\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\WorkLeadingServiceImpl.h">
+      <Filter>Header Files\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\order\InventoryServiceImpl.h">
+      <Filter>Header Files\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\order\OrderServiceImpl.h">
+      <Filter>Header Files\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\order\PurchaseOrderServiceImpl.h">
+      <Filter>Header Files\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\order\SaleOrderServiceImpl.h">
+      <Filter>Header Files\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\order\WorkOrderServiceImpl.h">
+      <Filter>Header Files\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\plan\WorkFdbkServiceImpl.h">
+      <Filter>Header Files\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\plan\WorkInServiceImpl.h">
+      <Filter>Header Files\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\plan\WorkOutServiceImpl.h">
+      <Filter>Header Files\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\plan\WorkRelServiceImpl.h">
+      <Filter>Header Files\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\plan\WorkResServiceImpl.h">
+      <Filter>Header Files\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\plan\WorkServiceImpl.h">
+      <Filter>Header Files\service\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\task\BatchElementServiceImpl.h">
+      <Filter>Header Files\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\task\BatchTaskServiceImpl.h">
+      <Filter>Header Files\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\task\SingleTaskServiceImpl.h">
+      <Filter>Header Files\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\task\TaskServiceImpl.h">
+      <Filter>Header Files\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\task\ToolTaskServiceImpl.h">
+      <Filter>Header Files\service\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\tech\RouteServiceImpl.h">
+      <Filter>Header Files\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\tech\RouteStepInServiceImpl.h">
+      <Filter>Header Files\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\tech\RouteStepOutServiceImpl.h">
+      <Filter>Header Files\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\tech\RouteStepServiceImpl.h">
+      <Filter>Header Files\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\tech\StandRouteStepServiceImpl.h">
+      <Filter>Header Files\service\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\tech\RouteStepResServiceImpl.h">
+      <Filter>Header Files\service\tech</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,11 +515,152 @@
     <ClCompile Include="..\..\..\..\code\aps\bean\plan\WorkRes.cpp">
       <Filter>bean\plan</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\aps\src\service\mstr\ItemService.cpp">
-      <Filter>Source Files\service\mstr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\aps\public\enums\mstr\ItemType.cpp">
       <Filter>public\enums\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\mstr\ResCalendar.cpp">
+      <Filter>bean\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\mstr\Shift.cpp">
+      <Filter>bean\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\mstr\TransTime.cpp">
+      <Filter>bean\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\Inventory.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\PurchaseOrder.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\plan\WorkFdbk.cpp">
+      <Filter>bean\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\task\BatchElement.cpp">
+      <Filter>bean\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\task\BatchTask.cpp">
+      <Filter>bean\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\task\SingleTask.cpp">
+      <Filter>bean\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\task\Task.cpp">
+      <Filter>bean\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\task\ToolTask.cpp">
+      <Filter>bean\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\instruction\CancelTask.cpp">
+      <Filter>bean\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\instruction\Command.cpp">
+      <Filter>bean\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\instruction\Instruction.cpp">
+      <Filter>bean\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\instruction\MaterialCalculation.cpp">
+      <Filter>bean\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\instruction\WorkLeading.cpp">
+      <Filter>bean\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\system\SystemParam.cpp">
+      <Filter>bean\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\mstr\ItemServiceImpl.cpp">
+      <Filter>Source Files\service\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\mstr\ResCalendarServiceImpl.cpp">
+      <Filter>Source Files\service\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\mstr\ResourceServiceImpl.cpp">
+      <Filter>Source Files\service\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\mstr\ShiftServiceImpl.cpp">
+      <Filter>Source Files\service\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\CancelTaskServiceImpl.cpp">
+      <Filter>Source Files\service\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\CommandServiceImpl.cpp">
+      <Filter>Source Files\service\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\InstructionServiceImpl.cpp">
+      <Filter>Source Files\service\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\MaterialCalculationServiceImpl.cpp">
+      <Filter>Source Files\service\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\WorkLeadingServiceImpl.cpp">
+      <Filter>Source Files\service\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\order\InventoryServiceImpl.cpp">
+      <Filter>Source Files\service\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\order\OrderServiceImpl.cpp">
+      <Filter>Source Files\service\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\order\PurchaseOrderServiceImpl.cpp">
+      <Filter>Source Files\service\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\order\SaleOrderServiceImpl.cpp">
+      <Filter>Source Files\service\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\order\WorkOrderServiceImpl.cpp">
+      <Filter>Source Files\service\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\plan\WorkFdbkServiceImpl.cpp">
+      <Filter>Source Files\service\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\plan\WorkInServiceImpl.cpp">
+      <Filter>Source Files\service\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\plan\WorkOutServiceImpl.cpp">
+      <Filter>Source Files\service\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\plan\WorkRelServiceImpl.cpp">
+      <Filter>Source Files\service\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\plan\WorkResServiceImpl.cpp">
+      <Filter>Source Files\service\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\plan\WorkServiceImpl.cpp">
+      <Filter>Source Files\service\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\task\BatchElementServiceImpl.cpp">
+      <Filter>Source Files\service\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\task\BatchTaskServiceImpl.cpp">
+      <Filter>Source Files\service\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\task\SingleTaskServiceImpl.cpp">
+      <Filter>Source Files\service\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\task\TaskServiceImpl.cpp">
+      <Filter>Source Files\service\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\task\ToolTaskServiceImpl.cpp">
+      <Filter>Source Files\service\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\tech\RouteServiceImpl.cpp">
+      <Filter>Source Files\service\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\tech\RouteStepInServiceImpl.cpp">
+      <Filter>Source Files\service\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\tech\RouteStepOutServiceImpl.cpp">
+      <Filter>Source Files\service\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\tech\RouteStepResServiceImpl.cpp">
+      <Filter>Source Files\service\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\tech\RouteStepServiceImpl.cpp">
+      <Filter>Source Files\service\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\tech\StandRouteStepServiceImpl.cpp">
+      <Filter>Source Files\service\tech</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

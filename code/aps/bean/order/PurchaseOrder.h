@@ -9,5 +9,4 @@ class APS_API PurchaseOrder : public Order
     DECLARE_CLASS(PurchaseOrder, Order)
 };
 } // namespace aps
-
 #endif // !APS_PurchaseOrder_INCLUDE

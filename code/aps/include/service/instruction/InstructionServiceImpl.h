@@ -3,7 +3,7 @@
 #include "../../../public/service/instruction/InstructionService.h"
 #include "service/BaseService.h"
 
-namespace as
+namespace aps
 {
 class InstructionServiceImpl : public gemini::BaseService, InstructionService
 {

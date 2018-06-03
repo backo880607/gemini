@@ -5,6 +5,9 @@
 namespace aps
 {
 class Work;
+class WorkRel;
+class Item;
+class RouteStepIn;
 class APS_API WorkIn : public gemini::EntityObject
 {
 	DECLARE_CLASS(WorkIn, gemini::EntityObject)

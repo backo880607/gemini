@@ -9,4 +9,4 @@ class APS_API WorkFdbk : public gemini::EntityObject
     DECLARE_CLASS(WorkFdbk, gemini::EntityObject)
 };
 } // namespace aps
-#endif // !APS_Worclass APS_API WorkFdbk : public gemini::EntityObject
+#endif // !APS_WorkFdbk_INCLUDE

@@ -9,7 +9,7 @@ class APS_API WorkRel : public gemini::EntityObject
 {
 	DECLARE_CLASS(WorkRel, gemini::EntityObject)
 
-	DECLARE_FIELD(ContinuousType, contType)
+	//DECLARE_FIELD(ContinuousType, contType)
 	DECLARE_FIELD(gemini::String, minTimeCSTR)
 	DECLARE_FIELD(gemini::String, maxTimeCSTR)
 };

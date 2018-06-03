@@ -12,5 +12,4 @@ class APS_API Instruction : public gemini::EntityObject
     DECLARE_ENTITY(Command, command)
 };
 } // namespace aps
-
 #endif // !APS_Instruction_INCLUDE
