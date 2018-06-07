@@ -203,7 +203,7 @@ class CORE_API Class final
 			static const Class _class(ns_class::Helper<T>::getName().c_str(), nullptr, ns_class::Helper<T>::create);
 			if (std::is_enum<T>::value)
 			{
-				const_cast<Class&>(_class)._isEnum = true;
+				const_cast<Class &>(_class)._isEnum = true;
 			}
 			return _class;
 		}
@@ -234,6 +234,7 @@ class CORE_API Class final
 	Boolean isBase(const Class &cls) const;
 
 	Boolean isEnum() const { return _isEnum; }
+	Int getEnum(const String& name) const;
 
 	operator Int() const { return _index; }
 
@@ -366,6 +367,7 @@ class PropertyRef
 {
   protected:
 	typedef const IList &const_reference;
+	typedef const IList *const_pointer;
 	typedef T value_type;
 
 	PropertyRef() {}
@@ -535,6 +537,11 @@ class CORE_API EnumHelper
 		{                                                                                                                                                                   \
 			static const gemini::Int temp = ClassType::s_index++;                                                                                                           \
 			return temp;                                                                                                                                                    \
+		}                                                                                                                                                                   \
+                                                                                                                                                                            \
+		const_pointer operator->()                                                                                                                                        \
+		{                                                                                                                                                                   \
+			return &(const_reference)(*this);                                                                                                                                              \
 		}                                                                                                                                                                   \
                                                                                                                                                                             \
 	  private:                                                                                                                                                              \

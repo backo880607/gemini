@@ -8,8 +8,6 @@ namespace io {
 class IOScheme;
 class IOProject : public EntityObject
 {
-#define MODULE_API 
-
 	DECLARE_CLASS(IOProject, EntityObject)
 
 	DECLARE_FIELD(String, name)

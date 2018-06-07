@@ -1,42 +1,43 @@
-#include "cache/Cache.h"
+#include "dao/Memory.h"
 #include "session/Subject.h"
 #include "entities/FactoryMgr.h"
 
-namespace gemini {
-	
-Cache::Cache()
+namespace gemini
 {
 
+Memory::Memory()
+{
 }
 
-Cache::~Cache()
+Memory::~Memory()
 {
-
 }
 
-Cache& Cache::current()
+Memory &Memory::current()
 {
-	return Subject::get().getSession()->get<Cache>();
+	return Subject::get().getSession()->get<Memory>();
 }
 
-EntityObject::SPtr Cache::createImpl(const Class& cls, Long id)
+EntityObject::SPtr Memory::createImpl(const Class &cls, Long id)
 {
-	EntityObject* pEntity = (EntityObject*)cls.newInstance();
+	EntityObject *pEntity = (EntityObject *)cls.newInstance();
 	EntityObject::SPtr entity;
 	entity.wrapRawPointer(pEntity);
 	FactoryMgr::instance().getFactory(cls)->createRelation(entity);
-	Collector& collector = getCollector(cls);
+	Collector &collector = getCollector(cls);
 	collector._mutex.lock();
 	collector.created.insert(std::make_pair(entity->getID(), entity));
 	collector._mutex.unlock();
 	return entity;
 }
 
-EntityObject::SPtr Cache::create(const Class& cls, Long id)
+EntityObject::SPtr Memory::create(const Class &cls, Long id)
 {
-	if (id > 0) {
+	if (id > 0)
+	{
 		EntityObject::SPtr entity = get(cls, id);
-		if (entity.valid()) {
+		if (entity.valid())
+		{
 			return entity;
 		}
 	}
@@ -44,50 +45,52 @@ EntityObject::SPtr Cache::create(const Class& cls, Long id)
 	return createImpl(cls, id);
 }
 
-EntityObject::SPtr Cache::createTemp(const Class & cls)
+EntityObject::SPtr Memory::createTemp(const Class &cls)
 {
-	EntityObject* pEntity = (EntityObject*)cls.newInstance();
+	EntityObject *pEntity = (EntityObject *)cls.newInstance();
 	EntityObject::SPtr entity;
 	entity.wrapRawPointer(pEntity);
 	return entity;
 }
 
-EntityObject::SPtr Cache::get(const Class& cls, Long id)
+EntityObject::SPtr Memory::get(const Class &cls, Long id)
 {
 	EntityObject::SPtr entity = getDao(cls)->select(id);
-	if (entity.valid()) {
+	if (entity.valid())
+	{
 		return entity;
 	}
 
-	Collector& collector = getCollector(cls);
+	Collector &collector = getCollector(cls);
 	collector._mutex.lock();
 	auto iter = collector.created.find(id);
-	if (iter != collector.created.end()) {
+	if (iter != collector.created.end())
+	{
 		entity = iter->second;
 	}
 	collector._mutex.unlock();
 	return entity;
 }
 
-std::vector<EntityObject::SPtr> Cache::getList(const Class& cls)
+std::vector<EntityObject::SPtr> Memory::getList(const Class &cls)
 {
 	std::vector<EntityObject::SPtr> result;
 	/*for (EntityObject::SPtr entity : getDao(cls)->select()) {
 		result.push_back(entity);
 	}*/
 
-	Collector& collector = getCollector(cls);
+	Collector &collector = getCollector(cls);
 	collector._mutex.lock();
-	for (auto entry : collector.created) {
+	for (auto entry : collector.created)
+	{
 		result.push_back(entry.second);
 	}
 	collector._mutex.unlock();
 	return result;
 }
 
-void Cache::sync()
+void Memory::sync()
 {
-
 }
 
-}
+} // namespace gemini

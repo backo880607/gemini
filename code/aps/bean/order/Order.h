@@ -10,7 +10,11 @@ class APS_API Order : public gemini::EntityObject
 {
 	DECLARE_CLASS(Order, gemini::EntityObject)
 
-	DECLARE_ENTITY(Item, item)
+	DECLARE_FIELD(gemini::String, code)  ///< 订单代码
+	DECLARE_FIELD(gemini::Double, qty)   ///< 数量
+	DECLARE_FIELD(gemini::DateTime, let) ///< 最晚结束时刻
+
+	DECLARE_ENTITY(Item, item) ///< 物品
 	DECLARE_VECTOR(Work, works)
 };
 } // namespace aps

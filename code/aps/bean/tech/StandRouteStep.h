@@ -9,12 +9,14 @@ class StandRouteStep : public gemini::EntityObject
 {
 	DECLARE_CLASS(StandRouteStep, gemini::EntityObject)
 
+	DECLARE_FIELD(gemini::String, code)		  ///< 标准工序代码
+	DECLARE_FIELD(gemini::String, name)		  ///< 标准工序名称
 	DECLARE_FIELD(gemini::String, splitRatio) ///< 按比例分割
 	DECLARE_FIELD(gemini::Int, splitQty)	  ///< 按数量分割
 	DECLARE_FIELD(gemini::Double, splitBatch) ///< 按批量分割
 	DECLARE_FIELD(gemini::Double, minBatch)   ///< 最小批量
 
-	DECLARE_FIELD(ScheduleDirection, direction)
+	DECLARE_FIELD(ScheduleDirection, direction) ///< 排程方向
 };
 } // namespace aps
 #endif // !APS_StandRouteStep_INCLUDE

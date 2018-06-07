@@ -289,6 +289,8 @@
     <ClCompile Include="..\..\..\..\code\aps\bean\tech\RouteStepRes.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\bean\tech\StandRouteStep.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\public\enums\mstr\ItemType.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\plan\ContinuousType.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\tech\ScheduleDirection.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\CancelTaskServiceImpl.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\CommandServiceImpl.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\InstructionServiceImpl.cpp" />

@@ -2,7 +2,7 @@
 
 namespace gemini {
 
-EntityObject::SPtr RefVector::get()
+EntityObject::SPtr RefVector::get() const
 {
 	return base_type::empty() ? nullptr : base_type::operator[](0);
 }

@@ -2,20 +2,21 @@
 #include "tools/File.h"
 #include "tools/StringUtil.h"
 
-namespace gemini {
-namespace io {
+namespace gemini
+{
+namespace io
+{
 
 DSExcelCSV::DSExcelCSV()
 {
-
+	setName("excel");
 }
 
 DSExcelCSV::~DSExcelCSV()
 {
-
 }
 
-Boolean DSExcelCSV::open(const String & connection)
+Boolean DSExcelCSV::open(const String &connection)
 {
 	_file.reset(new File(connection.c_str()));
 	return _file->open();
@@ -23,7 +24,8 @@ Boolean DSExcelCSV::open(const String & connection)
 
 void DSExcelCSV::close()
 {
-	if (_file) {
+	if (_file)
+	{
 		_file->close();
 		_file = nullptr;
 	}
@@ -31,7 +33,8 @@ void DSExcelCSV::close()
 
 Boolean DSExcelCSV::step()
 {
-	if (_file->isEnd()) {
+	if (_file->isEnd())
+	{
 		return false;
 	}
 
@@ -43,17 +46,17 @@ Boolean DSExcelCSV::step()
 
 String DSExcelCSV::getData(Int index)
 {
-	if (index >= _rowDatas.size()) {
-
+	if (index >= _rowDatas.size())
+	{
 	}
 
 	return _rowDatas[index];
 }
 
-Boolean DSExcelCSV::write(const Field * fd, const String & data)
+Boolean DSExcelCSV::write(const Field *fd, const String &data)
 {
 	return Boolean();
 }
 
-}
-}
+} // namespace io
+} // namespace gemini

@@ -78,8 +78,8 @@ public:
 		std::shared_ptr<Iterator> _iter;
 	};
 
-	virtual Boolean empty() = 0;
-	virtual Long size() = 0;
+	virtual Boolean empty() const = 0;
+	virtual Long size() const = 0;
 	virtual Iterator iterator() const = 0;
 
 	virtual Boolean operator== (const Any& rhs) const;

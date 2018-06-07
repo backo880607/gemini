@@ -11,6 +11,9 @@ public:
 	DataSource();
 	virtual ~DataSource();
 
+	const String& getName() const { return _name; }
+	void setName(const String& name) { _name = name; }
+
 	virtual Boolean open(const String& connection) = 0;
 	virtual void close() = 0;
 
@@ -20,6 +23,7 @@ public:
 	virtual Boolean write(const Field* fd, const String& data) = 0;
 
 protected:
+	String _name;
 	DataHeader _header;
 	DataConfig _config;
 };

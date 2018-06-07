@@ -9,6 +9,8 @@ class APS_API Resource : public gemini::EntityObject
 {
 	DECLARE_CLASS(Resource, gemini::EntityObject)
 
+	DECLARE_FIELD(gemini::String, code)			 ///< 资源代码
+	DECLARE_FIELD(gemini::String, name)			 ///< 资源名称
 	DECLARE_FIELD(gemini::Boolean, isBottleneck) ///< 是否为瓶颈资源
 	DECLARE_FIELD(gemini::Double, efficiency)	///< 制造效率
 	DECLARE_FIELD(gemini::String, prevBuffer)	///< 前缓冲时间

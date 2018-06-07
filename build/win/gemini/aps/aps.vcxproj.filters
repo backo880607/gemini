@@ -662,5 +662,11 @@
     <ClCompile Include="..\..\..\..\code\aps\src\service\tech\StandRouteStepServiceImpl.cpp">
       <Filter>Source Files\service\tech</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\tech\ScheduleDirection.cpp">
+      <Filter>public\enums\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\plan\ContinuousType.cpp">
+      <Filter>public\enums\plan</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

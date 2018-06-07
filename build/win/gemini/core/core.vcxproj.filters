@@ -49,12 +49,6 @@
     <Filter Include="Source Files\graph">
       <UniqueIdentifier>{a2c08230-d858-46c8-a04d-e26c079621a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\cache">
-      <UniqueIdentifier>{a2b9e29b-9c5e-4058-aa35-babdbc554138}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cache">
-      <UniqueIdentifier>{47497897-f546-4deb-9170-18a243b98a5f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="public\session">
       <UniqueIdentifier>{b066f5b4-9aee-475e-a158-b890e84524f3}</UniqueIdentifier>
     </Filter>
@@ -144,6 +138,24 @@
     </Filter>
     <Filter Include="Source Files\io">
       <UniqueIdentifier>{f4881c65-443a-4d14-b481-c8979304658e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\controller">
+      <UniqueIdentifier>{52866ab8-0780-4988-b0be-31f3abb875b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\controller">
+      <UniqueIdentifier>{2765c84c-9187-469b-9df9-05542f8e4f75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\handler">
+      <UniqueIdentifier>{779f6c2d-513c-41f4-9145-17521fde9eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\handler">
+      <UniqueIdentifier>{b7d86826-a9ea-4f24-be96-34678e7dc0d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao">
+      <UniqueIdentifier>{a2b9e29b-9c5e-4058-aa35-babdbc554138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao">
+      <UniqueIdentifier>{47497897-f546-4deb-9170-18a243b98a5f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +281,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\graph\Vertex.h">
       <Filter>Header Files\graph</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\cache\Cache.h">
-      <Filter>Header Files\cache</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\tools\DoubleUtil.h">
       <Filter>public\tools</Filter>
@@ -453,15 +462,6 @@
     <ClInclude Include="..\..\..\..\code\core\public\api\MsgTransmit.h">
       <Filter>public\api</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheDao.h">
-      <Filter>Header Files\cache</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheMgr.h">
-      <Filter>Header Files\cache</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\cache\InnerCacheDao.h">
-      <Filter>Header Files\cache</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\propagate\PropagateHelper.h">
       <Filter>Header Files\propagate</Filter>
     </ClInclude>
@@ -533,6 +533,30 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_WIN32.h">
       <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\controller\IOController.h">
+      <Filter>Header Files\io\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\DataHandler.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h">
+      <Filter>Header Files\io\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\dao\BaseDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\dao\DaoMgr.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\dao\InnerDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\dao\Memory.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\CacheUtil.h">
+      <Filter>public\tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -616,12 +640,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\graph\Vertex.cpp">
       <Filter>Source Files\graph</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\cache\Cache.cpp">
-      <Filter>Source Files\cache</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\cache\CacheMgr.cpp">
-      <Filter>Source Files\cache</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\entities\Object.cpp">
       <Filter>Source Files\entities</Filter>
@@ -785,9 +803,6 @@
     <ClCompile Include="..\..\..\..\code\core\src\api\MsgTransmit.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\cache\InnerCacheDao.cpp">
-      <Filter>Source Files\cache</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\propagate\PropagateHelper.cpp">
       <Filter>Source Files\propagate</Filter>
     </ClCompile>
@@ -856,6 +871,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\api\Process_WIN32.cpp">
       <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\controller\IOController.cpp">
+      <Filter>Source Files\io\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\handler\DateTimeHandler.cpp">
+      <Filter>Source Files\io\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\dao\DaoMgr.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\dao\InnerDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\dao\Memory.cpp">
+      <Filter>Source Files\dao</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

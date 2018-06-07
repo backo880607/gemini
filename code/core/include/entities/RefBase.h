@@ -9,7 +9,7 @@ class RefBase : public IList
 public:
 	RefBase() {}
 	virtual ~RefBase() {}
-	virtual EntityObject::SPtr get() = 0;
+	virtual EntityObject::SPtr get() const = 0;
 	virtual void add(EntityObject::SPtr entity) = 0;
 	virtual void remove(EntityObject::SPtr entity) = 0;
 	virtual void remove() = 0;

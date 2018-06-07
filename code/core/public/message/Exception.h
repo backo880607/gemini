@@ -140,10 +140,20 @@ class CORE_API IOException : public Exception
 public:
 	virtual String getName() const override { return "IOException"; }
 };
+class CORE_API NoSuchFieldException : public Exception
+{
+public:
+	virtual String getName() const override { return "NoSuchFieldException"; }
+};
 class CORE_API NoSuchMethodException : public Exception
 {
 public:
 	virtual String getName() const override { return "NoSuchMethodException"; }
+};
+class CORE_API NoSuchElementException : public Exception
+{
+public:
+	virtual String getName() const override { return "NoSuchElementException"; }
 };
 class CORE_API CircularityException : public Exception
 {
@@ -154,6 +164,16 @@ class CORE_API NoClassDefException : public Exception
 {
 public:
 	virtual String getName() const override { return "NoClassDefException"; }
+};
+class CORE_API MatchException : public Exception
+{
+public:
+	virtual String getName() const override { return "MatchException"; }
+};
+class CORE_API RegisterException : public Exception
+{
+public:
+	virtual String getName() const override { return "RegisterException"; }
 };
 class CORE_API UnknownException : public Exception
 {

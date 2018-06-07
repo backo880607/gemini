@@ -2,6 +2,7 @@
 #include "entities/IocRelation.h"
 #include "propagate/Propagate.h"
 #include "controller/BaseController.h"
+#include "message/Exception.h"
 
 namespace gemini
 {
@@ -191,6 +192,13 @@ Boolean Class::isBase(const Class &cls) const
 	return false;
 }
 
+Int Class::getEnum(const String &name) const
+{
+	THROW_IF(!isEnum(), MatchException, name, "is not enum")
+	THROW_IF(_enumHelper == nullptr, RegisterException, name, " not registed")
+	return _enumHelper->getValue(name);
+}
+
 const Class &Class::forName(const String &name)
 {
 	return geminiAfxGetClassManager().forName(name);
@@ -199,38 +207,28 @@ const Class &Class::forName(const String &name)
 const Field &Class::getField(const String &name) const
 {
 	std::map<String, const Field *>::const_iterator iter = _fields.find(name);
-	if (iter == _fields.end())
-	{
-	}
-
+	THROW_IF(iter == _fields.end(), NoSuchFieldException, name, " is not existed in class ", getName())
 	return *(iter->second);
 }
 
 void Class::addField(const Field *field)
 {
 	std::map<String, const Field *>::iterator iter = _fields.find(field->getName());
-	if (iter != _fields.end())
-	{
-	}
-
+	THROW_IF(iter != _fields.end(), RegisterException, field->getName(), " has existed in class ", getName())
 	_fields.insert(std::make_pair(field->getName(), field));
 }
 
 void Class::addMethod(const Method *method)
 {
 	std::map<String, const Method *>::iterator iter = _methods.find(method->getName());
-	if (iter != _methods.end())
-	{
-	}
+	THROW_IF(iter != _methods.end(), RegisterException, method->getName(), " has existed in class ", getName());
 	_methods.insert(std::make_pair(method->getName(), method));
 }
 
 Int EnumHelper::getValue(const String &value) const
 {
 	std::map<String, Int>::const_iterator iter = _info.find(value);
-	if (iter == _info.end()) {
-
-	}
+	THROW_IF(iter == _info.end(), NoSuchElementException, value);
 	return iter->second;
 }
 

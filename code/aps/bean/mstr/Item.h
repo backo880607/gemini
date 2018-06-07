@@ -14,6 +14,7 @@ class APS_API Item : public gemini::EntityObject
 	DECLARE_CLASS(Item, gemini::EntityObject)
 
 	DECLARE_FIELD(gemini::String, code)				 ///< 物品代码
+	DECLARE_FIELD(gemini::String, name)				 ///< 物品名称
 	DECLARE_FIELD(ItemType, type)					 ///< 物品种类
 	DECLARE_FIELD(gemini::Int, level)				 ///< 低阶码
 	DECLARE_FIELD(gemini::Boolean, isFdbkRecursion)  ///< 是否实绩递归

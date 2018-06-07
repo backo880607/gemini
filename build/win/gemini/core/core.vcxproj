@@ -157,10 +157,10 @@
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_UNIX.h" />
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_WIN32.h" />
     <ClInclude Include="..\..\..\..\code\core\include\Application.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\cache\Cache.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheDao.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\cache\CacheMgr.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\cache\InnerCacheDao.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\dao\BaseDao.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\dao\DaoMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\dao\InnerDao.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\dao\Memory.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EntityFactory.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EnumMgr.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\FactoryHelper.h" />
@@ -188,11 +188,13 @@
     <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeVector.h" />
     <ClInclude Include="..\..\..\..\code\core\include\graph\Graph.h" />
     <ClInclude Include="..\..\..\..\code\core\include\graph\Vertex.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\controller\IOController.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DataSourceMgr.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DSExcelCSV.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DSJson.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DSLocaleFile.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DSXML.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\EdgePropagate.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\Errors.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\GraphPropagate.h" />
@@ -241,6 +243,7 @@
     <ClInclude Include="..\..\..\..\code\core\public\Core.h" />
     <ClInclude Include="..\..\..\..\code\core\public\DateTime.h" />
     <ClInclude Include="..\..\..\..\code\core\public\IApplication.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\DataHandler.h" />
     <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h" />
     <ClInclude Include="..\..\..\..\code\core\public\io\DataStructure.h" />
     <ClInclude Include="..\..\..\..\code\core\public\io\ExportHelper.h" />
@@ -262,6 +265,7 @@
     <ClInclude Include="..\..\..\..\code\core\public\session\Subject.h" />
     <ClInclude Include="..\..\..\..\code\core\public\session\UsernamePasswordToken.h" />
     <ClInclude Include="..\..\..\..\code\core\public\SmartPtr.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\CacheUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\DoubleUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\File.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\Json.h" />
@@ -292,11 +296,11 @@
     <ClCompile Include="..\..\..\..\code\core\src\api\Process_UNIX.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\Process_WIN32.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Application.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\cache\Cache.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\cache\CacheMgr.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\cache\InnerCacheDao.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\controller\BaseController.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\dao\DaoMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\dao\InnerDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\dao\Memory.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\DateTime.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\EntityFactory.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryHelper.cpp" />
@@ -319,6 +323,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\graph\Edge.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\graph\Graph.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\graph\Vertex.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\controller\IOController.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DataSource.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DataSourceMgr.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DSExcelCSV.cpp" />
@@ -326,6 +331,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\io\DSLocaleFile.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DSXML.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\handler\DateTimeHandler.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\ImportHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\IOField.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\IOProject.cpp" />
