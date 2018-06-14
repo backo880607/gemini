@@ -558,6 +558,9 @@
     <ClInclude Include="..\..\..\..\code\core\public\tools\CacheUtil.h">
       <Filter>public\tools</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSStream.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -886,6 +889,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\dao\Memory.cpp">
       <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSStream.cpp">
+      <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

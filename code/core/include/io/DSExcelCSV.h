@@ -10,7 +10,7 @@ namespace io
 
 class DSExcelCSV : public DataSource
 {
-  public:
+public:
 	DSExcelCSV();
 	virtual ~DSExcelCSV();
 
@@ -22,7 +22,7 @@ class DSExcelCSV : public DataSource
 
 	virtual Boolean write(const Field *fd, const String &data) override;
 
-  private:
+private:
 	std::shared_ptr<File> _file;
 	std::vector<String> _rowDatas;
 };

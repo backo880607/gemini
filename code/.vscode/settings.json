@@ -2,5 +2,6 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "editor.formatOnType": true,
     "editor.snippetSuggestions": "top",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Segoe UI Emoji', 'NotoSansCJKsc-Regular'"
 }

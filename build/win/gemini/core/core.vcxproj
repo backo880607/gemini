@@ -193,6 +193,7 @@
     <ClInclude Include="..\..\..\..\code\core\include\io\DSExcelCSV.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DSJson.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DSLocaleFile.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\DSStream.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\DSXML.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\EdgePropagate.h" />
@@ -329,6 +330,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\io\DSExcelCSV.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DSJson.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DSLocaleFile.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\DSStream.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DSXML.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\handler\DateTimeHandler.cpp" />
