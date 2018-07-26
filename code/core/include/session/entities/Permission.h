@@ -4,13 +4,12 @@
 
 namespace gemini {
 
-class Permission : public EntityObject
-{
-	DECLARE_CLASS(Permission, EntityObject)
+class Permission : public EntityObject {
+  DECLARE_CLASS(Permission, EntityObject)
 
-	DECLARE_FIELD(String, name)
-	DECLARE_FIELD(String, url)
+  DECLARE_FIELD(String, name)
+  DECLARE_FIELD(String, url)
 };
 
-}
-#endif // GEMINI_Permission_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Permission_INCLUDE

@@ -3,71 +3,68 @@
 
 namespace gemini {
 
-ServiceMgr::ServiceMgr() 
-{
+ServiceMgr::ServiceMgr() {}
 
+ServiceMgr::~ServiceMgr() {}
+
+void ServiceMgr::init() {
+  for (std::map<ServiceAutowired*, String>::iterator iter = _autowireds.begin();
+       iter != _autowireds.end(); ++iter) {
+    const IBaseService* service = getInterface(iter->second);
+    THROW_IF(service == nullptr, Exception,
+             u8"not register service interface: ", iter->second)
+    iter->first->assign(service);
+  }
 }
 
-ServiceMgr::~ServiceMgr()
-{
-
+void ServiceMgr::registerService(const String& name,
+                                 const BaseService* service) {
+  std::map<String, Data>::iterator iter = _services.find(name);
+  THROW_IF(iter != _services.end(), Exception, u8"repeat register service: ",
+           name)
+  _services[name]._service = service;
 }
 
-void ServiceMgr::init()
-{
-	for (std::map<ServiceAutowired*, String>::iterator iter = _autowireds.begin();
-		iter != _autowireds.end(); ++iter) {
-		const IBaseService* service = getInterface(iter->second);
-		THROW_IF(service == nullptr, Exception, u8"not register service interface: ", iter->second)
-		iter->first->assign(service);
-	}
+void ServiceMgr::registerInterface(const String& name,
+                                   const IBaseService* service) {
+  std::map<String, const IBaseService*>::iterator iter = _interfaces.find(name);
+  THROW_IF(iter != _interfaces.end(), Exception,
+           u8"repeat register service interface: ", name)
+  _interfaces.insert(std::make_pair(name, service));
 }
 
-void ServiceMgr::registerService(const String& name, const BaseService* service)
-{
-	std::map<String, Data>::iterator iter = _services.find(name);
-	THROW_IF(iter != _services.end(), Exception, u8"repeat register service: ", name)
-	_services[name]._service = service;
+const BaseService* ServiceMgr::get(const String& name) const {
+  std::map<String, Data>::const_iterator iter = _services.find(name);
+  return iter != _services.end() ? iter->second._service : nullptr;
 }
 
-void ServiceMgr::registerInterface(const String& name, const IBaseService* service)
-{
-	std::map<String, const IBaseService*>::iterator iter = _interfaces.find(name);
-	THROW_IF(iter != _interfaces.end(), Exception, u8"repeat register service interface: ", name)
-	_interfaces.insert(std::make_pair(name, service));
+const IBaseService* ServiceMgr::getInterface(const String& iName) const {
+  std::map<String, const IBaseService*>::const_iterator iter =
+      _interfaces.find(iName);
+  return iter != _interfaces.end() ? iter->second : nullptr;
 }
 
-const BaseService* ServiceMgr::get(const String & name) const
-{
-	std::map<String, Data>::const_iterator iter = _services.find(name);
-	return iter != _services.end() ? iter->second._service : nullptr;
+service::callable* ServiceMgr::getCallers(const String& srvName,
+                                          const String& methodName) {
+  std::map<String, Data>::const_iterator iter = _services.find(srvName);
+  if (iter == _services.end()) {
+    return nullptr;
+  }
+
+  std::map<String, service::callable*>::const_iterator dataIter =
+      iter->second._callers.find(methodName);
+  return dataIter != iter->second._callers.end() ? dataIter->second : nullptr;
 }
 
-const IBaseService* ServiceMgr::getInterface(const String& iName) const
-{
-	std::map<String, const IBaseService*>::const_iterator iter = _interfaces.find(iName);
-	return iter != _interfaces.end() ? iter->second : nullptr;
+void ServiceMgr::registerAutowired(ServiceAutowired* service,
+                                   const String& iName) {
+  _autowireds[service] = iName;
 }
 
-service::callable * ServiceMgr::getCallers(const String & srvName, const String & methodName)
-{
-	std::map<String, Data>::const_iterator iter = _services.find(srvName);
-	if (iter == _services.end()) {
-		return nullptr;
-	}
-
-	std::map<String, service::callable*>::const_iterator dataIter = iter->second._callers.find(methodName);
-	return dataIter != iter->second._callers.end() ? dataIter->second : nullptr;
+void ServiceMgr::registerServiceMethod(const String& srvName,
+                                       const String& method,
+                                       service::callable* caller) {
+  _services[srvName]._callers.insert(std::make_pair(method, caller));
 }
 
-void ServiceMgr::registerAutowired(ServiceAutowired* service, const String& iName)
-{
-	_autowireds[service] = iName;
-}
-
-void ServiceMgr::registerServiceMethod(const String & srvName, const String & method, service::callable * caller)
-{
-	_services[srvName]._callers.insert(std::make_pair(method, caller));
-}
-
-}
+}  // namespace gemini

@@ -4,42 +4,58 @@
 
 namespace gemini {
 
-class CORE_API DoubleUtil final
-{
-	DoubleUtil() = delete;
-	DoubleUtil(const DoubleUtil&) = delete;
-	DoubleUtil& operator=(const DoubleUtil&) = delete;
-public:
-	static void setPrecision(Double precision);
+class CORE_API DoubleUtil final {
+  DoubleUtil() = delete;
+  DoubleUtil(const DoubleUtil&) = delete;
+  DoubleUtil& operator=(const DoubleUtil&) = delete;
 
-	static Boolean isZero(Double value);
-	static Boolean isZero(Double value, Double precision);
+ public:
+  static void setPrecision(Double precision);
 
-	static Boolean equal(Double lhs, Double rhs);
-	static Boolean equal(Double lhs, Double rhs, Double precision);
-	static Boolean notEqual(Double lhs, Double rhs) { return !DoubleUtil::equal(lhs, rhs); }
-	static Boolean notEqual(Double lhs, Double rhs, Double precision) { return !DoubleUtil::equal(lhs, rhs, precision); }
-	static Boolean less(Double lhs, Double rhs);
-	static Boolean less(Double lhs, Double rhs, Double precision);
-	static Boolean lessEqual(Double lhs, Double rhs) { return !DoubleUtil::less(rhs, lhs); }
-	static Boolean lessEqual(Double lhs, Double rhs, Double precision) { return !DoubleUtil::less(rhs, lhs, precision); }
-	static Boolean greater(Double lhs, Double rhs) { return DoubleUtil::less(rhs, lhs); }
-	static Boolean greater(Double lhs, Double rhs, Double precision) { return DoubleUtil::less(rhs, lhs, precision); }
-	static Boolean greaterEqual(Double lhs, Double rhs) { return !DoubleUtil::less(lhs, rhs); }
-	static Boolean greaterEqual(Double lhs, Double rhs, Double precision) { return !DoubleUtil::less(lhs, rhs, precision); }
+  static Boolean isZero(Double value);
+  static Boolean isZero(Double value, Double precision);
 
-	//////////////////////////////////////////////////////////////////////////
-	//  ÒÔÏÂ²¿·ÖÓÃµ½µÄË÷Òı±íÊ¾£ºĞ¡ÊıµãÎªË÷Òı0£¬Ğ¡Êı²¿·ÖË÷ÒıÎª¸ºÖµ£¬ÕûÊı²¿·ÖË÷ÒıÎªÕıÖµ
+  static Boolean equal(Double lhs, Double rhs);
+  static Boolean equal(Double lhs, Double rhs, Double precision);
+  static Boolean notEqual(Double lhs, Double rhs) {
+    return !DoubleUtil::equal(lhs, rhs);
+  }
+  static Boolean notEqual(Double lhs, Double rhs, Double precision) {
+    return !DoubleUtil::equal(lhs, rhs, precision);
+  }
+  static Boolean less(Double lhs, Double rhs);
+  static Boolean less(Double lhs, Double rhs, Double precision);
+  static Boolean lessEqual(Double lhs, Double rhs) {
+    return !DoubleUtil::less(rhs, lhs);
+  }
+  static Boolean lessEqual(Double lhs, Double rhs, Double precision) {
+    return !DoubleUtil::less(rhs, lhs, precision);
+  }
+  static Boolean greater(Double lhs, Double rhs) {
+    return DoubleUtil::less(rhs, lhs);
+  }
+  static Boolean greater(Double lhs, Double rhs, Double precision) {
+    return DoubleUtil::less(rhs, lhs, precision);
+  }
+  static Boolean greaterEqual(Double lhs, Double rhs) {
+    return !DoubleUtil::less(lhs, rhs);
+  }
+  static Boolean greaterEqual(Double lhs, Double rhs, Double precision) {
+    return !DoubleUtil::less(lhs, rhs, precision);
+  }
 
-	// ½«¸¡µãÊı·Ö¸î³ÉÁ½²¿·Ö£¬º¯Êı·µ»ØÇ°²¿·Ö£¬fraction·µ»Øºó²¿·Ö
-	static Double split(Double& fraction, Int index = 0);
-	// ÉáµôindexÒÔºóµÄÖµ£¬Ç°Ò»Î»¼Ó1
-	static Double ceil(Double value, Int index = 0);
-	// ÉáµôindexÒÔºóµÄÖµ
-	static Double floor(Double value, Int index = 0);
-	// ¶ÔindexºóµÄÖµËÄÉáÎåÈë
-	static Double round(Double value, Int index = 0);
+  //////////////////////////////////////////////////////////////////////////
+  //  ä»¥ä¸‹éƒ¨åˆ†ç”¨åˆ°çš„ç´¢å¼•è¡¨ç¤ºï¼šå°æ•°ç‚¹ä¸ºç´¢å¼•0ï¼Œå°æ•°éƒ¨åˆ†ç´¢å¼•ä¸ºè´Ÿå€¼ï¼Œæ•´æ•°éƒ¨åˆ†ç´¢å¼•ä¸ºæ­£å€¼
+
+  // å°†æµ®ç‚¹æ•°åˆ†å‰²æˆä¸¤éƒ¨åˆ†ï¼Œå‡½æ•°è¿”å›å‰éƒ¨åˆ†ï¼Œfractionè¿”å›åéƒ¨åˆ†
+  static Double split(Double& fraction, Int index = 0);
+  // èˆæ‰indexä»¥åçš„å€¼ï¼Œå‰ä¸€ä½åŠ 1
+  static Double ceil(Double value, Int index = 0);
+  // èˆæ‰indexä»¥åçš„å€¼
+  static Double floor(Double value, Int index = 0);
+  // å¯¹indexåçš„å€¼å››èˆäº”å…¥
+  static Double round(Double value, Int index = 0);
 };
 
-}
-#endif // GEMINI_DoubleUtil_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_DoubleUtil_INCLUDE

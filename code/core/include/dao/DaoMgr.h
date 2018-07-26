@@ -2,30 +2,30 @@
 #define GEMINI_DaoMgr_INCLUDE
 #include "BaseDao.h"
 
-namespace gemini
-{
+namespace gemini {
 
-class DaoMgr final : public noncopyable
-{
-	typedef std::shared_ptr<BaseDao> dao_type;
+class DaoMgr final : public noncopyable {
+ public:
+  typedef std::shared_ptr<BaseDao> dao_type;
+  DaoMgr();
+  ~DaoMgr();
 
-  public:
-	DaoMgr();
-	~DaoMgr();
+  static DaoMgr &instance() {
+    static DaoMgr mgr;
+    return mgr;
+  }
 
-	static DaoMgr &instance()
-	{
-		static DaoMgr mgr;
-		return mgr;
-	}
+  void init();
 
-	void init();
+  dao_type getDao(const Class &cls);
 
-	dao_type getDao(const Class &cls);
+ private:
+  std::vector<dao_type> &getDaoes() { return _daoes; }
 
-  private:
-	std::vector<dao_type> _daoes;
+ private:
+  friend class Memory;
+  std::vector<dao_type> _daoes;
 };
 
-} // namespace gemini
-#endif // !GEMINI_DaoMgr_INCLUDE
+}  // namespace gemini
+#endif  // !GEMINI_DaoMgr_INCLUDE

@@ -3,9 +3,7 @@
 
 namespace gemini {
 
-class EnumMgr {
-};
+class EnumMgr {};
 
-}
-
-#endif // GEMINI_EnumMgr_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_EnumMgr_INCLUDE

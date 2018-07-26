@@ -1,12 +1,9 @@
 #pragma once
-#include "IRoleService.h"
 #include "../../../public/service/BaseService.h"
+#include "IRoleService.h"
 
 namespace gemini {
 
-class RoleService : public BaseService, IRoleService
-{
+class RoleService : public BaseService, IRoleService {};
 
-};
-
-}
+}  // namespace gemini

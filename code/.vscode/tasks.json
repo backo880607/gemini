@@ -3,31 +3,6 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "Compile gemini",
-            "type": "shell",
-            "command": "${workspaceRoot}/build.bat",
-            // "args": [
-            //     "${file}",
-            //     "-o",
-            //     "${fileDirname}/${fileBasenameNoExtension}.exe",
-            //     "-g",
-            //     "-Wall",
-            //     "-static-libgcc",
-            //     "-fcolor-diagnostics",
-            //     "--target=x86_64-w64-mingw", // 默认target为msvc，不加这一条就会找不到头文件
-            //     "-std=c++17" // C语言最新标准为c11，或根据自己的需要进行修改
-            // ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always", // 在“终端”中显示编译信息的策略，可以为always，silent，never。具体参见VSC的文档
-                "focus": false, // 设为true后可以使执行task时焦点聚集在终端，但对编译c和c++来说，设为true没有意义
-                "panel": "shared" // 不同的文件的编译信息共享一个终端面板
-            }
-        }
+        {}
     ]
 }

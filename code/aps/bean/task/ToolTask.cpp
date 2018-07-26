@@ -1,6 +1,5 @@
 #include "ToolTask.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(ToolTask, Task)
-} // namespace aps
+}  // namespace aps

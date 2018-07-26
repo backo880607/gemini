@@ -1,5 +1,3 @@
 #include "session/service/RoleService.h"
 
-namespace gemini {
-
-}
+namespace gemini {}

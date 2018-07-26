@@ -4,12 +4,11 @@
 
 namespace gemini {
 
-class CORE_API UsernamePasswordToken : public AuthenticationToken
-{
-public:
-	UsernamePasswordToken(const String& name, const String& password);
-	~UsernamePasswordToken();
+class CORE_API UsernamePasswordToken : public AuthenticationToken {
+ public:
+  UsernamePasswordToken(const String& name, const String& password);
+  ~UsernamePasswordToken();
 };
 
-}
-#endif // GEMINI_UsernamePasswordToken_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_UsernamePasswordToken_INCLUDE

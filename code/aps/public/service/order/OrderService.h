@@ -2,11 +2,18 @@
 #define APS_OrderService_INCLUDE
 #include "service/IBaseService.h"
 
-namespace aps
-{
-class OrderService : public gemini::IBaseService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_OrderService_INCLUDE
+class Order;
+class Work;
+class OrderService : public gemini::IBaseService {
+ public:
+  virtual gemini::Boolean isActive(
+      const gemini::SmartPtr<Order>& order) const = 0;
+
+  virtual gemini::SmartPtr<Work> createWork(
+      const gemini::SmartPtr<Order>& order) const = 0;
+};
+
+}  // namespace aps
+#endif  // !APS_OrderService_INCLUDE

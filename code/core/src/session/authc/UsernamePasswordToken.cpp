@@ -2,15 +2,10 @@
 
 namespace gemini {
 
-UsernamePasswordToken::UsernamePasswordToken(const String& name, const String& password)
-	: AuthenticationToken(name, password)
-{
+UsernamePasswordToken::UsernamePasswordToken(const String& name,
+                                             const String& password)
+    : AuthenticationToken(name, password) {}
 
-}
+UsernamePasswordToken::~UsernamePasswordToken() {}
 
-UsernamePasswordToken::~UsernamePasswordToken()
-{
-
-}
-
-}
+}  // namespace gemini

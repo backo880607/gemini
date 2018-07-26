@@ -8,27 +8,29 @@
 
 namespace gemini {
 
-class ProcessImpl
-{
-	typedef std::vector<String> Args;
-public:
-	ProcessImpl(HANDLE _hProcess, Long pid);
-	~ProcessImpl();
+class ProcessImpl {
+  typedef std::vector<String> Args;
 
-	Long id() const;
-	HANDLE process() const;
-	Boolean running() const;
-	Int wait() const;
-	void killImpl();
+ public:
+  ProcessImpl(HANDLE _hProcess, Long pid);
+  ~ProcessImpl();
 
-	static Long currentId();
-	static std::shared_ptr<ProcessImpl> launch(const String& command, const Args& args);
-private:
-	HANDLE _hProcess;
-	Long _pid;
+  Long id() const;
+  HANDLE process() const;
+  Boolean running() const;
+  Int wait() const;
+  void killImpl();
+
+  static Long currentId();
+  static std::shared_ptr<ProcessImpl> launch(const String& command,
+                                             const Args& args);
+
+ private:
+  HANDLE _hProcess;
+  Long _pid;
 };
 
-}
+}  // namespace gemini
 #endif
 
-#endif // GEMINI_Process_WIN32_INCLUDE
+#endif  // GEMINI_Process_WIN32_INCLUDE

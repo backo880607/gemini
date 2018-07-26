@@ -1,6 +1,5 @@
 #include "WorkFdbk.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(WorkFdbk, gemini::EntityObject)
-} // namespace aps
+}  // namespace aps

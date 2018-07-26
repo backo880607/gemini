@@ -3,11 +3,9 @@
 #include "../../../public/service/plan/WorkFdbkService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class WorkFdbkServiceImpl : public gemini::BaseService, WorkFdbkService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_WorkFdbkServiceImpl_INCLUDE
+class WorkFdbkServiceImpl : public gemini::BaseService, WorkFdbkService {};
+
+}  // namespace aps
+#endif  // !APS_WorkFdbkServiceImpl_INCLUDE

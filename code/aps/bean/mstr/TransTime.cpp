@@ -1,6 +1,5 @@
 #include "TransTime.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(TransTime, gemini::EntityObject)
-} // namespace aps
+}  // namespace aps

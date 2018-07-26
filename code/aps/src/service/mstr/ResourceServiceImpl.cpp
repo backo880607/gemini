@@ -1,7 +1,4 @@
-#include "../../../include/service/mstr/ResourceServiceImpl.h"
 #include "../../../bean/mstr/Resource.h"
+#include "../../../include/service/mstr/ResourceServiceImpl.h"
 
-namespace aps
-{
-
-} // namespace aps
+namespace aps {}  // namespace aps

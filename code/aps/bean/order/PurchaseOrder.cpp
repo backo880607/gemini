@@ -1,6 +1,5 @@
 #include "PurchaseOrder.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(PurchaseOrder, Order)
-} // namespace aps
+}  // namespace aps

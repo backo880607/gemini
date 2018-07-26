@@ -22,7 +22,7 @@
     <ProjectGuid>{8053911D-60B3-40B0-AF48-F08CA5C517E7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>core</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -47,9 +47,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -137,7 +137,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>CORE_EXPORTS;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\..\third_party\glog\src\windows;..\..\..\..\third_party\breakpad;..\..\..\..\code\core\include;..\..\..\..\code\core\public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\third_party\glog\src\windows;..\..\..\..\third_party\breakpad;..\..\..\..\code\core\include;..\..\..\..\code\core\public;$(UniversalCRT_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -189,13 +189,17 @@
     <ClInclude Include="..\..\..\..\code\core\include\graph\Graph.h" />
     <ClInclude Include="..\..\..\..\code\core\include\graph\Vertex.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\controller\IOController.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\DataSourceMgr.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSExcelCSV.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSJson.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSLocaleFile.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSStream.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSXML.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DataSourceMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSExcelCSV.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSJson.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSLocaleFile.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSStream.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSXML.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\HandlerHelper.h" />
     <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\IOField.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\IOProject.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\io\IOScheme.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\EdgePropagate.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\Errors.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\GraphPropagate.h" />
@@ -244,17 +248,15 @@
     <ClInclude Include="..\..\..\..\code\core\public\Core.h" />
     <ClInclude Include="..\..\..\..\code\core\public\DateTime.h" />
     <ClInclude Include="..\..\..\..\code\core\public\IApplication.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\DataHandler.h" />
     <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\DataStructure.h" />
     <ClInclude Include="..\..\..\..\code\core\public\io\ExportHelper.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\Handler.h" />
     <ClInclude Include="..\..\..\..\code\core\public\io\ImportHelper.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOField.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOProject.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOScheme.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOHelper.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Exception.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Log.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Message.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\MultiEnum.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Object.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Platform.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Reflect.h" />
@@ -268,9 +270,14 @@
     <ClInclude Include="..\..\..\..\code\core\public\SmartPtr.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\CacheUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\DoubleUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\ExpressionUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\File.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\Json.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\StringUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\ExpressionCallable.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgDef.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgList.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\XML.h" />
     <ClInclude Include="..\..\..\..\third_party\DataCompress\deflate.h" />
     <ClInclude Include="..\..\..\..\third_party\DataCompress\infblock.h" />
@@ -326,21 +333,24 @@
     <ClCompile Include="..\..\..\..\code\core\src\graph\Vertex.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\controller\IOController.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\DataSource.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\DataSourceMgr.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSExcelCSV.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSJson.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSLocaleFile.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSStream.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSXML.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DataSourceMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSExcelCSV.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSJson.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSLocaleFile.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSStream.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSXML.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\HandlerHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\handler\DateTimeHandler.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\ImportHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\IOField.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\IOProject.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\io\IOScheme.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Exception.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Log.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Message.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\MultiEnum.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Platform_UNIX.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Platform_WIN32.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\propagate\EdgePropagate.cpp" />
@@ -376,6 +386,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\session\Session.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\session\Subject.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\DoubleUtil.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\ExpressionUtil.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\File.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\Json.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\LocaleUtil.cpp" />

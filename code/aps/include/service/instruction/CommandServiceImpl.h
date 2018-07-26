@@ -3,13 +3,11 @@
 #include "../../../public/service/instruction/CommandService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class CommandServiceImpl : public gemini::BaseService, CommandService
-{
-  public:
-    SERVICE_METHOD(Command, execute)
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_CommandServiceImpl_INCLUDE
+class CommandServiceImpl : public gemini::BaseService, CommandService {
+  SERVICE_METHOD(Command, execute)
+};
+
+}  // namespace aps
+#endif  // !APS_CommandServiceImpl_INCLUDE

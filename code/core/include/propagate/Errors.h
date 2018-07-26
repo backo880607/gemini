@@ -4,11 +4,10 @@
 
 namespace gemini {
 
-class CycleError : public log_info
-{
-public:
-	virtual String getName() override { return u8"Cycle"; }
+class CycleError : public log_info {
+ public:
+  virtual String getName() override { return u8"Cycle"; }
 };
 
-}
-#endif // GEMINI_PROPAGATE_Errors_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_PROPAGATE_Errors_INCLUDE

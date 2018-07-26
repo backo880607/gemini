@@ -4,122 +4,130 @@
 
 #include <fstream>
 
-namespace boost { namespace filesystem { class path; } }
+namespace boost {
+namespace filesystem {
+class path;
+}
+}  // namespace boost
 
 namespace gemini {
 
-class CORE_API FilePath
-{
-private:
-	typedef std::shared_ptr<boost::filesystem::path> path_type;
+class CORE_API FilePath {
+ private:
+  typedef std::shared_ptr<boost::filesystem::path> path_type;
 
-	FilePath(const boost::filesystem::path& path);
-public:
-	FilePath(const Char* str);
-	FilePath(const FilePath& path);
-	FilePath& operator= (const FilePath& path);
-	~FilePath();
+  FilePath(const boost::filesystem::path& path);
 
-	String string() const;
-	void reset(const String& path);
+ public:
+  FilePath(const Char* str);
+  FilePath(const FilePath& path);
+  FilePath& operator=(const FilePath& path);
+  ~FilePath();
 
-	Boolean valid() const;
+  String string() const;
+  void reset(const String& path);
 
-	FilePath& append(const Char* name);
+  Boolean valid() const;
 
-	String getDirectory() const;
-	String getName() const;
-	String getExtension() const;
-	String getNameNotExtension() const;
+  FilePath& append(const Char* name);
 
-	Boolean isAbsolute() const;
-	Boolean isRelative() const;
-	Boolean isFile() const;
-	Boolean isDirectory() const;
-	Boolean isExist() const;
+  String getDirectory() const;
+  String getName() const;
+  String getExtension() const;
+  String getNameNotExtension() const;
 
-	FilePath parent() const;
+  Boolean isAbsolute() const;
+  Boolean isRelative() const;
+  Boolean isFile() const;
+  Boolean isDirectory() const;
+  Boolean isExist() const;
 
-	std::vector<FilePath> getChildren() const;
-	std::vector<FilePath> getChildrenRecursion() const;
+  FilePath parent() const;
 
-	Boolean createDirectories();
-	Boolean remove();
+  std::vector<FilePath> getChildren() const;
+  std::vector<FilePath> getChildrenRecursion() const;
 
-	static FilePath currentPath();
-	static void currentPath(const Char* str);
-	static FilePath homePath();
-	static FilePath tempDirectoryPath();
-	static const Char* separator();
+  Boolean createDirectories();
+  Boolean remove();
 
-private:
-	const boost::filesystem::path& path() const { return *_path; }
+  static FilePath currentPath();
+  static void currentPath(const Char* str);
+  static FilePath homePath();
+  static FilePath tempDirectoryPath();
+  static const Char* separator();
 
-private:
-	static String s_currentPath;
-	friend class File;
-	path_type _path;
+ private:
+  const boost::filesystem::path& path() const { return *_path; }
+
+ private:
+  static String s_currentPath;
+  friend class File;
+  path_type _path;
 };
 
-class CORE_API File
-{
-	explicit File(const File& rhs) : _path(rhs.getFilePath()) {}
-	File& operator= (const File& rhs) { return *this; }
-public:
-	typedef Long pos_type;
+class CORE_API File {
+  explicit File(const File& rhs) : _path(rhs.getFilePath()) {}
+  File& operator=(const File& rhs) { return *this; }
 
-public:
-	File(const Char* path);
-	explicit File(const FilePath& path);
-	~File(void);
+ public:
+  typedef Long pos_type;
 
-	const FilePath& getFilePath() const { return _path; }
-	void setFilePath(const String& path);
+ public:
+  File(const Char* path);
+  explicit File(const FilePath& path);
+  ~File(void);
 
-	Long getSize() const;
-	File& setSize(Long size);
+  const FilePath& getFilePath() const { return _path; }
+  void setFilePath(const String& path);
 
-	Boolean remove() { return _path.remove(); }
-	void removeTo(const String& path);
-	void copyTo(const String& path);
+  Long getSize() const;
+  File& setSize(Long size);
 
-	Boolean open(std::ios_base::openmode flag = std::ios_base::in | std::ios_base::out | std::ios_base::trunc);
-	void close(Boolean bFlush = true);
-	Boolean isOpen() const;
-	void flush();
+  Boolean remove() { return _path.remove(); }
+  void removeTo(const String& path);
+  void copyTo(const String& path);
 
-	File& write(const Char* str, Boolean bFlush = false) {
-		return write(str, strlen(str), bFlush);
-	}
-	File& write(const Char* str, std::streamsize count, Boolean bFlush = false);
-	File& write(const String& str, Boolean bFlush = false) {
-		return write(str.c_str(), str.size(), bFlush);
-	}
-	template <typename T>
-	File& write(T val, Boolean bFlush = false) {
-		_file << val;
-		if (bFlush) flush();
-		return *this;
-	}
+  Boolean open(std::ios_base::openmode flag = std::ios_base::in |
+                                              std::ios_base::out |
+                                              std::ios_base::trunc);
+  void close(Boolean bFlush = true);
+  Boolean isOpen() const;
+  void flush();
 
-	String readLine();
-	template <typename T>
-	void read(T& val) { _file >> val; }
-	void read(Char* pBuf, Long size);
+  File& write(const Char* str, Boolean bFlush = false) {
+    return write(str, strlen(str), bFlush);
+  }
+  File& write(const Char* str, std::streamsize count, Boolean bFlush = false);
+  File& write(const String& str, Boolean bFlush = false) {
+    return write(str.c_str(), str.size(), bFlush);
+  }
+  template <typename T>
+  File& write(T val, Boolean bFlush = false) {
+    _file << val;
+    if (bFlush) flush();
+    return *this;
+  }
 
-	Boolean isEnd() const;
+  String readLine();
+  template <typename T>
+  void read(T& val) {
+    _file >> val;
+  }
+  void read(Char* pBuf, Long size);
 
-	pos_type getWritePos();
-	void setWritePos(pos_type pos);
-	pos_type getReadPos();
-	void setReadPos(pos_type pos);
+  Boolean isEnd() const;
 
-	void write(File& rhs);
+  pos_type getWritePos();
+  void setWritePos(pos_type pos);
+  pos_type getReadPos();
+  void setReadPos(pos_type pos);
 
-protected:
-	FilePath _path;
-	std::fstream _file;
+  void write(File& rhs);
+
+ protected:
+  FilePath _path;
+  std::fstream _file;
 };
 
-}
-#endif // GEMINI_File_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_File_INCLUDE

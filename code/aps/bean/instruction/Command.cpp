@@ -1,6 +1,5 @@
 #include "Command.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(Command, gemini::EntityObject)
-} // namespace aps
+}  // namespace aps

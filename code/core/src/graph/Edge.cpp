@@ -1,7 +1,5 @@
 #include "graph/Edge.h"
 
 namespace gemini {
-namespace graph {
-
-}
-}
+namespace graph {}
+}  // namespace gemini

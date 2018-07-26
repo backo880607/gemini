@@ -5,39 +5,41 @@
 
 namespace gemini {
 
-class VertexPropagate final : public graph::Vertex
-{
-public:
-	struct Comparator {
-		inline Boolean operator() (const VertexPropagate* const& lhs, const VertexPropagate* const& rhs) const {
-			if (lhs->_entity == rhs->_entity) {
-				return lhs->_data->id < rhs->_data->id;
-			}
-			return lhs->_entity < rhs->_entity;
-		}
-	};
-	typedef std::set<VertexPropagate*, VertexPropagate::Comparator> colls;
-public:
-	VertexPropagate();
-	~VertexPropagate();
+class VertexPropagate final : public graph::Vertex {
+ public:
+  struct Comparator {
+    inline Boolean operator()(const VertexPropagate *const &lhs,
+                              const VertexPropagate *const &rhs) const {
+      if (lhs->_entity == rhs->_entity) {
+        return lhs->_data->id < rhs->_data->id;
+      }
+      return lhs->_entity < rhs->_entity;
+    }
+  };
+  typedef std::set<VertexPropagate *, VertexPropagate::Comparator> colls;
 
-	virtual graph::Graph* createGraph();
+ public:
+  VertexPropagate();
+  ~VertexPropagate();
 
-	const Propagate::Data* getData() const { return _data; }
+  virtual graph::Graph *createGraph();
 
-	const EntityObject::SPtr& getEntityObject() const { return _entity; }
+  const Propagate::Data *getData() const { return _data; }
 
-	VertexPropagate* createVertex(const EntityObject::SPtr& entity, const Propagate::Data* data);
-	VertexPropagate* getVertex(const EntityObject::SPtr& entity, const Propagate::Data* data);
+  const EntityObject::SPtr &getEntityObject() const { return _entity; }
 
-public:
-	Short _visited;
+  VertexPropagate *createVertex(const EntityObject::SPtr &entity,
+                                const Propagate::Data *data);
+  VertexPropagate *getVertex(const EntityObject::SPtr &entity,
+                             const Propagate::Data *data);
 
-private:
-	EntityObject::SPtr _entity;
-	const Propagate::Data* _data;
+ public:
+  Short _visited;
+
+ private:
+  EntityObject::SPtr _entity;
+  const Propagate::Data *_data;
 };
 
-}
-
-#endif
+}  // namespace gemini
+#endif  // !GEMINI_VertexPropagate_INCLUDE

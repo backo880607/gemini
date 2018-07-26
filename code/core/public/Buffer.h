@@ -3,53 +3,52 @@
 #include "Common.h"
 
 namespace gemini {
-	
+
 template <typename T>
-class Buffer
-{
-	Buffer() = delete;
-	Buffer(const Buffer&) = delete;
-	Buffer& operator= (const Buffer&) = delete;
-public:
-	typedef T					value_type;
-	typedef value_type&			reference;
-	typedef const value_type&	const_reference;
-	typedef std::size_t			size_type;
-	typedef value_type*			pointer;
-	typedef const pointer		const_pointer;
+class Buffer {
+  Buffer() = delete;
+  Buffer(const Buffer &) = delete;
+  Buffer &operator=(const Buffer &) = delete;
 
-	Buffer(size_type size) : _pt(new value_type[size]), _size(size) { reset(); }
-	~Buffer() { delete[] _pt; }
+ public:
+  typedef T value_type;
+  typedef value_type &reference;
+  typedef const value_type &const_reference;
+  typedef std::size_t size_type;
+  typedef value_type *pointer;
+  typedef const pointer const_pointer;
 
-	void resize(size_type newSize, bool bKeep = true) {
-		pointer ptr = new value_type[newSize];
-		if (bKeep) {
-			size_type n = newSize > _size ? _size : newSize;
-			std::memcpy(ptr, _pt, sizeof(value_type) * n);
-		}
+  Buffer(size_type size) : _pt(new value_type[size]), _size(size) { reset(); }
+  ~Buffer() { delete[] _pt; }
 
-		delete[] _pt;
-		_pt = ptr;
-		_size = newSize;
-	}
+  void resize(size_type newSize, bool bKeep = true) {
+    pointer ptr = new value_type[newSize];
+    if (bKeep) {
+      size_type n = newSize > _size ? _size : newSize;
+      std::memcpy(ptr, _pt, sizeof(value_type) * n);
+    }
 
-	void reset()
-	{ std::memset(_pt, 0, sizeof(value_type) * _size); }
+    delete[] _pt;
+    _pt = ptr;
+    _size = newSize;
+  }
 
-	size_type size() const { return _size; }
+  void reset() { std::memset(_pt, 0, sizeof(value_type) * _size); }
 
-	pointer begin() { return _pt; }
-	const_pointer begin() const { return _pt; }
-	pointer end() { return _pt + _size; }
-	const_pointer end() const { return _pt + _size; }
+  size_type size() const { return _size; }
 
-	reference operator[] (size_type index) { return _pt[index]; }
-	const_reference operator[] (size_type index) const { return _pt[index]; }
-	
-private:
-	pointer   _pt;
-	size_type _size;
+  pointer begin() { return _pt; }
+  const_pointer begin() const { return _pt; }
+  pointer end() { return _pt + _size; }
+  const_pointer end() const { return _pt + _size; }
+
+  reference operator[](size_type index) { return _pt[index]; }
+  const_reference operator[](size_type index) const { return _pt[index]; }
+
+ private:
+  pointer _pt;
+  size_type _size;
 };
 
-}
-#endif // GEMINI_Buffer_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Buffer_INCLUDE

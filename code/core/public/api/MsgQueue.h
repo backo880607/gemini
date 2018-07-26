@@ -2,58 +2,57 @@
 #define GEMINI_MsgQueue_INCLUDE
 #include "MsgData.h"
 
-#include <queue>
 #include <mutex>
+#include <queue>
 
 namespace gemini {
 
-class MsgQueue : public noncopyable
-{
-	typedef std::queue<MsgData> value_type;
-	typedef std::mutex	mutex_type;
+class MsgQueue : public noncopyable {
+  typedef std::queue<MsgData> value_type;
+  typedef std::mutex mutex_type;
 
-public:
-	MsgQueue();
-	~MsgQueue();
+ public:
+  MsgQueue();
+  ~MsgQueue();
 
-	/**
-	* @brief »ñµÃÏûÏ¢¶ÓÁĞµÄÏûÏ¢ÀàĞÍ
-	*
-	* @return ·µ»ØÏûÏ¢ÀàĞÍ£¬²Î¼ûMsgTypeÃ¶¾ÙÀàĞÍ
-	*
-	* @see MsgType
-	*
-	*/
-	MsgData::T_TYPE getMsgType() const { return _msgType; }
+  /**
+   * @brief è·å¾—æ¶ˆæ¯é˜Ÿåˆ—çš„æ¶ˆæ¯ç±»å‹
+   *
+   * @return è¿”å›æ¶ˆæ¯ç±»å‹ï¼Œå‚è§MsgTypeæšä¸¾ç±»å‹
+   *
+   * @see MsgType
+   *
+   */
+  MsgData::T_TYPE getMsgType() const { return _msgType; }
 
-	/**
-	* @brief ÏòÏûÏ¢¶ÓÁĞ´æÈëÏûÏ¢
-	* @param [in] msg Ğè´æÈëµÄÏûÏ¢
-	*
-	*/
-	void push(const MsgData& msg);
+  /**
+   * @brief å‘æ¶ˆæ¯é˜Ÿåˆ—å­˜å…¥æ¶ˆæ¯
+   * @param [in] msg éœ€å­˜å…¥çš„æ¶ˆæ¯
+   *
+   */
+  void push(const MsgData& msg);
 
-	/**
-	* @brief ´ÓÏûÏ¢¶ÓÁĞÖĞ»ñÈ¡ÏûÏ¢
-	* @param [in] bPop ´ÓÏûÏ¢¶ÓÁĞÖĞµ¯³öÏûÏ¢±êÊ¾
-	*
-	* @return ·µ»ØÏûÏ¢¶ÓÁĞÖĞ×îÔçµÄÏûÏ¢
-	* @retval XQS_NULL ÏûÏ¢¶ÓÁĞÖĞÃ»ÓĞÏûÏ¢
-	* @retval XQSMsgData::SPtr  ×îÔçµÄÏûÏ¢
-	*/
-	MsgData get(Boolean bPop = false);
+  /**
+   * @brief ä»æ¶ˆæ¯é˜Ÿåˆ—ä¸­è·å–æ¶ˆæ¯
+   * @param [in] bPop ä»æ¶ˆæ¯é˜Ÿåˆ—ä¸­å¼¹å‡ºæ¶ˆæ¯æ ‡ç¤º
+   *
+   * @return è¿”å›æ¶ˆæ¯é˜Ÿåˆ—ä¸­æœ€æ—©çš„æ¶ˆæ¯
+   * @retval XQS_NULL æ¶ˆæ¯é˜Ÿåˆ—ä¸­æ²¡æœ‰æ¶ˆæ¯
+   * @retval XQSMsgData::SPtr  æœ€æ—©çš„æ¶ˆæ¯
+   */
+  MsgData get(Boolean bPop = false);
 
-	/**
-	* @brief µ¯³öÏûÏ¢¶ÓÁĞÖĞ×îÔçµÄÏûÏ¢
-	*/
-	void pop();
+  /**
+   * @brief å¼¹å‡ºæ¶ˆæ¯é˜Ÿåˆ—ä¸­æœ€æ—©çš„æ¶ˆæ¯
+   */
+  void pop();
 
-private:
-	MsgData::T_TYPE _msgType;		///< ÏûÏ¢ÀàĞÍ
-	value_type _value;		///< ÏûÏ¢¶ÓÁĞ
-	mutex_type _mutex;
+ private:
+  MsgData::T_TYPE _msgType;  ///< æ¶ˆæ¯ç±»å‹
+  value_type _value;         ///< æ¶ˆæ¯é˜Ÿåˆ—
+  mutex_type _mutex;
 };
 
-}
+}  // namespace gemini
 
-#endif // GEMINI_MsgQueue_INCLUDE
+#endif  // GEMINI_MsgQueue_INCLUDE

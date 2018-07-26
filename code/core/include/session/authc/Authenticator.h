@@ -6,16 +6,15 @@ namespace gemini {
 
 class Realm;
 class AuthenticationToken;
-class Authenticator
-{
-public:
-	Authenticator();
-	virtual ~Authenticator();
-	virtual void authenticate(const AuthenticationToken& token) = 0;
+class Authenticator {
+ public:
+  Authenticator();
+  virtual ~Authenticator();
+  virtual void authenticate(const AuthenticationToken &token) = 0;
 
-protected:
-	std::vector<Realm*> _realms;
+ protected:
+  std::vector<Realm *> _realms;
 };
 
-}
-#endif // GEMINI_Authenticator_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Authenticator_INCLUDE

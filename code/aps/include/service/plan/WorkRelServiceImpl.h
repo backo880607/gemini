@@ -3,11 +3,11 @@
 #include "../../../public/service/plan/WorkRelService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class WorkRelServiceImpl : public gemini::BaseService, WorkRelService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_WorkRelServiceImpl_INCLUDE
+class WorkRelServiceImpl : public gemini::BaseService, WorkRelService {
+  virtual void onFree(gemini::EntityObject::SPtr entity) const;
+};
+
+}  // namespace aps
+#endif  // !APS_WorkRelServiceImpl_INCLUDE

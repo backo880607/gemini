@@ -4,14 +4,13 @@
 namespace gemini {
 
 class XMLNode;
-class PropagateHelper final
-{
-public:
-	PropagateHelper();
-	~PropagateHelper();
+class PropagateHelper final {
+ public:
+  PropagateHelper();
+  ~PropagateHelper();
 
-	void loadConfig();
+  void loadConfig();
 };
 
-}
-#endif // GEMINI_PropagateHelp_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_PropagateHelp_INCLUDE

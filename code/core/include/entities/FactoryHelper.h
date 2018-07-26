@@ -4,12 +4,12 @@
 namespace gemini {
 
 class FactoryHelper {
-public:
-	FactoryHelper();
-	~FactoryHelper();
+ public:
+  FactoryHelper();
+  ~FactoryHelper();
 
-	void loadConfig();
+  void loadConfig();
 };
 
-}
-#endif // GEMINI_FactoryHelper_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_FactoryHelper_INCLUDE

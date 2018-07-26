@@ -4,21 +4,20 @@
 
 namespace gemini {
 
-class CORE_API Application final : public IApplication
-{
-public:
-	Application();
-	~Application();
+class CORE_API Application final : public IApplication {
+ public:
+  Application();
+  ~Application();
 
-	virtual void init() override;
+  virtual void init() override;
 
-	const Char* getConfigPath();
-	const Char* getDumpPath();
+  const Char *getConfigPath();
+  const Char *getDumpPath();
 
-	virtual const std::locale& getLocale() override;
-	virtual void setLocale(const Char* name) override;
+  virtual const std::locale &getLocale() override;
+  virtual void setLocale(const Char *name) override;
 };
 extern CORE_API Application g_app;
 
-}
-#endif // GEMINI_Application_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Application_INCLUDE

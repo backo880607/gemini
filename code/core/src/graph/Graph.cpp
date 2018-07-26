@@ -1,178 +1,163 @@
+#include "graph/Edge.h"
 #include "graph/Graph.h"
 #include "graph/Vertex.h"
-#include "graph/Edge.h"
 
 namespace gemini {
 namespace graph {
 
-Graph::Graph()
-{
-	_nodes.push_back(nullptr);
+Graph::Graph() { _nodes.push_back(nullptr); }
+
+Graph::~Graph() {}
+
+Graph* Graph::create(Vertex* vertex) {
+  Graph* temp = vertex->_graph;
+  if (temp == nullptr) {
+    temp = vertex->createGraph();
+    vertex->_graph = temp;
+  }
+  return temp;
 }
 
-Graph::~Graph()
-{
+void Graph::merge(Graph* val) {
+  if (val == nullptr || this == val) return;
 
+  Long count = getNodeSize();
+  _nodes.insert(_nodes.end(), val->_nodes.begin(), val->_nodes.end());
+  for (VertexNode* vertexNode : val->_nodes) {
+    if (vertexNode->vertex != nullptr) {
+      vertexNode->vertex->_graph = this;
+      vertexNode->vertex->_adjvex += count;
+    }
+  }
 }
 
-Graph* Graph::create(Vertex* vertex)
-{
-	Graph* temp = vertex->_graph;
-	if (temp == nullptr) {
-		temp = vertex->createGraph();
-		vertex->_graph = temp;
-	}
-	return temp;
+void Graph::createEdge(Vertex* first, Int firstSign, Vertex* second,
+                       Int secondSign) {
+  Graph* firstGraph = first->_graph;
+  Graph* secondGraph = second->_graph;
+  if (firstGraph == nullptr) {
+    firstGraph = secondGraph == nullptr ? first->createGraph() : secondGraph;
+    first->_graph = firstGraph;
+    if (secondGraph == nullptr) {
+      second->_graph = secondGraph;
+    }
+  } else if (secondGraph == nullptr) {
+    second->_graph = firstGraph;
+  } else if (firstGraph != secondGraph) {
+    if (firstGraph->getNodeSize() < secondGraph->getNodeSize()) {
+      secondGraph->merge(firstGraph);
+      firstGraph = secondGraph;
+    } else {
+      firstGraph->merge(secondGraph);
+    }
+  }
+
+  VertexNode* firstNode = firstGraph->getNode(first, true);
+  VertexNode* secondNode = firstGraph->getNode(second, true);
+
+  Edge*& outEdge = firstNode->outEdge[firstSign];
+  if (outEdge == nullptr) {
+    outEdge = firstGraph->createEdge();
+    outEdge->_sign = firstSign;
+    outEdge->_reverseSign = secondSign;
+  }
+  outEdge->add(second);
+
+  if (secondSign >= 0) {
+    Edge*& inEdge = secondNode->inEdge[secondSign];
+    if (inEdge == nullptr) {
+      inEdge = firstGraph->createEdge();
+      inEdge->_sign = secondSign;
+      inEdge->_reverseSign = firstSign;
+    }
+    inEdge->add(first);
+  }
 }
 
-void Graph::merge(Graph* val)
-{
-	if (val == nullptr || this == val)
-		return;
+Graph::VertexNode* Graph::getNode(Vertex* vertex,
+                                  Boolean bCreate /* = false */) {
+  if (vertex->_adjvex >= 0) {
+    VertexNode* node = _nodes[vertex->_adjvex];
+    return node->vertex != nullptr ? node : nullptr;
+  }
 
-	Long count = getNodeSize();
-	_nodes.insert(_nodes.end(), val->_nodes.begin(), val->_nodes.end());
-	for (VertexNode* vertexNode : val->_nodes) {
-		if (vertexNode->vertex != nullptr) {
-			vertexNode->vertex->_graph = this;
-			vertexNode->vertex->_adjvex += count;
-		}
-	}
+  if (!bCreate) {
+    return nullptr;
+  }
+
+  vertex->_adjvex = _nodes.size();
+  vertex->_graph = this;
+  VertexNode* node = new VertexNode();
+  _nodes.push_back(node);
+  return node;
 }
 
-void Graph::createEdge(Vertex* first, Int firstSign, Vertex* second, Int secondSign)
-{
-	Graph* firstGraph = first->_graph;
-	Graph* secondGraph = second->_graph;
-	if (firstGraph == nullptr) {
-		firstGraph = secondGraph == nullptr ? first->createGraph() : secondGraph;
-		first->_graph = firstGraph;
-		if (secondGraph == nullptr) {
-			second->_graph = secondGraph;
-		}
-	} else if (secondGraph == nullptr) {
-		second->_graph = firstGraph;
-	} else if (firstGraph != secondGraph) {
-		if (firstGraph->getNodeSize() < secondGraph->getNodeSize()) {
-			secondGraph->merge(firstGraph);
-			firstGraph = secondGraph;
-		} else {
-			firstGraph->merge(secondGraph);
-		}
-	}
+Vertex* Graph::get(Long adjvex) {
+  if (adjvex <= 0 || adjvex >= getNodeSize()) {
+    return nullptr;
+  }
 
-	VertexNode* firstNode = firstGraph->getNode(first, true);
-	VertexNode* secondNode = firstGraph->getNode(second, true);
-
-	Edge*& outEdge = firstNode->outEdge[firstSign];
-	if (outEdge == nullptr) {
-		outEdge = firstGraph->createEdge();
-		outEdge->_sign = firstSign;
-		outEdge->_reverseSign = secondSign;
-	}
-	outEdge->add(second);
-
-	if (secondSign >= 0) {
-		Edge*& inEdge = secondNode->inEdge[secondSign];
-		if (inEdge == nullptr) {
-			inEdge = firstGraph->createEdge();
-			inEdge->_sign = secondSign;
-			inEdge->_reverseSign = firstSign;
-		}
-		inEdge->add(first);
-	}
+  return _nodes[adjvex]->vertex;
 }
 
-Graph::VertexNode* Graph::getNode(Vertex* vertex, Boolean bCreate /* = false */)
-{
-	if (vertex->_adjvex >= 0) {
-		VertexNode* node = _nodes[vertex->_adjvex];
-		return node->vertex != nullptr ? node : nullptr;
-	}
+Edge* Graph::getOutEdge(Vertex* vertex, Int sign) {
+  VertexNode* node = getNode(vertex);
+  if (node == nullptr) {
+    return nullptr;
+  }
 
-	if (!bCreate) {
-		return nullptr;
-	}
-
-	vertex->_adjvex = _nodes.size();
-	vertex->_graph = this;
-	VertexNode* node = new VertexNode();
-	_nodes.push_back(node);
-	return node;
+  auto iter = node->outEdge.find(sign);
+  return iter != node->outEdge.end() ? iter->second : nullptr;
 }
 
-Vertex* Graph::get(Long adjvex)
-{
-	if (adjvex <= 0 || adjvex >= getNodeSize()) {
-		return nullptr;
-	}
+Edge* Graph::getInEdge(Vertex* vertex, Int sign) {
+  VertexNode* node = getNode(vertex);
+  if (node == nullptr) {
+    return nullptr;
+  }
 
-	return _nodes[adjvex]->vertex;
+  auto iter = node->inEdge.find(sign);
+  return iter != node->inEdge.end() ? iter->second : nullptr;
 }
 
-Edge* Graph::getOutEdge(Vertex* vertex, Int sign)
-{
-	VertexNode* node = getNode(vertex);
-	if (node == nullptr) {
-		return nullptr;
-	}
+Edge* Graph::getEdge(Vertex* vertex, Int sign) {
+  VertexNode* node = getNode(vertex);
+  if (node == nullptr) {
+    return nullptr;
+  }
 
-	auto iter = node->outEdge.find(sign);
-	return iter != node->outEdge.end() ? iter->second : nullptr;
+  auto iter = node->outEdge.find(sign);
+  if (iter != node->outEdge.end()) {
+    return iter->second;
+  }
+
+  iter = node->inEdge.find(sign);
+  return iter != node->inEdge.end() ? iter->second : nullptr;
 }
 
-Edge* Graph::getInEdge(Vertex* vertex, Int sign)
-{
-	VertexNode* node = getNode(vertex);
-	if (node == nullptr) {
-		return nullptr;
-	}
+void Graph::removeOutEdge(Vertex* vertex, Int sign, Vertex* target) {
+  Edge* outEdge = getOutEdge(vertex, sign);
+  if (outEdge != nullptr) {
+    Edge* inEdge = getInEdge(target, outEdge->_reverseSign);
+    if (inEdge != nullptr) {
+      inEdge->remove(vertex);
+    }
 
-	auto iter = node->inEdge.find(sign);
-	return iter != node->inEdge.end() ? iter->second : nullptr;
+    outEdge->remove(target);
+  }
 }
 
-Edge* Graph::getEdge(Vertex* vertex, Int sign)
-{
-	VertexNode* node = getNode(vertex);
-	if (node == nullptr) {
-		return nullptr;
-	}
+void Graph::removeOutEdge(Vertex* vertex, Int sign) {
+  Edge* outEdge = getOutEdge(vertex, sign);
+  if (outEdge != nullptr && outEdge->_reverseSign >= 0) {
+    /*Edge* inEdge = getInEdge(target, outEdge->_reverseSign);
+    if (inEdge != nullptr) {
+            inEdge->remove(vertex);
+    }*/
 
-	auto iter = node->outEdge.find(sign);
-	if (iter != node->outEdge.end()) {
-		return iter->second;
-	}
-
-	iter = node->inEdge.find(sign);
-	return iter != node->inEdge.end() ? iter->second : nullptr;
+    outEdge->remove();
+  }
 }
 
-void Graph::removeOutEdge(Vertex* vertex, Int sign, Vertex* target)
-{
-	Edge* outEdge = getOutEdge(vertex, sign);
-	if (outEdge != nullptr) {
-		Edge* inEdge = getInEdge(target, outEdge->_reverseSign);
-		if (inEdge != nullptr) {
-			inEdge->remove(vertex);
-		}
-
-		outEdge->remove(target);
-	}
-}
-
-void Graph::removeOutEdge(Vertex* vertex, Int sign)
-{
-	Edge* outEdge = getOutEdge(vertex, sign);
-	if (outEdge != nullptr && outEdge->_reverseSign >= 0) {
-		/*Edge* inEdge = getInEdge(target, outEdge->_reverseSign);
-		if (inEdge != nullptr) {
-			inEdge->remove(vertex);
-		}*/
-
-		outEdge->remove();
-	}
-}
-
-}
-}
+}  // namespace graph
+}  // namespace gemini

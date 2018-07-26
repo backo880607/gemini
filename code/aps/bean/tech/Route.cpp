@@ -1,6 +1,5 @@
 #include "Route.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(Route, gemini::EntityObject)
-} // namespace aps
+}  // namespace aps

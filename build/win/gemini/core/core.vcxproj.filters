@@ -157,6 +157,15 @@
     <Filter Include="Source Files\dao">
       <UniqueIdentifier>{47497897-f546-4deb-9170-18a243b98a5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="public\tools\TmplArgs">
+      <UniqueIdentifier>{b9043834-c128-4913-ae65-f707c4009eda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io\datasource">
+      <UniqueIdentifier>{e74916ee-ee37-41b1-81c1-d0714b167053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io\datasource">
+      <UniqueIdentifier>{e473835a-2235-48ff-90ee-867d4d6b11dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -483,40 +492,13 @@
     <ClInclude Include="..\..\..\..\code\core\public\controller\ControllerMgr.h">
       <Filter>public\controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSExcelCSV.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSLocaleFile.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSXML.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSJson.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\DataStructure.h">
       <Filter>public\io</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\io\ExportHelper.h">
       <Filter>public\io</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\io\ImportHelper.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\DataSourceMgr.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOScheme.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOProject.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOField.h">
       <Filter>public\io</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\Core.h">
@@ -537,9 +519,6 @@
     <ClInclude Include="..\..\..\..\code\core\include\io\controller\IOController.h">
       <Filter>Header Files\io\controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\DataHandler.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h">
       <Filter>Header Files\io\handler</Filter>
     </ClInclude>
@@ -558,7 +537,58 @@
     <ClInclude Include="..\..\..\..\code\core\public\tools\CacheUtil.h">
       <Filter>public\tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\DSStream.h">
+    <ClInclude Include="..\..\..\..\code\core\public\tools\ExpressionUtil.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgDef.h">
+      <Filter>public\tools\TmplArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgList.h">
+      <Filter>public\tools\TmplArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgUtil.h">
+      <Filter>public\tools\TmplArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\ExpressionCallable.h">
+      <Filter>public\tools\TmplArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\MultiEnum.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\IOHelper.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DataSourceMgr.h">
+      <Filter>Header Files\io\datasource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSExcelCSV.h">
+      <Filter>Header Files\io\datasource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSJson.h">
+      <Filter>Header Files\io\datasource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSLocaleFile.h">
+      <Filter>Header Files\io\datasource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSStream.h">
+      <Filter>Header Files\io\datasource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSXML.h">
+      <Filter>Header Files\io\datasource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\HandlerHelper.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\io\Handler.h">
+      <Filter>public\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\IOField.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\IOProject.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\io\IOScheme.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
   </ItemGroup>
@@ -824,28 +854,13 @@
     <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSExcelCSV.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSLocaleFile.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\io\DataSource.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSXML.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSJson.cpp">
       <Filter>Source Files\io</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp">
       <Filter>Source Files\io</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\io\ImportHelper.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\DataSourceMgr.cpp">
       <Filter>Source Files\io</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\io\IOScheme.cpp">
@@ -890,7 +905,34 @@
     <ClCompile Include="..\..\..\..\code\core\src\dao\Memory.cpp">
       <Filter>Source Files\dao</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\DSStream.cpp">
+    <ClCompile Include="..\..\..\..\code\core\src\tools\ExpressionUtil.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\MultiEnum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\IOHelper.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DataSourceMgr.cpp">
+      <Filter>Source Files\io\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSExcelCSV.cpp">
+      <Filter>Source Files\io\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSJson.cpp">
+      <Filter>Source Files\io\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSLocaleFile.cpp">
+      <Filter>Source Files\io\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSStream.cpp">
+      <Filter>Source Files\io\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSXML.cpp">
+      <Filter>Source Files\io\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\io\HandlerHelper.cpp">
       <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>

@@ -55,18 +55,6 @@
     <Filter Include="public\enums">
       <UniqueIdentifier>{c08435a0-7ad2-405b-a5cb-13f9fb903da6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="public\enums\mstr">
-      <UniqueIdentifier>{163ac574-fbc6-4e34-92dd-8e32d8c76e0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="public\enums\order">
-      <UniqueIdentifier>{6fba427a-6397-485c-a032-301f89835a88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="public\enums\plan">
-      <UniqueIdentifier>{ee745d47-440c-48c6-bd03-0273218240f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="public\enums\tech">
-      <UniqueIdentifier>{02762829-c22a-4554-bd67-c8951fc8e719}</UniqueIdentifier>
-    </Filter>
     <Filter Include="bean\task">
       <UniqueIdentifier>{473fa1df-79ce-47f2-9136-d51370be339b}</UniqueIdentifier>
     </Filter>
@@ -90,9 +78,6 @@
     </Filter>
     <Filter Include="public\service\tech">
       <UniqueIdentifier>{561537f0-b72c-4e88-ab2f-18376af90395}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="public\enums\task">
-      <UniqueIdentifier>{3ef61f5c-8346-48db-be69-ded329a88127}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\service\instruction">
       <UniqueIdentifier>{acc1f498-6c03-4d98-b6e9-e9d4287edfcd}</UniqueIdentifier>
@@ -147,6 +132,48 @@
     </Filter>
     <Filter Include="Header Files\arithmetic\localsearch">
       <UniqueIdentifier>{a176da22-5699-413b-9419-14141e70efca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller\mstr">
+      <UniqueIdentifier>{328f1171-da86-450d-a9df-81f08e705a55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller\order">
+      <UniqueIdentifier>{833240a7-3a94-4672-bfbe-9ec577547eb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller\plan">
+      <UniqueIdentifier>{3daf53b3-fcf2-477c-b121-897b9af7bf60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller\task">
+      <UniqueIdentifier>{2bed05fa-d3fa-4307-a6d2-87a4527ea528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller\tech">
+      <UniqueIdentifier>{c502e39d-969a-46f8-bc43-8f2be5c4f4b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller\mstr">
+      <UniqueIdentifier>{eaa22d38-f6ab-46fb-aefe-c5233f382e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller\order">
+      <UniqueIdentifier>{5c5e636d-24ce-4a56-b76f-d4e94e1679e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller\plan">
+      <UniqueIdentifier>{9ac77c3d-2b1b-4f40-9401-b20a810ff417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller\task">
+      <UniqueIdentifier>{6c3b31b4-248d-44e0-b4f0-0e4e6578c9c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller\tech">
+      <UniqueIdentifier>{2c88afe3-30b1-4abe-8876-b708a3bf142a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\arithmetic\scheduler">
+      <UniqueIdentifier>{faecc53a-0ba7-45ec-8653-7a6e117032d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\arithmetic\scheduler">
+      <UniqueIdentifier>{bc509011-6924-4402-aefb-0cb0a11c4f0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\arithmetic\scheduler\capacity">
+      <UniqueIdentifier>{79160f39-ab11-429c-bd77-2553ab90435e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\arithmetic\scheduler\capacity">
+      <UniqueIdentifier>{a0bcb5de-d7ef-4ed0-a287-e31289dccbfa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +236,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\aps\bean\plan\WorkRes.h">
       <Filter>bean\plan</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\aps\public\enums\mstr\ItemType.h">
-      <Filter>public\enums\mstr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\aps\bean\mstr\ResCalendar.h">
       <Filter>bean\mstr</Filter>
@@ -357,12 +381,6 @@
     <ClInclude Include="..\..\..\..\code\aps\public\service\tech\StandRouteStepService.h">
       <Filter>public\service\tech</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\aps\public\enums\plan\ContinuousType.h">
-      <Filter>public\enums\plan</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\aps\public\enums\tech\ScheduleDirection.h">
-      <Filter>public\enums\tech</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\aps\include\service\mstr\ItemServiceImpl.h">
       <Filter>Header Files\service\mstr</Filter>
     </ClInclude>
@@ -456,6 +474,63 @@
     <ClInclude Include="..\..\..\..\code\aps\include\service\tech\RouteStepResServiceImpl.h">
       <Filter>Header Files\service\tech</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\PropertyEditorServiceImpl.h">
+      <Filter>Header Files\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\instruction\PropertyEditorService.h">
+      <Filter>public\service\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\MinInventory.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\SafeInventory.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\mstr\Client.h">
+      <Filter>bean\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\order\MinInventoryService.h">
+      <Filter>public\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\service\order\SafeInventoryService.h">
+      <Filter>public\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\order\MinInventoryServiceImpl.h">
+      <Filter>Header Files\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\service\order\SafeInventoryServiceImpl.h">
+      <Filter>Header Files\service\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\EInstruction.h">
+      <Filter>public\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\PlanPurchaseOrder.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\order\PlanWorkOrder.h">
+      <Filter>bean\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\instruction\PropertyEditor.h">
+      <Filter>bean\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\EPlan.h">
+      <Filter>public\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\EMstr.h">
+      <Filter>public\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\EOrder.h">
+      <Filter>public\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\ETech.h">
+      <Filter>public\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\ETask.h">
+      <Filter>public\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\public\enums\ECommon.h">
+      <Filter>public\enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -514,9 +589,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\aps\bean\plan\WorkRes.cpp">
       <Filter>bean\plan</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\aps\public\enums\mstr\ItemType.cpp">
-      <Filter>public\enums\mstr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\aps\bean\mstr\ResCalendar.cpp">
       <Filter>bean\mstr</Filter>
@@ -662,11 +734,53 @@
     <ClCompile Include="..\..\..\..\code\aps\src\service\tech\StandRouteStepServiceImpl.cpp">
       <Filter>Source Files\service\tech</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\aps\public\enums\tech\ScheduleDirection.cpp">
-      <Filter>public\enums\tech</Filter>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\PropertyEditorServiceImpl.cpp">
+      <Filter>Source Files\service\instruction</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\aps\public\enums\plan\ContinuousType.cpp">
-      <Filter>public\enums\plan</Filter>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\MinInventory.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\SafeInventory.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\mstr\Client.cpp">
+      <Filter>bean\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\order\MinInventoryServiceImpl.cpp">
+      <Filter>Source Files\service\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\service\order\SafeInventoryServiceImpl.cpp">
+      <Filter>Source Files\service\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\EInstruction.cpp">
+      <Filter>public\enums</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\PlanPurchaseOrder.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\order\PlanWorkOrder.cpp">
+      <Filter>bean\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\instruction\PropertyEditor.cpp">
+      <Filter>bean\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\EPlan.cpp">
+      <Filter>public\enums</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\EMstr.cpp">
+      <Filter>public\enums</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\EOrder.cpp">
+      <Filter>public\enums</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\ETech.cpp">
+      <Filter>public\enums</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\ETask.cpp">
+      <Filter>public\enums</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\public\enums\ECommon.cpp">
+      <Filter>public\enums</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

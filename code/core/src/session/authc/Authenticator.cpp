@@ -2,16 +2,12 @@
 
 namespace gemini {
 
-Authenticator::Authenticator()
-{
+Authenticator::Authenticator() {}
 
+Authenticator::~Authenticator() {
+  for (Realm* realm : _realms) {
+    delete realm;
+  }
 }
 
-Authenticator::~Authenticator()
-{
-	for (Realm* realm : _realms) {
-		delete realm;
-	}
-}
-
-}
+}  // namespace gemini

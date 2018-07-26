@@ -1,13 +1,14 @@
 #ifndef APS_WorkLeadingServiceImpl_INCLUDE
 #define APS_WorkLeadingServiceImpl_INCLUDE
-#include "InstructionServiceImpl.h"
 #include "../../../public/service/instruction/WorkLeadingService.h"
+#include "InstructionServiceImpl.h"
 
-namespace aps
-{
-class WorkLeadingServiceImpl : public InstructionServiceImpl, WorkLeadingService
-{
+namespace aps {
+
+class WorkLeadingServiceImpl : public InstructionServiceImpl,
+                               WorkLeadingService {
+  virtual void execute(const gemini::SmartPtr<Instruction>& inst) const;
 };
-} // namespace aps
 
-#endif // !APS_WorkLeadingServiceImpl_INCLUDE
+}  // namespace aps
+#endif  // !APS_WorkLeadingServiceImpl_INCLUDE

@@ -3,24 +3,20 @@
 
 namespace gemini {
 
-DefaultAuthenticator::DefaultAuthenticator()
-{
-	_realms.push_back(new DefaultRealm());
+DefaultAuthenticator::DefaultAuthenticator() {
+  _realms.push_back(new DefaultRealm());
 }
 
-DefaultAuthenticator::~DefaultAuthenticator()
-{
-}
+DefaultAuthenticator::~DefaultAuthenticator() {}
 
-void DefaultAuthenticator::authenticate(const AuthenticationToken& token)
-{
-    for (Realm* realm : _realms) {
-        if (!realm->supports(token)) {
-            continue;
-        }
-
-        realm->authenticate(token);
+void DefaultAuthenticator::authenticate(const AuthenticationToken& token) {
+  for (Realm* realm : _realms) {
+    if (!realm->supports(token)) {
+      continue;
     }
+
+    realm->authenticate(token);
+  }
 }
 
-}
+}  // namespace gemini

@@ -1,39 +1,27 @@
 #ifndef GEMINI_IO_ImportHelper_INCLUDE
 #define GEMINI_IO_ImportHelper_INCLUDE
-#include "DataSource.h"
+#include "IOHelper.h"
 
-namespace gemini
-{
-namespace io
-{
+namespace gemini {
+namespace io {
+
 class IOScheme;
-class ImportHelper
-{
-  public:
-    ImportHelper(SmartPtr<IOScheme> scheme);
-    ~ImportHelper();
+class CORE_API ImportHelper : public IOHelper {
+ public:
+  ImportHelper();
+  ~ImportHelper();
 
-    void execute();
+  void execute();
 
-	template <typename T, typename HANDLER>
-	void registerHandler() {
-		_dataHandler.registerHandler(Class::forType<T>(), new HANDLER());
-	}
-
-	template <typename CLS, typename FIELD, typename HANDLER>
-	void registerFieldHandler() {
-		_dataHandler.registerHandler(Class::forType<CLS>(), FIELD::index(), new HANDLER());
-	}
-  private:
-    Boolean parseIOScheme();
-	void write(EntityObject::SPtr entity, const Field* field, const String& value);
-
-  private:
-    std::shared_ptr<DataSource> _dataSource;
-    SmartPtr<IOScheme> _scheme;
-	DataHandlerHelper _dataHandler;
+ private:
+  Boolean parseIOScheme(SmartPtr<IOScheme> scheme);
+  std::map<Int, const Field*> parsePrimaries(SmartPtr<IOScheme> scheme);
+  String obtainValue(Int index, const Field* field);
+  String obtainPrimary(const std::map<Int, const Field*>& primaries);
+  void write(EntityObject::SPtr entity, const Field* field,
+             const String& value);
 };
 
-} // namespace io
-} // namespace gemini
-#endif // GEMINI_IO_ImportHelper_INCLUDE
+}  // namespace io
+}  // namespace gemini
+#endif  // !GEMINI_IO_ImportHelper_INCLUDE

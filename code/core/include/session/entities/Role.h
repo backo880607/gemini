@@ -4,16 +4,15 @@
 
 namespace gemini {
 
-class Role : public EntityObject
-{
-	DECLARE_CLASS(Role, EntityObject)
+class Role : public EntityObject {
+  DECLARE_CLASS(Role, EntityObject)
 
-	DECLARE_FIELD(String, name)
-	DECLARE_FIELD(String, remark)
+  DECLARE_FIELD(String, name)
+  DECLARE_FIELD(String, remark)
 
-	DECLARE_ENTITY(Role, parent)
-	DECLARE_VECTOR(Role, childs)
+  DECLARE_ENTITY(Role, parent)
+  DECLARE_VECTOR(Role, childs)
 };
 
-}
-#endif // GEMINI_Role_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Role_INCLUDE

@@ -4,33 +4,36 @@
 
 namespace gemini {
 
-class Propagate final : public noncopyable
-{
-public:
-	struct Data {
-		const Int id = ++Propagate::s_maxID;
-		std::vector<std::vector<Int>> paths;
-		std::vector<const Field*> properties;
-		const BaseService* service;
-		service::callable* method;
-	};
+class Propagate final : public noncopyable {
+ public:
+  struct Data {
+    const Int id = ++Propagate::s_maxID;
+    std::vector<std::vector<Int>> paths;
+    std::vector<const Field *> properties;
+    const BaseService *service;
+    service::callable *method;
+  };
 
-	Propagate();
-public:
-	~Propagate();
-	static Propagate& instance() { static Propagate obj; return obj; }
+  Propagate();
 
-	void invoke();
-	void modify(const EntityObject::SPtr& entity, const Field* field);
+ public:
+  ~Propagate();
+  static Propagate &instance() {
+    static Propagate obj;
+    return obj;
+  }
 
-	Data* getData(const Field* field);
+  void invoke();
+  void modify(const EntityObject::SPtr &entity, const Field *field);
 
-private:
-	friend class PropagateHelper;
-	static MT_Int s_maxID;
-	std::vector<std::map<const Field*, Data>> _datas;
+  Data *getData(const Field *field);
+
+ private:
+  friend class PropagateHelper;
+  static MT_Int s_maxID;
+  std::vector<std::map<const Field *, Data>> _datas;
 };
 
-}
+}  // namespace gemini
 
-#endif // GEMINI_Propagate_INCLUDE
+#endif  // GEMINI_Propagate_INCLUDE

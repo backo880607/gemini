@@ -6,21 +6,20 @@
 
 namespace gemini {
 
-class LocaleUtil final : public noncopyable
-{
-public:
-	std::ostringstream& getOSS(Boolean bReset = false);
+class LocaleUtil final : public noncopyable {
+ public:
+  std::ostringstream &getOSS(Boolean bReset = false);
 
-	std::istringstream& getISS(const Char* str = nullptr);
+  std::istringstream &getISS(const Char *str = nullptr);
 
-	const std::locale& getLocale() const { return _locale; }
-	void setLocale(const std::locale& loc);
+  const std::locale &getLocale() const { return _locale; }
+  void setLocale(const std::locale &loc);
 
-private:
-	std::locale _locale;
-	std::ostringstream _ssout;
-	std::istringstream _ssin;
+ private:
+  std::locale _locale;
+  std::ostringstream _ssout;
+  std::istringstream _ssin;
 };
 
-}
-#endif // GEMINI_LocaleUtil_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_LocaleUtil_INCLUDE

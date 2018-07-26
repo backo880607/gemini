@@ -4,67 +4,82 @@
 
 namespace gemini {
 
-class CORE_API JsonNode : public DataNode
-{
-public:
-	JsonNode() {}
-	JsonNode(const DataNode& node) : DataNode(node) {}
-	~JsonNode() {}
-	JsonNode& operator= (const DataNode& node) { DataNode::operator=(node); return *this; }
+class CORE_API JsonNode : public DataNode {
+ public:
+  JsonNode() {}
+  JsonNode(const DataNode& node) : DataNode(node) {}
+  ~JsonNode() {}
+  JsonNode& operator=(const DataNode& node) {
+    DataNode::operator=(node);
+    return *this;
+  }
 };
 
-class CORE_API JsonFile
-{
-	typedef JsonNode::node_type node_type;
-public:
-	enum class File_Mode { FM_NormalFile = 1, FM_CreateFile, FM_ClearFile, };
+class CORE_API JsonFile {
+  typedef JsonNode::node_type node_type;
 
-	JsonFile(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
-	~JsonFile();
+ public:
+  enum class File_Mode {
+    FM_NormalFile = 1,
+    FM_CreateFile,
+    FM_ClearFile,
+  };
 
-	Boolean open(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
-	Boolean valid() const { return !_ptree; }
+  JsonFile(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
+  ~JsonFile();
 
-	void write() { write(_fileName); }
-	void write(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
+  Boolean open(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
+  Boolean valid() const { return !_ptree; }
 
-	DataNode getNode();
-	DataNode getNode(const Char* tagName);
-	DataNode getNode(const String& tagName) { return getNode(tagName.c_str()); }
+  void write() { write(_fileName); }
+  void write(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
 
-	DataNode createNode(const Char* tagName);
-	DataNode createNode(const String& tagName) { return createNode(tagName.c_str()); }
+  DataNode getNode();
+  DataNode getNode(const Char* tagName);
+  DataNode getNode(const String& tagName) { return getNode(tagName.c_str()); }
 
-	void remove();
-private:
-	Boolean ProJsonFile(String& path, File_Mode mode);
-private:
-	std::unique_ptr<node_type> _ptree;
-	String _fileName;
+  DataNode createNode(const Char* tagName);
+  DataNode createNode(const String& tagName) {
+    return createNode(tagName.c_str());
+  }
+
+  void remove();
+
+ private:
+  Boolean ProJsonFile(String& path, File_Mode mode);
+
+ private:
+  std::unique_ptr<node_type> _ptree;
+  String _fileName;
 };
 
 class CORE_API Json {
-public:
-	typedef JsonNode::node_type node_type;
+ public:
+  typedef JsonNode::node_type node_type;
 
-	Json();
-	Json(const Char* val);
-	~Json();
+  Json();
+  Json(const Char* val);
+  ~Json();
 
-	Boolean valid() const { return !_ptree; }
+  void reset(const Char* val);
 
-	void write(std::basic_ostream<Char>& ss, Boolean bPretty = false);
-	void read(std::basic_istream<Char>& ss);
+  Boolean valid() const { return !_ptree; }
 
-	DataNode getNode();
-	DataNode getNode(const Char* tagName);
-	DataNode getNode(const String& tagName) { return getNode(tagName.c_str()); }
+  void write(std::basic_ostream<Char>& ss, Boolean bPretty = false);
+  void read(std::basic_istream<Char>& ss);
 
-	DataNode createNode(const Char* tagName);
-	DataNode createNode(const String& tagName) { return createNode(tagName.c_str()); }
-private:
-	std::unique_ptr<node_type> _ptree;
+  DataNode getNode();
+  DataNode getNode(const Char* tagName);
+  DataNode getNode(const String& tagName) { return getNode(tagName.c_str()); }
+
+  DataNode createNode(const Char* tagName);
+  DataNode createNode(const String& tagName) {
+    return createNode(tagName.c_str());
+  }
+
+ private:
+  std::unique_ptr<node_type> _ptree;
 };
 
-}
-#endif // GEMINI_Json_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Json_INCLUDE

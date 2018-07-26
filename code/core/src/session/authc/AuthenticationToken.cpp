@@ -2,16 +2,10 @@
 
 namespace gemini {
 
-AuthenticationToken::AuthenticationToken(const String& principal, const String& credentials)
-	: _principal(principal)
-	, _credentials(credentials)
-{
+AuthenticationToken::AuthenticationToken(const String& principal,
+                                         const String& credentials)
+    : _principal(principal), _credentials(credentials) {}
 
-}
+AuthenticationToken::~AuthenticationToken() {}
 
-AuthenticationToken::~AuthenticationToken()
-{
-
-}
-
-}
+}  // namespace gemini

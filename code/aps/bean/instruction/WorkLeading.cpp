@@ -1,6 +1,5 @@
 #include "WorkLeading.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(WorkLeading, Instruction)
-} // namespace aps
+}  // namespace aps

@@ -50,14 +50,14 @@ public:
 	*        -<em>true</em> 异步写入成功
 	*/
 	Boolean asyncWrite(const void* pData, std::size_t size, MSG_UINT8 msgType = MSG_TYPE_NORMAL, MSG_UINT8 funcID = 0,
-		MSG_UINT8 priority = 0, DataType dataType = DataType::DT_MEMSEQ, CompressType cpt = CompressType::CPT_ZLIB) {
+		MSG_UINT8 priority = 0, DataType dataType = DataType::DT_MEMSEQ, CompressType2233 cpt = CompressType2233::CPT_ZLIB) {
 		MsgData msg;
 		msg.setType(msgType);
 		msg.setFunctionID(funcID);
 		msg.setPriority(priority);
 		msg.setDataType(dataType);
 		msg.setCompressType(cpt);
-		msg.setCompressType(CompressType::CPT_NONE);
+		msg.setCompressType(CompressType2233::CPT_NONE);
 		msg.setEncryption(Encryption::Encry_AES);
 		if (!msg.format(pData, size))
 			return false;

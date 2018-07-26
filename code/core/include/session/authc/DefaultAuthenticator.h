@@ -4,13 +4,12 @@
 
 namespace gemini {
 
-class DefaultAuthenticator : public Authenticator
-{
-public:
-	DefaultAuthenticator();
-	~DefaultAuthenticator();
-	virtual void authenticate(const AuthenticationToken& token);
+class DefaultAuthenticator : public Authenticator {
+ public:
+  DefaultAuthenticator();
+  ~DefaultAuthenticator();
+  virtual void authenticate(const AuthenticationToken &token);
 };
 
-}
-#endif // GEMINI_DefaultAuthenticator_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_DefaultAuthenticator_INCLUDE

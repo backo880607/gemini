@@ -2,17 +2,13 @@
 #define GEMINI_CacheUtil_INCLUDE
 #include "../Common.h"
 
-namespace gemini
-{
+namespace gemini {
 
-class CORE_API CacheUtil
-{
-  public:
-    template <typename T>
-    static T &get()
-    {
-    }
+class CORE_API CacheUtil {
+ public:
+  template <typename T>
+  static T &get() {}
 };
 
-} // namespace gemini
-#endif // !GEMINI_CacheUtil_INCLUDE
+}  // namespace gemini
+#endif  // !GEMINI_CacheUtil_INCLUDE

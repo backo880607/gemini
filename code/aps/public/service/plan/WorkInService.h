@@ -2,11 +2,9 @@
 #define APS_WorkInService_INCLUDE
 #include "service/IBaseService.h"
 
-namespace aps
-{
-class WorkInService : public gemini::IBaseService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_WorkInService_INCLUDE
+class WorkInService : public gemini::IBaseService {};
+
+}  // namespace aps
+#endif  // !APS_WorkInService_INCLUDE

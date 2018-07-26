@@ -5,12 +5,11 @@
 namespace gemini {
 
 class AuthenticationToken;
-class Realm
-{
-public:
-    Boolean supports(const AuthenticationToken& token);
-    virtual void authenticate(const AuthenticationToken& token) = 0;
+class Realm {
+ public:
+  Boolean supports(const AuthenticationToken& token);
+  virtual void authenticate(const AuthenticationToken& token) = 0;
 };
 
-}
-#endif // GEMINI_Realm_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Realm_INCLUDE

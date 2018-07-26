@@ -1,321 +1,295 @@
-#include "expression/Expression.h"
-#include "expression/Calculate.h"
-#include "tools/StringUtil.h"
-#include "expression/OperType.h"
 #include "Application.h"
+#include "expression/Calculate.h"
+#include "expression/Expression.h"
+#include "expression/OperType.h"
+#include "tools/StringUtil.h"
 
 #include <locale>
 
 namespace gemini {
 
-#define ENDFLG	'\0'
+#define ENDFLG '\0'
 
 struct Node {
-	OperType type;
-	Calculate* cal;
-	Node* lchild;
-	Node* rchild;
+  OperType type;
+  Calculate* cal;
+  Node* lchild;
+  Node* rchild;
 
-	Node(OperType t, Calculate* c = nullptr, Node *lc = nullptr, Node *rc = nullptr)
-		: type(t), cal(c), lchild(lc), rchild(rc)
-	{}
+  Node(OperType t, Calculate* c = nullptr, Node* lc = nullptr,
+       Node* rc = nullptr)
+      : type(t), cal(c), lchild(lc), rchild(rc) {}
 
-	template <class T>
-	T* GetCalculate() { return (T*)cal; }
+  template <class T>
+  T* GetCalculate() {
+    return (T*)cal;
+  }
 };
 
-Expression::Expression()
-	: _hasField(false)
-	, _root(nullptr)
-{
+Expression::Expression() : _hasField(false), _root(nullptr) {}
 
+Expression::~Expression() { clear(_root); }
+
+Boolean Expression::parse(const Char* str) {
+  if (str == nullptr) {
+    return false;
+  }
+
+  _root = create(str, false);
+  return _root != nullptr;
 }
 
-Expression::~Expression()
-{
-	clear(_root);
+Boolean Expression::getBoolean() { return getBoolean(nullptr); }
+
+Boolean Expression::getBoolean(const EntityObject::SPtr& entity) {
+  if (_root == nullptr) {
+    return false;
+  }
+  return true;
 }
 
-Boolean Expression::parse(const Char* str)
-{
-	if (str == nullptr) {
-		return false;
-	}
+String Expression::getText() { return getText(nullptr); }
 
-	_root = create(str, false);
-	return _root != nullptr;
+String Expression::getText(const EntityObject::SPtr& entity) {
+  if (_root == nullptr) {
+    return "";
+  }
+
+  return StringUtil::format(getValue(_root, entity));
 }
 
-Boolean Expression::getBoolean()
-{
-	return getBoolean(nullptr);
+Any Expression::getValue(Node* node, const EntityObject::SPtr& entity) {
+  if (node->type == OperType::DATA) {
+    return node->cal->getValue(entity);
+  }
+
+  Any param1 = getValue(node->lchild, entity);
+  Any param2 = getValue(node->rchild, entity);
+  if (!param1 || !param2) {
+    return nullptr;
+  }
+
+  return node->GetCalculate<OperTypeCalculate>()->getValue(param1, param2,
+                                                           entity);
 }
 
-Boolean Expression::getBoolean(const EntityObject::SPtr& entity)
-{
-	if (_root == nullptr) {
-		return false;
-	}
-	return true;
+OperType getCallType(const Char*& str) {
+  OperType operType = OperType::DATA;
+  switch (*str) {
+    case '+':
+      operType = OperType::PLUS;
+      break;
+    case '-':
+      operType = OperType::MINUS;
+      break;
+    case '*':
+      operType = OperType::MULTIPLIED;
+      break;
+    case '/':
+      operType = OperType::DIVIDED;
+      break;
+    case '&':
+      if (*++str == '&') {
+        operType = OperType::AND;
+      }
+      break;
+    case '|':
+      if (*++str == '|') {
+        operType = OperType::OR;
+      }
+      break;
+    case '=':
+      if (*++str == '=') {
+        operType = OperType::EQUAL;
+      }
+      break;
+    case '!':
+      if (*(str + 1) == '=') {
+        operType = OperType::NOTEQUAL;
+        ++str;
+      } else {
+        operType = OperType::NOT;
+      }
+      break;
+    case '>':
+      if (*(str + 1) == '=') {
+        operType = OperType::GREATEREQUAL;
+        ++str;
+      } else {
+        operType = OperType::GREATER;
+      }
+      break;
+    case '<':
+      if (*(str + 1) == '=') {
+        operType = OperType::LESSEQUAL;
+        ++str;
+      } else {
+        operType = OperType::LESS;
+      }
+      break;
+  }
+
+  if (operType != OperType::DATA) {
+    ++str;
+  }
+  return operType;
 }
 
-String Expression::getText()
-{
-	return getText(nullptr);
+Node* Expression::create(const Char*& str, Boolean bFun) {
+  Boolean bError = false;
+  Node* root = nullptr;
+  while (*str != ENDFLG) {
+    const char curChar = *str;
+    if (std::isspace(curChar, g_app.getLocale())) {
+      ++str;
+      continue;
+    }
+
+    if (curChar == '#') {
+      Calculate* cal = new DateTimeCalculate();
+      if (!cal->parse(str)) {
+        bError = true;
+        delete cal;
+        break;
+      }
+
+      if (root == nullptr)
+        root = new Node(OperType::DATA, cal);
+      else if (root->rchild == nullptr)
+        root->rchild = new Node(OperType::DATA, cal);
+      else
+        root->rchild->rchild = new Node(OperType::DATA, cal);
+    } else if (curChar == '\'') {
+      Calculate* cal = new TextCalculate();
+      if (!cal->parse(str)) {
+        bError = true;
+        delete cal;
+        break;
+      }
+
+      if (root == nullptr)
+        root = new Node(OperType::DATA, cal);
+      else if (root->rchild == nullptr)
+        root->rchild = new Node(OperType::DATA, cal);
+      else
+        root->rchild->rchild = new Node(OperType::DATA, cal);
+    } else if (curChar == '(') {
+      Calculate* cal = new BracketCalculate();
+      if (!cal->parse(str)) {
+        bError = true;
+        delete cal;
+        break;
+      }
+
+      if (root == nullptr)
+        root = new Node(OperType::DATA, cal);
+      else if (root->rchild == nullptr)
+        root->rchild = new Node(OperType::DATA, cal);
+      else
+        root->rchild->rchild = new Node(OperType::DATA, cal);
+    } else if (curChar == ')') {
+      break;
+    } else if (curChar == ',') {
+      if (!bFun) bError = true;
+      ++str;
+      break;
+    } else if (std::isdigit(curChar, g_app.getLocale())) {
+      Calculate* cal = getNumberCalculate(str);
+      if (cal == nullptr) {
+        bError = false;
+        break;
+      }
+
+      if (root == nullptr)
+        root = new Node(OperType::DATA, cal);
+      else if (root->rchild == nullptr)
+        root->rchild = new Node(OperType::DATA, cal);
+      else
+        root->rchild->rchild = new Node(OperType::DATA, cal);
+    } else {
+      const Char* temp = str;
+      OperType calType = getCallType(str);
+      if (calType != OperType::DATA) {
+        Calculate* cal = new OperTypeCalculate(String(temp, str - temp));
+        if (root == nullptr)
+          root = new Node(calType, cal);
+        else if (calType < root->type)  // ���ȼ�����
+          root->rchild = new Node(calType, cal, root->rchild);
+        else  // ��Ϊ���ȼ���С��������
+          root = new Node(calType, cal, root);
+      } else {
+        // �Զ��庯������
+        Calculate* cal = getFunOrFieldCalculate(str);
+        if (cal == nullptr) {
+          bError = true;
+          break;
+        }
+
+        if (root == nullptr)
+          root = new Node(OperType::DATA, cal);
+        else if (root->rchild == nullptr)
+          root->rchild = new Node(OperType::DATA, cal);
+        else
+          root->rchild->rchild = new Node(OperType::DATA, cal);
+      }
+    }
+  }
+
+  if (bError) {
+    root = nullptr;
+  }
+
+  return root;
 }
 
-String Expression::getText(const EntityObject::SPtr& entity)
-{
-	if (_root == nullptr) {
-		return "";
-	}
+Calculate* Expression::getNumberCalculate(const Char*& str) {
+  const Char* temp = str;
+  do {
+    ++str;
+  } while (*str != ENDFLG && std::isdigit(*str, g_app.getLocale()));
 
-	return StringUtil::format(getValue(_root, entity));
+  if (*str != ENDFLG && *str == '.') {
+    if (!std::isdigit(*++str, g_app.getLocale())) {
+      return nullptr;
+    }
+
+    do {
+      ++str;
+    } while (*str != ENDFLG && std::isdigit(*str, g_app.getLocale()));
+    DoubleCalculate* cal = new DoubleCalculate();
+    cal->_value = StringUtil::convert<Double>(String(temp, str - temp).c_str());
+    return cal;
+  }
+
+  LongCalculate* cal = new LongCalculate();
+  cal->_value = StringUtil::convert<Long>(String(temp, str - temp).c_str());
+  return cal;
 }
 
-Any Expression::getValue(Node* node, const EntityObject::SPtr& entity)
-{
-	if (node->type == OperType::DATA) {
-		return node->cal->getValue(entity);
-	}
+Calculate* Expression::getFunOrFieldCalculate(const Char*& str) {
+  const Char* temp = str;
+  while (*temp != ENDFLG) {
+    if (*temp == '.') {
+      Calculate* cal = new FieldCalculate();
+      if (!cal->parse(str)) {
+        delete cal;
+        break;
+      }
+      _hasField = true;
+      return cal;
+    } else if (*temp == '(') {
+      Calculate* cal = new FunctionCalculate();
+      if (!cal->parse(str)) {
+        delete cal;
+        break;
+      }
+      return cal;
+    }
+    ++temp;
+  }
 
-	Any param1 = getValue(node->lchild, entity);
-	Any param2 = getValue(node->rchild, entity);
-	if (!param1 || !param2) {
-		return nullptr;
-	}
-
-	return node->GetCalculate<OperTypeCalculate>()->getValue(param1, param2, entity);
+  return nullptr;
 }
 
-OperType getCallType(const Char*& str)
-{
-	OperType operType = OperType::DATA;
-	switch (*str) {
-	case '+':
-		operType = OperType::PLUS;
-		break;
-	case '-':
-		operType = OperType::MINUS;
-		break;
-	case '*':
-		operType = OperType::MULTIPLIED;
-		break;
-	case '/':
-		operType = OperType::DIVIDED;
-		break;
-	case '&':
-		if (*++str == '&') {
-			operType = OperType::AND;
-		}
-		break;
-	case '|':
-		if (*++str == '|') {
-			operType = OperType::OR;
-		}
-		break;
-	case '=':
-		if (*++str == '=') {
-			operType = OperType::EQUAL;
-		}
-		break;
-	case '!':
-		if (*(str + 1) == '=') {
-			operType = OperType::NOTEQUAL;
-			++str;
-		} else {
-			operType = OperType::NOT;
-		}
-		break;
-	case '>':
-		if (*(str + 1) == '=') {
-			operType = OperType::GREATEREQUAL;
-			++str;
-		} else {
-			operType = OperType::GREATER;
-		}
-		break;
-	case '<':
-		if (*(str + 1) == '=') {
-			operType = OperType::LESSEQUAL;
-			++str;
-		} else {
-			operType = OperType::LESS;
-		}
-		break;
-	}
-
-	if (operType != OperType::DATA) {
-		++str;
-	}
-	return operType;
-}
-
-Node* Expression::create(const Char*& str, Boolean bFun)
-{
-	Boolean bError = false;
-	Node* root = nullptr;
-	while (*str != ENDFLG) {
-		const char curChar = *str;
-		if (std::isspace(curChar, g_app.getLocale())) {
-			++str;
-			continue;
-		}
-
-		if (curChar == '#') {
-			Calculate* cal = new DateTimeCalculate();
-			if (!cal->parse(str)) {
-				bError = true;
-				delete cal;
-				break;
-			}
-
-			if (root == nullptr)
-				root = new Node(OperType::DATA, cal);
-			else if (root->rchild == nullptr)
-				root->rchild = new Node(OperType::DATA, cal);
-			else
-				root->rchild->rchild = new Node(OperType::DATA, cal);
-		} else if (curChar == '\'') {
-			Calculate* cal = new TextCalculate();
-			if (!cal->parse(str)) {
-				bError = true;
-				delete cal;
-				break;
-			}
-
-			if (root == nullptr)
-				root = new Node(OperType::DATA, cal);
-			else if (root->rchild == nullptr)
-				root->rchild = new Node(OperType::DATA, cal);
-			else
-				root->rchild->rchild = new Node(OperType::DATA, cal);
-		} else if (curChar == '(') {
-			Calculate* cal = new BracketCalculate();
-			if (!cal->parse(str)) {
-				bError = true;
-				delete cal;
-				break;
-			}
-
-			if (root == nullptr)
-				root = new Node(OperType::DATA, cal);
-			else if (root->rchild == nullptr)
-				root->rchild = new Node(OperType::DATA, cal);
-			else
-				root->rchild->rchild = new Node(OperType::DATA, cal);
-		} else if (curChar == ')') {
-			break;
-		} else if (curChar == ',') {
-			if (!bFun)
-				bError = true;
-			++str;
-			break;
-		}
-		else if (std::isdigit(curChar, g_app.getLocale())) {
-			Calculate* cal = getNumberCalculate(str);
-			if (cal == nullptr) {
-				bError = false;
-				break;
-			}
-
-			if (root == nullptr)
-				root = new Node(OperType::DATA, cal);
-			else if (root->rchild == nullptr)
-				root->rchild = new Node(OperType::DATA, cal);
-			else
-				root->rchild->rchild = new Node(OperType::DATA, cal);
-		} else {
-			const Char* temp = str;
-			OperType calType = getCallType(str);
-			if (calType != OperType::DATA) {
-				Calculate* cal = new OperTypeCalculate(String(temp, str - temp));
-				if (root == nullptr)
-					root = new Node(calType, cal);
-				else if (calType < root->type)	// ���ȼ�����
-					root->rchild = new Node(calType, cal, root->rchild);
-				else // ��Ϊ���ȼ���С��������
-					root = new Node(calType, cal, root);
-			} else {
-				// �Զ��庯������
-				Calculate* cal = getFunOrFieldCalculate(str);
-				if (cal == nullptr) {
-					bError = true;
-					break;
-				}
-
-				if (root == nullptr)
-					root = new Node(OperType::DATA, cal);
-				else if (root->rchild == nullptr)
-					root->rchild = new Node(OperType::DATA, cal);
-				else
-					root->rchild->rchild = new Node(OperType::DATA, cal);
-			}
-		}
-	}
-
-	if (bError) {
-		root = nullptr;
-	}
-
-	return root;
-}
-
-Calculate* Expression::getNumberCalculate(const Char*& str)
-{
-	const Char* temp = str;
-	do {
-		++str;
-	} while (*str != ENDFLG && std::isdigit(*str, g_app.getLocale()));
-
-	if (*str != ENDFLG && *str == '.') {
-		if (!std::isdigit(*++str, g_app.getLocale())) {
-			return nullptr;
-		}
-
-		do {
-			++str;
-		} while (*str != ENDFLG && std::isdigit(*str, g_app.getLocale()));
-		DoubleCalculate* cal = new DoubleCalculate();
-		cal->_value = StringUtil::convert<Double>(String(temp, str - temp).c_str());
-		return cal;
-	}
-
-	LongCalculate* cal = new LongCalculate();
-	cal->_value = StringUtil::convert<Long>(String(temp, str - temp).c_str());
-	return cal;
-}
-
-Calculate* Expression::getFunOrFieldCalculate(const Char*& str)
-{
-	const Char* temp = str;
-	while (*temp != ENDFLG) {
-		if (*temp == '.') {
-			Calculate* cal = new FieldCalculate();
-			if (!cal->parse(str)) {
-				delete cal;
-				break;
-			}
-			_hasField = true;
-			return cal;
-		}
-		else if (*temp == '(') {
-			Calculate* cal = new FunctionCalculate();
-			if (!cal->parse(str)) {
-				delete cal;
-				break;
-			}
-			return cal;
-		}
-		++temp;
-	}
-
-	return nullptr;
-}
-
-void Expression::clear(Node* node)
-{
-
-}
-
+void Expression::clear(Node* node) {}
 }

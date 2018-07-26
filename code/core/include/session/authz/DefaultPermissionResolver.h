@@ -4,12 +4,11 @@
 
 namespace gemini {
 
-class DefaultPermissionResolver : public PermissionResolver
-{
-public:
-	virtual std::shared_ptr<ObjectPermission> resolve(const String& permission) const override;
-
+class DefaultPermissionResolver : public PermissionResolver {
+ public:
+  virtual std::shared_ptr<ObjectPermission> resolve(
+      const String& permission) const override;
 };
 
-}
-#endif // GEMINI_DefaultPermissionResolver_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_DefaultPermissionResolver_INCLUDE

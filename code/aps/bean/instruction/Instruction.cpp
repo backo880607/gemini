@@ -1,6 +1,5 @@
 #include "Instruction.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(Instruction, gemini::EntityObject)
-} // namespace aps
+}  // namespace aps

@@ -2,8 +2,6 @@
 
 namespace gemini {
 
-Any TextFunction::funClean(const std::vector<Any>& params) {
+Any TextFunction::funClean(const std::vector<Any>& params) {}
 
-}
-
-}
+}  // namespace gemini

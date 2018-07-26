@@ -8,20 +8,20 @@ namespace gemini {
 class Authenticator;
 class Authorizer;
 class SecurityMgr {
-public:
-	SecurityMgr();
-	~SecurityMgr();
+ public:
+  SecurityMgr();
+  ~SecurityMgr();
 
-	Session::SPtr login(const AuthenticationToken& token);
-	void logout(const Session::SPtr& session);
+  Session::SPtr login(const AuthenticationToken &token);
+  void logout(const Session::SPtr &session);
 
-	Boolean isPermitted(const String& principal, const String& permission);
+  Boolean isPermitted(const String &principal, const String &permission);
 
-private:
-	Authenticator* _authc;
-	Authorizer* _authz;
+ private:
+  Authenticator *_authc;
+  Authorizer *_authz;
 };
 extern SecurityMgr g_securityMgr;
 
-}
-#endif // GEMINI_SecurityMgr_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_SecurityMgr_INCLUDE

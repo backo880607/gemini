@@ -2,11 +2,9 @@
 #define APS_ToolTaskService_INCLUDE
 #include "TaskService.h"
 
-namespace aps
-{
-class ToolTaskService : public TaskService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_ToolTaskService_INCLUDE
+class ToolTaskService : public TaskService {};
+
+}  // namespace aps
+#endif  // !APS_ToolTaskService_INCLUDE

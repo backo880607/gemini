@@ -1,6 +1,5 @@
 #include "WorkRes.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(WorkRes, gemini::EntityObject)
 }

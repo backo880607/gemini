@@ -1,6 +1,5 @@
 #include "Inventory.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(Inventory, Order)
-} // namespace aps
+}  // namespace aps

@@ -3,22 +3,20 @@
 #include "ObjectPermission.h"
 
 namespace gemini {
-	
-class DefaultObjectPermission : public ObjectPermission
-{
-public:
-	DefaultObjectPermission(const String& value);
-	~DefaultObjectPermission();
 
-	virtual Boolean implies(const std::shared_ptr<ObjectPermission>& p);
+class DefaultObjectPermission : public ObjectPermission {
+ public:
+  DefaultObjectPermission(const String& value);
+  ~DefaultObjectPermission();
 
-private:
-	void setParts(const String& value);
+  virtual Boolean implies(const std::shared_ptr<ObjectPermission>& p);
 
-private:
-	std::vector<std::set<String>> _parts;
+ private:
+  void setParts(const String& value);
+
+ private:
+  std::vector<std::set<String>> _parts;
 };
 
-}
-#endif // GEMINI_DefaultObjectPermission_INCLUDE
-
+}  // namespace gemini
+#endif  // GEMINI_DefaultObjectPermission_INCLUDE

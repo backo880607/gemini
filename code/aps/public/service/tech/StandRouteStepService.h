@@ -2,11 +2,9 @@
 #define APS_StandRouteStepService_INCLUDE
 #include "service/IBaseService.h"
 
-namespace aps
-{
-class StandRouteStepService : public gemini::IBaseService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_StandRouteStepService_INCLUDE
+class StandRouteStepService : public gemini::IBaseService {};
+
+}  // namespace aps
+#endif  // !APS_StandRouteStepService_INCLUDE

@@ -2,11 +2,9 @@
 #define APS_PurchaseOrderService_INCLUDE
 #include "OrderService.h"
 
-namespace aps
-{
-class PurchaseOrderService : public OrderService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_PurchaseOrderService_INCLUDE
+class PurchaseOrderService : public OrderService {};
+
+}  // namespace aps
+#endif  // !APS_PurchaseOrderService_INCLUDE

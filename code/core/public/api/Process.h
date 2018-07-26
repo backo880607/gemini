@@ -2,86 +2,87 @@
 #define GEMINI_Process_INCLUDE
 #include "MsgData.h"
 
-#include <mutex>
 #include <condition_variable>
+#include <mutex>
 
 namespace boost {
-	class thread;
+class thread;
 namespace interprocess {
-	class shared_memory_object;
-	class mapped_region;
-}
-}
+class shared_memory_object;
+class mapped_region;
+}  // namespace interprocess
+}  // namespace boost
 namespace gemini {
 
 class ProcessImpl;
 struct ProcessBuffer;
-class CORE_API Process final
-{
-	struct SharedMemory {
-		ProcessBuffer* _buffer;
-		String _sharedMemName;
-		typedef std::shared_ptr<boost::interprocess::shared_memory_object> smem_ptr;
-		smem_ptr _smem;
-		typedef std::shared_ptr<boost::interprocess::mapped_region> region_ptr;
-		region_ptr _region;
+class CORE_API Process final {
+  struct SharedMemory {
+    ProcessBuffer* _buffer;
+    String _sharedMemName;
+    typedef std::shared_ptr<boost::interprocess::shared_memory_object> smem_ptr;
+    smem_ptr _smem;
+    typedef std::shared_ptr<boost::interprocess::mapped_region> region_ptr;
+    region_ptr _region;
 
-		// 共享内存应由主进程创建，id应为创建的子进程id，子进程只打开共享内存
-		Boolean open(Long id = 0);
-		void close();
-	};
+    // 鍏变韩鍐呭瓨搴旂敱涓昏繘绋嬪垱寤猴紝id搴斾负鍒涘缓鐨勫瓙杩涚▼id锛屽瓙杩涚▼鍙墦寮�鍏变韩鍐呭瓨
+    Boolean open(Long id = 0);
+    void close();
+  };
 
-	typedef std::vector<String> Args;
-	Process(std::shared_ptr<ProcessImpl> impl);
-public:
-	Process();
-	~Process();
+  typedef std::vector<String> Args;
+  Process(std::shared_ptr<ProcessImpl> impl);
 
-	static Long currentId();
-	static Process launch(const String& command);
-	static Process launch(const String& command, const Args& args);
+ public:
+  Process();
+  ~Process();
 
-	Boolean valid() const { return _impl != nullptr; }
+  static Long currentId();
+  static Process launch(const String& command);
+  static Process launch(const String& command, const Args& args);
 
-	Long id() const;
-	Boolean running() const;
-	Int wait() const;
-	void kill();
-private:
-	std::shared_ptr<ProcessImpl> _impl;
+  Boolean valid() const { return _impl != nullptr; }
+
+  Long id() const;
+  Boolean running() const;
+  Int wait() const;
+  void kill();
+
+ private:
+  std::shared_ptr<ProcessImpl> _impl;
 };
 
-class CORE_API ProcessPool : public noncopyable
-{
-	struct Config {
-		Int size;
-		String path;
-	};
-public:
-	ProcessPool();
-	~ProcessPool();
+class CORE_API ProcessPool : public noncopyable {
+  struct Config {
+    Int size;
+    String path;
+  };
 
-	const Config& getConfig() const { return _config; }
+ public:
+  ProcessPool();
+  ~ProcessPool();
 
-	Process create();
-	void destory(Process proc);
+  const Config& getConfig() const { return _config; }
 
-private:
-	void readConfig();
-	void startHeartBeat();
-	Process createImpl();
+  Process create();
+  void destory(Process proc);
 
-private:
-	Config _config;
-	std::vector<Process> _processes;
-	std::vector<Process> _freeNodes;
+ private:
+  void readConfig();
+  void startHeartBeat();
+  Process createImpl();
 
-	typedef std::shared_ptr<boost::thread> thread_type;
-	thread_type _threadHeartBeat;
+ private:
+  Config _config;
+  std::vector<Process> _processes;
+  std::vector<Process> _freeNodes;
 
-	std::mutex _mutex;
-	std::condition_variable _cond;
+  typedef std::shared_ptr<boost::thread> thread_type;
+  thread_type _threadHeartBeat;
+
+  std::mutex _mutex;
+  std::condition_variable _cond;
 };
 
-}
-#endif // GEMINI_Process_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Process_INCLUDE

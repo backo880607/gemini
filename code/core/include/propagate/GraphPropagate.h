@@ -5,20 +5,20 @@
 
 namespace gemini {
 
-class GraphPropagate : public graph::Graph
-{
-public:
-	GraphPropagate();
-	~GraphPropagate();
+class GraphPropagate : public graph::Graph {
+ public:
+  GraphPropagate();
+  ~GraphPropagate();
 
-	VertexPropagate* get(VertexPropagate* target);
-	void add(VertexPropagate* target);
-protected:
-	virtual graph::Edge* createEdge();
+  VertexPropagate *get(VertexPropagate *target);
+  void add(VertexPropagate *target);
 
-private:
-	VertexPropagate::colls _caches;
+ protected:
+  virtual graph::Edge *createEdge();
+
+ private:
+  VertexPropagate::colls _caches;
 };
 
-}
-#endif // GEMINI_GraphPropagate_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_GraphPropagate_INCLUDE

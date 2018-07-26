@@ -3,11 +3,10 @@
 #include "../../../public/service/instruction/InstructionService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class InstructionServiceImpl : public gemini::BaseService, InstructionService
-{
-};
-} // namespace as
+namespace aps {
 
-#endif // !APS_InstructionServiceImpl_INCLUDE
+class InstructionServiceImpl : public gemini::BaseService,
+                               InstructionService {};
+
+}  // namespace aps
+#endif  // !APS_InstructionServiceImpl_INCLUDE

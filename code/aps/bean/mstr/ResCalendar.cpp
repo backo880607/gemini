@@ -1,6 +1,5 @@
 #include "ResCalendar.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(ResCalendar, gemini::EntityObject)
-} // namespace aps
+}  // namespace aps

@@ -2,11 +2,9 @@
 #define APS_SingleTaskService_INCLUDE
 #include "TaskService.h"
 
-namespace aps
-{
-class SingleTaskService : public TaskService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_SingleTaskService_INCLUDE
+class SingleTaskService : public TaskService {};
+
+}  // namespace aps
+#endif  // !APS_SingleTaskService_INCLUDE

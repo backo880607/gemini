@@ -3,11 +3,10 @@
 #include "../../../public/service/tech/RouteStepOutService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class RouteStepOutServiceImpl : public gemini::BaseService, RouteStepOutService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // APS_RouteStepOutServiceImpl_INCLUDE
+class RouteStepOutServiceImpl : public gemini::BaseService,
+                                RouteStepOutService {};
+
+}  // namespace aps
+#endif  // APS_RouteStepOutServiceImpl_INCLUDE

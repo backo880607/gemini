@@ -3,10 +3,9 @@
 #include "../../../public/service/plan/WorkResService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class WorkResServiceImpl : public gemini::BaseService, WorkResService
-{
-};
-} // namespace aps
-#endif // !APS_WorkResServiceImpl_INCLUDE
+namespace aps {
+
+class WorkResServiceImpl : public gemini::BaseService, WorkResService {};
+
+}  // namespace aps
+#endif  // !APS_WorkResServiceImpl_INCLUDE

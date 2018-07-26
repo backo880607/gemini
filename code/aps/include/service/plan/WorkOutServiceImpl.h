@@ -3,10 +3,9 @@
 #include "../../../public/service/plan/WorkOutService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class WorkOutServiceImpl : public gemini::BaseService, WorkOutService
-{
-};
-} // namespace aps
-#endif // !APS_WorkOutServiceImpl_INCLUDE
+namespace aps {
+
+class WorkOutServiceImpl : public gemini::BaseService, WorkOutService {};
+
+}  // namespace aps
+#endif  // !APS_WorkOutServiceImpl_INCLUDE

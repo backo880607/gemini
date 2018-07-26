@@ -3,18 +3,17 @@
 #include "../../../public/Object.h"
 
 namespace gemini {
-    
-class Department : public EntityObject
-{
-    DECLARE_CLASS(Department, EntityObject)
 
-    DECLARE_FIELD(String, name)
-	DECLARE_FIELD(String, remark)
+class Department : public EntityObject {
+  DECLARE_CLASS(Department, EntityObject)
 
-    DECLARE_ENTITY(Department, parent)
-	DECLARE_VECTOR(Department, childs)
+  DECLARE_FIELD(String, name)
+  DECLARE_FIELD(String, remark)
+
+  DECLARE_ENTITY(Department, parent)
+  DECLARE_VECTOR(Department, childs)
 };
 
-}
+}  // namespace gemini
 
-#endif // !GEMINI_Department_INCLUDE
+#endif  // !GEMINI_Department_INCLUDE

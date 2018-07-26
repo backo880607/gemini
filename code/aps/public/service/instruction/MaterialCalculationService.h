@@ -2,11 +2,9 @@
 #define APS_MaterialCalculationService_INCLUDE
 #include "InstructionService.h"
 
-namespace aps
-{
-class MaterialCalculationService : public InstructionService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_MaterialCalculationService_INCLUDE
+class MaterialCalculationService : public InstructionService {};
+
+}  // namespace aps
+#endif  // !APS_MaterialCalculationService_INCLUDE

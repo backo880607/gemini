@@ -4,11 +4,11 @@
 
 namespace gemini {
 
-class AuthorizationInfo
-{
-public:
-	virtual const std::vector<std::shared_ptr<ObjectPermission>>& getObjectPermissions() = 0;
+class AuthorizationInfo {
+ public:
+  virtual const std::vector<std::shared_ptr<ObjectPermission>>&
+  getObjectPermissions() = 0;
 };
 
-}
-#endif // GEMINI_AuthorizationInfo_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_AuthorizationInfo_INCLUDE

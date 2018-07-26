@@ -4,18 +4,20 @@
 
 namespace gemini {
 
-class CORE_API ControllerMgr : noncopyable
-{
-public:
-	static ControllerMgr& instance() { static ControllerMgr mgr; return mgr; }
+class CORE_API ControllerMgr : noncopyable {
+ public:
+  static ControllerMgr& instance() {
+    static ControllerMgr mgr;
+    return mgr;
+  }
 
-	void init();
+  void init();
 
-	const BaseController& getController(const String& name);
+  const BaseController& getController(const String& name);
 
-private:
-	std::map<String, const BaseController*> _controllers;
+ private:
+  std::map<String, const BaseController*> _controllers;
 };
 
-}
-#endif // !GEMINI_Controller_INCLUDE
+}  // namespace gemini
+#endif  // !GEMINI_Controller_INCLUDE

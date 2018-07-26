@@ -4,11 +4,7 @@
 
 namespace gemini {
 
-class EdgePropagate : public graph::EdgeVector
-{
-};
+class EdgePropagate : public graph::EdgeVector {};
 
-}
-
-
-#endif // GEMINI_EdgePropagate_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_EdgePropagate_INCLUDE

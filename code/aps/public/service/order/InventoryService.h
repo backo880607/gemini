@@ -2,11 +2,9 @@
 #define APS_InventoryService_INCLUDE
 #include "OrderService.h"
 
-namespace aps
-{
-class InventoryService : public OrderService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_InventoryService_INCLUDE
+class InventoryService : public OrderService {};
+
+}  // namespace aps
+#endif  // !APS_InventoryService_INCLUDE

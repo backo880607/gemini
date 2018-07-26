@@ -1,6 +1,5 @@
 #include "BatchTask.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(BatchTask, Task)
-} // namespace aps
+}  // namespace aps

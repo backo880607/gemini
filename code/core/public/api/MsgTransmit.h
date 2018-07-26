@@ -1,37 +1,37 @@
 #ifndef GEMINI_MsgTransmit_INCLUDE
 #define GEMINI_MsgTransmit_INCLUDE
-#include "MsgQueue.h"
 #include <thread>
+#include "MsgQueue.h"
 
 namespace gemini {
 
-class MsgTransmit
-{
-	typedef std::shared_ptr<std::thread> thread_type;
-public:
-	MsgTransmit(MsgQueue& request, MsgQueue& response);
-	~MsgTransmit();
+class MsgTransmit {
+  typedef std::shared_ptr<std::thread> thread_type;
 
-	/**
-	* @brief Æô¶¯ÇëÇóÏß³ÌºÍÏìÓ¦Ïß³Ì½øĞĞÏûÏ¢´«Êä
-	*/
-	void start();
+ public:
+  MsgTransmit(MsgQueue& request, MsgQueue& response);
+  ~MsgTransmit();
 
-	/**
-	* @brief Í£Ö¹ÇëÇóÏß³ÌºÍÏìÓ¦Ïß³ÌµÄÏûÏ¢´«Êä
-	*/
-	void stop();
+  /**
+   * @brief å¯åŠ¨è¯·æ±‚çº¿ç¨‹å’Œå“åº”çº¿ç¨‹è¿›è¡Œæ¶ˆæ¯ä¼ è¾“
+   */
+  void start();
 
-private:
-	static void proRequest(MsgTransmit* transmit);
-	static void proResponse(MsgTransmit* transmit);
+  /**
+   * @brief åœæ­¢è¯·æ±‚çº¿ç¨‹å’Œå“åº”çº¿ç¨‹çš„æ¶ˆæ¯ä¼ è¾“
+   */
+  void stop();
 
-private:
-	MsgQueue& _request;				///< ÇëÇó¶ÓÁĞ
-	MsgQueue& _response;			///< Ó¦´ğ¶ÓÁĞ
-	thread_type _threadRequest;		///< ÇëÇóÏß³Ì
-	thread_type _threadResponse;		///< ÏìÓ¦Ïß³Ì
+ private:
+  static void proRequest(MsgTransmit* transmit);
+  static void proResponse(MsgTransmit* transmit);
+
+ private:
+  MsgQueue& _request;           ///< è¯·æ±‚é˜Ÿåˆ—
+  MsgQueue& _response;          ///< åº”ç­”é˜Ÿåˆ—
+  thread_type _threadRequest;   ///< è¯·æ±‚çº¿ç¨‹
+  thread_type _threadResponse;  ///< å“åº”çº¿ç¨‹
 };
 
-}
-#endif // GEMINI_MsgTransmit_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_MsgTransmit_INCLUDE

@@ -3,11 +3,9 @@
 #include "../../../public/service/tech/RouteStepService.h"
 #include "service/BaseService.h"
 
-namespace aps
-{
-class RouteStepServiceImpl : public gemini::BaseService, RouteStepService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // APS_RouteStepServiceImpl_INCLUDE
+class RouteStepServiceImpl : public gemini::BaseService, RouteStepService {};
+
+}  // namespace aps
+#endif  // APS_RouteStepServiceImpl_INCLUDE

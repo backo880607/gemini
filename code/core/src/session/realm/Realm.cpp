@@ -2,9 +2,6 @@
 
 namespace gemini {
 
-Boolean Realm::supports(const AuthenticationToken& token)
-{
-    return true;
-}
+Boolean Realm::supports(const AuthenticationToken& token) { return true; }
 
-}
+}  // namespace gemini

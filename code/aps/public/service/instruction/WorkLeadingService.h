@@ -2,11 +2,9 @@
 #define APS_WorkLeadingService_INCLUDE
 #include "InstructionService.h"
 
-namespace aps
-{
-class WorkLeadingService : public InstructionService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_WorkLeadingService_INCLUDE
+class WorkLeadingService : public InstructionService {};
+
+}  // namespace aps
+#endif  // !APS_WorkLeadingService_INCLUDE

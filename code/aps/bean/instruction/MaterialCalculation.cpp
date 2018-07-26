@@ -1,6 +1,5 @@
 #include "MaterialCalculation.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(MaterialCalculation, Instruction)
 }

@@ -5,32 +5,36 @@
 namespace gemini {
 
 class FactoryMgr final {
-	FactoryMgr();
-	FactoryMgr(const FactoryMgr&) {}
-	FactoryMgr& operator= (const FactoryMgr&) { return *this; }
-public:
-	static FactoryMgr& instance() { static FactoryMgr mgr; return mgr; }
+  FactoryMgr();
+  FactoryMgr(const FactoryMgr&) {}
+  FactoryMgr& operator=(const FactoryMgr&) { return *this; }
 
-	void init();
-	void unInit();
+ public:
+  static FactoryMgr& instance() {
+    static FactoryMgr mgr;
+    return mgr;
+  }
 
-	const std::vector<EntityFactory*>& getFactories() const { return _factories; }
-	EntityFactory* getFactory(const Class& cls) const;
-	EntityFactory* getFactory(const String& name) const;
+  void init();
+  void unInit();
 
-	template <typename FUN>
-	void foreach_class(FUN fun) const {
-		for (const EntityFactory* factory : _factories) {
-			fun(factory->getEntityClass());
-		}
-	}
+  const std::vector<EntityFactory*>& getFactories() const { return _factories; }
+  EntityFactory* getFactory(const Class& cls) const;
+  EntityFactory* getFactory(const String& name) const;
 
-	const EntityFactory::Data* getRelaData(const Class& cls, Int sign) const;
+  template <typename FUN>
+  void foreach_class(FUN fun) const {
+    for (const EntityFactory* factory : _factories) {
+      fun(factory->getEntityClass());
+    }
+  }
 
-private:
-	std::vector<EntityFactory*> _factories;
-	std::map<String, EntityFactory*> _factoryNames;
+  const EntityFactory::Data* getRelaData(const Class& cls, Int sign) const;
+
+ private:
+  std::vector<EntityFactory*> _factories;
+  std::map<String, EntityFactory*> _factoryNames;
 };
 
-}
-#endif // GEMINI_FactoryMgr_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_FactoryMgr_INCLUDE

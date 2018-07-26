@@ -1,7 +1,4 @@
-#include "../../../include/service/tech/RouteStepServiceImpl.h"
 #include "../../../bean/tech/RouteStep.h"
+#include "../../../include/service/tech/RouteStepServiceImpl.h"
 
-namespace aps
-{
-
-} // namespace aps
+namespace aps {}  // namespace aps

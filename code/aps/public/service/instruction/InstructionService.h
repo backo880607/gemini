@@ -2,10 +2,13 @@
 #define APS_InstructionService_INCLUDE
 #include "service/IBaseService.h"
 
-namespace aps
-{
-class InstructionService : public gemini::IBaseService
-{
+namespace aps {
+
+class Instruction;
+class InstructionService : public gemini::IBaseService {
+ public:
+  virtual void execute(const gemini::SmartPtr<Instruction>& inst) const = 0;
 };
-} // namespace aps
-#endif // !APS_InstructionService_INCLUDE
+
+}  // namespace aps
+#endif  // !APS_InstructionService_INCLUDE

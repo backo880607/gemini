@@ -2,11 +2,9 @@
 #define APS_RouteStepOutService_INCLUDE
 #include "service/IBaseService.h"
 
-namespace aps
-{
-class RouteStepOutService : public gemini::IBaseService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_RouteStepOutService_INCLUDE
+class RouteStepOutService : public gemini::IBaseService {};
+
+}  // namespace aps
+#endif  // !APS_RouteStepOutService_INCLUDE

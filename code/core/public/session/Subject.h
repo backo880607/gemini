@@ -5,25 +5,25 @@
 namespace gemini {
 
 class AuthenticationToken;
-class CORE_API Subject
-{
-public:
-	Subject();
-	~Subject();
+class CORE_API Subject {
+ public:
+  Subject();
+  ~Subject();
 
-	static const Subject& get();
+  static const Subject& get();
 
-	Boolean isAuthenticated() const;
+  Boolean isAuthenticated() const;
 
-	void login(const AuthenticationToken& token) const;
-	void logout() const;
+  void login(const AuthenticationToken& token) const;
+  void logout() const;
 
-	Boolean isPermitted(const Char* permission) const;
+  Boolean isPermitted(const Char* permission) const;
 
-	Session::SPtr getSession() const { return _session; }
-private:
-	Session::SPtr _session;
+  Session::SPtr getSession() const { return _session; }
+
+ private:
+  Session::SPtr _session;
 };
 
-}
-#endif // GEMINI_Subject_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Subject_INCLUDE

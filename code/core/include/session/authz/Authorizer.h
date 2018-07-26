@@ -4,12 +4,12 @@
 
 namespace gemini {
 
-class Authorizer
-{
-public:
-	virtual ~Authorizer() {}
-    virtual Boolean isPermitted(const String& principal, const String& permission) = 0;
+class Authorizer {
+ public:
+  virtual ~Authorizer() {}
+  virtual Boolean isPermitted(const String& principal,
+                              const String& permission) = 0;
 };
 
-}
-#endif // GEMINI_Authorizer_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_Authorizer_INCLUDE

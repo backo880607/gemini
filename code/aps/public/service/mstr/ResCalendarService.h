@@ -2,11 +2,13 @@
 #define APS_ResCalendarService_INCLUDE
 #include "service/IBaseService.h"
 
-namespace aps
-{
-class ResCalendarService : public gemini::IBaseService
-{
-};
-} // namespace aps
+namespace aps {
 
-#endif // !APS_ResCalendarService_INCLUDE
+class ResCalendar;
+class ResCalendarService : public gemini::IBaseService {
+ public:
+  virtual void init(const gemini::SmartPtr<ResCalendar>& resCalendar) const = 0;
+};
+
+}  // namespace aps
+#endif  // !APS_ResCalendarService_INCLUDE

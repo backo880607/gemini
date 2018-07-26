@@ -1,7 +1,9 @@
-#include "../../../include/service/instruction/WorkLeadingServiceImpl.h"
 #include "../../../bean/instruction/WorkLeading.h"
+#include "../../../include/service/instruction/WorkLeadingServiceImpl.h"
 
-namespace aps
-{
+namespace aps {
 
-} // namespace aps
+void WorkLeadingServiceImpl::execute(
+    const gemini::SmartPtr<Instruction>& inst) const {}
+
+}  // namespace aps

@@ -3,5 +3,6 @@
     "editor.formatOnType": true,
     "editor.snippetSuggestions": "top",
     "editor.formatOnSave": true,
-    "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Segoe UI Emoji', 'NotoSansCJKsc-Regular'"
+    "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Segoe UI Emoji', 'NotoSansCJKsc-Regular'",
+    "C_Cpp.clang_format_fallbackStyle": "Google"
 }

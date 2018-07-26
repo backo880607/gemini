@@ -1,6 +1,5 @@
 #include "CancelTask.h"
 
-namespace aps
-{
+namespace aps {
 DECLARE_CLASS_IMPL(CancelTask, Instruction)
-} // namespace aps
+}  // namespace aps
