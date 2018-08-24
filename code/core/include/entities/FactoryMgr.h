@@ -25,6 +25,9 @@ class FactoryMgr final {
   template <typename FUN>
   void foreach_class(FUN fun) const {
     for (const EntityFactory* factory : _factories) {
+      if (factory == nullptr) {
+        continue;
+	  }
       fun(factory->getEntityClass());
     }
   }

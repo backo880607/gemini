@@ -83,5 +83,26 @@ class CORE_API DataNode {
   String _name;
 };
 
+class CORE_API InitFile {
+  typedef DataNode::node_type node_type;
+
+ public:
+  InitFile(const String& path);
+  ~InitFile();
+
+  Boolean valid() const { return _ptree != nullptr; }
+
+  DataNode getNode();
+  DataNode getNode(const Char* tagName);
+  DataNode getNode(const String& tagName) { return getNode(tagName.c_str()); }
+
+ private:
+  void open(const String& path);
+
+ private:
+  std::unique_ptr<node_type> _ptree;
+  String _filePath;
+};
+
 }  // namespace gemini
 #endif  // GEMINI_DataNode_INCLUDE

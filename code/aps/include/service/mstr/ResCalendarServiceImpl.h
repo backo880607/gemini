@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class ResCalendarServiceImpl : public gemini::BaseService, ResCalendarService {
+class ResCalendarServiceImpl : public gemini::BaseService, public ResCalendarService {
   virtual void init(const gemini::SmartPtr<ResCalendar>& resCalendar) const;
 };
 

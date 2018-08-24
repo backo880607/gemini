@@ -2,13 +2,8 @@
 
 namespace gemini {
 
-Server::Server()
-{
+Server::Server() {}
 
-}
+Server::~Server() {}
 
-Server::~Server()
-{
-}
-
-}
+}  // namespace gemini

@@ -9,8 +9,8 @@
 void initAPS() {}
 namespace aps {
 
-gemini::ServiceRegister<ItemServiceImpl, ItemService> item_service_register();
-gemini::Boolean ItemServiceImpl::calcLevel(const Item::SPtr& item) const {
+gemini::ServiceRegister<ItemServiceImpl, ItemService> item_service_register;
+/*gemini::Boolean ItemServiceImpl::calcLevel(const Item::SPtr& item) const {
   if (item->_type == ItemType::SRC_MATERIALS) {
     item->_level = 255;
   } else {
@@ -22,9 +22,10 @@ gemini::Boolean ItemServiceImpl::calcLevel(const Item::SPtr& item) const {
     item->_level = maxLevel;
   }
   return true;
-}
+}*/
 
-gemini::Boolean ItemServiceImpl::isValid(const Item::SPtr& item) const {
+gemini::Boolean ItemServiceImpl::isValid(
+    const gemini::SmartPtr<Item>& item) const {
   if (item == nullptr) {
     return false;
   }
@@ -39,9 +40,21 @@ gemini::Boolean ItemServiceImpl::isValid(const Item::SPtr& item) const {
 }
 
 gemini::SmartPtr<PlanWorkOrder> ItemServiceImpl::createPlanWorkOrder(
-    const Item::SPtr& item) const {}
+    const gemini::SmartPtr<Item>& item) const {
+  return nullptr;
+}
 
 gemini::SmartPtr<PlanPurchaseOrder> ItemServiceImpl::createPlanPurchaseOrder(
-    const Item::SPtr& item) const {}
+    const gemini::SmartPtr<Item>& item) const {
+  return nullptr;
+}
+
+void ItemServiceImpl::test() const {
+  for (gemini::Int i = 0; i < 10000; ++i) {
+    create<Item>();
+  }
+
+  sync();
+}
 
 }  // namespace aps

@@ -107,7 +107,9 @@ class CORE_API XML {
   XML(const Char* val);
   ~XML();
 
-  Boolean valid() const { return !_ptree; }
+  Boolean valid() const { return _ptree != nullptr; }
+
+  void reset(const Char* val);
 
   Boolean write(std::ostream& ss);
 

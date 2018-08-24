@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class RouteServiceImpl : public gemini::BaseService, RouteService {};
+class RouteServiceImpl : public gemini::BaseService, public RouteService {};
 
 }  // namespace aps
 #endif  // APS_RouteServiceImpl_INCLUDE

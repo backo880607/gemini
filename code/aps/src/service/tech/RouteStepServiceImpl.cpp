@@ -1,4 +1,7 @@
 #include "../../../bean/tech/RouteStep.h"
 #include "../../../include/service/tech/RouteStepServiceImpl.h"
 
-namespace aps {}  // namespace aps
+namespace aps {
+gemini::ServiceRegister<RouteStepServiceImpl, RouteStepService>
+    routeStep_service_register;
+}  // namespace aps

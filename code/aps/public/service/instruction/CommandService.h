@@ -5,7 +5,7 @@
 namespace aps {
 
 class Command;
-class CommandService : public gemini::IBaseService {
+class CommandService {
  public:
   SERVICE_INTERFACE_METHOD(Command, execute)
 };

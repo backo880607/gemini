@@ -6,7 +6,10 @@
 namespace aps {
 
 class InstructionServiceImpl : public gemini::BaseService,
-                               InstructionService {};
+                               public InstructionService {
+ public:
+  virtual void execute(const gemini::SmartPtr<Instruction>& inst) const {}
+};
 
 }  // namespace aps
 #endif  // !APS_InstructionServiceImpl_INCLUDE

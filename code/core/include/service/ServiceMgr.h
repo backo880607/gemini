@@ -6,7 +6,7 @@ namespace gemini {
 
 class ServiceMgr final : public noncopyable {
   struct Data {
-    const BaseService *_service;
+    const BaseService *_service = nullptr;
     std::map<String, service::callable *> _callers;
   };
 
@@ -22,24 +22,21 @@ class ServiceMgr final : public noncopyable {
   void init();
 
   void registerService(const String &name, const BaseService *service);
-  void registerInterface(const String &name, const IBaseService *service);
+  void registerInterface(const String &name, const service::Wrap &service);
   void registerAutowired(ServiceAutowired *service, const String &iName);
   void registerServiceMethod(const String &srvName, const String &method,
                              service::callable *caller);
 
   const BaseService *get(const String &name) const;
   const BaseService *get(const Class &cls) const { return get(cls.getName()); }
-  const IBaseService *getInterface(const String &iName) const;
-  const IBaseService *getInterface(const Class &cls) const {
-    return getInterface(cls.getName());
-  }
+  service::Wrap getInterface(const String &iName) const;
 
   service::callable *getCallers(const String &srvName,
                                 const String &methodName);
 
  private:
   std::map<String, Data> _services;
-  std::map<String, const IBaseService *> _interfaces;
+  std::map<String, service::Wrap> _interfaces;
   std::map<ServiceAutowired *, String> _autowireds;
 };
 

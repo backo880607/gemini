@@ -5,18 +5,13 @@
 namespace gemini {
 
 class AccountError : public log_info {
- public:
-  virtual String getName() override { return u8"Account"; }
+  virtual String getName() override { return "Account"; }
 };
-
 class ExpiredCredentialsError : public log_info {
- public:
-  virtual String getName() override { return u8"ExpiredCredentials"; }
+  virtual String getName() override { return "ExpiredCredentials"; }
 };
-
 class LockedAccountError : public log_info {
- public:
-  virtual String getName() override { return u8"LockedAccount"; }
+  virtual String getName() override { return "LockedAccount"; }
 };
 
 }  // namespace gemini

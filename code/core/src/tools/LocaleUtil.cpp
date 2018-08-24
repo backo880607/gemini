@@ -5,7 +5,7 @@ namespace gemini {
 std::ostringstream& LocaleUtil::getOSS(Boolean bReset /* = false */) {
   if (bReset) {
     _ssout.clear();
-    _ssout.str(u8"");
+    _ssout.str("");
   }
   return _ssout;
 }

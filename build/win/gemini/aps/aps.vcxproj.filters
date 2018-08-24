@@ -175,6 +175,48 @@
     <Filter Include="Source Files\arithmetic\scheduler\capacity">
       <UniqueIdentifier>{a0bcb5de-d7ef-4ed0-a287-e31289dccbfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\dao">
+      <UniqueIdentifier>{1de16f76-cbce-4aa5-9f82-303749cdbb48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao\instruction">
+      <UniqueIdentifier>{3614d1af-62f6-4d92-954d-31225a071cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao\mstr">
+      <UniqueIdentifier>{538b6c6d-9756-44b9-9e83-5f480e642c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao\order">
+      <UniqueIdentifier>{c6f5731e-88b8-4546-859b-431989a77237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao\plan">
+      <UniqueIdentifier>{a7b94e46-c5cf-4d09-a604-9ad2426d46d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao\task">
+      <UniqueIdentifier>{077c09d5-2e95-40cb-9f5d-08ce99f0157f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao\tech">
+      <UniqueIdentifier>{7796388f-ee92-485d-8704-b61fe8d0af45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao">
+      <UniqueIdentifier>{c8dd06f2-705a-4157-9c52-0f1f886b9962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao\instruction">
+      <UniqueIdentifier>{8866bec1-50c6-46cb-8c71-6292abca56d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao\mstr">
+      <UniqueIdentifier>{fc6508c1-5a5b-4552-9485-1fada5f0112b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao\order">
+      <UniqueIdentifier>{f7505790-97b4-49ab-8822-5d0f4839bf29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao\plan">
+      <UniqueIdentifier>{69a6ba29-e66c-43f9-a1a5-36c46deadeed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao\task">
+      <UniqueIdentifier>{1ab562e3-336e-462f-93e5-14ec9f45d56b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao\tech">
+      <UniqueIdentifier>{87544b8e-87be-49b5-a454-c4b80533c366}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -531,6 +573,117 @@
     <ClInclude Include="..\..\..\..\code\aps\public\enums\ECommon.h">
       <Filter>public\enums</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ItemDao.h">
+      <Filter>Header Files\dao\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\CancelTaskDao.h">
+      <Filter>Header Files\dao\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\MaterialCalculationDao.h">
+      <Filter>Header Files\dao\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\PropertyEditorDao.h">
+      <Filter>Header Files\dao\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\WorkLeadingDao.h">
+      <Filter>Header Files\dao\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteDao.h">
+      <Filter>Header Files\dao\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepDao.h">
+      <Filter>Header Files\dao\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepInDao.h">
+      <Filter>Header Files\dao\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepOutDao.h">
+      <Filter>Header Files\dao\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepResDao.h">
+      <Filter>Header Files\dao\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\StandRouteStepDao.h">
+      <Filter>Header Files\dao\tech</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\CommandDao.h">
+      <Filter>Header Files\dao\instruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ClientDao.h">
+      <Filter>Header Files\dao\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ResCalendarDao.h">
+      <Filter>Header Files\dao\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ResourceDao.h">
+      <Filter>Header Files\dao\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ShiftDao.h">
+      <Filter>Header Files\dao\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\TransTimeDao.h">
+      <Filter>Header Files\dao\mstr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\InventoryDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\MinInventoryDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\PlanPurchaseOrderDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\PlanWorkOrderDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\PurchaseOrderDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\SafeInventoryDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\SaleOrderDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\WorkOrderDao.h">
+      <Filter>Header Files\dao\order</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\ParentWorkDao.h">
+      <Filter>Header Files\dao\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkDao.h">
+      <Filter>Header Files\dao\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkFdbkDao.h">
+      <Filter>Header Files\dao\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkInDao.h">
+      <Filter>Header Files\dao\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkOutDao.h">
+      <Filter>Header Files\dao\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkRelDao.h">
+      <Filter>Header Files\dao\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkResDao.h">
+      <Filter>Header Files\dao\plan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\BatchElementDao.h">
+      <Filter>Header Files\dao\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\BatchTaskDao.h">
+      <Filter>Header Files\dao\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\SingleTaskDao.h">
+      <Filter>Header Files\dao\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\ToolTaskDao.h">
+      <Filter>Header Files\dao\task</Filter>
+    </ClInclude>
+    <ClInclude Include="CapPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -781,6 +934,114 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\aps\public\enums\ECommon.cpp">
       <Filter>public\enums</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ItemDao.cpp">
+      <Filter>Source Files\dao\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\CancelTaskDao.cpp">
+      <Filter>Source Files\dao\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\MaterialCalculationDao.cpp">
+      <Filter>Source Files\dao\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\PropertyEditorDao.cpp">
+      <Filter>Source Files\dao\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\WorkLeadingDao.cpp">
+      <Filter>Source Files\dao\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteDao.cpp">
+      <Filter>Source Files\dao\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepDao.cpp">
+      <Filter>Source Files\dao\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepInDao.cpp">
+      <Filter>Source Files\dao\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepOutDao.cpp">
+      <Filter>Source Files\dao\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepResDao.cpp">
+      <Filter>Source Files\dao\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\StandRouteStepDao.cpp">
+      <Filter>Source Files\dao\tech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\CommandDao.cpp">
+      <Filter>Source Files\dao\instruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ClientDao.cpp">
+      <Filter>Source Files\dao\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ResCalendarDao.cpp">
+      <Filter>Source Files\dao\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ResourceDao.cpp">
+      <Filter>Source Files\dao\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ShiftDao.cpp">
+      <Filter>Source Files\dao\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\TransTimeDao.cpp">
+      <Filter>Source Files\dao\mstr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\InventoryDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\MinInventoryDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\PlanPurchaseOrderDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\PlanWorkOrderDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\PurchaseOrderDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\SafeInventoryDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\SaleOrderDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\WorkOrderDao.cpp">
+      <Filter>Source Files\dao\order</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\ParentWorkDao.cpp">
+      <Filter>Source Files\dao\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkDao.cpp">
+      <Filter>Source Files\dao\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkFdbkDao.cpp">
+      <Filter>Source Files\dao\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkInDao.cpp">
+      <Filter>Source Files\dao\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkOutDao.cpp">
+      <Filter>Source Files\dao\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkRelDao.cpp">
+      <Filter>Source Files\dao\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkResDao.cpp">
+      <Filter>Source Files\dao\plan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\BatchElementDao.cpp">
+      <Filter>Source Files\dao\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\BatchTaskDao.cpp">
+      <Filter>Source Files\dao\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\SingleTaskDao.cpp">
+      <Filter>Source Files\dao\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\ToolTaskDao.cpp">
+      <Filter>Source Files\dao\task</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

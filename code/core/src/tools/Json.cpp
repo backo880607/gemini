@@ -14,17 +14,21 @@ JsonFile::JsonFile(const String& name,
   open(name, mode);
 }
 
-JsonFile::~JsonFile() {}
+JsonFile::~JsonFile() { clear(); }
+
+void JsonFile::clear() {
+  _ptree = nullptr;
+  _fileName.clear();
+}
 
 Boolean JsonFile::open(const String& name,
                        File_Mode mode /*= File_Mode::NormalFile*/) {
+  clear();
   String xmlName = name;
   if (!ProJsonFile(xmlName, mode)) return false;
 
   try {
-    if (_ptree == nullptr) {
-      _ptree.reset(new boost::property_tree::iptree());
-    }
+    _ptree.reset(new boost::property_tree::iptree());
     std::locale utf8Locale(
         std::locale(),
         new boost::program_options::detail::utf8_codecvt_facet());
@@ -109,11 +113,9 @@ void JsonFile::remove() {
   file.remove();
 }
 
-Json::Json() {}
+Json::Json() : _ptree(new boost::property_tree::iptree()) {}
 
-Json::Json(const Char* val) {
-  reset(val);
-}
+Json::Json(const Char* val) { reset(val); }
 
 Json::~Json() {}
 

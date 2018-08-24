@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class SaleOrderServiceImpl : public OrderServiceImpl, SaleOrderService {
+class SaleOrderServiceImpl : public OrderServiceImpl, public SaleOrderService {
   virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const;
   virtual gemini::SmartPtr<Work> createWork(
       const gemini::SmartPtr<Order>& order) const;

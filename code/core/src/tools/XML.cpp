@@ -29,7 +29,10 @@ XMLFile::XMLFile(const String& name,
 
 XMLFile::~XMLFile() { clear(); }
 
-void XMLFile::clear() {}
+void XMLFile::clear() {
+  _ptree = nullptr;
+  _fileName.clear();
+}
 
 Boolean XMLFile::proXMLFile(String& path, File_Mode mode) {
   using namespace boost::property_tree;
@@ -82,9 +85,7 @@ Boolean XMLFile::open(const String& name,
   if (!proXMLFile(xmlName, mode)) return false;
 
   try {
-    if (_ptree == nullptr) {
-      _ptree.reset(new boost::property_tree::iptree());
-    }
+    _ptree.reset(new boost::property_tree::iptree());
     std::locale utf8Locale(
         std::locale(),
         new boost::program_options::detail::utf8_codecvt_facet());
@@ -159,19 +160,26 @@ void XMLFile::foreach_recursion(const Char* directory,
   }
 }
 
-XML::XML() { _ptree->add_child("YuKon", node_type("")); }
+XML::XML() : _ptree(new boost::property_tree::iptree()) {}
 
-XML::XML(const Char* val) {
+XML::XML(const Char* val) { reset(val); }
+
+XML::~XML() {}
+
+void XML::reset(const Char* val) {
+  if (val == nullptr) {
+    _ptree = nullptr;
+    return;
+  }
   std::stringstream ss(val);
   try {
+    _ptree.reset(new XMLNode::node_type());
     read_xml(ss, *_ptree);
   } catch (boost::property_tree::xml_parser_error& err) {
-    _ptree->clear();
+    _ptree = nullptr;
     LOG_ERROR.log(err.what());
   }
 }
-
-XML::~XML() {}
 
 Boolean XML::write(std::ostream& ss) {
   try {
@@ -184,7 +192,7 @@ Boolean XML::write(std::ostream& ss) {
   return true;
 }
 
-DataNode XML::getNode() { return DataNode(&(*_ptree), ""); }
+DataNode XML::getNode() { return DataNode(&(*_ptree)); }
 
 DataNode XML::getNode(const Char* tagName) {
   return DataNode(&_ptree->get_child(tagName), tagName);

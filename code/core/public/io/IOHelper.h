@@ -17,12 +17,6 @@ class CORE_API IOHelper {
   IOHelper();
   virtual ~IOHelper();
 
-  void addScheme(SmartPtr<IOScheme> scheme) { _schemes.push_back(scheme); }
-  void clearScheme() {
-    _schemes.clear();
-    _dataSource = nullptr;
-  }
-
   template <typename T, class HANDLER>
   void registerDataHandler() {
     registerDataHandlerImpl(Class::forType<T>(), new HANDLER());
@@ -50,6 +44,10 @@ class CORE_API IOHelper {
                                 new HANDLER());
   }
 
+ protected:
+  void write(Object::SPtr entity, const Field* field,
+             const String& value);
+
  private:
   void registerDataHandlerImpl(const Class& cls, DataHandler* handler);
   void registerDataHandlerImpl(const Class& cls, Int sign,
@@ -63,10 +61,15 @@ class CORE_API IOHelper {
 
  protected:
   std::shared_ptr<DataSource> _dataSource;
-  std::vector<SmartPtr<IOScheme>> _schemes;
   std::shared_ptr<DataHandlerHelper> _dataHelper;
   std::shared_ptr<EntityHandlerHelper> _entityHelper;
   std::shared_ptr<ValidateHandlerHelper> _validateHelper;
+};
+
+class CORE_API DtoHelper : public IOHelper {
+ public:
+  DtoHelper();
+  virtual ~DtoHelper();
 };
 
 }  // namespace io

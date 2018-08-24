@@ -188,7 +188,11 @@ String StringUtil::uuid() {
 }
 
 std::ostringstream& getStringOSStream() {
-  return Subject::get().getSession()->get<LocaleUtil>().getOSS(true);
+  Session::SPtr session = Subject::get().getSession();
+  if (session.valid()) {
+    return session->get<LocaleUtil>().getOSS(true);
+  }
+  return g_app.getDefaultLocal()->getOSS(true);
 }
 String StringUtil::formatImpl(Boolean val) {
   std::ostringstream& ss = getStringOSStream();
@@ -249,7 +253,11 @@ String StringUtil::format(Double val, Int precision) {
 }
 
 std::istringstream& getStringISStream(const Char* str) {
-  return Subject::get().getSession()->get<LocaleUtil>().getISS(str);
+  Session::SPtr session = Subject::get().getSession();
+  if (session.valid()) {
+    return session->get<LocaleUtil>().getISS(str);
+  }
+  return g_app.getDefaultLocal()->getISS(str);
 }
 void StringUtil::convertImpl(Short& val, const Char* str) {
   std::istringstream& ss = getStringISStream(str);

@@ -6,11 +6,15 @@
 
 namespace aps {
 
+gemini::ServiceRegister<MaterialCalculationServiceImpl,
+                        MaterialCalculationService>
+    materialCalculation_service_register;
 void MaterialCalculationServiceImpl::execute(
     const gemini::SmartPtr<Instruction>& inst) const {
   MaterialCalculation::SPtr material = inst;
   deleteInvalidPlanOrder();
-  std::list<Item::SPtr> items = getList<Item>((gemini::String)material->_itemFilter);
+  std::list<Item::SPtr> items =
+      getList<Item>((gemini::String)material->_itemFilter);
   items.sort([](Item::SPtr lhs, Item::SPtr rhs) {
     gemini::Int result = lhs->_level - rhs->_level;
     return result != 0 ? result : lhs.compare(rhs);

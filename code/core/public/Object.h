@@ -6,6 +6,7 @@ namespace gemini {
 
 class CORE_API Object {
  protected:
+  static Int s_index;
   Object() {}
   Object(const Object& rhs){};
   Object& operator=(const Object& rhs) { return *this; }
@@ -35,6 +36,11 @@ class CORE_API EntityObject : public Object, public AnyAbstract {
  public:
   typedef SmartPtr<EntityObject> SPtr;
   typedef SmartPtr<EntityObject, WeakCounted, StorageNo> WPtr;
+  struct Flag {
+    Boolean created;
+    Boolean modified;
+    Boolean tempRead;
+  };
 
   virtual ~EntityObject();
 
@@ -43,6 +49,8 @@ class CORE_API EntityObject : public Object, public AnyAbstract {
 
   ID getID() const { return _id; }
 
+  Flag& getFlag() { return _flag; }
+
   virtual Boolean operator==(const Any& rhs) const;
   virtual Boolean operator<(const Any& rhs) const;
 
@@ -50,9 +58,11 @@ class CORE_API EntityObject : public Object, public AnyAbstract {
   friend class PropertyRefHelp;
   friend class IocRelation;
   friend class EntityFactory;
+  friend class Memory;
   template <class T, RefType Type>
   friend class PropertyRef;
   static const Class _class;
+  Flag _flag;
   ID _id;
   std::vector<RefBase*> _relations;
 };

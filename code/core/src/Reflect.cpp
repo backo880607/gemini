@@ -1,9 +1,10 @@
+#include "MultiEnum.h"
 #include "Reflect.h"
 #include "controller/BaseController.h"
+#include "dao/BaseDao.h"
 #include "entities/IocRelation.h"
 #include "message/Exception.h"
 #include "propagate/Propagate.h"
-#include "MultiEnum.h"
 
 namespace gemini {
 
@@ -64,17 +65,18 @@ class ClassManager final {
       _classEntity.insert(std::make_pair(cls.getName(), &cls));
     } else if (cls.isBase(BaseController::getClassStatic())) {
       _classController.insert(std::make_pair(cls.getName(), &cls));
+    } else if (cls.isBase(BaseDao::getClassStatic())) {
+      _classDao.insert(std::make_pair(cls.getName(), &cls));
     }
 
+    THROW_IF(_classAll.find(cls.getName()) != _classAll.end(),
+             RegisterException, cls.getName(), " has registered!")
     _classAll.insert(std::make_pair(cls.getName(), &cls));
   }
 
-  const Class &forName(const String &name) {
+  const Class *forName(const String &name) {
     auto iter = _classAll.find(name);
-    if (iter == _classAll.end()) {
-    }
-
-    return *iter->second;
+    return iter != _classAll.end() ? iter->second : nullptr;
   }
 
   const std::map<String, const Class *const> &getEntityClasses() const {
@@ -88,6 +90,7 @@ class ClassManager final {
   std::map<String, const Class *const> _classAll;
   std::map<String, const Class *const> _classEntity;
   std::map<String, const Class *const> _classController;
+  std::map<String, const Class *const> _classDao;
 };
 ClassManager &geminiAfxGetClassManager() {
   static ClassManager manager;
@@ -122,6 +125,10 @@ String getNameImpl(const Char *name) {
     pLastSlash = strrchr(name, ' ');
   }
   return pLastSlash != nullptr ? pLastSlash + 1 : name;
+}
+
+const Class *getClassByName(const String &name) {
+  return geminiAfxGetClassManager().forName(name);
 }
 
 }  // namespace ns_class
@@ -165,7 +172,9 @@ Int Class::getEnum(const String &name) const {
 }
 
 const Class &Class::forName(const String &name) {
-  return geminiAfxGetClassManager().forName(name);
+  const Class *cls = geminiAfxGetClassManager().forName(name);
+  THROW_IF(cls == nullptr, RegisterException, name, " has not registered!")
+  return *cls;
 }
 
 const Field &Class::getField(const String &name) const {

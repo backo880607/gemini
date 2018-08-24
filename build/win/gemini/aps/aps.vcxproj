@@ -144,7 +144,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;sql.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -191,6 +191,42 @@
     <ClInclude Include="..\..\..\..\code\aps\bean\tech\RouteStepRes.h" />
     <ClInclude Include="..\..\..\..\code\aps\bean\tech\StandRouteStep.h" />
     <ClInclude Include="..\..\..\..\code\aps\common\Export.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\CancelTaskDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\CommandDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\MaterialCalculationDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\PropertyEditorDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\instruction\WorkLeadingDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ClientDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ItemDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ResCalendarDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ResourceDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\ShiftDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\mstr\TransTimeDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\InventoryDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\MinInventoryDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\PlanPurchaseOrderDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\PlanWorkOrderDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\PurchaseOrderDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\SafeInventoryDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\SaleOrderDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\order\WorkOrderDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\ParentWorkDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkFdbkDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkInDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkOutDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkRelDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\plan\WorkResDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\BatchElementDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\BatchTaskDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\SingleTaskDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\task\ToolTaskDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepInDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepOutDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\RouteStepResDao.h" />
+    <ClInclude Include="..\..\..\..\code\aps\include\dao\tech\StandRouteStepDao.h" />
     <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\CancelTaskServiceImpl.h" />
     <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\CommandServiceImpl.h" />
     <ClInclude Include="..\..\..\..\code\aps\include\service\instruction\InstructionServiceImpl.h" />
@@ -266,6 +302,7 @@
     <ClInclude Include="..\..\..\..\code\aps\public\service\tech\RouteStepResService.h" />
     <ClInclude Include="..\..\..\..\code\aps\public\service\tech\RouteStepService.h" />
     <ClInclude Include="..\..\..\..\code\aps\public\service\tech\StandRouteStepService.h" />
+    <ClInclude Include="CapPoint.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -316,6 +353,42 @@
     <ClCompile Include="..\..\..\..\code\aps\public\enums\EPlan.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\public\enums\ETask.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\public\enums\ETech.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\CancelTaskDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\CommandDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\MaterialCalculationDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\PropertyEditorDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\instruction\WorkLeadingDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ClientDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ItemDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ResCalendarDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ResourceDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\ShiftDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\mstr\TransTimeDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\InventoryDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\MinInventoryDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\PlanPurchaseOrderDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\PlanWorkOrderDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\PurchaseOrderDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\SafeInventoryDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\SaleOrderDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\order\WorkOrderDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\ParentWorkDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkFdbkDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkInDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkOutDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkRelDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\plan\WorkResDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\BatchElementDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\BatchTaskDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\SingleTaskDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\task\ToolTaskDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepInDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepOutDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\RouteStepResDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\aps\src\dao\tech\StandRouteStepDao.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\CancelTaskServiceImpl.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\CommandServiceImpl.cpp" />
     <ClCompile Include="..\..\..\..\code\aps\src\service\instruction\InstructionServiceImpl.cpp" />

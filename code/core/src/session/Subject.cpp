@@ -14,6 +14,7 @@ Boolean Subject::isAuthenticated() const { return _session != nullptr; }
 
 void Subject::login(const AuthenticationToken& token) const {
   const_cast<Session::SPtr&>(_session) = g_securityMgr.login(token);
+  _session->setSecurity(std::shared_ptr<Security>(new Security()));
 }
 
 void Subject::logout() const {

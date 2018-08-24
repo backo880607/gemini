@@ -6,7 +6,7 @@
 namespace aps {
 
 class RouteStepOutServiceImpl : public gemini::BaseService,
-                                RouteStepOutService {};
+                                public RouteStepOutService {};
 
 }  // namespace aps
 #endif  // APS_RouteStepOutServiceImpl_INCLUDE

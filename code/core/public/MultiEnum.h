@@ -35,39 +35,26 @@ class CORE_API MultiEnum : public AnyAbstract {
   Int _value;
 };
 
-#define DEFINE_MULTI_ENUM(enum_type, ...)                     \
+#define DEFINE_MULTI_ENUM(enum_type, ...)                                  \
   \
-class enum_type final : public gemini::MultiEnum {            \
+class enum_type final : public gemini::MultiEnum {                         \
   \
-public:                                                       \
-    enum value_type { __VA_ARGS__ };                          \
-    \
-enum_type() {}                                                \
-    \
-enum_type(value_type value)                                   \
-        : gemini::MultiEnum((gemini::Int)value){};            \
-    \
-~enum_type() {}                                               \
-    \
-virtual gemini::Any                                           \
-    operator+(const gemini::Any& rhs) const {                 \
-      return enum_type((value_type)add(rhs));                 \
-    \
-}                                                        \
-    \
-virtual gemini::Any                                           \
-    operator-(const gemini::Any& rhs) const {                 \
-      return enum_type((value_type)sub(rhs));                 \
-    \
-}                                                        \
-    \
-static enum_type                                              \
-    valueOf(const gemini::Char* str) {                        \
-      return (value_type)gemini::MultiEnum::valudOfImpl(str); \
-    \
-}                                                        \
+public:                                                                    \
+    enum value_type { __VA_ARGS__ };                                       \
+    enum_type() {}                                                         \
+    enum_type(value_type value) : gemini::MultiEnum((gemini::Int)value){}; \
+    ~enum_type() {}                                                        \
+    virtual gemini::Any operator+(const gemini::Any& rhs) const {          \
+      return enum_type((value_type)add(rhs));                              \
+    }                                                                      \
+    virtual gemini::Any operator-(const gemini::Any& rhs) const {          \
+      return enum_type((value_type)sub(rhs));                              \
+    }                                                                      \
+    static enum_type valueOf(const gemini::Char* str) {                    \
+      return (value_type)gemini::MultiEnum::valudOfImpl(str);              \
+    }                                                                      \
   \
-};                                                            \
+};                                                                         \
   \
 const gemini::Char gemini_enum_##enum_type[] = #__VA_ARGS__;
 

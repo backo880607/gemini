@@ -1,47 +1,47 @@
 #ifndef GEMINI_NETWORK_TCPConnection_INCLUDE
 #define GEMINI_NETWORK_TCPConnection_INCLUDE
-#include "../NetworkExport.h"
 #include "../../../core/public/Object.h"
 #include "../../../core/public/api/MsgData.h"
+#include "../NetworkExport.h"
 
 namespace boost {
-	namespace asio {
-		class io_context;
-		typedef io_context io_service;
-	}
-}
+namespace asio {
+class io_context;
+typedef io_context io_service;
+}  // namespace asio
+}  // namespace boost
 
 namespace gemini {
 
 class Socket;
-class GEMINI_NETWORK_API TCPConnection
-{
-	typedef std::shared_ptr<Socket> socket_type;
-public:
-	TCPConnection();
-	virtual ~TCPConnection();
+class GEMINI_NETWORK_API TCPConnection {
+  typedef std::shared_ptr<Socket> socket_type;
 
-	socket_type get() { return _socket; }
+ public:
+  TCPConnection();
+  virtual ~TCPConnection();
 
-	void bindIOS(boost::asio::io_service& ios);
+  socket_type get() { return _socket; }
 
-protected:
-	virtual std::shared_ptr<Socket> createSocket(boost::asio::io_service& ios) = 0;
-	virtual Boolean execute(const MsgData& msg) = 0;
+  void bindIOS(boost::asio::io_service& ios);
 
-	virtual void close() = 0;
+ protected:
+  virtual std::shared_ptr<Socket> createSocket(
+      boost::asio::io_service& ios) = 0;
+  virtual Boolean execute(const MsgData& msg) = 0;
 
-	/**
-	* @brief 心跳超时处理
-	* @return 返回是否关闭TCP连接
-	*/
-	virtual Boolean proHeartBeatTimeout() = 0;
+  virtual void close() = 0;
 
-private:
-	friend class Socket;
-	socket_type _socket;
+  /**
+   * @brief 心跳超时处理
+   * @return 返回是否关闭TCP连接
+   */
+  virtual Boolean proHeartBeatTimeout() = 0;
+
+ private:
+  friend class Socket;
+  socket_type _socket;
 };
 
-}
-
-#endif // GEMINI_NETWORK_TCPConnection_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_NETWORK_TCPConnection_INCLUDE

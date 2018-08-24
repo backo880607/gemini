@@ -4,6 +4,8 @@
 
 namespace aps {
 
+gemini::ServiceRegister<InventoryServiceImpl, InventoryService>
+    inventory_service_register;
 gemini::Boolean InventoryServiceImpl::isActive(const Order::SPtr& order) const {
   if (!OrderServiceImpl::isActive(order)) {
     return false;

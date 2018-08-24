@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{3B02EC7B-FAB2-40CF-8EF2-93BC7374D17C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>user</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\niuhaitao-x64-Release-dll.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>GEMINI_USER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\code\core\public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;USER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;USER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\code\user\bean\DataSet.h" />
+    <ClInclude Include="..\..\..\..\code\user\bean\Department.h" />
+    <ClInclude Include="..\..\..\..\code\user\bean\Privilege.h" />
+    <ClInclude Include="..\..\..\..\code\user\bean\Resource.h" />
+    <ClInclude Include="..\..\..\..\code\user\bean\Role.h" />
+    <ClInclude Include="..\..\..\..\code\user\bean\Tenant.h" />
+    <ClInclude Include="..\..\..\..\code\user\bean\User.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\DataSetController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\DepartmentController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\PrivilegeController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\ResourceController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\RoleController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\TenantController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\UserController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\DataSetDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\DepartmentDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\PrivilegeDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\RoleDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\TenantDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\UserDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\DataSetService.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\DepartmentService.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\PrivilegeService.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\RoleService.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\TenantService.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\UserService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\IDataSetService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\IDepartmentService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\IPrivilegeService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\IRoleService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\ITenantService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\IUserService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\UserExport.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\code\user\bean\DataSet.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\bean\Department.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\bean\Privilege.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\bean\Resource.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\bean\Role.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\bean\Tenant.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\bean\User.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\controller\DataSetController.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\controller\DepartmentController.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\controller\PrivilegeController.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\controller\RoleController.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\controller\TenantController.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\controller\UserController.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\DataSetDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\DepartmentDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\PrivilegeDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\RoleDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\TenantDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\UserDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\DataSetService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\DepartmentService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\PrivilegeService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\RoleService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\TenantService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\UserService.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="user.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

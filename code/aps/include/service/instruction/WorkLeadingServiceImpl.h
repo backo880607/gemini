@@ -6,7 +6,7 @@
 namespace aps {
 
 class WorkLeadingServiceImpl : public InstructionServiceImpl,
-                               WorkLeadingService {
+                               public WorkLeadingService {
   virtual void execute(const gemini::SmartPtr<Instruction>& inst) const;
 };
 

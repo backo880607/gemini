@@ -29,7 +29,7 @@ class CORE_API JsonFile {
   ~JsonFile();
 
   Boolean open(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
-  Boolean valid() const { return !_ptree; }
+  Boolean valid() const { return _ptree != nullptr; }
 
   void write() { write(_fileName); }
   void write(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
@@ -46,6 +46,7 @@ class CORE_API JsonFile {
   void remove();
 
  private:
+  void clear();
   Boolean ProJsonFile(String& path, File_Mode mode);
 
  private:
@@ -61,9 +62,9 @@ class CORE_API Json {
   Json(const Char* val);
   ~Json();
 
-  void reset(const Char* val);
+  Boolean valid() const { return _ptree != nullptr; }
 
-  Boolean valid() const { return !_ptree; }
+  void reset(const Char* val);
 
   void write(std::basic_ostream<Char>& ss, Boolean bPretty = false);
   void read(std::basic_istream<Char>& ss);

@@ -1,18 +1,13 @@
 #include "../include/ResultSetImpl.h"
 
-namespace gemini
-{
-namespace sql
-{
+namespace gemini {
+namespace sql {
 
-ResultSetImpl::ResultSetImpl(const stmt_type &stmt)
-	: _stmt(stmt)
-{
-}
+MetaColumn::~MetaColumn() {}
 
-ResultSetImpl::~ResultSetImpl()
-{
-}
+ResultSetImpl::ResultSetImpl() {}
 
-} // namespace sql
-} // namespace gemini
+ResultSetImpl::~ResultSetImpl() {}
+
+}  // namespace sql
+}  // namespace gemini

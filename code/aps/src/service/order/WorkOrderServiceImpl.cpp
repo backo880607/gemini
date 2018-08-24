@@ -5,6 +5,8 @@
 
 namespace aps {
 
+gemini::ServiceRegister<WorkOrderServiceImpl, WorkOrderService>
+    workOrder_service_register;
 gemini::Boolean WorkOrderServiceImpl::isActive(const Order::SPtr& order) const {
   if (!OrderServiceImpl::isActive(order)) {
     return false;

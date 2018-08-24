@@ -1,10 +1,21 @@
 #ifndef GEMINI_SecurityMgr_INCLUDE
 #define GEMINI_SecurityMgr_INCLUDE
+#include "../../include/dao/DaoMgr.h"
 #include "../../public/session/AuthenticationToken.h"
 #include "../../public/session/Session.h"
 
 namespace gemini {
 
+class Security {
+ public:
+  Security();
+  ~Security();
+
+  DaoMgr &getDaoMgr() { return _daoMgr; }
+
+ private:
+  DaoMgr _daoMgr;
+};
 class Authenticator;
 class Authorizer;
 class SecurityMgr {

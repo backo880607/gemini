@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class WorkInServiceImpl : public gemini::BaseService, WorkInService {};
+class WorkInServiceImpl : public gemini::BaseService, public WorkInService {};
 
 }  // namespace aps
 #endif  // !APS_WorkInServiceImpl_INCLUDE

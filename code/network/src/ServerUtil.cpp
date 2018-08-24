@@ -1,31 +1,23 @@
-#include "../public/ServerUtil.h"
-#include "../include/tcp/TCPServer.h"
 #include "../include/http/HTTPServer.h"
+#include "../include/tcp/TCPServer.h"
+#include "../public/ServerUtil.h"
 
 namespace gemini {
 
-TCPServer& getTCPServer()  {
-	static TCPServer server;
-	return server;
+TCPServer& getTCPServer() {
+  static TCPServer server;
+  return server;
 }
-Boolean ServerUtil::startTCPServer() {
-	return getTCPServer().start();
-}
+Boolean ServerUtil::startTCPServer() { return getTCPServer().start(); }
 
-void ServerUtil::stopTCPServer() {
-	return getTCPServer().stop();
-}
+void ServerUtil::stopTCPServer() { return getTCPServer().stop(); }
 
 HTTPServer& getHTTPServer() {
-	static HTTPServer server;
-	return server;
+  static HTTPServer server;
+  return server;
 }
-Boolean ServerUtil::startHTTPServer() {
-	return getHTTPServer().start();
-}
+Boolean ServerUtil::startHTTPServer() { return getHTTPServer().start(); }
 
-void ServerUtil::stopHTTPServer() {
-	return getHTTPServer().stop();
-}
+void ServerUtil::stopHTTPServer() { return getHTTPServer().stop(); }
 
-}
+}  // namespace gemini

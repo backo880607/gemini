@@ -45,9 +45,9 @@ enum class EncodingType {
  */
 enum class CompressType {
   CPT_NONE = 0,  ///< 不进行数据压缩
-  CPT_ZLIB22,    ///< zlib压缩
+  CPT_ZLIB,      ///< zlib压缩
   CPT_GZIP,      ///< gzip压缩
-  CPT_DEFLATE    ///< deflate压缩
+  CPT_DEFLATE,    ///< deflate压缩
 };
 
 /**

@@ -3,6 +3,7 @@
 
 namespace gemini {
 
+class Security;
 class CORE_API Session : public EntityObject {
   class PlaceHolder {
    public:
@@ -50,8 +51,14 @@ class CORE_API Session : public EntityObject {
     return ((Holder<T> *)_holders[Holder<T>::index])->_value;
   }
 
+  std::shared_ptr<Security> getSecurity() { return _security; }
+  void setSecurity(const std::shared_ptr<Security> &security) {
+    _security = security;
+  }
+
  private:
   std::vector<PlaceHolder *> _holders;
+  std::shared_ptr<Security> _security;
 };
 template <class T>
 Int Session::Holder<T>::index = 0;

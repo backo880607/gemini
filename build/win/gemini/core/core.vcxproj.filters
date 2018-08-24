@@ -166,6 +166,9 @@
     <Filter Include="Source Files\io\datasource">
       <UniqueIdentifier>{e473835a-2235-48ff-90ee-867d4d6b11dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="public\dao">
+      <UniqueIdentifier>{fb4a398e-7861-409e-b4f8-e4cd3fa283d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -522,13 +525,7 @@
     <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h">
       <Filter>Header Files\io\handler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\dao\BaseDao.h">
-      <Filter>Header Files\dao</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\dao\DaoMgr.h">
-      <Filter>Header Files\dao</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\dao\InnerDao.h">
       <Filter>Header Files\dao</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\dao\Memory.h">
@@ -590,6 +587,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\io\IOScheme.h">
       <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\dao\BaseDao.h">
+      <Filter>public\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\dao\InnerDao.h">
+      <Filter>public\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Module.h">
+      <Filter>public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -934,6 +940,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\io\HandlerHelper.cpp">
       <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\dao\BaseDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Module.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

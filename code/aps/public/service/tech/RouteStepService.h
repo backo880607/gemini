@@ -4,7 +4,7 @@
 
 namespace aps {
 
-class RouteStepService : public gemini::IBaseService {};
+class RouteStepService {};
 
 }  // namespace aps
 #endif  // !APS_RouteStepService_INCLUDE

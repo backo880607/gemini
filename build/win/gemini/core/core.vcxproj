@@ -157,9 +157,7 @@
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_UNIX.h" />
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_WIN32.h" />
     <ClInclude Include="..\..\..\..\code\core\include\Application.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\dao\BaseDao.h" />
     <ClInclude Include="..\..\..\..\code\core\include\dao\DaoMgr.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\dao\InnerDao.h" />
     <ClInclude Include="..\..\..\..\code\core\include\dao\Memory.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EntityFactory.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EnumMgr.h" />
@@ -246,6 +244,8 @@
     <ClInclude Include="..\..\..\..\code\core\public\controller\BaseController.h" />
     <ClInclude Include="..\..\..\..\code\core\public\controller\ControllerMgr.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Core.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\dao\BaseDao.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\dao\InnerDao.h" />
     <ClInclude Include="..\..\..\..\code\core\public\DateTime.h" />
     <ClInclude Include="..\..\..\..\code\core\public\IApplication.h" />
     <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h" />
@@ -256,6 +256,7 @@
     <ClInclude Include="..\..\..\..\code\core\public\message\Exception.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Log.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Message.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Module.h" />
     <ClInclude Include="..\..\..\..\code\core\public\MultiEnum.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Object.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Platform.h" />
@@ -306,6 +307,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\Application.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\controller\BaseController.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\dao\BaseDao.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\dao\DaoMgr.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\dao\InnerDao.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\dao\Memory.cpp" />
@@ -350,6 +352,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\message\Exception.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Log.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Message.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Module.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\MultiEnum.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Platform_UNIX.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Platform_WIN32.cpp" />

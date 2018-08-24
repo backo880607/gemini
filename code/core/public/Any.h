@@ -112,7 +112,8 @@ class CORE_API Any {
   template <typename T>
   Any(const T &value) : _holder(create(value)) {}
   template <typename T>
-  Any(const SmartPtr<T> &value) : _holder(create(value)) {}
+  Any(const SmartPtr<T> &value)
+      : _holder(create((const SmartPtr<EntityObject> &)value)) {}
   Any(const Any &rhs);
   Any(Any &&rhs);
   ~Any();

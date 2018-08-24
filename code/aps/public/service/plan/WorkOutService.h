@@ -4,7 +4,7 @@
 
 namespace aps {
 
-class WorkOutService : public gemini::IBaseService {};
+class WorkOutService {};
 
 }  // namespace aps
 #endif  // !APS_WorkOutService_INCLUDE

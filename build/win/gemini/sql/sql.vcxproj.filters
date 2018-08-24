@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="public">
+      <UniqueIdentifier>{0e457586-eb6b-44c2-ba8f-3317d519f060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mysql">
+      <UniqueIdentifier>{8a5c579d-f21b-40a8-a5ab-efba683e80ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sqlite">
+      <UniqueIdentifier>{bc1518e9-458b-4896-a9f7-51b3c421a4b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mysql">
+      <UniqueIdentifier>{d2cb3782-518e-470b-9558-ec23be00ed0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sqlite">
+      <UniqueIdentifier>{8aa0c72b-112e-4e35-a790-6d40723259e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\odbc">
+      <UniqueIdentifier>{9a10e424-c211-4caa-9c7a-f9f8336e6da6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\odbc">
+      <UniqueIdentifier>{62f0e8bb-986c-4b5f-bfed-9fb32e7550a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sqlserver">
+      <UniqueIdentifier>{a059fbc7-1c50-4e4b-8c6b-86645dc961d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\oracle">
+      <UniqueIdentifier>{4bf2d3a4-d2ce-4517-a311-70b31e167a62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sqlserver">
+      <UniqueIdentifier>{5b931d8a-cdb0-4774-8cc0-5eaf2eb5e7df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\oracle">
+      <UniqueIdentifier>{7bc06891-834a-45c9-8aa5-0a9ca3042dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\Connection.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\ResultSet.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\Row.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\SQLConfig.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\SQLExport.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\Statement.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\Binder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\ConnectionImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\Driver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\Extractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\ResultSetImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\StatementImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlite\SQLite.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlite\SQLiteBinder.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlite\SQLiteExtractor.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlite\SQLiteStatement.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\src\sqlite\sqlite3.h">
+      <Filter>Source Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBC.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\SQLException.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\Error.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCStatement.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\SQLTransmit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\SQLDao.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\SQLModule.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlserver\SQLServer.h">
+      <Filter>Header Files\sqlserver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\oracle\Oracle.h">
+      <Filter>Header Files\oracle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlite\SQLiteResultSet.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCResultSet.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\RowImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlite\SQLiteRow.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCRow.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\sqlserver\SQLServerStatement.h">
+      <Filter>Header Files\sqlserver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCTypeInfo.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCBinder.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\public\MetaColumn.h">
+      <Filter>public</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\Binder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\Connection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\ConnectionImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\Driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\Extractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\ResultSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\ResultSetImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\Row.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\Statement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\StatementImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlite\SQLite.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlite\sqlite3.c">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlite\SQLiteBinder.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlite\SQLiteExtractor.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlite\SQLiteStatement.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBC.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\Error.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCStatement.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\SQLDao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\SQLTransmit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\SQLModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlserver\SQLServer.cpp">
+      <Filter>Source Files\sqlserver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\oracle\Oracle.cpp">
+      <Filter>Source Files\oracle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlite\SQLiteResultSet.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCResultSet.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\RowImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlite\SQLiteRow.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCRow.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\sqlserver\SQLServerStatement.cpp">
+      <Filter>Source Files\sqlserver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCTypeInfo.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCBinder.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

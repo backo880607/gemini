@@ -297,8 +297,12 @@
 #pragma warning(disable : 4251)
 #pragma warning(disable : 4275)
 #pragma warning(disable : 4099)
+#ifndef WINVER
 #define WINVER 0x0A00
+#endif
+#ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0A00
+#endif
 #ifdef CORE_EXPORTS
 #define CORE_API __declspec(dllexport)
 #else

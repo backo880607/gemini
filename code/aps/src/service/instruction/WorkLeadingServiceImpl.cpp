@@ -3,6 +3,8 @@
 
 namespace aps {
 
+gemini::ServiceRegister<WorkLeadingServiceImpl, WorkLeadingService>
+    workLeading_service_register;
 void WorkLeadingServiceImpl::execute(
     const gemini::SmartPtr<Instruction>& inst) const {}
 

@@ -4,7 +4,7 @@
 
 namespace aps {
 
-class ShiftService : public gemini::IBaseService {};
+class ShiftService {};
 
 }  // namespace aps
 #endif  // !APS_ShiftService_INCLUDE

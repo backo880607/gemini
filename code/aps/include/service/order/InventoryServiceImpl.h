@@ -5,10 +5,12 @@
 
 namespace aps {
 
-class InventoryServiceImpl : public OrderServiceImpl, InventoryService {
+class InventoryServiceImpl : public OrderServiceImpl, public InventoryService {
   virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const;
   virtual gemini::SmartPtr<Work> createWork(
-      const gemini::SmartPtr<Order>& order) const;
+      const gemini::SmartPtr<Order>& order) const {
+    return nullptr;
+  }
 };
 
 }  // namespace aps

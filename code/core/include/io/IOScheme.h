@@ -17,6 +17,7 @@ class CORE_API IOScheme : public EntityObject {
   DECLARE_FIELD(IOSchemeType, type)
   DECLARE_FIELD(String, dataSource)
   DECLARE_FIELD(String, filter)
+  DECLARE_FIELD(String, orderBy)
   DECLARE_FIELD(String, externName)
   DECLARE_FIELD(String, innerName)
 

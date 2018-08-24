@@ -5,13 +5,15 @@
 
 namespace aps {
 
-class WorkOrderServiceImpl : public OrderServiceImpl, WorkOrderService {
+class WorkOrderServiceImpl : public OrderServiceImpl, public WorkOrderService {
   virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const;
   virtual gemini::SmartPtr<Route> selectRoute(
       const gemini::SmartPtr<WorkOrder>& workOrder) const;
 
   virtual gemini::SmartPtr<Work> createWork(
-      const gemini::SmartPtr<Order>& order) const;
+      const gemini::SmartPtr<Order>& order) const {
+    return nullptr;
+  }
 };
 
 }  // namespace aps

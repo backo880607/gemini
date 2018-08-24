@@ -4,7 +4,7 @@
 
 namespace aps {
 
-class WorkFdbkService : public gemini::IBaseService {};
+class WorkFdbkService {};
 
 }  // namespace aps
 #endif  // !APS_WorkFdbkService_INCLUDE

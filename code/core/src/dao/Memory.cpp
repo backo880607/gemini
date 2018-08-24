@@ -1,6 +1,7 @@
 #include "dao/Memory.h"
 #include "entities/FactoryMgr.h"
 #include "session/Subject.h"
+#include "session/SecurityMgr.h"
 
 namespace gemini {
 
@@ -8,13 +9,20 @@ Memory::Memory() {}
 
 Memory::~Memory() {}
 
-Memory &Memory::current() { return Subject::get().getSession()->get<Memory>(); }
+std::shared_ptr<BaseDao> Memory::getDao(const Class &cls) {
+  DaoMgr &daoMgr = Subject::get().getSession()->getSecurity()->getDaoMgr();
+  return daoMgr.getDao(cls);
+}
 
 EntityObject::SPtr Memory::createImpl(const Class &cls, Long id) {
   EntityObject *pEntity = (EntityObject *)cls.newInstance();
+  if (id > 0) {
+    pEntity->_id = id;
+  }
   EntityObject::SPtr entity;
   entity.wrapRawPointer(pEntity);
   FactoryMgr::instance().getFactory(cls)->createRelation(entity);
+  getDao(cls)->insert(entity);
   return entity;
 }
 
@@ -55,10 +63,16 @@ void Memory::erase(const EntityObject *entity) {
 void Memory::clear(const Class &cls) { getDao(cls)->clear(); }
 
 void Memory::sync() {
-  std::vector<DaoMgr::dao_type> &daoes = current()._daoMgr.getDaoes();
+  DaoMgr &daoMgr = Subject::get().getSession()->getSecurity()->getDaoMgr();
+  daoMgr.startSync();
+  std::vector<DaoMgr::dao_type> &daoes = daoMgr.getDaoes();
   for (DaoMgr::dao_type dao : daoes) {
+    if (dao == nullptr) {
+		continue;
+    }
     dao->sync();
   }
+  daoMgr.endSync();
 }
 
 }  // namespace gemini

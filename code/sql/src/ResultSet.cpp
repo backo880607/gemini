@@ -1,68 +1,38 @@
-#pragma once
 #include "../public/ResultSet.h"
+#include "../public/Statement.h"
+#include "../include/StatementImpl.h"
 
-namespace gemini
-{
-namespace sql
-{
+namespace gemini {
+namespace sql {
 
-ResultSet::ResultSet(const Statement &stmt)
-{
+ResultSet::ResultSet(Statement *stmt)
+    : _impl(stmt->_impl->createResultSet()) {}
+
+ResultSet::~ResultSet() {}
+
+Int ResultSet::rowCount() const { return 0; }
+
+Int ResultSet::columnCount() const { return 0; }
+
+ResultSet::const_iterator ResultSet::begin() const {
+  return RowIterator(_impl.get());
 }
 
-ResultSet::~ResultSet()
-{
+ResultSet::iterator ResultSet::begin() { return RowIterator(_impl.get()); }
+
+ResultSet::const_iterator ResultSet::end() const {
+  return RowIterator(nullptr);
 }
 
-UInt ResultSet::rowCount() const
-{
-	return 0;
-}
+ResultSet::iterator ResultSet::end() { return RowIterator(nullptr); }
 
-UInt ResultSet::columnCount() const
-{
-	return 0;
-}
+Boolean ResultSet::moveFirst() { return Boolean(); }
 
-ResultSet::const_iterator ResultSet::begin() const
-{
-	return RowIterator(this, 0);
-}
+Boolean ResultSet::moveNext() { return Boolean(); }
 
-ResultSet::iterator ResultSet::begin()
-{
-	return RowIterator(this, 0);
-}
+Boolean ResultSet::movePrevious() { return Boolean(); }
 
-ResultSet::const_iterator ResultSet::end() const
-{
-	return RowIterator(this, rowCount());
-}
+Boolean ResultSet::moveLast() { return Boolean(); }
 
-ResultSet::iterator ResultSet::end()
-{
-	return RowIterator(this, rowCount());
-}
-
-Boolean ResultSet::moveFirst()
-{
-	return Boolean();
-}
-
-Boolean ResultSet::moveNext()
-{
-	return Boolean();
-}
-
-Boolean ResultSet::movePrevious()
-{
-	return Boolean();
-}
-
-Boolean ResultSet::moveLast()
-{
-	return Boolean();
-}
-
-} // namespace sql
-} // namespace gemini
+}  // namespace sql
+}  // namespace gemini

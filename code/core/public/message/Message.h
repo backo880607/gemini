@@ -5,6 +5,9 @@
 
 namespace gemini {
 
+class CORE_API StrongErrorException : public Exception {
+  virtual String getName() const override { return "StrongError"; }
+};
 class CORE_API Message : public EntityObject {
   DECLARE_CLASS(Message, EntityObject)
  public:
@@ -38,6 +41,7 @@ class CORE_API Message : public EntityObject {
   template <class T, typename... ARGS>
   static Message::SPtr strong_error(ARGS... args) {
     Message::SPtr msg = createTemp<T>(Type::Error, args...);
+    THROW(StrongErrorException, msg);
     return msg;
   }
 

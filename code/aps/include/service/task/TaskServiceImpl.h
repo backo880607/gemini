@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class TaskServiceImpl : public gemini::BaseService, TaskService {
+class TaskServiceImpl : public gemini::BaseService, public TaskService {
  public:
   SERVICE_METHOD(Task, calcBoundaryObverse)
   SERVICE_METHOD(Task, calcBoundaryReverse)

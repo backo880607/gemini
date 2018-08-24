@@ -1,42 +1,42 @@
 #ifndef GEMINI_SQL_ResultSet_INCLUDE
 #define GEMINI_SQL_ResultSet_INCLUDE
-#include "Statement.h"
-#include "RowIterator.h"
+#include "Row.h"
 
-namespace gemini
-{
-namespace sql
-{
+namespace gemini {
+namespace sql {
 
+class Statement;
 class ResultSetImpl;
-class GEMINI_SQL_API ResultSet
-{
-	typedef std::shared_ptr<ResultSetImpl> impl_type;
+class GEMINI_SQL_API ResultSet {
+  typedef std::shared_ptr<ResultSetImpl> impl_type;
 
-  public:
-	typedef RowIterator iterator;
-	typedef const iterator const_iterator;
+ public:
+  typedef RowIterator iterator;
+  typedef const iterator const_iterator;
 
-  public:
-	ResultSet(const Statement &stmt);
-	~ResultSet();
+ public:
+  ResultSet(Statement* stmt);
+  ~ResultSet();
 
-	UInt rowCount() const;
-	UInt columnCount() const;
+  Boolean valid() const { return _impl != nullptr; }
 
-	const_iterator begin() const;
-	iterator begin();
-	const_iterator end() const;
-	iterator end();
-	Boolean moveFirst();
-	Boolean moveNext();
-	Boolean movePrevious();
-	Boolean moveLast();
+  Int rowCount() const;
+  Int columnCount() const;
 
-  private:
-	impl_type _impl;
+  const_iterator begin() const;
+  iterator begin();
+  const_iterator end() const;
+  iterator end();
+
+  Boolean moveFirst();
+  Boolean moveNext();
+  Boolean movePrevious();
+  Boolean moveLast();
+
+ private:
+  impl_type _impl;
 };
 
-} // namespace sql
-} // namespace gemini
-#endif // !GEMINI_SQL_ResultSet_INCLUDE
+}  // namespace sql
+}  // namespace gemini
+#endif  // !GEMINI_SQL_ResultSet_INCLUDE

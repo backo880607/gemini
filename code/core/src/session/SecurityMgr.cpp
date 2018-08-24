@@ -5,6 +5,10 @@
 
 namespace gemini {
 
+Security::Security() { _daoMgr.init(); }
+
+Security::~Security() {}
+
 SecurityMgr g_securityMgr;
 SecurityMgr::SecurityMgr() {
   _authc = new DefaultAuthenticator();
@@ -37,4 +41,5 @@ Boolean SecurityMgr::isPermitted(const String& principal,
                                  const String& permission) {
   return _authz->isPermitted(principal, permission);
 }
+
 }  // namespace gemini

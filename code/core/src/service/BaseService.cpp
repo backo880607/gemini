@@ -1,6 +1,6 @@
-#include "service/BaseService.h"
 #include "dao/Memory.h"
 #include "entities/IocRelation.h"
+#include "service/BaseService.h"
 #include "service/IBaseService.h"
 #include "service/ServiceMgr.h"
 
@@ -67,23 +67,23 @@ void BaseService::removeImpl(EntityObject::SPtr entity, Int sign,
   IocRelation::remove(entity, sign, relaEntity);
 }
 
-void gemini_afx_service_service(const String &name,
-                                const BaseService *service) {
+void BaseService::sync() const { Memory::sync(); }
+
+namespace service {
+
+void register_service(const String &name, const BaseService *service) {
   ServiceMgr::instance().registerService(name, service);
 }
 
-void gemini_afx_service_interface(const String &name,
-                                  const IBaseService *service) {
+void register_interface(const String &name, const Wrap &service) {
   ServiceMgr::instance().registerInterface(name, service);
 }
 
-const IBaseService *gemini_afx_service_interface_get(const String &iName) {
+Wrap get_service_interface(const String &iName) {
   return ServiceMgr::instance().getInterface(iName);
 }
 
-const IBaseService *gemini_afx_service_interface_get(const Class &cls) {
-  return ServiceMgr::instance().getInterface(cls);
-}
+}  // namespace service
 
 ServiceAutowired::ServiceAutowired(const String &iName) {
   ServiceMgr::instance().registerAutowired(this, iName);

@@ -11,7 +11,7 @@ class WorkRes;
 class SingleTask;
 class ToolTask;
 class BatchTask;
-class WorkService : public gemini::IBaseService {
+class WorkService {
  public:
   virtual gemini::SmartPtr<WorkIn> createWorkIn(
       const gemini::SmartPtr<Work>& work) const = 0;

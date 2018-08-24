@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class ShiftServiceImpl : public gemini::BaseService, ShiftService {};
+class ShiftServiceImpl : public gemini::BaseService, public ShiftService {};
 
 }  // namespace aps
 #endif  // !APS_ShiftServiceImpl_INCLUDE

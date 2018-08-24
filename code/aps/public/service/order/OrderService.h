@@ -6,7 +6,7 @@ namespace aps {
 
 class Order;
 class Work;
-class OrderService : public gemini::IBaseService {
+class OrderService {
  public:
   virtual gemini::Boolean isActive(
       const gemini::SmartPtr<Order>& order) const = 0;

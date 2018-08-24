@@ -6,7 +6,7 @@
 namespace aps {
 
 class ItemService;
-class OrderServiceImpl : public gemini::BaseService, OrderService {
+class OrderServiceImpl : public gemini::BaseService, public OrderService {
   SERVICE_AUTOWIRED(ItemService, itemService)
 
   virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const;

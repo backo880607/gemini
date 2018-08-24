@@ -6,7 +6,7 @@
 namespace aps {
 
 class PropertyEditorServiceImpl : public InstructionServiceImpl,
-                                  PropertyEditorService {
+                                  public PropertyEditorService {
   virtual void execute(const gemini::SmartPtr<Instruction>& inst) const;
 };
 

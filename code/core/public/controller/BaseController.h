@@ -4,16 +4,13 @@
 
 namespace gemini {
 
-class CORE_API DtoBase {
+class CORE_API DtoBase : public Object {
  public:
   DtoBase() {}
   virtual ~DtoBase() {}
 
   static const gemini::Class& getClassStatic() { return _class; }
   virtual const gemini::Class& getClass() const { return _class; }
-
- protected:
-  virtual gemini::Int signMaxIndex() { return 0; }
 
  private:
   static const Class _class;

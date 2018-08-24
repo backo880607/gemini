@@ -2,22 +2,31 @@
 #define GEMINI_SQL_Driver_INCLUDE
 #include "../public/Connection.h"
 
-namespace gemini
-{
+namespace gemini {
+namespace sql {
 
-namespace sql
-{
+class Driver {
+ public:
+  Driver();
+  virtual ~Driver();
 
-class Driver
-{
-  public:
-	virtual Connection connect(const String &url) = 0;
-	virtual Boolean acceptsURL(const String &url) = 0;
+  virtual Connection getConn();
 
-	virtual Int getMajorVersion() = 0;
-	virtual Int getMinorVersion() = 0;
+  SQL_TYPE getType() { return _type; }
+  void setType(SQL_TYPE type) { _type = type; }
+  void setType(const String& type);
+
+  SQLConfig& getConfig() { return _config; }
+
+ protected:
+  std::vector<Connection>& getConnections() { return _conns; }
+
+ private:
+  SQL_TYPE _type;
+  SQLConfig _config;
+  std::vector<Connection> _conns;
 };
 
-} // namespace sql
-} // namespace gemini
-#endif // !GEMINI_SQL_Driver_INCLUDE
+}  // namespace sql
+}  // namespace gemini
+#endif  // !GEMINI_SQL_Driver_INCLUDE

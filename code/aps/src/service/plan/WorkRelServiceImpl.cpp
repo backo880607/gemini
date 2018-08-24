@@ -5,6 +5,8 @@
 
 namespace aps {
 
+gemini::ServiceRegister<WorkRelServiceImpl, WorkRelService>
+    workRel_service_register;
 void WorkRelServiceImpl::onFree(gemini::EntityObject::SPtr entity) const {
   WorkRel::SPtr workRel = entity;
   WorkIn::SPtr workIn = getRela<WorkRel::workIn>(entity);

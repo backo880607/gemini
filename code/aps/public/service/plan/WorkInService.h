@@ -4,7 +4,7 @@
 
 namespace aps {
 
-class WorkInService : public gemini::IBaseService {};
+class WorkInService {};
 
 }  // namespace aps
 #endif  // !APS_WorkInService_INCLUDE

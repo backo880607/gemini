@@ -14,4 +14,4 @@
 
 #endif
 
-#endif // GEMINI_NETWORK_NetworkExport_INCLUDE
+#endif  // GEMINI_NETWORK_NetworkExport_INCLUDE

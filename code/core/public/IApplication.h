@@ -9,6 +9,7 @@ class CORE_API IApplication {
  public:
   virtual void init() = 0;
 
+  virtual const Char* getEnvironment() = 0;
   virtual const Char* getConfigPath() = 0;
 
   virtual const std::locale& getLocale() = 0;

@@ -3,6 +3,6 @@
 
 namespace gemini {
 
-class CORE_API IPermissionService : public IBaseService {};
+class IPermissionService {};
 
 }  // namespace gemini

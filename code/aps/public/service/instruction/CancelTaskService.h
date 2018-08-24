@@ -4,6 +4,8 @@
 
 namespace aps {
 
+// 不应继承InstructionService，否则会导致棱形继承问题。
+// 在子类接口转换为IBaseService接口时，编译会报错
 class Task;
 class Work;
 class Order;

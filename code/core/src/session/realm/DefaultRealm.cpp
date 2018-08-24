@@ -15,7 +15,7 @@ void DefaultRealm::authenticate(const AuthenticationToken& token) {
   User::SPtr user =
       userService->login(token.getPrincipal(), token.getCredentials());
   if (!user.valid()) {
-    Message::strong_error<AccountError>();
+    Message::strong_error<AccountError>(token.getPrincipal());
   }
 }
 

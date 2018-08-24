@@ -4,7 +4,7 @@
 
 namespace gemini {
 
-class IUserService : public IBaseService {
+class IUserService {
  public:
   virtual User::SPtr login(const String& principal,
                            const String& password) const = 0;

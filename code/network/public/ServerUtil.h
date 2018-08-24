@@ -4,15 +4,14 @@
 
 namespace gemini {
 
-class GEMINI_NETWORK_API ServerUtil
-{
-public:
-	static Boolean startTCPServer();
-	static void stopTCPServer();
+class GEMINI_NETWORK_API ServerUtil {
+ public:
+  static Boolean startTCPServer();
+  static void stopTCPServer();
 
-	static Boolean startHTTPServer();
-	static void stopHTTPServer();
+  static Boolean startHTTPServer();
+  static void stopHTTPServer();
 };
 
-}
-#endif // GEMINI_NETWORK_ServerUtil_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_NETWORK_ServerUtil_INCLUDE

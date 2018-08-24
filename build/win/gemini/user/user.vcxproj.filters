@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="public">
+      <UniqueIdentifier>{1f3de332-bc4f-4dca-b690-7a530145b465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\enums">
+      <UniqueIdentifier>{40d94210-121f-494c-adff-c8dd6f585a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\service">
+      <UniqueIdentifier>{2e1f92fd-af9c-49ea-8af0-48c126a0e158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controller">
+      <UniqueIdentifier>{dd0a8607-25a9-49b1-b874-1c1e79ebf724}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dao">
+      <UniqueIdentifier>{a00dc229-512a-4975-95a8-fed3c2b6752e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service">
+      <UniqueIdentifier>{2ac77ac8-3a94-4762-92b6-5c8e42da37d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controller">
+      <UniqueIdentifier>{d04a22ad-1d03-4bca-a426-43277427ecf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dao">
+      <UniqueIdentifier>{94202b9b-c966-4b59-8810-c4e15888c4c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service">
+      <UniqueIdentifier>{cf7271c0-328f-45b6-9a03-e9fc7d67ee0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bean">
+      <UniqueIdentifier>{c882b48a-d7d0-4e73-b0a9-7b9c252abb82}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\UserExport.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\DataSet.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\Department.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\Privilege.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\Resource.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\Role.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\Tenant.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\User.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\DataSetController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\DepartmentController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\PrivilegeController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\ResourceController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\RoleController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\TenantController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\UserController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\DataSetDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\DepartmentDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\PrivilegeDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\RoleDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\TenantDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\UserDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\DataSetService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\DepartmentService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\PrivilegeService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\RoleService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\TenantService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\UserService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\IDataSetService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\IDepartmentService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\IPrivilegeService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\IRoleService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\ITenantService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\IUserService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\DataSet.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\Department.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\Privilege.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\Resource.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\Role.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\Tenant.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\User.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\controller\DataSetController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\controller\DepartmentController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\controller\PrivilegeController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\controller\RoleController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\controller\TenantController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\controller\UserController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\DataSetDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\DepartmentDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\PrivilegeDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\RoleDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\TenantDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\UserDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\DataSetService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\DepartmentService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\PrivilegeService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\RoleService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\TenantService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\UserService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

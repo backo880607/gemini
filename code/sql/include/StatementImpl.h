@@ -2,49 +2,73 @@
 #define GEMINI_SQL_StatementImpl_INCLUDE
 #include "../public/Connection.h"
 
+#include <mutex>
 #include <sstream>
 
-namespace gemini
-{
-namespace sql
-{
+namespace gemini {
+namespace sql {
 
-class StatementImpl
-{
-public:
-	enum class State
-	{
-		ST_INITIALIZED,
-		ST_COMPILED,
-		ST_BOUND,
-		ST_PAUSED,
-		ST_DONE,
-		ST_RESET
-	};
+class MetaColumn;
+class Binder;
+class ResultSetImpl;
+class StatementImpl {
+ public:
+  enum class State {
+    ST_INITIALIZED,
+    ST_COMPILED,
+    ST_BOUND,
+    ST_PAUSED,
+    ST_DONE,
+    ST_RESET
+  };
 
-	StatementImpl(ConnectionImpl &conn);
-	virtual ~StatementImpl();
+  StatementImpl(ConnectionImpl &conn);
+  virtual ~StatementImpl();
 
-	State getState() const { return _state; }
+  void reset();
 
-	void reset();
-	Int execute(Boolean = true);
+  State getState() const { return _state; }
 
-	String toString() const { return _ostr.str(); }
+  virtual std::shared_ptr<ResultSetImpl> createResultSet() const = 0;
 
-protected:
-	virtual Boolean canCompile() const = 0;
-	virtual void compileImpl() = 0;
+  template <typename T>
+  StatementImpl &operator<<(T value) {
+    _ostr << StringUtil::format(value);
+    return *this;
+  }
+  StatementImpl &operator<<(const Char *value) {
+    _ostr << value;
+    return *this;
+  }
+  StatementImpl &operator<<(const String &value) {
+    return *this << value.c_str();
+  }
 
-private:
-	void compile();
+  String toString() const { return _ostr.str(); }
 
-private:
-	State _state;
-	ConnectionImpl &_conn;
-	std::ostringstream _ostr;
+  virtual void prepareExisted(const String &tblName) = 0;
+  virtual String getColumnType(Types type);
+
+  virtual Boolean canCompile() const = 0;
+  void compile();
+  virtual void execute() = 0;
+  virtual Int affectedRowCount() = 0;
+
+  virtual const MetaColumn &metaColumn(Int pos) = 0;
+
+  virtual std::shared_ptr<Binder> getBinder() { return nullptr; }
+
+ protected:
+  virtual void resetImpl() = 0;
+  virtual void compileImpl() = 0;
+
+ private:
+  State _state;
+  ConnectionImpl &_conn;
+  std::ostringstream _ostr;
+  std::mutex _mutex;
 };
 
-} // namespace sql
-} // namespace gemini
-#endif // !GEMINI_SQL_StatementImpl_INCLUDE
+}  // namespace sql
+}  // namespace gemini
+#endif  // !GEMINI_SQL_StatementImpl_INCLUDE

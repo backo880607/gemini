@@ -1,0 +1,4 @@
+#ifndef APS_SCHEDULER_CapMgr_INCLUDE
+#define APS_SCHEDULER_CapMgr_INCLUDE
+
+#endif  // APS_SCHEDULER_CapMgr_INCLUDE

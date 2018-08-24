@@ -4,6 +4,8 @@
 
 namespace aps {
 
+gemini::ServiceRegister<PurchaseOrderServiceImpl, PurchaseOrderService>
+    purchase_service_register;
 gemini::Boolean PurchaseOrderServiceImpl::isActive(
     const Order::SPtr& order) const {
   if (!OrderServiceImpl::isActive(order)) {

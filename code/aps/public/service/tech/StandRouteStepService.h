@@ -4,7 +4,7 @@
 
 namespace aps {
 
-class StandRouteStepService : public gemini::IBaseService {};
+class StandRouteStepService {};
 
 }  // namespace aps
 #endif  // !APS_StandRouteStepService_INCLUDE

@@ -4,6 +4,8 @@
 
 namespace aps {
 
+gemini::ServiceRegister<CancelTaskServiceImpl, CancelTaskService>
+    cancelTask_service_register;
 void CancelTaskServiceImpl::execute(
     const gemini::SmartPtr<Instruction>& inst) const {
   CancelTask::SPtr cancelTask = inst;

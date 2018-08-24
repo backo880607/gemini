@@ -3,6 +3,8 @@
 
 namespace aps {
 
+gemini::ServiceRegister<PropertyEditorServiceImpl, PropertyEditorService>
+    propertyEditor_service_register;
 void PropertyEditorServiceImpl::execute(
     const gemini::SmartPtr<Instruction>& inst) const {}
 

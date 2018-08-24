@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class WorkOutServiceImpl : public gemini::BaseService, WorkOutService {};
+class WorkOutServiceImpl : public gemini::BaseService, public WorkOutService {};
 
 }  // namespace aps
 #endif  // !APS_WorkOutServiceImpl_INCLUDE

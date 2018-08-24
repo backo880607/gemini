@@ -5,8 +5,17 @@
 
 namespace aps {
 
-class MinInventoryServiceImpl : public OrderServiceImpl, MinInventoryService {
-  virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const;
+class MinInventoryServiceImpl : public OrderServiceImpl,
+                                public MinInventoryService {
+ public:
+  virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const {
+    return true;
+  }
+
+  virtual gemini::SmartPtr<Work> createWork(
+      const gemini::SmartPtr<Order>& order) const {
+    return nullptr;
+  }
 };
 
 }  // namespace aps

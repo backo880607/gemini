@@ -5,14 +5,16 @@
 
 namespace aps {
 
-class ItemServiceImpl : public gemini::BaseService, ItemService {
+class ItemServiceImpl : public gemini::BaseService, public ItemService {
  public:
-  SERVICE_METHOD(Item, calcLevel)
+  //SERVICE_METHOD(Item, calcLevel)
   virtual gemini::Boolean isValid(const gemini::SmartPtr<Item>& item) const;
   virtual gemini::SmartPtr<PlanWorkOrder> createPlanWorkOrder(
       const gemini::SmartPtr<Item>& item) const;
   virtual gemini::SmartPtr<PlanPurchaseOrder> createPlanPurchaseOrder(
       const gemini::SmartPtr<Item>& item) const;
+
+  virtual void test() const override;
 };
 
 }  // namespace aps

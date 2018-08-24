@@ -7,8 +7,8 @@ namespace io {
 
 class CORE_API DataHandler {
  public:
-  virtual String read(EntityObject::SPtr entity, const Field *field) = 0;
-  virtual void write(EntityObject::SPtr entity, const Field *field,
+  virtual String read(Object::SPtr entity, const Field *field) = 0;
+  virtual void write(Object::SPtr entity, const Field *field,
                      const String &value) = 0;
 };
 
@@ -17,8 +17,8 @@ class CORE_API EntityHandler {
   EntityHandler(const Class &cls) : _cls(cls) {}
   virtual ~EntityHandler() {}
 
-  virtual EntityObject::SPtr get(const String &primary) = 0;
-  virtual EntityObject::SPtr require(const String &primary) = 0;
+  virtual Object::SPtr get(const String &primary) = 0;
+  virtual Object::SPtr require(const String &primary) = 0;
 
  private:
   const Class &_cls;

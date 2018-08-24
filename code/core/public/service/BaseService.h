@@ -1,10 +1,9 @@
 #ifndef GEMINI_BaseService_INCLUDE
 #define GEMINI_BaseService_INCLUDE
-#include "../Object.h"
+#include "IBaseService.h"
 
 namespace gemini {
 
-class IBaseService;
 class CORE_API BaseService {
   EntityObject::SPtr createImpl(const Class &cls, Long id) const;
   EntityObject::SPtr createTempImpl(const Class &cls) const;
@@ -205,35 +204,44 @@ class CORE_API BaseService {
                   EntityObject::SPtr relaEntity) const {
     removeImpl(entity, Ref::index(), relaEntity);
   }
+
+  void sync() const;
 };
 
-extern CORE_API void gemini_afx_service_service(const String &name,
-                                                const BaseService *service);
-extern CORE_API void gemini_afx_service_interface(const String &name,
-                                                  const IBaseService *service);
+namespace service {
+extern CORE_API void register_service(const String &name,
+                                      const BaseService *service);
+extern CORE_API void register_interface(const String &name,
+                                        const Wrap &service);
+}  // namespace service
+
 template <class T, class... I>
 class ServiceRegister {
   template <typename... A>
   struct InterfaceHelper {};
   template <class Head, class... Tail>
   struct InterfaceHelper<Head, Tail...> {
-    static void registerInterface(const IBaseService *service) {
-      gemini::gemini_afx_service_interface(Class::getName<Head>(), service);
-      InterfaceHelper<Tail...>::registerInterface(service);
+    template <class Impl>
+    static void registerInterface(const Impl *service) {
+      gemini::service::register_interface(Class::getName<Head>(),
+                                          service::Wrap((const Head *)service));
+      InterfaceHelper<Tail...>::registerInterface<Impl>(service);
     }
   };
   template <class Tail>
   struct InterfaceHelper<Tail> {
-    static void registerInterface(const IBaseService *service) {
-      gemini::gemini_afx_service_interface(Class::getName<Tail>(), service);
+    template <class Impl>
+    static void registerInterface(const Impl *service) {
+      gemini::service::register_interface(Class::getName<Tail>(),
+                                          service::Wrap((const Tail *)service));
     }
   };
 
  public:
   ServiceRegister() {
     String name = Class::getName<T>();
-    gemini::gemini_afx_service_service(name, &_service);
-    InterfaceHelper<I...>::registerInterface(&_service);
+    gemini::service::register_service(name, &_service);
+    InterfaceHelper<I...>::registerInterface<T>(&_service);
   }
   ~ServiceRegister() {}
 
@@ -249,7 +257,7 @@ class CORE_API ServiceAutowired {
   ServiceAutowired(const String &iName);
   virtual ~ServiceAutowired() {}
   friend class ServiceMgr;
-  virtual void assign(const IBaseService *service) = 0;
+  virtual void assign(const void *service) = 0;
 };
 
 namespace service {
@@ -274,17 +282,17 @@ CORE_API void register_service_method_impl(const String &name,
                                            const String &method,
                                            callable *caller);
 
-}  // namespace service
-
 template <class SRV>
 struct __register_service_method__ {
   template <typename FUN>
   __register_service_method__(FUN fun, const String &srvName,
                               const String &methodName) {
-    service::callable *caller = new service::callableHolder<SRV, FUN>(fun);
-    service::register_service_method_impl(srvName, methodName, caller);
+    callable *caller = new service::callableHolder<SRV, FUN>(fun);
+    register_service_method_impl(srvName, methodName, caller);
   }
 };
+
+}  // namespace service
 
 #define SERVICE_AUTOWIRED(I_TYPE, I_NAME)                     \
  public:                                                      \
@@ -299,35 +307,35 @@ struct __register_service_method__ {
     operator const_reference() const { return _value; }       \
                                                               \
    protected:                                                 \
-    virtual void assign(const IBaseService *service) {        \
+    virtual void assign(const void *service) {                \
       _value = (const_reference)service;                      \
     }                                                         \
   } _##I_NAME;
 
-#define SERVICE_REQUIRED(I_TYPE, I_NAME)                            \
- public:                                                            \
-  class __field_##I_NAME {                                          \
-    typedef const I_TYPE *const_reference;                          \
-    const_reference _value;                                         \
-                                                                    \
-   public:                                                          \
-    __field_##I_NAME() : _value(nullptr) {}                         \
-    ~__field_##I_NAME() {}                                          \
-    const_reference operator->() {                                  \
-      sure();                                                       \
-      return _value;                                                \
-    }                                                               \
-    operator const_reference() {                                    \
-      sure();                                                       \
-      return _value;                                                \
-    }                                                               \
-                                                                    \
-   private:                                                         \
-    void sure() {                                                   \
-      if (_value == nullptr) {                                      \
-        _value = gemini::gemini_afx_service_interface_get(#I_TYPE); \
-      }                                                             \
-    }                                                               \
+#define SERVICE_REQUIRED(I_TYPE, I_NAME)                          \
+ public:                                                          \
+  class __field_##I_NAME {                                        \
+    typedef const I_TYPE *const_reference;                        \
+    const_reference _value;                                       \
+                                                                  \
+   public:                                                        \
+    __field_##I_NAME() : _value(nullptr) {}                       \
+    ~__field_##I_NAME() {}                                        \
+    const_reference operator->() {                                \
+      sure();                                                     \
+      return _value;                                              \
+    }                                                             \
+    operator const_reference() {                                  \
+      sure();                                                     \
+      return _value;                                              \
+    }                                                             \
+                                                                  \
+   private:                                                       \
+    void sure() {                                                 \
+      if (_value == nullptr) {                                    \
+        _value = gemini::service::get_service_interface(#I_TYPE); \
+      }                                                           \
+    }                                                             \
   } _##I_NAME;
 
 #define SERVICE_METHOD(CLS, METHOD_NAME)                                     \
@@ -337,8 +345,9 @@ struct __register_service_method__ {
       typedef gemini::Boolean (CLS##Service::*method_ptr_type)(              \
           const gemini::SmartPtr<CLS> &) const;                              \
       method_ptr_type method_ptr = &CLS##Service::METHOD_NAME;               \
-      static gemini::__register_service_method__<CLS##Service> reg(          \
-          method_ptr, gemini::Class::getName<CLS##Service>(), #METHOD_NAME); \
+      static gemini::service::__register_service_method__<CLS##Service> reg( \
+          method_ptr, gemini::Class::getName<CLS##ServiceImpl>(),            \
+          #METHOD_NAME);                                                     \
     }                                                                        \
   } __method_##METHOD_NAME;                                                  \
                                                                              \

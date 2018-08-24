@@ -5,7 +5,17 @@
 
 namespace aps {
 
-class ToolTaskServiceImpl : public TaskServiceImpl, ToolTaskService {};
+class ToolTaskServiceImpl : public TaskServiceImpl, public ToolTaskService {
+ public:
+  virtual gemini::Boolean calcBoundaryObverse(
+      const gemini::SmartPtr<Task> &entity) const override {
+    return true;
+  }
+  virtual gemini::Boolean calcBoundaryReverse(
+      const gemini::SmartPtr<Task> &entity) const override {
+    return true;
+  }
+};
 
 }  // namespace aps
 #endif  // !APS_ToolTaskServiceImpl_INCLUDE

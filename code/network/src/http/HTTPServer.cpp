@@ -3,18 +3,12 @@
 
 namespace gemini {
 
-HTTPServer::HTTPServer()
-{
+HTTPServer::HTTPServer() {}
 
-}
-
-HTTPServer::~HTTPServer()
-{
-
-}
+HTTPServer::~HTTPServer() {}
 
 std::shared_ptr<TCPServerConnection> HTTPServer::createConnection() {
-	return std::shared_ptr<TCPServerConnection>(new HTTPServerConnection());
+  return std::shared_ptr<TCPServerConnection>(new HTTPServerConnection());
 }
 
-}
+}  // namespace gemini

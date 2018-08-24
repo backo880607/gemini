@@ -29,11 +29,11 @@ class CORE_API Field final {
   void set(Object *object, const Value &value) const;
 
   template <class Value>
-  Value get(const SmartPtr<EntityObject> &object) const {
+  Value get(const SmartPtr<Object> &object) const {
     return get<Value>(object.rawPointer());
   }
   template <class Value>
-  void set(SmartPtr<EntityObject> &object, const Value &value) const {
+  void set(SmartPtr<Object> &object, const Value &value) const {
     return set<Value>(object.rawPointer(), value);
   }
 
@@ -63,6 +63,7 @@ void Field::set(Object *object, const Value &value) const {
 namespace ns_class {
 
 CORE_API String getNameImpl(const Char *name);
+CORE_API const Class *getClassByName(const String &name);
 
 template <class T>
 struct remove_cv {
@@ -175,12 +176,19 @@ class CORE_API Class final {
   template <typename T>
   struct forTypeImpl<T, false> {
     static const Class &value() {
-      static const Class _class(ns_class::Helper<T>::getName().c_str(), nullptr,
-                                ns_class::Helper<T>::create);
-      if (std::is_enum<T>::value) {
-        const_cast<Class &>(_class)._isEnum = true;
-      }
-      return _class;
+      static const Class *cls = nullptr;
+      if (cls == nullptr) {
+        cls = ns_class::getClassByName(ns_class::Helper<T>::getName());
+        if (cls == nullptr) {
+          static const Class _class(ns_class::Helper<T>::getName().c_str(),
+                                    nullptr, ns_class::Helper<T>::create);
+          if (std::is_enum<T>::value) {
+            const_cast<Class &>(_class)._isEnum = true;
+          }
+          cls = &_class;
+		}
+	  }
+      return *cls;
     }
   };
 
@@ -334,6 +342,7 @@ class PropertyRef {
   typedef const IList &const_reference;
   typedef const IList *const_pointer;
   typedef T value_type;
+
  protected:
   PropertyRef() {}
   ~PropertyRef() {}
@@ -348,6 +357,7 @@ class PropertyRef<T, RefType::Entity> {
  public:
   typedef SmartPtr<T> const_reference;
   typedef T value_type;
+
  protected:
   PropertyRef() {}
   ~PropertyRef() {}
@@ -400,6 +410,27 @@ class CORE_API EnumHelper {
  private:                                                                     \
   typedef CLASS_NAME ClassType;                                               \
   static void *create() { return new CLASS_NAME; }                            \
+  static const gemini::Class _class;                                          \
+                                                                              \
+ protected:                                                                   \
+  CLASS_NAME() {}                                                             \
+  static gemini::Int s_index;                                                 \
+  virtual gemini::Int signMaxIndex() override { return ClassType::s_index; }  \
+                                                                              \
+ public:                                                                      \
+  typedef gemini::SmartPtr<ClassType> SPtr;                                   \
+  typedef gemini::SmartPtr<ClassType, gemini::WeakCounted, gemini::StorageNo> \
+      WPtr;                                                                   \
+  virtual ~CLASS_NAME() {}                                                    \
+  static const gemini::Class &getClassStatic() { return CLASS_NAME::_class; } \
+  virtual const gemini::Class &getClass() const override {                    \
+    return CLASS_NAME::_class;                                                \
+  }
+
+#define DECLARE_ABSTRACT_CLASS(CLASS_NAME, SUPER_CLASS_NAME)                  \
+ private:                                                                     \
+  typedef CLASS_NAME ClassType;                                               \
+  static void *create() { return nullptr; }                                   \
   static const gemini::Class _class;                                          \
                                                                               \
  protected:                                                                   \

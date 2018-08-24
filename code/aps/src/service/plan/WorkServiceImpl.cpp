@@ -9,6 +9,7 @@
 
 namespace aps {
 
+gemini::ServiceRegister<WorkServiceImpl, WorkService> work_service_register;
 void WorkServiceImpl::onFree(gemini::EntityObject::SPtr entity) const {}
 
 gemini::SmartPtr<WorkIn> WorkServiceImpl::createWorkIn(

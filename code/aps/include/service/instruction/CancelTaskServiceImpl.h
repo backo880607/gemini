@@ -5,7 +5,7 @@
 
 namespace aps {
 
-class CancelTaskServiceImpl : public InstructionServiceImpl, CancelTaskService {
+class CancelTaskServiceImpl : public InstructionServiceImpl, public CancelTaskService {
   virtual void execute(const gemini::SmartPtr<Instruction>& inst) const;
 
   virtual gemini::Boolean cancelTask(const gemini::SmartPtr<Task>& task) const;

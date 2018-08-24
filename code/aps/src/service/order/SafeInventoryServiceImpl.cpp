@@ -1,3 +1,6 @@
 #include "../../../include/service/order/SafeInventoryServiceImpl.h"
 
-namespace aps {}  // namespace aps
+namespace aps {
+gemini::ServiceRegister<SafeInventoryServiceImpl, SafeInventoryService>
+    safeInventory_service_register;
+}  // namespace aps

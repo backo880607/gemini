@@ -5,8 +5,17 @@
 
 namespace aps {
 
-class SafeInventoryServiceImpl : public OrderServiceImpl, SafeInventoryService {
-  virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const;
+class SafeInventoryServiceImpl : public OrderServiceImpl,
+                                 public SafeInventoryService {
+ public:
+  virtual gemini::Boolean isActive(const gemini::SmartPtr<Order>& order) const {
+    return true;
+  }
+
+  virtual gemini::SmartPtr<Work> createWork(
+      const gemini::SmartPtr<Order>& order) const {
+    return nullptr;
+  }
 };
 
 }  // namespace aps

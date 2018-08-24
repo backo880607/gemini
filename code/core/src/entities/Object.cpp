@@ -10,6 +10,7 @@ namespace gemini {
 
 void* createObject() { return nullptr; }
 const Class Object::s_class("Object", nullptr, createObject);
+Int Object::s_index = 0;
 
 // static const boost::posix_time::ptime
 // s_startTime(boost::gregorian::date(2016, 1, 1),
@@ -62,8 +63,14 @@ class IDGenerator final {
 
 const Class EntityObject::_class("EntityObject", &Object::getClassStatic(),
                                  createObject);
-Int EntityObject::s_index = 1;
-EntityObject::EntityObject() : _id(IDGenerator::instance().getID()) {}
+Int EntityObject::s_index = ++Object::s_index;
+__register_field__ regEntityObjectId(Class::forType<ID>(), 0,
+                                     Class::forName("EntityObject"), "id", 0);
+EntityObject::EntityObject() : _id(IDGenerator::instance().getID()) {
+  _flag.created = false;
+  _flag.modified = false;
+  _flag.tempRead = false;
+}
 
 EntityObject::~EntityObject() {
   for (RefBase* ref : _relations) {

@@ -4,15 +4,14 @@
 
 namespace gemini {
 
-class HTTPServer : public TCPServer
-{
-public:
-	HTTPServer();
-	virtual ~HTTPServer();
+class HTTPServer : public TCPServer {
+ public:
+  HTTPServer();
+  virtual ~HTTPServer();
 
-protected:
-	virtual std::shared_ptr<TCPServerConnection> createConnection();
+ protected:
+  virtual std::shared_ptr<TCPServerConnection> createConnection();
 };
 
-}
-#endif // GEMINI_NETWORK_HTTPServer_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_NETWORK_HTTPServer_INCLUDE

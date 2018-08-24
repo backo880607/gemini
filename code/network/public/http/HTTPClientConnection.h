@@ -4,15 +4,15 @@
 
 namespace gemini {
 
-class GEMINI_NETWORK_API HTTPClientConnection : public TCPClientConnection
-{
-public:
-	HTTPClientConnection();
-	virtual ~HTTPClientConnection();
+class GEMINI_NETWORK_API HTTPClientConnection : public TCPClientConnection {
+ public:
+  HTTPClientConnection();
+  virtual ~HTTPClientConnection();
 
-protected:
-	virtual std::shared_ptr<Socket> createSocket(boost::asio::io_service& ios) override;
+ protected:
+  virtual std::shared_ptr<Socket> createSocket(
+      boost::asio::io_service& ios) override;
 };
 
-}
-#endif // GEMINI_NETWORK_HTTPClientConnection_INCLUDE
+}  // namespace gemini
+#endif  // GEMINI_NETWORK_HTTPClientConnection_INCLUDE

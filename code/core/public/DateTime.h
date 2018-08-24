@@ -229,6 +229,7 @@ class CORE_API Duration : public AnyAbstract {
 
 class CORE_API DurationExtend : public AnyAbstract {
  public:
+  DurationExtend() {}
   DurationExtend(const String &value) : _value(value) {
     parse();
   }

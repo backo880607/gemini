@@ -5,7 +5,7 @@
 namespace aps {
 
 class Instruction;
-class InstructionService : public gemini::IBaseService {
+class InstructionService {
  public:
   virtual void execute(const gemini::SmartPtr<Instruction>& inst) const = 0;
 };

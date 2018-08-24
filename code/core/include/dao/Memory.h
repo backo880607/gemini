@@ -8,11 +8,7 @@ namespace gemini {
 
 class Memory final : noncopyable {
  private:
-  static Memory &current();
-  static std::shared_ptr<BaseDao> getDao(const Class &cls) {
-    return current()._daoMgr.getDao(cls);
-  }
-
+  static std::shared_ptr<BaseDao> getDao(const Class &cls);
   friend class Session;
   Memory();
 

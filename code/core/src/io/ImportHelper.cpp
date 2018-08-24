@@ -1,9 +1,10 @@
+#include "api/DataNode.h"
+#include "dao/Memory.h"
 #include "io/HandlerHelper.h"
 #include "io/IOField.h"
 #include "io/IOScheme.h"
 #include "io/ImportHelper.h"
 #include "io/datasource/DataSourceMgr.h"
-#include "tools/StringUtil.h"
 
 namespace gemini {
 namespace io {
@@ -52,18 +53,6 @@ Boolean ImportHelper::parseIOScheme(SmartPtr<IOScheme> scheme) {
         continue;
       }
       String value = obtainValue(index++, field);
-      std::shared_ptr<DataHandler> handler =
-          _dataHelper->getHandler(field->getClass(), field->index());
-      if (handler) {
-        handler->write(entity, field, value);
-        continue;
-      }
-      handler = _dataHelper->getHandler(field->getClass());
-      if (handler) {
-        handler->write(entity, field, value);
-        continue;
-      }
-
       write(entity, field, value);
     }
   }
@@ -111,27 +100,40 @@ String ImportHelper::obtainPrimary(
   return std::move(value);
 }
 
-void ImportHelper::write(EntityObject::SPtr entity, const Field *field,
-                         const String &value) {
-  const Class &fieldCls = field->getClass();
-  if (fieldCls == Class::forType<Boolean>()) {
-    field->set(entity, StringUtil::convert<Boolean>(value.c_str()));
-  } else if (fieldCls == Class::forType<Short>()) {
-    field->set(entity, StringUtil::convert<Short>(value.c_str()));
-  } else if (fieldCls == Class::forType<Int>()) {
-    field->set(entity, StringUtil::convert<Int>(value.c_str()));
-  } else if (fieldCls == Class::forType<Long>()) {
-    field->set(entity, StringUtil::convert<Long>(value.c_str()));
-  } else if (fieldCls == Class::forType<Float>()) {
-    field->set(entity, StringUtil::convert<Float>(value.c_str()));
-  } else if (fieldCls == Class::forType<Double>()) {
-    field->set(entity, StringUtil::convert<Double>(value.c_str()));
-  } else if (fieldCls == Class::forType<String>()) {
-    field->set(entity, value);
-  } else if (fieldCls.isEnum()) {
-    field->set(entity, fieldCls.getEnum(value));
-  } else if (fieldCls.isMultiEnum()) {
+DtoParseHelper::DtoParseHelper() {}
+
+DtoParseHelper::~DtoParseHelper() {}
+
+/*void DtoParseHelper::execute() {
+  if (_dataSource == nullptr) {
+    return;
   }
+}*/
+
+Object::SPtr DtoParseHelper::parseObject(const Class &cls,
+                                         const DataNode &dataNode) {
+  std::shared_ptr<EntityHandler> entityHandler = _entityHelper->getHandler(cls);
+  if (entityHandler == nullptr) {
+    return nullptr;
+  }
+
+  Object::SPtr obj = entityHandler->require("");
+  if (!obj.valid()) {
+    return nullptr;
+  }
+
+  dataNode.foreach ([&](const DataNode &fieldNode) {
+    const Field &field = cls.getField(fieldNode.getName());
+    if (field.getClass().isBase(Object::getClassStatic())) {
+      Object::SPtr relaObj = parseObject(field.getClass(), fieldNode);
+      if (relaObj.valid()) {
+        field.set(obj, relaObj);
+      }
+    } else {
+      write(obj, &field, fieldNode.getValue());
+    }
+  });
+  return obj;
 }
 
 }  // namespace io

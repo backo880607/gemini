@@ -25,31 +25,24 @@ class CORE_API log_info {
   friend class Exception;
 };
 class CORE_API LOG_INFO : public log_info {
- public:
   virtual String getName() override { return "INFO"; }
 };
 class CORE_API LOG_WARNING : public log_info {
- public:
   virtual String getName() override { return "WARNING"; }
 };
 class CORE_API LOG_ERROR : public log_info {
- public:
   virtual String getName() override { return "ERROR"; }
 };
 class CORE_API LOG_FATAL : public log_info {
- public:
   virtual String getName() override { return "FATAL"; }
 };
 class CORE_API TIPS_StrongError : public LOG_ERROR {
- public:
   virtual String getName() override { return "STRONGERROR"; }
 };
 class CORE_API TIPS_WEAK : public LOG_INFO {
- public:
   virtual String getName() override { return "TIPS"; }
 };
 class CORE_API TIPS_WARNING : public LOG_WARNING {
- public:
   virtual String getName() override { return "WARNINGTIPS"; }
 };
 
@@ -88,71 +81,63 @@ class CORE_API Exception : public std::exception {
 };
 
 class CORE_API SystemExecption : public Exception {
- public:
   virtual String getName() const override { return "SystemExecption"; }
 };
 class CORE_API ArithmeticExecption : public Exception {
- public:
   virtual String getName() const override { return "ArithmeticExecption"; }
 };
 class CORE_API BoundaryException : public Exception {
- public:
   virtual String getName() const override { return "BoundaryException"; }
 };
 class CORE_API OperandException : public Exception {
- public:
   virtual String getName() const override { return "OperandException"; }
 };
 class CORE_API NullPointerException : public Exception {
- public:
   virtual String getName() const override { return "NullPointerException"; }
 };
 class CORE_API ClassCastException : public Exception {
- public:
   virtual String getName() const override { return "ClassCastException"; }
 };
 class CORE_API FileNotFoundException : public Exception {
- public:
   virtual String getName() const override { return "FileNotFoundException"; }
 };
 class CORE_API IOException : public Exception {
- public:
   virtual String getName() const override { return "IOException"; }
 };
 class CORE_API NoSuchFieldException : public Exception {
- public:
   virtual String getName() const override { return "NoSuchFieldException"; }
 };
 class CORE_API NoSuchMethodException : public Exception {
- public:
   virtual String getName() const override { return "NoSuchMethodException"; }
 };
 class CORE_API NoSuchElementException : public Exception {
- public:
   virtual String getName() const override { return "NoSuchElementException"; }
 };
 class CORE_API CircularityException : public Exception {
- public:
   virtual String getName() const override { return "CircularityException"; }
 };
 class CORE_API NoClassDefException : public Exception {
- public:
   virtual String getName() const override { return "NoClassDefException"; }
 };
 class CORE_API NoSupportException : public Exception {
- public:
   virtual String getName() const override { return "NoSupportException"; }
 };
 class CORE_API MatchException : public Exception {
- public:
   virtual String getName() const override { return "MatchException"; }
 };
 class CORE_API RegisterException : public Exception {
- public:
   virtual String getName() const override { return "RegisterException"; }
 };
+class CORE_API ArgumentException : public Exception {
+  virtual String getName() const override { return "Argument"; }
+};
+class CORE_API NotImplementedException : public Exception {
+  virtual String getName() const override { return "NotImplemented"; }
+};
+class CORE_API AccessException : public Exception {
+  virtual String getName() const override { return "Access"; }
+};
 class CORE_API UnknownException : public Exception {
- public:
   virtual String getName() const override { return "UnknownException"; }
 };
 

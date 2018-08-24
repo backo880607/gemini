@@ -6,7 +6,7 @@
 namespace aps {
 
 class MaterialCalculationServiceImpl : public InstructionServiceImpl,
-                                       MaterialCalculationService {
+                                       public MaterialCalculationService {
   virtual void execute(const gemini::SmartPtr<Instruction>& inst) const;
   void deleteInvalidPlanOrder() const;
 };
