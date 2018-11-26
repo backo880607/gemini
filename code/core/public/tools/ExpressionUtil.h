@@ -4,20 +4,25 @@
 
 namespace gemini {
 
-class ExpressionUtil {
-  typedef Any (*Fun)(const std::vector<Any>&);
-
- private:
+class IExpression {
  public:
+  virtual Boolean parse(const String& str) = 0;
+  virtual Any getValue() = 0;
+  virtual Any getValue(const SmartPtr<BaseEntity>& entity) = 0;
+  virtual Boolean getBoolean() = 0;
+  virtual Boolean getBoolean(const SmartPtr<BaseEntity>& entity) = 0;
+  virtual String getText() = 0;
+  virtual String getText(const SmartPtr<BaseEntity>& entity) = 0;
+  virtual const Class* getClass() = 0;
+};
+
+class ExpressionUtil final {
   ExpressionUtil();
+
+ public:
   ~ExpressionUtil();
 
-  static void registerFunction(const String& name, Fun fun);
-
-  template <typename R, class C>
-  static Any call(const std::vector<Any>& params) {}
-  template <typename R, class C, typename P1>
-  static Any call(const std::vector<Any>& params) {}
+  static std::shared_ptr<IExpression> create(const String& str);
 };
 
 }  // namespace gemini

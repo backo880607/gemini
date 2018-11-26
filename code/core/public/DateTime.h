@@ -176,8 +176,8 @@ class CORE_API DateTime : public AnyAbstract {
   virtual Boolean operator==(const Any &rhs) const;
   virtual Boolean operator<(const Any &rhs) const;
 
-  virtual String str() const;
-  String str(const Char *f) const;
+  virtual String toString() const;
+  String toString(const Char *f) const;
   static DateTime valueOf(const Char *str);
 
  private:
@@ -219,7 +219,7 @@ class CORE_API Duration : public AnyAbstract {
   virtual Boolean operator==(const Any &rhs) const;
   virtual Boolean operator<(const Any &rhs) const;
 
-  virtual String str() const;
+  virtual String toString() const;
   static Duration valueOf(const Char *str);
 
  private:
@@ -230,9 +230,7 @@ class CORE_API Duration : public AnyAbstract {
 class CORE_API DurationExtend : public AnyAbstract {
  public:
   DurationExtend() {}
-  DurationExtend(const String &value) : _value(value) {
-    parse();
-  }
+  DurationExtend(const String &value) : _value(value) { parse(); }
   ~DurationExtend() {}
 
   operator const String &() { return _value; }
@@ -240,6 +238,9 @@ class CORE_API DurationExtend : public AnyAbstract {
     _value = value;
     parse();
   }
+
+  virtual String toString() const;
+  static DurationExtend valueOf(const Char *str);
 
  private:
   void parse();

@@ -49,33 +49,6 @@
     <Filter Include="Source Files\graph">
       <UniqueIdentifier>{a2c08230-d858-46c8-a04d-e26c079621a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="public\session">
-      <UniqueIdentifier>{b066f5b4-9aee-475e-a158-b890e84524f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\session">
-      <UniqueIdentifier>{44d9acda-308a-48d7-a456-0fc511c61795}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\session\authc">
-      <UniqueIdentifier>{50f61e1a-0d1f-4349-8be8-7fd6aef2a585}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\session\authz">
-      <UniqueIdentifier>{ce7d56dc-f967-4f3d-93a4-959f8de84db4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\session\realm">
-      <UniqueIdentifier>{5429d945-11a2-44c8-8521-3be874eee456}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\session">
-      <UniqueIdentifier>{4ebab666-6210-4cdb-ab3d-771db09a60bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\session\authc">
-      <UniqueIdentifier>{afe3948b-12ba-48ab-9769-2173a29490cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\session\authz">
-      <UniqueIdentifier>{39a071e6-60e0-4ec3-bf0e-8c3bab7259b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\session\realm">
-      <UniqueIdentifier>{eaa2f7d8-a39c-4f7a-956c-ab6d8d041b5b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="public\service">
       <UniqueIdentifier>{093fc2dd-3cc6-4444-bc11-ea178cb6bc2c}</UniqueIdentifier>
     </Filter>
@@ -90,18 +63,6 @@
     </Filter>
     <Filter Include="Header Files\service">
       <UniqueIdentifier>{a886a58a-e6fb-4384-8320-ecd5502ef046}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\session\entities">
-      <UniqueIdentifier>{6721ca7e-3015-482d-aba7-bc9d3a9768a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\session\service">
-      <UniqueIdentifier>{c2ebd297-d42c-4a2a-84c1-e94bc0741f60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\session\service">
-      <UniqueIdentifier>{d3f2f7ae-efb0-4ee2-a80d-6858e5690a25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\session\entities">
-      <UniqueIdentifier>{f40c0a03-0966-471b-9692-d689afcc9aec}</UniqueIdentifier>
     </Filter>
     <Filter Include="public\api">
       <UniqueIdentifier>{106276fd-1391-483d-b0f0-05cb937fb63e}</UniqueIdentifier>
@@ -130,44 +91,20 @@
     <Filter Include="Source Files\propagate">
       <UniqueIdentifier>{20d5fe53-079a-4746-922c-f2a73894ec49}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\io">
-      <UniqueIdentifier>{debeea7c-b740-44b9-a8c5-2f6fbbe340ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="public\io">
-      <UniqueIdentifier>{b861aa34-7089-4344-93ce-86c75c9fe193}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io">
-      <UniqueIdentifier>{f4881c65-443a-4d14-b481-c8979304658e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\controller">
-      <UniqueIdentifier>{52866ab8-0780-4988-b0be-31f3abb875b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io\controller">
-      <UniqueIdentifier>{2765c84c-9187-469b-9df9-05542f8e4f75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\handler">
-      <UniqueIdentifier>{779f6c2d-513c-41f4-9145-17521fde9eea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io\handler">
-      <UniqueIdentifier>{b7d86826-a9ea-4f24-be96-34678e7dc0d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\dao">
       <UniqueIdentifier>{a2b9e29b-9c5e-4058-aa35-babdbc554138}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\dao">
       <UniqueIdentifier>{47497897-f546-4deb-9170-18a243b98a5f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="public\tools\TmplArgs">
-      <UniqueIdentifier>{b9043834-c128-4913-ae65-f707c4009eda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io\datasource">
-      <UniqueIdentifier>{e74916ee-ee37-41b1-81c1-d0714b167053}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io\datasource">
-      <UniqueIdentifier>{e473835a-2235-48ff-90ee-867d4d6b11dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="public\dao">
       <UniqueIdentifier>{fb4a398e-7861-409e-b4f8-e4cd3fa283d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\api\handler">
+      <UniqueIdentifier>{ec45896e-dba1-4713-b4d5-5fd703fa0cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\api\handler">
+      <UniqueIdentifier>{354ef046-2e69-4841-83d9-212b60c34edc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +115,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\Any.h">
@@ -255,9 +189,6 @@
     <ClInclude Include="..\..\..\..\code\core\include\entities\RefEntity.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\entities\RefList.h">
-      <Filter>Header Files\entities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\entities\RefSet.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
@@ -297,80 +228,8 @@
     <ClInclude Include="..\..\..\..\code\core\public\tools\DoubleUtil.h">
       <Filter>public\tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\session\AuthenticationToken.h">
-      <Filter>public\session</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\session\Subject.h">
-      <Filter>public\session</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\session\UsernamePasswordToken.h">
-      <Filter>public\session</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authc\Authenticator.h">
-      <Filter>Header Files\session\authc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authc\DefaultAuthenticator.h">
-      <Filter>Header Files\session\authc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\Authorizer.h">
-      <Filter>Header Files\session\authz</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizer.h">
-      <Filter>Header Files\session\authz</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\realm\DefaultRealm.h">
-      <Filter>Header Files\session\realm</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\realm\Realm.h">
-      <Filter>Header Files\session\realm</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\service\IBaseService.h">
       <Filter>public\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Permission.h">
-      <Filter>Header Files\session\entities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Role.h">
-      <Filter>Header Files\session\entities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\User.h">
-      <Filter>Header Files\session\entities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\IPermissionService.h">
-      <Filter>Header Files\session\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\IRoleService.h">
-      <Filter>Header Files\session\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\IUserService.h">
-      <Filter>Header Files\session\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\PermissionService.h">
-      <Filter>Header Files\session\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\RoleService.h">
-      <Filter>Header Files\session\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\UserService.h">
-      <Filter>Header Files\session\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultObjectPermission.h">
-      <Filter>Header Files\session\authz</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\ObjectPermission.h">
-      <Filter>Header Files\session\authz</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultPermissionResolver.h">
-      <Filter>Header Files\session\authz</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\PermissionResolver.h">
-      <Filter>Header Files\session\authz</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\AuthorizationInfo.h">
-      <Filter>Header Files\session\authz</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizationInfo.h">
-      <Filter>Header Files\session\authz</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\tools\Json.h">
       <Filter>public\tools</Filter>
@@ -380,12 +239,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\tools\File.h">
       <Filter>public\tools</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\realm\AuthorizingRealm.h">
-      <Filter>Header Files\session\realm</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\SecurityMgr.h">
-      <Filter>Header Files\session</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\service\ServiceMgr.h">
       <Filter>Header Files\service</Filter>
@@ -434,12 +287,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\message\Message.h">
       <Filter>public\message</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\Errors.h">
-      <Filter>Header Files\session</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\session\Session.h">
-      <Filter>public\session</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\api\MsgData.h">
       <Filter>public\api</Filter>
@@ -495,20 +342,8 @@
     <ClInclude Include="..\..\..\..\code\core\public\controller\ControllerMgr.h">
       <Filter>public\controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\ExportHelper.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\ImportHelper.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\Core.h">
       <Filter>public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Department.h">
-      <Filter>Header Files\session\entities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\ReflectMethod.h">
       <Filter>public</Filter>
@@ -519,74 +354,14 @@
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_WIN32.h">
       <Filter>Header Files\api</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\controller\IOController.h">
-      <Filter>Header Files\io\controller</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h">
-      <Filter>Header Files\io\handler</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\include\dao\DaoMgr.h">
       <Filter>Header Files\dao</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\dao\Memory.h">
-      <Filter>Header Files\dao</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\tools\CacheUtil.h">
-      <Filter>public\tools</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\tools\ExpressionUtil.h">
       <Filter>public\tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgDef.h">
-      <Filter>public\tools\TmplArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgList.h">
-      <Filter>public\tools\TmplArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgUtil.h">
-      <Filter>public\tools\TmplArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\ExpressionCallable.h">
-      <Filter>public\tools\TmplArgs</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\MultiEnum.h">
       <Filter>public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOHelper.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DataSourceMgr.h">
-      <Filter>Header Files\io\datasource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSExcelCSV.h">
-      <Filter>Header Files\io\datasource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSJson.h">
-      <Filter>Header Files\io\datasource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSLocaleFile.h">
-      <Filter>Header Files\io\datasource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSStream.h">
-      <Filter>Header Files\io\datasource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSXML.h">
-      <Filter>Header Files\io\datasource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\HandlerHelper.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\public\io\Handler.h">
-      <Filter>public\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\IOField.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\IOProject.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\core\include\io\IOScheme.h">
-      <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\dao\BaseDao.h">
       <Filter>public\dao</Filter>
@@ -596,6 +371,54 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\core\public\Module.h">
       <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefSequence.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TimeStatistics.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\dao\DaoUtil.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Memory.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Property.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\dao\PropertyDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\controller\PropertyController.h">
+      <Filter>public\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\service\IPropertyService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\service\PropertyService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\ClassUtil.h">
+      <Filter>public\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\api\handler\DateTimeHandler.h">
+      <Filter>Header Files\api\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\include\api\handler\HandlerHelper.h">
+      <Filter>Header Files\api\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\Handler.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\api\IOHelper.h">
+      <Filter>public\api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\Session.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\core\public\tools\RelationUtil.h">
+      <Filter>public\tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -656,9 +479,6 @@
     <ClCompile Include="..\..\..\..\code\core\src\entities\RefEntity.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\entities\RefList.cpp">
-      <Filter>Source Files\entities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\entities\RefSet.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
@@ -686,68 +506,8 @@
     <ClCompile Include="..\..\..\..\code\core\src\tools\DoubleUtil.cpp">
       <Filter>Source Files\tools</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\realm\DefaultRealm.cpp">
-      <Filter>Source Files\session\realm</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\realm\Realm.cpp">
-      <Filter>Source Files\session\realm</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\Authorizer.cpp">
-      <Filter>Source Files\session\authz</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizer.cpp">
-      <Filter>Source Files\session\authz</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\AuthenticationToken.cpp">
-      <Filter>Source Files\session\authc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\Authenticator.cpp">
-      <Filter>Source Files\session\authc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\DefaultAuthenticator.cpp">
-      <Filter>Source Files\session\authc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\UsernamePasswordToken.cpp">
-      <Filter>Source Files\session\authc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\Session.cpp">
-      <Filter>Source Files\session</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\Subject.cpp">
-      <Filter>Source Files\session</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\service\BaseService.cpp">
       <Filter>Source Files\service</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\service\PermissionService.cpp">
-      <Filter>Source Files\session\service</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\service\RoleService.cpp">
-      <Filter>Source Files\session\service</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\service\UserService.cpp">
-      <Filter>Source Files\session\service</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Permission.cpp">
-      <Filter>Source Files\session\entities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Role.cpp">
-      <Filter>Source Files\session\entities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\User.cpp">
-      <Filter>Source Files\session\entities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultObjectPermission.cpp">
-      <Filter>Source Files\session\authz</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultPermissionResolver.cpp">
-      <Filter>Source Files\session\authz</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\PermissionResolver.cpp">
-      <Filter>Source Files\session\authz</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizationInfo.cpp">
-      <Filter>Source Files\session\authz</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\tools\Json.cpp">
       <Filter>Source Files\tools</Filter>
@@ -757,12 +517,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\tools\File.cpp">
       <Filter>Source Files\tools</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\realm\AuthorizingRealm.cpp">
-      <Filter>Source Files\session\realm</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\SecurityMgr.cpp">
-      <Filter>Source Files\session</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\service\ServiceMgr.cpp">
       <Filter>Source Files\service</Filter>
@@ -860,27 +614,6 @@
     <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\DataSource.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\ImportHelper.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOScheme.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOProject.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOField.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Department.cpp">
-      <Filter>Source Files\session\entities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\ReflectMethod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -896,19 +629,10 @@
     <ClCompile Include="..\..\..\..\code\core\src\api\Process_WIN32.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\controller\IOController.cpp">
-      <Filter>Source Files\io\controller</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\handler\DateTimeHandler.cpp">
-      <Filter>Source Files\io\handler</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\dao\DaoMgr.cpp">
       <Filter>Source Files\dao</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\dao\InnerDao.cpp">
-      <Filter>Source Files\dao</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\dao\Memory.cpp">
       <Filter>Source Files\dao</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\tools\ExpressionUtil.cpp">
@@ -917,35 +641,59 @@
     <ClCompile Include="..\..\..\..\code\core\src\MultiEnum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOHelper.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DataSourceMgr.cpp">
-      <Filter>Source Files\io\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSExcelCSV.cpp">
-      <Filter>Source Files\io\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSJson.cpp">
-      <Filter>Source Files\io\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSLocaleFile.cpp">
-      <Filter>Source Files\io\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSStream.cpp">
-      <Filter>Source Files\io\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSXML.cpp">
-      <Filter>Source Files\io\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\core\src\io\HandlerHelper.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\dao\BaseDao.cpp">
       <Filter>Source Files\dao</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\core\src\Module.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefSequence.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\TimeStatistics.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\dao\DaoUtil.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Property.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\dao\PropertyDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\controller\PropertyController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\service\PropertyService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\ClassUtil.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\handler\DateTimeHandler.cpp">
+      <Filter>Source Files\api\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\handler\Handler.cpp">
+      <Filter>Source Files\api\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\handler\HandlerHelper.cpp">
+      <Filter>Source Files\api\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\api\IOHelper.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\Session.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\core\src\tools\RelationUtil.cpp">
+      <Filter>Source Files\tools</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

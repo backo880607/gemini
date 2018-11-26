@@ -4,6 +4,7 @@
 #include "propagate/Propagate.h"
 #include "propagate/PropagateHelper.h"
 #include "service/ServiceMgr.h"
+#include "tools/ClassUtil.h"
 #include "tools/File.h"
 #include "tools/StringUtil.h"
 #include "tools/XML.h"
@@ -31,7 +32,8 @@ void PropagateHelper::loadConfig() {
 
     propertyNode.foreach ([&](XMLNode propertyNode) {
       String propertyName = propertyNode.getAttribute(u8"name");
-      const Field& field = factory->getEntityClass().getField(propertyName);
+      const Field& field =
+          ClassUtil::getField(factory->getEntityClass(), propertyName);
       Propagate::Data& data =
           Propagate::instance()
               ._datas[factory->getEntityClass().index()][&field];
@@ -69,7 +71,8 @@ void PropagateHelper::loadConfig() {
               FactoryMgr::instance().getFactory(fields[0]);
           THROW_IF(depFactory == nullptr, Exception,
                    u8"invalid dependence path: ", strField)
-          const Field& field = depFactory->getEntityClass().getField(fields[1]);
+          const Field& field =
+              ClassUtil::getField(depFactory->getEntityClass(), fields[1]);
           if (field.index() > 0) {
             pathSigns.push_back(field.index());
           } else {

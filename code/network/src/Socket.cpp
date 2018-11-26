@@ -3,6 +3,7 @@
 
 using namespace boost::asio;
 namespace gemini {
+namespace network {
 
 Socket::Socket(service_type& ios, TCPConnection* conn, Int hbTimeout)
     : _strand(ios),
@@ -60,7 +61,7 @@ Boolean Socket::async_read_body() {
   if (_status == Status::S_Termination) return false;
 
   _heartbeat.expires_from_now(boost::posix_time::seconds(_heartbeatTimeout));
-  MsgData::mutable_buffer buf = _readMsg.prepare();
+  api::MsgData::mutable_buffer buf = _readMsg.prepare();
   async_read(_socket, buffer(buf._data, buf._size), transfer_all(),
              _strand.wrap(boost::bind(&Socket::async_handle_read_body,
                                       shared_from_this(), placeholders::error,
@@ -105,7 +106,7 @@ void Socket::async_handle_read_body(const boost::system::error_code& err,
   async_read_head();
 }
 
-Boolean Socket::write(MsgData msg) {
+Boolean Socket::write(api::MsgData msg) {
   if (_status == Status::S_Termination) return false;
 
   // 写入头部
@@ -114,7 +115,7 @@ Boolean Socket::write(MsgData msg) {
   // 写入消息体
   Int pos = 0;
   const Char* data = nullptr;
-  MSG_UINT32 size = 0;
+  api::MSG_UINT32 size = 0;
   while (msg.step(pos, data, size)) {
     if (!writeImpl(data, size)) {
       return false;
@@ -132,7 +133,7 @@ Boolean Socket::writeImpl(const Char* data, Long size) {
   return true;
 }
 
-Boolean Socket::asyncWrite(MsgData& msg) {
+Boolean Socket::asyncWrite(api::MsgData& msg) {
   if (_status == Status::S_Termination) return false;
 
   /*if (msg.getMsgID() == 0)
@@ -144,7 +145,7 @@ Boolean Socket::asyncWrite(MsgData& msg) {
   return true;
 }
 
-void Socket::do_write(MsgData msg) {
+void Socket::do_write(api::MsgData msg) {
   Boolean write_in_progress = !_writeMsg.empty();
   _writeMsg.push_back(msg);
   if (!write_in_progress) {
@@ -164,7 +165,7 @@ void Socket::async_handle_write(const boost::system::error_code& err, Int pos) {
   }
 
   const Char* data = nullptr;
-  MSG_UINT32 size = 0;
+  api::MSG_UINT32 size = 0;
   if (_writeMsg.front().step(pos, data, size)) {
     _heartbeat.expires_from_now(boost::posix_time::seconds(_heartbeatTimeout));
     async_write(_socket, buffer(data, size),
@@ -221,4 +222,5 @@ Boolean Socket::proError(const boost::system::error_code& err) {
   return false;
 }
 
+}  // namespace network
 }  // namespace gemini

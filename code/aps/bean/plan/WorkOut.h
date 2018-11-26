@@ -8,10 +8,13 @@ class Work;
 class WorkRel;
 class Item;
 class RouteStepOut;
-class APS_API WorkOut : public gemini::EntityObject {
-  DECLARE_CLASS(WorkOut, gemini::EntityObject)
+class APS_API WorkOut : public gemini::Entity {
+  DECLARE_CLASS(WorkOut, gemini::Entity)
 
-  DECLARE_FIELD(gemini::Double, surplusQty)
+  DECLARE_FIELD(gemini::Boolean, active)     ///< 是否有效
+  DECLARE_FIELD(gemini::Double, qty)         ///< 数量
+  DECLARE_FIELD(gemini::Double, surplusQty)  ///< 多余数量
+  DECLARE_FIELD(gemini::DateTime, time)      ///< 时间
 
   DECLARE_ENTITY(Work, work)
   DECLARE_VECTOR(WorkRel, workRels)

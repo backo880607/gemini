@@ -1,6 +1,7 @@
 #ifndef GEMINI_SQL_Statement_INCLUDE
 #define GEMINI_SQL_Statement_INCLUDE
 #include "../include/Binder.h"
+#include "../include/Extractor.h"
 #include "Connection.h"
 #include "ResultSet.h"
 
@@ -42,29 +43,36 @@ class GEMINI_SQL_API Statement {
   Boolean existed(const String& tblName);
 
   template <typename T>
-  Statement& bind(T& val) {
-    getBinder()->bind(_bindPos++, val, Binder::Direction::PD_IN_OUT);
+  Statement& bind(T& value) {
+    getBinder()->bind(_binderPos++, value, Binder::Direction::PD_IN_OUT);
     return *this;
   }
   template <typename T>
-  Statement& in(T& val) {
-    getBinder()->bind(_bindPos++, val, Binder::Direction::PD_IN);
+  Statement& in(T& value) {
+    getBinder()->bind(_binderPos++, value, Binder::Direction::PD_IN);
     return *this;
   }
   template <typename T>
-  Statement& out(T& val) {
-    getBinder()->bind(_bindPos++, val, Binder::Direction::PD_OUT);
+  Statement& out(T& value) {
+    getBinder()->bind(_binderPos++, value, Binder::Direction::PD_OUT);
     return *this;
+  }
+
+  template <typename T>
+  Boolean into(T& value) {
+    return getExtractor()->extract(_extractorPos, value);
   }
 
  protected:
   std::shared_ptr<Binder> getBinder();
+  std::shared_ptr<Extractor> getExtractor();
 
  private:
   friend class ResultSet;
   friend class CreateStatement;
   impl_type _impl;
-  Int _bindPos;
+  Int _binderPos;
+  Int _extractorPos;
 };
 
 class PreparedStatementImpl;

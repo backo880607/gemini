@@ -5,6 +5,7 @@
 #include <mutex>
 
 namespace gemini {
+namespace network {
 
 class ServerSocket;
 class GEMINI_NETWORK_API Server {
@@ -27,5 +28,6 @@ class GEMINI_NETWORK_API Server {
   virtual void stop() = 0;
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // !GEMINI_NETWORK_Server_INCLUDE

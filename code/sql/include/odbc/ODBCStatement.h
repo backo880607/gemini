@@ -2,6 +2,7 @@
 #define GEMINI_SQL_ODBCStatement_INCLUDE
 #include "../StatementImpl.h"
 #include "ODBCBinder.h"
+#include "ODBCExtractor.h"
 
 namespace gemini {
 namespace sql {
@@ -20,7 +21,8 @@ class ODBCStatement : public StatementImpl {
 
   virtual const MetaColumn& metaColumn(Int pos);
 
-  virtual std::shared_ptr<Binder> getBinder();
+  virtual std::shared_ptr<Binder> getBinder() override;
+  virtual std::shared_ptr<Extractor> getExtractor() override;
 
  protected:
   virtual void resetImpl() override;
@@ -33,6 +35,7 @@ class ODBCStatement : public StatementImpl {
   SQLHSTMT _hstmt;
   std::vector<std::shared_ptr<MetaColumn>> _metaColumns;
   std::shared_ptr<ODBCBinder> _binder;
+  std::shared_ptr<ODBCExtractor> _extractor;
 };
 
 }  // namespace sql

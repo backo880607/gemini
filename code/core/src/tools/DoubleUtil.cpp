@@ -33,7 +33,7 @@ Boolean DoubleUtil::less(Double lhs, Double rhs, Double precision) {
 
 Double DoubleUtil::split(Double& fraction, Int index) { return Double(); }
 
-Double DoubleUtil::ceil(Double value, Int index) { return ceil(value); }
+Double DoubleUtil::ceil(Double value, Int index) { return ::ceil(value); }
 
 Double DoubleUtil::floor(Double value, Int index) { return Double(); }
 

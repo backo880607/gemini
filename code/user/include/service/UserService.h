@@ -6,7 +6,13 @@
 namespace gemini {
 namespace user {
 
-class UserService : public BaseService, public IUserService {};
+class IRoleService;
+class UserService : public BaseService, public IUserService {
+  SERVICE_AUTOWIRED(IRoleService, roleService)
+ public:
+  virtual User::SPtr login(const String& principal,
+                           const String& password) const override;
+};
 
 }  // namespace user
 }  // namespace gemini

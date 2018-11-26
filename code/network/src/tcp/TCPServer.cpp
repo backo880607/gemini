@@ -3,12 +3,13 @@
 #include "../../public/tcp/TCPServerConnection.h"
 
 namespace gemini {
+namespace network {
 
 using namespace boost::asio;
 TCPServer::TCPServer()
     : _acceptor(_ios, ip::tcp::endpoint(ip::tcp::v4(), 16890))
       //, m_acceptor(m_ioservice,
-      //ip::tcp::endpoint(ip::address_v4::from_string("192.168.0.95"), 16890))
+      // ip::tcp::endpoint(ip::address_v4::from_string("192.168.0.95"), 16890))
       ,
       _signals(_ios) {
   _isClose = true;
@@ -66,4 +67,5 @@ void TCPServer::handle_accept(std::shared_ptr<TCPServerConnection> conn,
   async_accept();
 }
 
+}  // namespace network
 }  // namespace gemini

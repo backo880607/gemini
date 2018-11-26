@@ -3,25 +3,27 @@
 
 namespace gemini {
 
-MultiEnum::MultiEnum(Int value) : _value((Int)pow(2, value - 1)) {}
+MultiEnum::MultiEnum(Short value) : _value((Short)pow(2, value - 1)) {}
 MultiEnum::MultiEnum() : _value(0) {}
 
-Boolean MultiEnum::contains(Int value) {
-  return (_value | (Int)pow(2, value - 1)) > 0;
+Boolean MultiEnum::contains(Short value) {
+  return (_value | (Short)pow(2, value - 1)) > 0;
 }
 
 Boolean MultiEnum::contains(const MultiEnum& rhs) {
   return (_value | rhs._value) == rhs._value;
 }
 
-void MultiEnum::operator+=(Int rhs) { _value = _value | (Int)pow(2, rhs - 1); }
+void MultiEnum::operator+=(Short rhs) {
+  _value = _value | (Short)pow(2, rhs - 1);
+}
 
 void MultiEnum::operator+=(const MultiEnum& rhs) {
   _value = _value | rhs._value;
 }
 
-void MultiEnum::operator-=(Int rhs) {
-  _value = _value & ~(Int)(pow(2, rhs - 1));
+void MultiEnum::operator-=(Short rhs) {
+  _value = _value & ~(Short)(pow(2, rhs - 1));
 }
 
 void MultiEnum::operator-=(const MultiEnum& rhs) {
@@ -44,12 +46,14 @@ void MultiEnum::operator-=(const Any& rhs) { THROW(OperandException); }
 
 Boolean MultiEnum::operator==(const Any& rhs) const { THROW(OperandException); }
 
-String MultiEnum::str() const { return ""; }
+String MultiEnum::toString() const { return ""; }
 
-Int MultiEnum::add(const Any& rhs) const { THROW(OperandException); }
+Short MultiEnum::add(const Any& rhs) const { THROW(OperandException); }
 
-Int MultiEnum::sub(const Any& rhs) const { THROW(OperandException); }
+Short MultiEnum::sub(const Any& rhs) const { THROW(OperandException); }
 
-Int MultiEnum::valudOfImpl(const Char* str) { return 0; }
+MultiEnum MultiEnum::valueOf(const Char*) { THROW(OperandException); }
+
+Short MultiEnum::valudOfImpl(const Char* str) { return 0; }
 
 }  // namespace gemini

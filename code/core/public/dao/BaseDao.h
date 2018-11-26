@@ -21,18 +21,21 @@ class CORE_API BaseDao : public Object {
   const Class &getEntityClass() { return *_entityCls; }
 
   virtual const IList &select() = 0;
-  virtual EntityObject::SPtr select(ID id) = 0;
-  virtual void insert(EntityObject::SPtr entity) = 0;
-  virtual void update(EntityObject::SPtr entity) = 0;
+  virtual BaseEntity::SPtr select(ID id) = 0;
+  virtual void insert(BaseEntity::SPtr entity) = 0;
+  virtual void update(BaseEntity::SPtr entity) = 0;
   virtual void erase(ID id) = 0;
-  virtual void erase(EntityObject::SPtr entity) = 0;
+  virtual void erase(BaseEntity::SPtr entity) = 0;
   virtual void clear() = 0;
 
-  virtual void insert(const std::vector<EntityObject::SPtr> &entities) = 0;
-  virtual void update(const std::vector<EntityObject::SPtr> &entities) = 0;
-  virtual void erase(const std::vector<EntityObject::SPtr> &entities) = 0;
+  virtual void insert(const std::vector<BaseEntity::SPtr> &entities) = 0;
+  virtual void update(const std::vector<BaseEntity::SPtr> &entities) = 0;
+  virtual void erase(const std::vector<BaseEntity::SPtr> &entities) = 0;
 
   virtual void sync() {}
+
+ protected:
+  BaseEntity::SPtr createEntity(const Class &cls, ID id);
 
  private:
   friend class DaoMgr;
@@ -42,7 +45,8 @@ class CORE_API BaseDao : public Object {
 namespace dao {
 class CORE_API DaoRegister {
  public:
-  DaoRegister(const Class &daoClass, const Class &entityClass);
+  DaoRegister(const Class &daoClass, const Class &entityClass,
+              Boolean global = false);
   ~DaoRegister();
 };
 class CORE_API ListenerRegister {
@@ -54,18 +58,21 @@ class CORE_API ListenerRegister {
 };
 }  // namespace dao
 
-#define DAO_REGISTER(DaoClass, EntityClass)                               \
-  gemini::dao::DaoRegister gemini_daoRegister(DaoClass::getClassStatic(), \
-                                              EntityClass::getClassStatic());
+#define DAO_REGISTER(DaoClass, EntityClass)             \
+  gemini::dao::DaoRegister gemini_##DaoClass##Register( \
+      DaoClass::getClassStatic(), EntityClass::getClassStatic());
 
-#define DAO_LISTENER_REGISTER(ListenerClass)              \
+#define DAO_GLOBAL_REGISTER(DaoClass, EntityClass)      \
+  gemini::dao::DaoRegister gemini_##DaoClass##Register( \
+      DaoClass::getClassStatic(), EntityClass::getClassStatic(), true);
+
+#define DAO_LISTENER_REGISTER(ListenerClass)                    \
   \
-gemini::DaoListener *gemini_create_##ListenerClass() {    \
-    return new ListenerClass();                           \
+gemini::DaoListener *gemini_create_##ListenerClass() {          \
+    return new ListenerClass();                                 \
+  }                                                             \
   \
-}                                                      \
-  \
-gemini::dao::ListenerRegister gemini_daoListenerRegister( \
+gemini::dao::ListenerRegister gemini_##ListenerClass##Register( \
       gemini_create_##ListenerClass);
 
 }  // namespace gemini

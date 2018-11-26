@@ -93,7 +93,8 @@
 			"xtree": "cpp",
 			"xutility": "cpp",
 			"typeindex": "cpp",
-			"bitset": "cpp"
+			"bitset": "cpp",
+			"xxatomic": "cpp"
 		},
 		"files.defaultLanguage": "cpp"
 	}

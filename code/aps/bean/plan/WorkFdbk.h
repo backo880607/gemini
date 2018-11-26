@@ -1,11 +1,23 @@
 #ifndef APS_WorkFdbk_INCLUDE
 #define APS_WorkFdbk_INCLUDE
-#include "../../common/Export.h"
+#include "../../public/enums/EPlan.h"
 
 namespace aps {
 
-class APS_API WorkFdbk : public gemini::EntityObject {
-  DECLARE_CLASS(WorkFdbk, gemini::EntityObject)
+class Work;
+class APS_API WorkFdbk : public gemini::Entity {
+  DECLARE_CLASS(WorkFdbk, gemini::Entity)
+
+  DECLARE_FIELD(PlanStatus, fdbkStatus)
+  DECLARE_FIELD(gemini::Double, qty)
+  DECLARE_FIELD(gemini::Double, incrementQty)
+  DECLARE_FIELD(gemini::Double, progress)
+  DECLARE_FIELD(gemini::DateTime, start)
+  DECLARE_FIELD(gemini::DateTime, end)
+  DECLARE_FIELD(gemini::DateTime, obtainTime)
+  DECLARE_FIELD(gemini::String, res)
+
+  DECLARE_ENTITY(Work, work)
 };
 
 }  // namespace aps

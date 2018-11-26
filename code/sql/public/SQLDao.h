@@ -13,16 +13,16 @@ class GEMINI_SQL_API SQLDao : public BaseDao {
   virtual void init(std::vector<DaoListener *> &listeners) override;
 
   virtual const IList &select() override;
-  virtual EntityObject::SPtr select(ID id) override;
-  virtual void insert(EntityObject::SPtr entity) override;
-  virtual void update(EntityObject::SPtr entity) override;
+  virtual BaseEntity::SPtr select(ID id) override;
+  virtual void insert(BaseEntity::SPtr entity) override;
+  virtual void update(BaseEntity::SPtr entity) override;
   virtual void erase(ID id) override;
-  virtual void erase(EntityObject::SPtr entity) override;
+  virtual void erase(BaseEntity::SPtr entity) override;
   virtual void clear() override;
 
-  virtual void insert(const std::vector<EntityObject::SPtr> &entities) override;
-  virtual void update(const std::vector<EntityObject::SPtr> &entities) override;
-  virtual void erase(const std::vector<EntityObject::SPtr> &entities) override;
+  virtual void insert(const std::vector<BaseEntity::SPtr> &entities) override;
+  virtual void update(const std::vector<BaseEntity::SPtr> &entities) override;
+  virtual void erase(const std::vector<BaseEntity::SPtr> &entities) override;
 
  private:
   std::shared_ptr<Driver> _driver;
@@ -34,10 +34,10 @@ class GEMINI_SQL_API SQLInnerDao : public InnerDao {
 
   virtual void init(std::vector<DaoListener *> &listeners) override;
 
-  virtual void insert(EntityObject::SPtr entity) override;
-  virtual void update(EntityObject::SPtr entity) override;
+  virtual void insert(BaseEntity::SPtr entity) override;
+  virtual void update(BaseEntity::SPtr entity) override;
   virtual void erase(ID id) override;
-  virtual void erase(EntityObject::SPtr entity) override;
+  virtual void erase(BaseEntity::SPtr entity) override;
   virtual void clear() override;
 
   virtual void sync() override;

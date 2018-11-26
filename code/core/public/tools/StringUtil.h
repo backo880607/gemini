@@ -1,10 +1,10 @@
 #ifndef GEMINI_StringUtil_INCLUDE
 #define GEMINI_StringUtil_INCLUDE
-#include "../Common.h"
+#include "../Object.h"
 
 namespace gemini {
 
-class CORE_API StringUtil final : public noncopyable {
+class CORE_API StringUtil final : public StringUtilBase {
   StringUtil() = delete;
   StringUtil(const StringUtil&) = delete;
   StringUtil& operator=(const StringUtil&) = delete;
@@ -39,31 +39,13 @@ class CORE_API StringUtil final : public noncopyable {
   static void ierase_all(String& str, const Char* dest);
   static void erase_first(String& str, const Char* dest);
   static void ierase_first(String& str, const Char* dest);
+  static String fetch_first(String& str, const Char* sep);
+  static String fetch_end(String& str, const Char* sep);
 
   static const Char* increment(const Char* str);
   static const Char* descending(const Char* str);
 
   static void replace(String& str, const Char* origin, const Char* des);
-
-  template <typename T>
-  static String format(T val) {
-    return formatImpl(val);
-  }
-  static String format(Float val, Int precision);
-  static String format(Double val, Int precision);
-
-  template <typename T>
-  static T convert(const Char* str) {
-    typename std::remove_const<T>::type val;
-    convertImpl(val, str);
-    return val;
-  }
-  template <typename T>
-  static T convert(const Char* str, std::size_t fPos, std::size_t lPos) {
-    typename std::remove_const<T>::type val;
-    convertImpl(val, str, fPos, lPos);
-    return val;
-  }
 
   static void append(String& str) {}
   template <typename T, typename... Args>
@@ -97,11 +79,27 @@ class CORE_API StringUtil final : public noncopyable {
     return std::move(join(fIter, lIter, sep, fun));
   }
   template <typename InputIter, typename FUN>
-  static String join(InputIter fIter, InputIter lIter, const Char* sep, FUN fun) {
+  static String join(InputIter fIter, InputIter lIter, const Char* sep,
+                     FUN fun) {
     String value;
     for (; fIter != lIter; ++fIter) {
       value += fun(*fIter) += sep;
     }
+    if (!value.empty()) {
+      value.erase(value.size() - strlen(sep));
+    }
+
+    return std::move(value);
+  }
+  template <typename FUN>
+  static String join(const IList& entities, const Char* sep, FUN fun) {
+    String value;
+    IList::Iterator iter = entities.iterator();
+    while (iter.hasNext()) {
+      BaseEntity::SPtr entity = iter.next<BaseEntity>();
+      value += format(fun(entity)) += sep;
+    }
+
     if (!value.empty()) {
       value.erase(value.size() - strlen(sep));
     }
@@ -155,65 +153,13 @@ class CORE_API StringUtil final : public noncopyable {
 
   static String SPrintf(const Char* pFormat, ...);
 
+  static String getField(const Object::SPtr& object, const Field& field);
+  static void setField(Object::SPtr object, const Field& field,
+                       const Char* value);
+
   static std::wstring utf8_to_unicode(const Char* src);
 
   static String uuid();
-
- private:
-  template <typename T>
-  static String formatImpl(const T& val) {
-    return val.str();
-  }
-  static String formatImpl(Boolean val);
-  static String formatImpl(Short val);
-  static String formatImpl(Int val);
-  static String formatImpl(Long val);
-  static String formatImpl(Float val);
-  static String formatImpl(Double val);
-  static String formatImpl(Char val);
-  static String formatImpl(Char16 val);
-  static String formatImpl(Char32 val);
-  static String formatImpl(Char* val) { return val; }
-  static String formatImpl(const Char* val) { return val; }
-  static String formatImpl(WChar* val);
-  static String formatImpl(const WChar* val);
-  static String formatImpl(const String& val) { return val; }
-
-  template <typename T>
-  static void convertImpl(T& val, const Char* str) {
-    val = T::valueOf(str);
-  }
-  static void convertImpl(Boolean& val, const Char* str) {
-    val = strtol(str, nullptr, 0) != 0;
-  }
-  static void convertImpl(Short& val, const Char* str);
-  static void convertImpl(Int& val, const Char* str);
-  static void convertImpl(Long& val, const Char* str);
-  static void convertImpl(Float& val, const Char* str);
-  static void convertImpl(Double& val, const Char* str);
-  static void convertImpl(String& val, const Char* str) { val = str; }
-
-  template <typename T>
-  static void convertImpl(T& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos) {
-    val = T::valueOf(String(str + fPos, lPos - fPos));
-  }
-  static void convertImpl(Boolean& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos);
-  static void convertImpl(Short& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos);
-  static void convertImpl(Int& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos);
-  static void convertImpl(Long& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos);
-  static void convertImpl(Float& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos);
-  static void convertImpl(Double& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos);
-  static void convertImpl(String& val, const Char* str, std::size_t fPos,
-                          std::size_t lPos) {
-    val = String(str + fPos, lPos - fPos);
-  }
 };
 
 }  // namespace gemini

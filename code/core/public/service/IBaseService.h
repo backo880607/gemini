@@ -64,7 +64,9 @@ template <class T>
 class ServiceHelper {
  public:
   ServiceHelper() {
-    _service = service::get_service_interface(Class::getName<T>()).cast<T>();
+    _service =
+        service::get_service_interface(ns_class::getNameImpl(typeid(T).name()))
+            .cast<T>();
   }
   ~ServiceHelper() {}
 
@@ -75,9 +77,9 @@ class ServiceHelper {
   const T* _service;
 };
 
-#define SERVICE_INTERFACE_METHOD(CLS, METHOD_NAME)                         \
-  virtual gemini::Boolean METHOD_NAME(const gemini::SmartPtr<CLS>& entity) \
-      const = 0;
+#define SERVICE_INTERFACE_METHOD(CLASS_NAME, METHOD_NAME) \
+  virtual gemini::Boolean METHOD_NAME(                    \
+      const gemini::SmartPtr<CLASS_NAME>& entity) const = 0;
 
 }  // namespace gemini
 #endif  // GEMINI_IBaseService_INCLUDE

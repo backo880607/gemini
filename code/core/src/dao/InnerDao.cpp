@@ -14,25 +14,25 @@ const IList &InnerDao::select() {
   return tl_ref_dynamic;
 }
 
-EntityObject::SPtr InnerDao::select(ID id) {
+BaseEntity::SPtr InnerDao::select(ID id) {
   std::unique_lock<std::mutex> locker(_mutex);
   entities_type::const_iterator iter = _entities.find(id);
   return iter != _entities.end() ? iter->second : nullptr;
 }
 
-void InnerDao::insert(EntityObject::SPtr entity) {
+void InnerDao::insert(BaseEntity::SPtr entity) {
   std::unique_lock<std::mutex> locker(_mutex);
   _entities.insert(std::make_pair(entity->getID(), entity));
 }
 
-void InnerDao::update(EntityObject::SPtr entity) {}
+void InnerDao::update(BaseEntity::SPtr entity) {}
 
 void InnerDao::erase(ID id) {
   std::unique_lock<std::mutex> locker(_mutex);
   _entities.erase(id);
 }
 
-void InnerDao::erase(EntityObject::SPtr entity) {
+void InnerDao::erase(BaseEntity::SPtr entity) {
   return erase(entity->getID());
 }
 
@@ -41,18 +41,18 @@ void InnerDao::clear() {
   _entities.clear();
 }
 
-void InnerDao::insert(const std::vector<EntityObject::SPtr> &entities) {
+void InnerDao::insert(const std::vector<BaseEntity::SPtr> &entities) {
   std::unique_lock<std::mutex> locker(_mutex);
-  for (EntityObject::SPtr entity : entities) {
+  for (BaseEntity::SPtr entity : entities) {
     _entities.insert(std::make_pair(entity->getID(), entity));
   }
 }
 
-void InnerDao::update(const std::vector<EntityObject::SPtr> &entities) {}
+void InnerDao::update(const std::vector<BaseEntity::SPtr> &entities) {}
 
-void InnerDao::erase(const std::vector<EntityObject::SPtr> &entities) {
+void InnerDao::erase(const std::vector<BaseEntity::SPtr> &entities) {
   std::unique_lock<std::mutex> locker(_mutex);
-  for (EntityObject::SPtr entity : entities) {
+  for (BaseEntity::SPtr entity : entities) {
     _entities.erase(entity->getID());
   }
 }

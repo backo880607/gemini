@@ -2,24 +2,25 @@
 #include "entities/FactoryMgr.h"
 #include "entities/IocRelation.h"
 #include "expression/Calculate.h"
-
-#include <locale>
+#include "expression/function/FunctionMgr.h"
+#include "tools/StringUtil.h"
+#include "tools/ClassUtil.h"
 
 namespace gemini {
 
 #define ENDFLG '\0'
 
-Any LongCalculate::getValue(const EntityObject::SPtr& entity) { return _value; }
+Any LongCalculate::getValue(const BaseEntity::SPtr& entity) { return _value; }
 
 Boolean LongCalculate::parse(const Char*& str) { return false; }
 
-Any DoubleCalculate::getValue(const EntityObject::SPtr& entity) {
+Any DoubleCalculate::getValue(const BaseEntity::SPtr& entity) {
   return _value;
 }
 
 Boolean DoubleCalculate::parse(const Char*& str) { return false; }
 
-Any TextCalculate::getValue(const EntityObject::SPtr& entity) { return _value; }
+Any TextCalculate::getValue(const BaseEntity::SPtr& entity) { return _value; }
 
 Boolean TextCalculate::parse(const Char*& str) {
   const Char* temp = ++str;
@@ -35,7 +36,7 @@ Boolean TextCalculate::parse(const Char*& str) {
   return false;
 }
 
-Any DateTimeCalculate::getValue(const EntityObject::SPtr& entity) {
+Any DateTimeCalculate::getValue(const BaseEntity::SPtr& entity) {
   return _value;
 }
 
@@ -58,12 +59,12 @@ OperTypeCalculate::OperTypeCalculate(const String& name) {
   _method = FunctionMgr::instance().getMethod(name);
 }
 
-Any OperTypeCalculate::getValue(const EntityObject::SPtr& entity) {
+Any OperTypeCalculate::getValue(const BaseEntity::SPtr& entity) {
   return nullptr;
 }
 
 Any OperTypeCalculate::getValue(const Any& param1, const Any& param2,
-                                const EntityObject::SPtr& entity) {
+                                const BaseEntity::SPtr& entity) {
   std::vector<Any> params;
   params.push_back(param1);
   params.push_back(param2);
@@ -72,26 +73,27 @@ Any OperTypeCalculate::getValue(const Any& param1, const Any& param2,
 
 Boolean OperTypeCalculate::parse(const Char*& str) { return false; }
 
-Any FieldCalculate::getValue(const EntityObject::SPtr& entity) {
-  if (_propertyCls == nullptr) {
-    return nullptr;
-  }
-
+Any FieldCalculate::getValue(const BaseEntity::SPtr& entity) {
   if (_field == nullptr) {
     return entity;
   }
 
-  Boolean multiRef = false;
+  RefKind kind = RefKind::Entity;
   std::vector<Int> signs;
   for (const Field* path : _paths) {
-    multiRef = path->getMultiRef();
+    if (kind == RefKind::Entity) {
+      kind = path->getRefKind();
+    }
     signs.push_back(path->index());
   }
-  if (multiRef) {
+  if (kind == RefKind::Entity) {
+    kind = _field->getRefKind();
+  }
+  if (kind != RefKind::Entity) {
     signs.push_back(_field->index());
     return IocRelation::getList(entity, signs);
   }
-  EntityObject::SPtr targetEntity = IocRelation::get(entity, signs);
+  BaseEntity::SPtr targetEntity = IocRelation::get(entity, signs);
   if (!targetEntity.valid()) {
     return nullptr;
   }
@@ -99,26 +101,26 @@ Any FieldCalculate::getValue(const EntityObject::SPtr& entity) {
   return getResult(targetEntity.rawPointer());
 }
 
-Boolean FieldCalculate::parse(const Char*& str) {
-  _isList = false;
-  _propertyCls = nullptr;
+Boolean FieldCalculate::parse(const Char*& str) { return parse(str, nullptr); }
+
+Boolean FieldCalculate::parse(const Char*& str, const Class* propertyCls) {
   _field = nullptr;
   _paths.clear();
   const Char* temp = str;
   while (*str != ENDFLG) {
     if (*str == '.') {
       String name(temp, str - temp);
-      if (_propertyCls == nullptr) {
+      if (propertyCls == nullptr) {
         EntityFactory* factory = FactoryMgr::instance().getFactory(name);
         if (factory == nullptr) return false;
-        _propertyCls = &factory->getEntityClass();
+        propertyCls = &factory->getEntityClass();
       } else {
-        const Field& field = _propertyCls->getField(name);
-        _propertyCls = &field.getType();
+        const Field& field = ClassUtil::getField(*propertyCls, name);
+        propertyCls = &field.getType();
         _paths.push_back(&field);
       }
 
-      if (_propertyCls == nullptr) {
+      if (propertyCls == nullptr) {
         return false;
       }
 
@@ -132,13 +134,13 @@ Boolean FieldCalculate::parse(const Char*& str) {
 
   if (temp < str) {
     String name(temp, str - temp);
-    if (_propertyCls == nullptr) {
+    if (propertyCls == nullptr) {
       EntityFactory* factory = FactoryMgr::instance().getFactory(name);
       if (factory == nullptr) return false;
-      _propertyCls = &factory->getEntityClass();
+      propertyCls = &factory->getEntityClass();
     } else {
-      const Field& field = _propertyCls->getField(name);
-      _propertyCls = &field.getType();
+      const Field& field = ClassUtil::getField(*propertyCls, name);
+      propertyCls = &field.getType();
       _field = &field;
     }
   }
@@ -146,37 +148,46 @@ Boolean FieldCalculate::parse(const Char*& str) {
   return true;
 }
 
-Any FieldCalculate::getResult(const EntityObject* entity) {
+Any FieldCalculate::getResult(const BaseEntity* entity) {
   if (entity == nullptr) {
     return nullptr;
   }
 
-  if (_propertyCls == &Class::forType<Boolean>()) {
+  const Class& propertyCls = _field->getType();
+  if (propertyCls == Class::forType<Boolean>()) {
     return _field->get<Boolean>(entity);
-  } else if (_propertyCls == &Class::forType<Char>()) {
+  } else if (propertyCls == Class::forType<Char>()) {
     return _field->get<Char>(entity);
-  } else if (_propertyCls == &Class::forType<Short>()) {
+  } else if (propertyCls == Class::forType<Short>()) {
     return _field->get<Short>(entity);
-  } else if (_propertyCls == &Class::forType<Int>()) {
+  } else if (propertyCls == Class::forType<Int>()) {
     return _field->get<Int>(entity);
-  } else if (_propertyCls == &Class::forType<Int>()) {
-    return _field->get<Int>(entity);
-  } else if (_propertyCls == &Class::forType<Long>()) {
+  } else if (propertyCls == Class::forType<Long>()) {
     return _field->get<Long>(entity);
-  } else if (_propertyCls == &Class::forType<Float>()) {
+  } else if (propertyCls == Class::forType<Float>()) {
     return _field->get<Float>(entity);
-  } else if (_propertyCls == &Class::forType<Double>()) {
+  } else if (propertyCls == Class::forType<Double>()) {
     return _field->get<Double>(entity);
-  } else if (_propertyCls == &Class::forType<String>()) {
+  } else if (propertyCls == Class::forType<String>()) {
     return _field->get<String>(entity);
-  } else if (_propertyCls->isBase(Class::forType<EntityObject>())) {
-    return _field->get<EntityObject::SPtr>(entity);
+  } else if (propertyCls == Class::forType<ID>()) {
+    return _field->get<ID>(entity);
+  } else if (propertyCls == Class::forType<DateTime>()) {
+    return _field->get<DateTime>(entity);
+  } else if (propertyCls == Class::forType<Duration>()) {
+    return _field->get<Duration>(entity);
+  } else if (propertyCls == Class::forType<DurationExtend>()) {
+    return _field->get<DurationExtend>(entity);
+  } else if (propertyCls.isEnum() || propertyCls.isMultiEnum()) {
+    return _field->get<Short>(entity);
+  } else if (propertyCls.isBase(Class::forType<BaseEntity>())) {
+    return _field->get<BaseEntity::SPtr>(entity);
   }
 
   return nullptr;
 }
 
-Any FunctionCalculate::getValue(const EntityObject::SPtr& entity) {
+Any FunctionCalculate::getValue(const BaseEntity::SPtr& entity) {
   std::vector<Any> params;
   if (_params.empty()) {
     return FunctionMgr::instance().invoke(_method, params);
@@ -189,8 +200,8 @@ Any FunctionCalculate::getValue(const EntityObject::SPtr& entity) {
   }
 
   params.push_back(paramVal);
-  if (paramVal.getClass().isBase(Class::forType<EntityObject>())) {
-    EntityObject::SPtr targetEntity = paramVal.cast<EntityObject::SPtr>();
+  if (paramVal.getClass().isBase(Class::forType<BaseEntity>())) {
+    BaseEntity::SPtr targetEntity = paramVal.cast<BaseEntity::SPtr>();
     for (++index; index < _params.size(); ++index) {
       paramVal = _params[index].getValue(targetEntity);
       if (!paramVal) {
@@ -207,18 +218,28 @@ Any FunctionCalculate::getValue(const EntityObject::SPtr& entity) {
       }
     }
   } else {
-    for (++index; index < _params.size(); ++index) {
-      paramVal = _params[index].getValue(entity);
-      if (!paramVal) {
-        return nullptr;
+    if (StringUtil::icompare(_method->getName().c_str(), "if")) {
+      return _params[paramVal.cast<Boolean>() ? 1 : 2].getValue(entity);
+    } else {
+      for (++index; index < _params.size(); ++index) {
+        paramVal = _params[index].getValue(entity);
+        if (!paramVal) {
+          return nullptr;
+        }
+        params.push_back(paramVal);
       }
-      params.push_back(paramVal);
     }
   }
-  return FunctionMgr::instance().invoke(_method, params);
+  Any result = FunctionMgr::instance().invoke(_method, params);
+  if (_fieldCalc != nullptr) {
+    return _fieldCalc->getValue(result.cast<BaseEntity::SPtr>());
+  }
+
+  return result;
 }
 
 Boolean FunctionCalculate::parse(const Char*& str) {
+  _fieldCalc = nullptr;
   const Char* temp = str;
   while (*str != ENDFLG && *str != '(') ++str;
 
@@ -226,33 +247,63 @@ Boolean FunctionCalculate::parse(const Char*& str) {
 
   String name(temp, str - temp);
   _method = FunctionMgr::instance().getMethod(name);
-  if (_method == nullptr) return false;
 
+  std::vector<const Class*> paramClses;
   ++str;
   while (*str != ENDFLG && *str != ')') {
     Expression paramExp;
     if (!paramExp.create(str, true)) return false;
 
     _params.push_back(paramExp);
+    paramClses.push_back(paramExp.getClass());
   }
 
   if (*str == ENDFLG) return false;
 
   ++str;
+  if (getClass()->isBase(Class::forType<BaseEntity>())) {
+    const Char* temp = str;
+    while (*temp != ENDFLG) {
+      if (*temp == '.') {
+        _fieldCalc = new FieldCalculate();
+        if (!_fieldCalc->parse(str, getClass())) {
+          delete _fieldCalc;
+          _fieldCalc = nullptr;
+          return false;
+        }
+      }
+
+      if (!std::isspace(*temp, g_app.getLocale())) {
+        break;
+      }
+      ++temp;
+    }
+  }
+
+  // 检验参数的有效性
+  FunctionMgr::instance().check(_method, paramClses);
   return true;
 }
 
-Any DurationCalculate::getValue(const EntityObject::SPtr& entity) {
+const Class* FunctionCalculate::getClass() {
+  Int returnIndex = FunctionMgr::instance().getReturnIndex(_method->getName());
+  if (returnIndex <= 0) {
+    return &_method->getReturnClass();
+  }
+  return _params[returnIndex].getClass();
+}
+
+Any DurationCalculate::getValue(const BaseEntity::SPtr& entity) {
   return Any();
 }
 
 Boolean DurationCalculate::parse(const Char*& str) { return Boolean(); }
 
-Any EnumCalculate::getValue(const EntityObject::SPtr& entity) { return Any(); }
+Any EnumCalculate::getValue(const BaseEntity::SPtr& entity) { return Any(); }
 
 Boolean EnumCalculate::parse(const Char*& str) { return Boolean(); }
 
-Any BracketCalculate::getValue(const EntityObject::SPtr& entity) {
+Any BracketCalculate::getValue(const BaseEntity::SPtr& entity) {
   return _exp.getValue(entity);
 }
 

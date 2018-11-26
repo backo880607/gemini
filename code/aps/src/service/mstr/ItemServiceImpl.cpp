@@ -50,8 +50,10 @@ gemini::SmartPtr<PlanPurchaseOrder> ItemServiceImpl::createPlanPurchaseOrder(
 }
 
 void ItemServiceImpl::test() const {
-  for (gemini::Int i = 0; i < 10000; ++i) {
-    create<Item>();
+  for (gemini::Int i = 0; i < 2; ++i) {
+    Item::SPtr item = create<Item>();
+    item->_code = "nihao";
+    item->_active = true;
   }
 
   sync();

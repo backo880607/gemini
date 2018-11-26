@@ -1,6 +1,7 @@
 #include "api/MsgTransmit.h"
 
 namespace gemini {
+namespace api {
 
 MsgTransmit::MsgTransmit(MsgQueue& request, MsgQueue& response)
     : _request(request), _response(response) {}
@@ -39,4 +40,5 @@ void MsgTransmit::proRequest(MsgTransmit* transmit) {
 
 void MsgTransmit::proResponse(MsgTransmit* transmit) {}
 
+}  // namespace api
 }  // namespace gemini

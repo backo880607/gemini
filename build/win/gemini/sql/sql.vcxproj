@@ -142,6 +142,7 @@
     <ClInclude Include="..\..\..\..\code\sql\include\odbc\Error.h" />
     <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBC.h" />
     <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCBinder.h" />
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCExtractor.h" />
     <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCResultSet.h" />
     <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCRow.h" />
     <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCStatement.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="..\..\..\..\code\sql\src\odbc\Error.cpp" />
     <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBC.cpp" />
     <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCBinder.cpp" />
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCExtractor.cpp" />
     <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCResultSet.cpp" />
     <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCRow.cpp" />
     <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCStatement.cpp" />

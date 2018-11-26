@@ -6,7 +6,7 @@
 namespace aps {
 
 class WorkRelServiceImpl : public gemini::BaseService, public WorkRelService {
-  virtual void onFree(gemini::EntityObject::SPtr entity) const;
+  virtual void onFree(gemini::BaseEntity::SPtr entity) const;
 };
 
 }  // namespace aps

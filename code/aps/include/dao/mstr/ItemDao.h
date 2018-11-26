@@ -1,6 +1,6 @@
 #ifndef GEMINI_APS_ItemDao_INCLUDE
 #define GEMINI_APS_ItemDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 

@@ -6,7 +6,7 @@
 namespace gemini {
 
 thread_local RefVector tl_ref_dynamic2;
-EntityObject::SPtr IocRelation::getImpl(EntityObject::SPtr entity,
+BaseEntity::SPtr IocRelation::getImpl(BaseEntity::SPtr entity,
                                         std::vector<Int>::const_iterator iter,
                                         const std::vector<Int>& signs) {
   if (iter == signs.end()) {
@@ -14,8 +14,8 @@ EntityObject::SPtr IocRelation::getImpl(EntityObject::SPtr entity,
   } else {
     IList::Iterator relaIter = entity->_relations[*iter++]->iterator();
     while (relaIter.hasNext()) {
-      EntityObject::SPtr result =
-          getImpl(relaIter.next<EntityObject>(), iter, signs);
+      BaseEntity::SPtr result =
+          getImpl(relaIter.next<BaseEntity>(), iter, signs);
       if (result.valid()) {
         return result;
       }
@@ -25,7 +25,7 @@ EntityObject::SPtr IocRelation::getImpl(EntityObject::SPtr entity,
   return nullptr;
 }
 
-void IocRelation::getListImpl(EntityObject::SPtr entity,
+void IocRelation::getListImpl(BaseEntity::SPtr entity,
                               std::vector<Int>::const_iterator iter,
                               const std::vector<Int>& signs) {
   if (iter == signs.end()) {
@@ -33,33 +33,33 @@ void IocRelation::getListImpl(EntityObject::SPtr entity,
   } else {
     IList::Iterator relaIter = entity->_relations[*iter++]->iterator();
     while (relaIter.hasNext()) {
-      getListImpl(relaIter.next<EntityObject>(), iter, signs);
+      getListImpl(relaIter.next<BaseEntity>(), iter, signs);
     }
   }
 }
 
-EntityObject::SPtr IocRelation::get(EntityObject::SPtr entity, Int sign) {
+BaseEntity::SPtr IocRelation::get(BaseEntity::SPtr entity, Int sign) {
   return entity->_relations[sign]->get();
 }
 
-EntityObject::SPtr IocRelation::get(EntityObject::SPtr entity,
+BaseEntity::SPtr IocRelation::get(BaseEntity::SPtr entity,
                                     const std::vector<Int>& signs) {
   return getImpl(entity, signs.begin(), signs);
 }
 
-const IList& IocRelation::getList(EntityObject::SPtr entity, Int sign) {
+const IList& IocRelation::getList(BaseEntity::SPtr entity, Int sign) {
   return *entity->_relations[sign];
 }
 
-const IList& IocRelation::getList(EntityObject::SPtr entity,
+const IList& IocRelation::getList(BaseEntity::SPtr entity,
                                   const std::vector<Int>& signs) {
   tl_ref_dynamic2.remove();
   getListImpl(entity, signs.begin(), signs);
   return tl_ref_dynamic2;
 }
 
-void IocRelation::set(EntityObject::SPtr entity, Int sign,
-                      EntityObject::SPtr relaEntity) {
+void IocRelation::set(BaseEntity::SPtr entity, Int sign,
+                      BaseEntity::SPtr relaEntity) {
   if (!entity.valid() || !relaEntity.valid()) {
     return;
   }
@@ -69,10 +69,10 @@ void IocRelation::set(EntityObject::SPtr entity, Int sign,
   switch (data->rela) {
     case EntityFactory::Relation::OneToOne:
       remove(entity, sign);
-      remove(relaEntity, data->reverseSign);
+      remove(relaEntity, data->relaSign);
       break;
     case EntityFactory::Relation::OneToMulti:
-      remove(relaEntity, data->reverseSign);
+      remove(relaEntity, data->relaSign);
       break;
     case EntityFactory::Relation::MultiToOne:
       remove(entity, sign);
@@ -84,32 +84,32 @@ void IocRelation::set(EntityObject::SPtr entity, Int sign,
   }
 
   entity->_relations[sign]->add(relaEntity);
-  if (data->reverseSign > 0) {
-    relaEntity->_relations[data->reverseSign]->add(entity);
+  if (data->relaSign > 0) {
+    relaEntity->_relations[data->relaSign]->add(entity);
   }
 }
 
-void IocRelation::remove(EntityObject::SPtr entity, Int sign) {
+void IocRelation::remove(BaseEntity::SPtr entity, Int sign) {
   const EntityFactory::Data* data =
       FactoryMgr::instance().getRelaData(entity->getClass(), sign);
-  if (data != nullptr && data->reverseSign > 0) {
+  if (data != nullptr && data->relaSign > 0) {
     const IList& relaEntities = *(entity->_relations[sign]);
     IList::Iterator iter = relaEntities.iterator();
     while (iter.hasNext()) {
-      EntityObject::SPtr relaEntity = iter.next<EntityObject>();
-      relaEntity->_relations[data->reverseSign]->remove(entity);
+      BaseEntity::SPtr relaEntity = iter.next<BaseEntity>();
+      relaEntity->_relations[data->relaSign]->remove(entity);
     }
   }
 
   entity->_relations[sign]->remove();
 }
 
-void IocRelation::remove(EntityObject::SPtr entity, Int sign,
-                         EntityObject::SPtr relaEntity) {
+void IocRelation::remove(BaseEntity::SPtr entity, Int sign,
+                         BaseEntity::SPtr relaEntity) {
   const EntityFactory::Data* data =
       FactoryMgr::instance().getRelaData(entity->getClass(), sign);
-  if (data != nullptr && data->reverseSign > 0) {
-    relaEntity->_relations[data->reverseSign]->remove(entity);
+  if (data != nullptr && data->relaSign > 0) {
+    relaEntity->_relations[data->relaSign]->remove(entity);
   }
 
   entity->_relations[sign]->remove(relaEntity);

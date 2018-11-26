@@ -22,6 +22,48 @@ void XMLNode::removeAttribute(const Char* attr) {
   _pNode->erase(getXmlAttrName(attr));
 }
 
+XML::XML() : _ptree(new boost::property_tree::iptree()) {}
+
+XML::XML(const Char* val) { reset(val); }
+
+XML::~XML() {}
+
+void XML::reset(const Char* val) {
+  if (val == nullptr) {
+    _ptree = nullptr;
+    return;
+  }
+  std::stringstream ss(val);
+  try {
+    _ptree.reset(new XMLNode::node_type());
+    read_xml(ss, *_ptree);
+  } catch (boost::property_tree::xml_parser_error& err) {
+    _ptree = nullptr;
+    LOG_ERROR.log(err.what());
+  }
+}
+
+Boolean XML::write(std::ostream& ss) {
+  try {
+    boost::property_tree::write_xml(ss, *_ptree);
+  } catch (boost::property_tree::xml_parser_error& err) {
+    LOG_ERROR.log(err.what());
+    return false;
+  }
+
+  return true;
+}
+
+DataNode XML::getNode() { return DataNode(&(*_ptree)); }
+
+DataNode XML::getNode(const Char* tagName) {
+  return DataNode(&_ptree->get_child(tagName), tagName);
+}
+
+DataNode XML::createNode(const Char* tagName) {
+  return DataNode(&_ptree->add_child(tagName, node_type("")), tagName);
+}
+
 XMLFile::XMLFile(const String& name,
                  File_Mode mode /* = File_Mode::NormalFile */) {
   open(name, mode);
@@ -117,16 +159,6 @@ Boolean XMLFile::write(const String& name,
   return true;
 }
 
-DataNode XMLFile::getNode() { return DataNode(&(*_ptree)); }
-
-DataNode XMLFile::getNode(const Char* tagName) {
-  return DataNode(&_ptree->get_child(tagName), tagName);
-}
-
-DataNode XMLFile::createNode(const Char* tagName) {
-  return DataNode(&_ptree->add_child(tagName, node_type("")), tagName);
-}
-
 void XMLFile::remove() {
   File file(_fileName.c_str());
   file.remove();
@@ -158,48 +190,6 @@ void XMLFile::foreach_recursion(const Char* directory,
       }
     }
   }
-}
-
-XML::XML() : _ptree(new boost::property_tree::iptree()) {}
-
-XML::XML(const Char* val) { reset(val); }
-
-XML::~XML() {}
-
-void XML::reset(const Char* val) {
-  if (val == nullptr) {
-    _ptree = nullptr;
-    return;
-  }
-  std::stringstream ss(val);
-  try {
-    _ptree.reset(new XMLNode::node_type());
-    read_xml(ss, *_ptree);
-  } catch (boost::property_tree::xml_parser_error& err) {
-    _ptree = nullptr;
-    LOG_ERROR.log(err.what());
-  }
-}
-
-Boolean XML::write(std::ostream& ss) {
-  try {
-    boost::property_tree::write_xml(ss, *_ptree);
-  } catch (boost::property_tree::xml_parser_error& err) {
-    LOG_ERROR.log(err.what());
-    return false;
-  }
-
-  return true;
-}
-
-DataNode XML::getNode() { return DataNode(&(*_ptree)); }
-
-DataNode XML::getNode(const Char* tagName) {
-  return DataNode(&_ptree->get_child(tagName), tagName);
-}
-
-DataNode XML::createNode(const Char* tagName) {
-  return DataNode(&_ptree->add_child(tagName, node_type("")), tagName);
 }
 
 }  // namespace gemini

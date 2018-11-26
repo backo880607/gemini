@@ -15,45 +15,6 @@ class CORE_API JsonNode : public DataNode {
   }
 };
 
-class CORE_API JsonFile {
-  typedef JsonNode::node_type node_type;
-
- public:
-  enum class File_Mode {
-    FM_NormalFile = 1,
-    FM_CreateFile,
-    FM_ClearFile,
-  };
-
-  JsonFile(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
-  ~JsonFile();
-
-  Boolean open(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
-  Boolean valid() const { return _ptree != nullptr; }
-
-  void write() { write(_fileName); }
-  void write(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
-
-  DataNode getNode();
-  DataNode getNode(const Char* tagName);
-  DataNode getNode(const String& tagName) { return getNode(tagName.c_str()); }
-
-  DataNode createNode(const Char* tagName);
-  DataNode createNode(const String& tagName) {
-    return createNode(tagName.c_str());
-  }
-
-  void remove();
-
- private:
-  void clear();
-  Boolean ProJsonFile(String& path, File_Mode mode);
-
- private:
-  std::unique_ptr<node_type> _ptree;
-  String _fileName;
-};
-
 class CORE_API Json {
  public:
   typedef JsonNode::node_type node_type;
@@ -78,8 +39,39 @@ class CORE_API Json {
     return createNode(tagName.c_str());
   }
 
- private:
+ protected:
   std::unique_ptr<node_type> _ptree;
+};
+
+class CORE_API JsonFile : public Json {
+ public:
+  enum class File_Mode {
+    FM_NormalFile = 1,
+    FM_CreateFile,
+    FM_ClearFile,
+  };
+
+  JsonFile(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
+  ~JsonFile();
+
+  Boolean open(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
+
+  void write() { write(_fileName); }
+  void write(const String& name, File_Mode mode = File_Mode::FM_NormalFile);
+
+  void remove();
+
+  static void foreach (const Char* directory,
+                       std::function<void(JsonFile&)> fun);
+  static void foreach_recursion(const Char* directory,
+                                std::function<void(JsonFile&)> fun);
+
+ private:
+  void clear();
+  Boolean ProJsonFile(String& path, File_Mode mode);
+
+ private:
+  String _fileName;
 };
 
 }  // namespace gemini

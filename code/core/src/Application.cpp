@@ -1,12 +1,12 @@
 #include "Application.h"
 #include "tools/File.h"
 //#include "DumpFile.h"
+#include "Module.h"
 #include "api/DataNode.h"
 #include "entities/FactoryMgr.h"
 #include "propagate/PropagateHelper.h"
-#include "session/Subject.h"
+#include "Session.h"
 #include "tools/LocaleUtil.h"
-#include "Module.h"
 
 #include "MultiEnum.h"
 namespace gemini {
@@ -35,14 +35,18 @@ void Application::init() {
   _defaultLocal.reset(new LocaleUtil());
   // DumpFile::instance().Init();
   FactoryMgr::instance().init();
-  PropagateHelper propagateHelper;
-  // propagateHelper.loadConfig();
   readConfiguration();
 
-  // 初始化各模块
   for (std::map<String, ModuleData>::iterator iter = _modules.begin();
        iter != _modules.end(); ++iter) {
     iter->second.module->init();
+  }
+}
+
+void Application::uninit() {
+  for (std::map<String, ModuleData>::iterator iter = _modules.begin();
+       iter != _modules.end(); ++iter) {
+    iter->second.module->uninit();
   }
 }
 
@@ -56,8 +60,12 @@ void Application::readConfiguration() {
       if (node.getName() == "environment") {
         _environment = node.getValue();
       }
-	});
+    });
   }
+}
+
+Boolean Application::isFieldStoraged(const Class& cls, const Field& field) {
+  return FactoryMgr::instance().isFieldStoraged(cls, field);
 }
 
 const Char* Application::getConfigPath() {
@@ -65,6 +73,20 @@ const Char* Application::getConfigPath() {
   if (path.empty()) {
     FilePath filePath = FilePath::currentPath();
     filePath.append("config");
+    if (!filePath.isExist()) {
+      filePath.createDirectories();
+    }
+
+    path = filePath.string();
+  }
+  return path.c_str();
+}
+
+const Char* Application::getTempPath() {
+  static String path;
+  if (path.empty()) {
+    FilePath filePath = FilePath::currentPath();
+    filePath.append("temp");
     if (!filePath.isExist()) {
       filePath.createDirectories();
     }
@@ -89,7 +111,7 @@ const Char* Application::getDumpPath() {
 }
 
 const std::locale& Application::getLocale() {
-  Session::SPtr session = Subject::get().getSession();
+  Session::SPtr session = getSession();
   if (!session.valid()) {
     return _defaultLocal->getLocale();
   }
@@ -98,8 +120,24 @@ const std::locale& Application::getLocale() {
 
 void Application::setLocale(const Char* name) {
   boost::locale::generator gen;
-  Subject::get().getSession()->get<LocaleUtil>().setLocale(
+  getSession()->get<LocaleUtil>().setLocale(
       gen(String(name) + ".UTF-8"));
 }
+
+void Application::setLocale(const std::locale& loc) {
+  getSession()->get<LocaleUtil>().setLocale(loc);
+}
+
+LocaleSwitch::LocaleSwitch(const Char* name) {
+  _oldLocale = getApp().getLocale();
+  getApp().setLocale(name);
+}
+
+LocaleSwitch::LocaleSwitch(const std::locale& loc) {
+  _oldLocale = getApp().getLocale();
+  getApp().setLocale(loc);
+}
+
+LocaleSwitch::~LocaleSwitch() { getApp().setLocale(_oldLocale); }
 
 }  // namespace gemini

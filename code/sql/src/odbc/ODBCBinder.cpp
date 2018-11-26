@@ -127,34 +127,6 @@ SQLSMALLINT ODBCBinder::toODBCDirection(Direction dir) const {
   THROW(NotSupportedException, "Binder not bound (must be [in] OR [out]).")
 }
 
-SQLSMALLINT ODBCBinder::sqlDataType(SQLSMALLINT cDataType) const {
-  switch (cDataType) {
-    case SQL_C_CHAR:
-      return SQL_LONGVARCHAR;
-    case SQL_C_BIT:
-      return SQL_BIT;
-    case SQL_C_TINYINT:
-      return SQL_TINYINT;
-    case SQL_C_SHORT:
-      return SQL_SMALLINT;
-    case SQL_C_LONG:
-      return SQL_INTEGER;
-    case SQL_C_SBIGINT:
-      return SQL_BIGINT;
-    case SQL_C_FLOAT:
-      return SQL_REAL;
-    case SQL_C_DOUBLE:
-      return SQL_DOUBLE;
-    case SQL_C_BINARY:
-      return SQL_LONGVARBINARY;
-    case SQL_C_TYPE_DATE:
-      return SQL_TYPE_DATE;
-    case SQL_C_TYPE_TIMESTAMP:
-      return SQL_TYPE_TIMESTAMP;
-  }
-  THROW(NotSupportedException, "Binder not bound (must be [in] OR [out]).")
-}
-
 void ODBCBinder::getColumnOrParameterSize(std::size_t pos, SQLINTEGER& size) {
   std::shared_ptr<MetaColumn> meta = metaColumn(pos);
   Int colSize = meta->length();

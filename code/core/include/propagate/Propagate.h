@@ -24,7 +24,7 @@ class Propagate final : public noncopyable {
   }
 
   void invoke();
-  void modify(const EntityObject::SPtr &entity, const Field *field);
+  void modify(const BaseEntity::SPtr &entity, const Field *field);
 
   Data *getData(const Field *field);
 

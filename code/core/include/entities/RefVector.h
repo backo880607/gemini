@@ -4,13 +4,13 @@
 
 namespace gemini {
 
-class RefVector : public RefBase, std::vector<EntityObject::SPtr> {
-  typedef std::vector<EntityObject::SPtr> base_type;
+class RefVector : public RefBase, std::vector<BaseEntity::WPtr> {
+  typedef std::vector<BaseEntity::WPtr> base_type;
 
  public:
-  virtual EntityObject::SPtr get() const;
-  virtual void add(EntityObject::SPtr entity);
-  virtual void remove(EntityObject::SPtr entity);
+  virtual BaseEntity::SPtr get() const;
+  virtual void add(BaseEntity::SPtr entity);
+  virtual void remove(BaseEntity::SPtr entity);
   virtual void remove();
 
   virtual Boolean empty() const { return base_type::empty(); }

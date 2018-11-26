@@ -1,6 +1,7 @@
 #include "Object.h"
 #include "entities/FactoryHelper.h"
 #include "entities/FactoryMgr.h"
+#include "message/Exception.h"
 
 namespace gemini {
 
@@ -10,7 +11,7 @@ void FactoryMgr::init() {
   const std::map<String, const Class* const>& clses = geminiAfxEntityClasses();
   for (auto iter : clses) {
     const Class& cls = *iter.second;
-    if (!cls.isBase(EntityObject::getClassStatic())) {
+    if (!cls.isBase(BaseEntity::getClassStatic())) {
       continue;
     }
 
@@ -21,12 +22,12 @@ void FactoryMgr::init() {
 
   for (auto iter : clses) {
     const Class& cls = *iter.second;
-    if (!cls.isBase(EntityObject::getClassStatic()) || !cls.hasSuper()) {
+    if (!cls.isBase(BaseEntity::getClassStatic()) || !cls.hasSuper()) {
       continue;
     }
 
     const Class& superCls = cls.getSuperClass();
-    if (superCls == EntityObject::getClassStatic()) {
+    if (superCls == BaseEntity::getClassStatic()) {
       continue;
     }
 
@@ -38,7 +39,7 @@ void FactoryMgr::init() {
     }
   }
 
-  FactoryHelper helper;
+  // FactoryHelper helper;
   // helper.loadConfig();
 }
 
@@ -67,11 +68,21 @@ EntityFactory* FactoryMgr::getFactory(const String& name) const {
 const EntityFactory::Data* FactoryMgr::getRelaData(const Class& cls,
                                                    Int sign) const {
   EntityFactory* factory = getFactory(cls);
-  if (factory != nullptr) {
-    factory->getRelaData(sign);
-  }
+  return factory != nullptr ? factory->getRelaData(sign) : nullptr;
+}
 
-  return nullptr;
+const EntityFactory::Data* FactoryMgr::getRelaData(
+    const Class& cls, const String& sign) const {
+  EntityFactory* factory = getFactory(cls);
+  return factory != nullptr ? factory->getRelaData(sign) : nullptr;
+}
+
+Boolean FactoryMgr::isFieldStoraged(const Class& cls,
+                                    const Field& field) const {
+  const EntityFactory::Data* data = getRelaData(cls, field.index());
+  THROW_IF(data == nullptr, NoSuchElementException, cls.getName(), ": ",
+           field.getName());
+  return data->storage;
 }
 
 }  // namespace gemini

@@ -2,18 +2,18 @@
 
 namespace gemini {
 
-EntityObject::SPtr RefVector::get() const {
+BaseEntity::SPtr RefVector::get() const {
   return base_type::empty() ? nullptr : base_type::operator[](0);
 }
 
-void RefVector::add(EntityObject::SPtr entity) { base_type::push_back(entity); }
+void RefVector::add(BaseEntity::SPtr entity) { base_type::push_back(entity); }
 
-void RefVector::remove(EntityObject::SPtr entity) {}
+void RefVector::remove(BaseEntity::SPtr entity) {}
 
 void RefVector::remove() { base_type::clear(); }
 
 class RefVectorIterator : public IList::Iterator {
-  typedef std::vector<EntityObject::SPtr> value_type;
+  typedef std::vector<BaseEntity::WPtr> value_type;
 
  public:
   RefVectorIterator(const value_type::const_iterator& iter,
@@ -23,8 +23,8 @@ class RefVectorIterator : public IList::Iterator {
   virtual Boolean hasNext() { return _iter != _value.end(); }
 
  protected:
-  virtual const EntityObject::SPtr& nextImpl() {
-    const EntityObject::SPtr& temp = *_iter;
+  virtual BaseEntity::SPtr nextImpl() override {
+    BaseEntity::SPtr temp = *_iter;
     _iter++;
     return temp;
   }

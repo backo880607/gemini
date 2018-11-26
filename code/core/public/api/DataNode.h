@@ -38,7 +38,7 @@ class CORE_API DataNode {
 
   Boolean valid() const { return _pNode != nullptr; }
 
-  String getName() const { return _name; }
+  const String& getName() const { return _name; }
 
   String getValue() const;
   template <typename T>
@@ -67,7 +67,7 @@ class CORE_API DataNode {
 
   template <typename FUN>
   void foreach (FUN fun) const {
-    std::vector<DataNode> vecNode = GetChilds();
+    std::vector<DataNode> vecNode = getChilds();
     for (DataNode node : vecNode) {
       fun(node);
     }
@@ -75,8 +75,42 @@ class CORE_API DataNode {
 
   void addNode(DataNode node);
 
+  template <typename T>
+  std::vector<T> getList() {
+    std::vector<T> values;
+    for (DataNode node : getChilds()) {
+      values.push_back(node.getValue<T>());
+	}
+  }
+  template <typename T>
+  std::set<T> getSet() {
+    std::set<T> values;
+    for (DataNode node : getChilds()) {
+      values.insert(node.getValue<T>());
+    }
+  }
+  template <typename T>
+  void setList(const std::vector<T>& values) {
+    for (T value : values) {
+      createNode().setValue(value);
+	}
+  }
+  template <typename T>
+  void setSet(const std::set<T>& values) {
+    for (T value : values) {
+      createNode().setValue(value);
+	}
+  }
+
+  Object::SPtr getObject(const Class& cls) const;
+  std::vector<Object::SPtr> getObjectList(const Class& cls) const;
+  void setObject(const Object::SPtr& object);
+  void setObject(const std::vector<Object::SPtr>& objects);
+  void setObject(const IList& objects);
+
  private:
-  std::vector<DataNode> GetChilds() const;
+  std::vector<DataNode> getChilds() const;
+  Object::SPtr create(const Class& cls) const;
 
  protected:
   node_ptr _pNode;

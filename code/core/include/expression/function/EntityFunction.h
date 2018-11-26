@@ -1,13 +1,16 @@
 #ifndef GEMINI_EntityFunction_INCLUDE
 #define GEMINI_EntityFunction_INCLUDE
-#include "../../../public/Any.h"
+#include "../../../public/controller/BaseController.h"
 
 namespace gemini {
 
-class EntityFunction {
- public:
-  static Any funIsType(const std::vector<Any> &params);
-  static Any funAsType(const std::vector<Any> &params);
+class EntityFunction : public BaseController {
+  DECLARE_CLASS(EntityFunction, BaseController)
+
+  METHOD(Boolean, isType,
+         (const BaseEntity::SPtr& entity, const String& clsName))
+  METHOD(BaseEntity::SPtr, asType,
+         (const BaseEntity::SPtr& entity, const String& clsName))
 };
 
 }  // namespace gemini

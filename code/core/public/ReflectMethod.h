@@ -121,7 +121,7 @@ struct __callable__ {
 #define __TYPE_INFO_ARG__(N) \
   this->args_list.push_back(&Class::forType<__TYPE_ARG__(N)>())
 
-#define __TYPE_CAST_ARG__(N) params[N].cast<__TYPE_ARG__(N)>();
+#define __TYPE_CAST_ARG__(N) params[N].cast<__TYPE_ARG__(N)>()
 
 // callable that implements the argument capturing and reporting
 #define __CALLABLE__ARGS(N)                                                    \
@@ -955,7 +955,7 @@ class CORE_API Method {
   friend struct REF_JOIN(__method_##METHOD_NAME##__, LINE);                 \
                                                                             \
  public:                                                                    \
-  VIRTUAL RETURN_TYPE METHOD_NAME METHOD_ARGS
+  VIRTUAL RETURN_TYPE METHOD_NAME METHOD_ARGS;
 
 /** The METHOD macro is used to declare a reflected method.
 @param ACCESS_ATTR access attribute (public, protected or private)

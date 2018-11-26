@@ -43,6 +43,24 @@
     <Filter Include="bean">
       <UniqueIdentifier>{c882b48a-d7d0-4e73-b0a9-7b9c252abb82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\authz">
+      <UniqueIdentifier>{b13dd19b-d4fe-4782-9514-d1a15e608833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\authc">
+      <UniqueIdentifier>{6df00c1d-b377-4ab0-9a81-5457593cc15a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\authc">
+      <UniqueIdentifier>{f9064195-0e68-4d7e-98cb-b2da0ce44bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\authz">
+      <UniqueIdentifier>{3b29bfb3-681b-42d8-8c01-c7f1aefca63c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\realm">
+      <UniqueIdentifier>{9a942bad-49ef-45ad-8475-0872d7254502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\realm">
+      <UniqueIdentifier>{33af68f2-48d7-46ae-be34-cfbb1da58702}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -60,12 +78,6 @@
     <ClInclude Include="..\..\..\..\code\user\bean\Department.h">
       <Filter>bean</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\user\bean\Privilege.h">
-      <Filter>bean</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\user\bean\Resource.h">
-      <Filter>bean</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\user\bean\Role.h">
       <Filter>bean</Filter>
     </ClInclude>
@@ -79,12 +91,6 @@
       <Filter>Header Files\controller</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\user\include\controller\DepartmentController.h">
-      <Filter>Header Files\controller</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\user\include\controller\PrivilegeController.h">
-      <Filter>Header Files\controller</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\user\include\controller\ResourceController.h">
       <Filter>Header Files\controller</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\user\include\controller\RoleController.h">
@@ -102,9 +108,6 @@
     <ClInclude Include="..\..\..\..\code\user\include\dao\DepartmentDao.h">
       <Filter>Header Files\dao</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\user\include\dao\PrivilegeDao.h">
-      <Filter>Header Files\dao</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\user\include\dao\RoleDao.h">
       <Filter>Header Files\dao</Filter>
     </ClInclude>
@@ -118,9 +121,6 @@
       <Filter>Header Files\service</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\user\include\service\DepartmentService.h">
-      <Filter>Header Files\service</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\user\include\service\PrivilegeService.h">
       <Filter>Header Files\service</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\code\user\include\service\RoleService.h">
@@ -138,9 +138,6 @@
     <ClInclude Include="..\..\..\..\code\user\public\service\IDepartmentService.h">
       <Filter>public\service</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\user\public\service\IPrivilegeService.h">
-      <Filter>public\service</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\code\user\public\service\IRoleService.h">
       <Filter>public\service</Filter>
     </ClInclude>
@@ -150,12 +147,87 @@
     <ClInclude Include="..\..\..\..\code\user\public\service\IUserService.h">
       <Filter>public\service</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\AuthenticationToken.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\UsernamePasswordToken.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\Subject.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\Errors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\SecurityMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authc\Authenticator.h">
+      <Filter>Header Files\authc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authc\DefaultAuthenticator.h">
+      <Filter>Header Files\authc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\AuthorizationInfo.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\Authorizer.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultAuthorizationInfo.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultAuthorizer.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultObjectPermission.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultPermissionResolver.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\ObjectPermission.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\authz\PermissionResolver.h">
+      <Filter>Header Files\authz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\realm\AuthorizingRealm.h">
+      <Filter>Header Files\realm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\realm\DefaultRealm.h">
+      <Filter>Header Files\realm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\realm\Realm.h">
+      <Filter>Header Files\realm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\bean\Permission.h">
+      <Filter>bean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\IPermissionService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\PermissionService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\PermissionDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\controller\PermissionController.h">
+      <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\dao\SessionDao.h">
+      <Filter>Header Files\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\public\service\ISessionService.h">
+      <Filter>public\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\user\include\service\SessionService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
@@ -165,12 +237,6 @@
       <Filter>bean</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\user\bean\Department.cpp">
-      <Filter>bean</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\user\bean\Privilege.cpp">
-      <Filter>bean</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\user\bean\Resource.cpp">
       <Filter>bean</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\user\bean\Role.cpp">
@@ -188,9 +254,6 @@
     <ClCompile Include="..\..\..\..\code\user\src\controller\DepartmentController.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\user\src\controller\PrivilegeController.cpp">
-      <Filter>Source Files\controller</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\user\src\controller\RoleController.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
@@ -204,9 +267,6 @@
       <Filter>Source Files\dao</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\user\src\dao\DepartmentDao.cpp">
-      <Filter>Source Files\dao</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\user\src\dao\PrivilegeDao.cpp">
       <Filter>Source Files\dao</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\user\src\dao\RoleDao.cpp">
@@ -224,9 +284,6 @@
     <ClCompile Include="..\..\..\..\code\user\src\service\DepartmentService.cpp">
       <Filter>Source Files\service</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\user\src\service\PrivilegeService.cpp">
-      <Filter>Source Files\service</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\code\user\src\service\RoleService.cpp">
       <Filter>Source Files\service</Filter>
     </ClCompile>
@@ -234,6 +291,69 @@
       <Filter>Source Files\service</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\user\src\service\UserService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\Subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authc\AuthenticationToken.cpp">
+      <Filter>Source Files\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authc\Authenticator.cpp">
+      <Filter>Source Files\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authc\DefaultAuthenticator.cpp">
+      <Filter>Source Files\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authc\UsernamePasswordToken.cpp">
+      <Filter>Source Files\authc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authz\Authorizer.cpp">
+      <Filter>Source Files\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultAuthorizationInfo.cpp">
+      <Filter>Source Files\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultAuthorizer.cpp">
+      <Filter>Source Files\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultObjectPermission.cpp">
+      <Filter>Source Files\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultPermissionResolver.cpp">
+      <Filter>Source Files\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\authz\PermissionResolver.cpp">
+      <Filter>Source Files\authz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\realm\AuthorizingRealm.cpp">
+      <Filter>Source Files\realm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\realm\DefaultRealm.cpp">
+      <Filter>Source Files\realm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\realm\Realm.cpp">
+      <Filter>Source Files\realm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\SecurityMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\bean\Permission.cpp">
+      <Filter>bean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\PermissionService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\PermissionDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\controller\PermissionController.cpp">
+      <Filter>Source Files\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\dao\SessionDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\user\src\service\SessionService.cpp">
       <Filter>Source Files\service</Filter>
     </ClCompile>
   </ItemGroup>

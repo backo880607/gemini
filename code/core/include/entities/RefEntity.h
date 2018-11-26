@@ -1,15 +1,14 @@
 #ifndef GEMINI_RefEntity_INCLUDE
 #define GEMINI_RefEntity_INCLUDE
-
 #include "RefBase.h"
 
 namespace gemini {
 
 class RefEntity : public RefBase {
  public:
-  virtual EntityObject::SPtr get() const { return _entity; }
-  virtual void add(EntityObject::SPtr entity);
-  virtual void remove(EntityObject::SPtr entity);
+  virtual BaseEntity::SPtr get() const { return _entity; }
+  virtual void add(BaseEntity::SPtr entity);
+  virtual void remove(BaseEntity::SPtr entity);
   virtual void remove();
 
   virtual Boolean empty() const { return !_entity.valid(); }
@@ -17,7 +16,7 @@ class RefEntity : public RefBase {
   virtual Iterator iterator() const;
 
  private:
-  EntityObject::SPtr _entity;
+  BaseEntity::WPtr _entity;
 };
 
 }  // namespace gemini

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{28ACFF10-9DD3-4871-BE43-8E180AF83540}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ImportExport</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\niuhaitao-x64-Release-dll.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>GEMINI_INTEGRATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../code/core/public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalDependencies>core.lib;data.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;IMPORTEXPORT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;IMPORTEXPORT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;IMPORTEXPORT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\code\ImportExport\bean\FieldInfo.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\bean\Project.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\bean\Scheme.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\bean\Source.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\controller\ProjectController.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\controller\SchemeController.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\controller\SourceController.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\dao\ProjectDao.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\dao\SchemeDao.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\dao\SourceDao.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DataSourceMgr.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSExcelCSV.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSJson.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSLocaleFile.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSStream.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSXML.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\IEError.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\service\ProjectService.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\service\SchemeService.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\include\service\SourceService.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\public\DataSource.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\public\ExportHelper.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\public\ImportExport.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\public\ImportHelper.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\public\service\IProjectService.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\public\service\ISchemeService.h" />
+    <ClInclude Include="..\..\..\..\code\ImportExport\public\service\ISourceService.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\code\ImportExport\bean\FieldInfo.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\bean\Project.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\bean\Scheme.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\bean\Source.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\controller\ProjectController.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\controller\SchemeController.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\controller\SourceController.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\dao\ProjectDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\dao\SchemeDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\dao\SourceDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\DataSource.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DataSourceMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSExcelCSV.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSJson.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSLocaleFile.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSStream.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSXML.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\ExportHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\ImportHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\service\ProjectService.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\service\SchemeService.cpp" />
+    <ClCompile Include="..\..\..\..\code\ImportExport\src\service\SourceService.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="ImportExport.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

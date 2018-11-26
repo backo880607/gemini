@@ -1,5 +1,5 @@
-#ifndef GEMINI_MsgData_INCLUDE
-#define GEMINI_MsgData_INCLUDE
+#ifndef GEMINI_API_MsgData_INCLUDE
+#define GEMINI_API_MsgData_INCLUDE
 #include "../Core.h"
 #include "MsgDefine.h"
 
@@ -11,6 +11,7 @@ class basic_streambuf;
 }  // namespace boost
 
 namespace gemini {
+namespace api {
 
 class CORE_API MsgData {
   /**
@@ -21,7 +22,7 @@ class CORE_API MsgData {
     MSG_UINT8 funcID;      ///< 功能号
     MSG_UINT8 dataEncode;  ///< 数据类型(4bits)，及数据编码类型(4bits)
     MSG_UINT8
-        cptEncryPri;  ///< 数据压缩类型(2bits)，加密类型(2bits)及优先级(4bits)
+    cptEncryPri;  ///< 数据压缩类型(2bits)，加密类型(2bits)及优先级(4bits)
     // UShort  seq;			///< 消息块序号
     MSG_UINT32 size;        ///< 实际传输的数据大小
     MSG_UINT32 originSize;  ///< 原始数据大小，即压缩前的数据大小
@@ -300,5 +301,6 @@ class CORE_API MsgData {
       _data;  ///< 数据
 };
 
+}  // namespace api
 }  // namespace gemini
-#endif  // GEMINI_MsgData_INCLUDE
+#endif  // GEMINI_API_MsgData_INCLUDE

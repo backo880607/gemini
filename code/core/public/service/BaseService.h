@@ -4,209 +4,7 @@
 
 namespace gemini {
 
-class CORE_API BaseService {
-  EntityObject::SPtr createImpl(const Class &cls, Long id) const;
-  EntityObject::SPtr createTempImpl(const Class &cls) const;
-  EntityObject::SPtr getImpl(const Class &cls) const;
-  EntityObject::SPtr getImpl(const Class &cls, Long id) const;
-  EntityObject::SPtr getInheritImpl(const Class &cls, Long id) const;
-  const IList &getListImpl(const Class &cls) const;
-  void eraseImpl(EntityObject::SPtr entity) const;
-  void clearImpl(const Class &cls) const;
-
-  EntityObject::SPtr getImpl(EntityObject::SPtr entity,
-                             const std::vector<Int> &signs) const;
-  const IList &getListImpl(EntityObject::SPtr entity,
-                           const std::vector<Int> &signs) const;
-  void setImpl(EntityObject::SPtr entity, Int sign,
-               EntityObject::SPtr relaEntity) const;
-
-  void removeImpl(EntityObject::SPtr entity, Int sign) const;
-  void removeImpl(EntityObject::SPtr entity, Int sign,
-                  EntityObject::SPtr relaEntity) const;
-
-  template <typename... A>
-  class RefSign {};
-  template <typename Head, typename... Tail>
-  class RefSign<Head, Tail...> {
-   public:
-    typedef typename RefSign<Tail...>::const_reference const_reference;
-    typedef typename RefSign<Tail...>::value_type value_type;
-    static void collect(std::vector<gemini::Int> &vals) {
-      vals.push_back(Head::index());
-      RefSign<Tail...>::collect(vals);
-    }
-  };
-  template <typename Tail>
-  class RefSign<Tail> {
-   public:
-    typedef typename Tail::const_reference const_reference;
-    typedef typename Tail::value_type value_type;
-    static void collect(std::vector<gemini::Int> &vals) {
-      vals.push_back(Tail::index());
-    }
-  };
-
- public:
-  template <typename T>
-  typename T::SPtr create(Long id = 0) const {
-    return createImpl(T::getClassStatic(), id);
-  }
-  template <typename Ref>
-  typename Ref::const_reference create(const EntityObject::SPtr &entity) const {
-    typename Ref::const_reference relaEntity =
-        create<typename Ref::value_type>();
-    setImpl(entity, Ref::index(), relaEntity);
-  }
-  template <typename T>
-  typename T::SPtr createTemp() const {
-    return createTempImpl(T::getClassStatic());
-  }
-
-  template <typename T>
-  typename T::SPtr get() const {
-    return getImpl(T::getClassStatic());
-  }
-
-  template <typename T>
-  typename T::SPtr get(Long id) const {
-    return getImpl(T::getClassStatic(), id);
-  }
-
-  template <typename T>
-  typename T::SPtr getInherit(Long id) const {
-    return getInheritImpl(T::getClassStatic(), id);
-  }
-
-  template <class T, typename Filter>
-  typename T::SPtr get(Filter filter) const {}
-
-  template <class T, typename Fun>
-  void foreach (Fun fun) const {
-    IList::Iterator iter = getListImpl(T::getClassStatic()).iterator();
-    while (iter.hasNext()) {
-      fun(iter.next<T>());
-    }
-  }
-
-  template <typename T>
-  const IList &getList() const {
-    return getListImpl(T::getClassStatic());
-  }
-
-  template <class T, typename Filter>
-  std::list<typename T::SPtr> getList(Filter filter) const {
-    std::list<typename T::SPtr> entities;
-    IList::Iterator iter = getList<T>().iterator();
-    while (iter.hasNext()) {
-      typename T::SPtr entity = iter.next<T>();
-      if (filter(entity)) {
-        entities.push_back(entity);
-      }
-    }
-    return entities;
-  }
-
-  template <class T>
-  std::list<typename T::SPtr> getList(const Char *strExpression) const {
-    std::list<typename T::SPtr> entities;
-    return entities;
-  }
-
-  template <class T>
-  std::list<typename T::SPtr> getList(const String &strExpression) const {
-    return getList<T>(strExpression.c_str());
-  }
-
-  void erase(EntityObject::SPtr entity) const { eraseImpl(entity); }
-  virtual void onErase(EntityObject::SPtr entity) const {}
-
-  template <class T>
-  void clear() {
-    clearImpl()
-  }
-
-  template <typename... Ref>
-  typename RefSign<Ref...>::const_reference getRela(
-      EntityObject::SPtr entity) const {
-    std::vector<Int> signs;
-    RefSign<Ref...>::collect(signs);
-    return getImpl(entity, signs);
-  }
-
-  template <typename... Ref>
-  SmartPtr<typename RefSign<Ref...>::value_type> getRela(
-      EntityObject::SPtr entity,
-      std::function<Boolean(SmartPtr<typename RefSign<Ref...>::value_type>)>
-          filter) const {
-    std::vector<Int> signs;
-    RefSign<Ref...>::collect(signs);
-    IList::Iterator iter = getListImpl(entity, signs).iterator();
-    while (iter.hasNext()) {
-      auto target = iter.next<typename RefSign<Ref...>::value_type>();
-      if (filter(target)) {
-        return target;
-      }
-    }
-
-    return nullptr;
-  }
-
-  template <typename... Ref>
-  void foreach_rela(
-      EntityObject::SPtr entity,
-      std::function<void(SmartPtr<typename RefSign<Ref...>::value_type>)> fun)
-      const {
-    std::list<SmartPtr<typename RefSign<Ref...>::value_type>> entities =
-        getRelaList<Ref...>(entity);
-    for (auto target : entities) {
-      fun(target);
-    }
-  }
-
-  template <typename... Ref>
-  std::list<SmartPtr<typename RefSign<Ref...>::value_type>> getRelaList(
-      EntityObject::SPtr entity) const {
-    std::list<SmartPtr<typename RefSign<Ref...>::value_type>> entities;
-    std::vector<Int> signs;
-    RefSign<Ref...>::collect(signs);
-    IList::Iterator iter = getListImpl(entity, signs).iterator();
-    while (iter.hasNext()) {
-      entities.push_back(iter.next<typename RefSign<Ref...>::value_type>());
-    }
-    return entities;
-  }
-
-  template <typename... Ref>
-  std::list<SmartPtr<typename RefSign<Ref...>::value_type>> getRelaList(
-      EntityObject::SPtr entity,
-      std::function<Boolean(SmartPtr<typename RefSign<Ref...>::value_type>)>
-          filter) const {
-    std::list<SmartPtr<typename RefSign<Ref...>::value_type>> entities;
-    std::vector<Int> signs;
-    RefSign<Ref...>::collect(signs);
-    IList::Iterator iter = getListImpl(entity, signs).iterator();
-    while (iter.hasNext()) {
-      auto entity = iter.next<typename RefSign<Ref...>::value_type>();
-      if (filter(entity)) {
-        entities.push_back(entity);
-      }
-    }
-    return entities;
-  }
-
-  template <typename Ref>
-  void removeRela(EntityObject::SPtr entity) const {
-    removeImpl(entity, Ref::index());
-  }
-  template <typename Ref>
-  void removeRela(EntityObject::SPtr entity,
-                  EntityObject::SPtr relaEntity) const {
-    removeImpl(entity, Ref::index(), relaEntity);
-  }
-
-  void sync() const;
-};
+class CORE_API BaseService : public EntityHelper {};
 
 namespace service {
 extern CORE_API void register_service(const String &name,
@@ -223,8 +21,9 @@ class ServiceRegister {
   struct InterfaceHelper<Head, Tail...> {
     template <class Impl>
     static void registerInterface(const Impl *service) {
-      gemini::service::register_interface(Class::getName<Head>(),
-                                          service::Wrap((const Head *)service));
+      gemini::service::register_interface(
+          ns_class::getNameImpl(typeid(Head).name()),
+          service::Wrap((const Head *)service));
       InterfaceHelper<Tail...>::registerInterface<Impl>(service);
     }
   };
@@ -232,14 +31,15 @@ class ServiceRegister {
   struct InterfaceHelper<Tail> {
     template <class Impl>
     static void registerInterface(const Impl *service) {
-      gemini::service::register_interface(Class::getName<Tail>(),
-                                          service::Wrap((const Tail *)service));
+      gemini::service::register_interface(
+          ns_class::getNameImpl(typeid(Tail).name()),
+          service::Wrap((const Tail *)service));
     }
   };
 
  public:
   ServiceRegister() {
-    String name = Class::getName<T>();
+    String name = ns_class::getNameImpl(typeid(T).name());
     gemini::service::register_service(name, &_service);
     InterfaceHelper<I...>::registerInterface<T>(&_service);
   }
@@ -265,7 +65,7 @@ namespace service {
 class callable {
  public:
   virtual Boolean invoke(const BaseService *service,
-                         const EntityObject::SPtr &entity) = 0;
+                         const BaseEntity::SPtr &entity) = 0;
 };
 template <class SRV, typename FUN>
 class callableHolder : public callable {
@@ -274,7 +74,7 @@ class callableHolder : public callable {
  public:
   callableHolder(FUN fun) : _fun(fun) {}
   virtual Boolean invoke(const BaseService *service,
-                         const EntityObject::SPtr &entity) override {
+                         const BaseEntity::SPtr &entity) override {
     return (((const SRV *)service)->*_fun)(entity);
   }
 };
@@ -338,22 +138,24 @@ struct __register_service_method__ {
     }                                                             \
   } _##I_NAME;
 
-#define SERVICE_METHOD(CLS, METHOD_NAME)                                     \
- private:                                                                    \
-  struct __method_##METHOD_NAME {                                            \
-    __method_##METHOD_NAME() {                                               \
-      typedef gemini::Boolean (CLS##Service::*method_ptr_type)(              \
-          const gemini::SmartPtr<CLS> &) const;                              \
-      method_ptr_type method_ptr = &CLS##Service::METHOD_NAME;               \
-      static gemini::service::__register_service_method__<CLS##Service> reg( \
-          method_ptr, gemini::Class::getName<CLS##ServiceImpl>(),            \
-          #METHOD_NAME);                                                     \
-    }                                                                        \
-  } __method_##METHOD_NAME;                                                  \
-                                                                             \
- public:                                                                     \
-  virtual gemini::Boolean METHOD_NAME(const gemini::SmartPtr<CLS> &entity)   \
-      const override;
+#define SERVICE_METHOD(CLASS_NAME, METHOD_NAME)                                \
+ private:                                                                      \
+  struct __method_##METHOD_NAME {                                              \
+    __method_##METHOD_NAME() {                                                 \
+      typedef gemini::Boolean (CLASS_NAME##Service::*method_ptr_type)(         \
+          const gemini::SmartPtr<CLASS_NAME> &) const;                         \
+      method_ptr_type method_ptr = &CLASS_NAME##Service::METHOD_NAME;          \
+      static gemini::service::__register_service_method__<CLASS_NAME##Service> \
+          reg(method_ptr,                                                      \
+              gemini::ns_class::getNameImpl(                                   \
+                  typeid(CLASS_NAME##ServiceImpl).name()),                     \
+              #METHOD_NAME);                                                   \
+    }                                                                          \
+  } __method_##METHOD_NAME;                                                    \
+                                                                               \
+ public:                                                                       \
+  virtual gemini::Boolean METHOD_NAME(                                         \
+      const gemini::SmartPtr<CLASS_NAME> &entity) const override;
 
 }  // namespace gemini
 #endif  // GEMINI_BaseService_INCLUDE

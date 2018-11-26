@@ -4,6 +4,7 @@
 #include "../Server.h"
 
 namespace gemini {
+namespace network {
 
 class TCPServerConnection;
 class TCPServer : public Server {
@@ -44,6 +45,6 @@ class TCPServer : public Server {
   boost::asio::signal_set _signals;
 };
 
+}  // namespace network
 }  // namespace gemini
-
 #endif  // GEMINI_NETWORK_TCPServer_INCLUDE

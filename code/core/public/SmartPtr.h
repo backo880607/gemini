@@ -381,6 +381,9 @@ class SmartPtr : public MemoryPolicy<T>,
     return result != 0 ? (result < 0 ? -1 : 1) : 0;
   }
 
+  String toString() { return ""; }
+  static SmartPtr valueOf(const Char*) { return nullptr; }
+
  private:
   pointer rawPointer() { return getImpl(*this); }
   const_pointer rawPointer() const { return getImpl(*this); }
@@ -392,6 +395,7 @@ class SmartPtr : public MemoryPolicy<T>,
 
   friend class Field;
   friend class FieldCalculate;
+  friend class StringUtil;
 };
 
 }  // namespace gemini

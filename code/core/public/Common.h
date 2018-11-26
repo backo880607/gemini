@@ -13,8 +13,13 @@
 #include <functional>
 #include <list>
 #include <map>
+#include <queue>
 #include <set>
 #include <vector>
+#include <stack>
+#include <queue>
+#include <unordered_set>
+#include <unordered_map>
 
 namespace gemini {
 
@@ -41,7 +46,13 @@ typedef signed long long Long;
 typedef float Float;         /// 四字节
 typedef double Double;       /// 八字节
 typedef std::string String;  /// utf-8字符串
-typedef Long ID;             /// 八字节
+#if GEMINI_OS == GEMINI_OS_WINDOWS_NT
+typedef unsigned __int64 ID;  /// 八字节
+#elif GEMINI_OS == GEMINI_OS_LINUX
+typedef unsigned long long ID;
+#elif GEMINI_OS == GEMINI_OS_MAC_OS_X
+typedef unsigned long long ID;
+#endif
 
 /**
  * @brief 以下定义各基本类型的原子类型，用于多线程环境
@@ -54,11 +65,11 @@ typedef std::atomic_char32_t MT_Char32;
 typedef std::atomic_short MT_Short;
 typedef std::atomic_int MT_Int;
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
-typedef std::atomic_int64_t MT_Long;
+typedef volatile std::atomic_int64_t MT_Long;
 #elif GEMINI_OS == GEMINI_OS_LINUX
-typedef std::atomic_llong MT_Long;
+typedef volatile std::atomic_llong MT_Long;
 #elif GEMINI_OS == GEMINI_OS_MAC_OS_X
-typedef std::atomic_llong MT_Long;
+typedef volatile std::atomic_llong MT_Long;
 #endif
 
 /**
@@ -103,6 +114,161 @@ class noncopyable {
   noncopyable& operator=(const noncopyable&) = delete;
 };
 
+class CORE_API StringUtilBase : public noncopyable {
+ public:
+  template <typename T>
+  static String format(T val) {
+    return formatImpl(val);
+  }
+  static String format(Float val, Int precision);
+  static String format(Double val, Int precision);
+
+  template <typename T>
+  static T convert(const Char* str) {
+    typename std::remove_const<T>::type val;
+    convertImpl(val, str);
+    return val;
+  }
+  template <typename T>
+  static T convert(const Char* str, std::size_t fPos, std::size_t lPos) {
+    typename std::remove_const<T>::type val;
+    convertImpl(val, str, fPos, lPos);
+    return val;
+  }
+
+ protected:
+  static std::ostringstream& getOSStream();
+  static std::istringstream& getISStream(const Char* str);
+
+ private:
+  template <typename T>
+  static String formatImpl(const T& value) {
+    return value.toString();
+  }
+  static String formatImpl(Boolean value);
+  static String formatImpl(Short value);
+  static String formatImpl(Int value);
+  static String formatImpl(Long value);
+  static String formatImpl(Float value);
+  static String formatImpl(Double value);
+  static String formatImpl(Char value);
+  static String formatImpl(Char16 value);
+  static String formatImpl(Char32 value);
+  static String formatImpl(Char* value) { return value; }
+  static String formatImpl(const Char* value) { return value; }
+  static String formatImpl(WChar* value);
+  static String formatImpl(const WChar* value);
+  static String formatImpl(const String& value) { return value; }
+  static String formatImpl(ID value);
+
+  template <typename T>
+  static void convertImpl(T& value, const Char* str) {
+    value = T::valueOf(str);
+  }
+  static void convertImpl(Boolean& value, const Char* str) {
+    value = strtol(str, nullptr, 0) != 0;
+  }
+  static void convertImpl(Short& value, const Char* str);
+  static void convertImpl(Int& value, const Char* str);
+  static void convertImpl(Long& value, const Char* str);
+  static void convertImpl(Float& value, const Char* str);
+  static void convertImpl(Double& value, const Char* str);
+  static void convertImpl(Char& value, const Char* str);
+  static void convertImpl(String& value, const Char* str) { value = str; }
+  static void convertImpl(ID& value, const Char* str);
+
+  template <typename T>
+  static void convertImpl(T& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos) {
+    value = T::valueOf(String(str + fPos, lPos - fPos));
+  }
+  static void convertImpl(Boolean& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos);
+  static void convertImpl(Short& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos);
+  static void convertImpl(Int& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos);
+  static void convertImpl(Long& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos);
+  static void convertImpl(Float& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos);
+  static void convertImpl(Double& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos);
+  static void convertImpl(String& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos) {
+    value = String(str + fPos, lPos - fPos);
+  }
+  static void convertImpl(ID& value, const Char* str, std::size_t fPos,
+                          std::size_t lPos);
+};
+
+template <typename T>
+class Vector : public std::vector<T> {
+ public:
+  String toString() { return ""; }
+  static Vector valueOf(const Char* str) { return Vector(); }
+};
+template <typename T>
+class List : public std::list<T> {
+ public:
+  String toString() { return ""; }
+  static List valueOf(const Char* str) { return List(); }
+};
+template <typename T>
+class Deque : public std::deque<T> {
+ public:
+  String toString() { return ""; }
+  static Deque valueOf(const Char* str) { return Deque(); }
+};
+template <typename T>
+class Stack : public std::stack<T> {
+ public:
+  String toString() { return ""; }
+  static Stack valueOf(const Char* str) { return Stack(); }
+};
+template <typename T>
+class Queue : public std::queue<T> {
+ public:
+  String toString() { return ""; }
+  static Queue valueOf(const Char* str) { return Queue(); }
+};
+template <typename T>
+class Set : public std::set<T> {
+ public:
+  String toString() { return ""; }
+  static Set valueOf(const Char* str) { return Set(); }
+};
+template <typename T>
+class MultiSet : public std::multiset<T> {
+ public:
+  String toString() { return ""; }
+  static MultiSet valueOf(const Char* str) { return MultiSet(); }
+};
+template <typename T>
+class HashSet : public std::unordered_set<T> {
+ public:
+  String toString() { return ""; }
+  static HashSet valueOf(const Char* str) { return HashSet(); }
+};
+template <typename KEY, typename VALUE>
+class Map : public std::map<KEY, VALUE> {
+ public:
+  String toString() { return ""; }
+  static Map valueOf(const Char* str) { return Map(); }
+};
+template <typename KEY, typename VALUE>
+class MultiMap : public std::multimap<KEY, VALUE> {
+ public:
+  String toString() { return ""; }
+  static MultiMap valueOf(const Char* str) { return MultiMap(); }
+};
+template <typename KEY, typename VALUE>
+class HashMap : public std::unordered_map<KEY, VALUE> {
+ public:
+  String toString() { return ""; }
+  static HashMap valueOf(const Char* str) { return HashMap(); }
+};
+
 class CORE_API Platform {
  public:
   static String getEnv(const Char* name);
@@ -118,6 +284,21 @@ class CORE_API Platform {
   static String mainDiskID();
   static String mainBoardID();
   static String macAddress();
+};
+
+class CORE_API SpinMutex {
+  MT_Long m_count;
+
+ public:
+  SpinMutex() { m_count.store(0); }
+  SpinMutex(const SpinMutex& rhs) { m_count.store(rhs.m_count); }
+  ~SpinMutex() {}
+
+  void lock();
+  void lock(Long milliseconds) { try_lock(milliseconds); }
+  Boolean try_lock() { return m_count.exchange(1) == 0; }
+  Boolean try_lock(Long milliseconds);
+  void unlock() { m_count = 0; }
 };
 
 }  // namespace gemini

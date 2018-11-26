@@ -1,6 +1,7 @@
 #include "../include/HTTPSocket.h"
 
 namespace gemini {
+namespace network {
 
 HTTPSocket::HTTPSocket(service_type& ios, TCPConnection* conn, Int hbTimeout)
     : Socket(ios, conn, hbTimeout) {}
@@ -188,4 +189,5 @@ HTTPSocket::server_error(boost::beast::string_view what) {
   return res;
 }
 
+}  // namespace network
 }  // namespace gemini

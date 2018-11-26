@@ -1,7 +1,7 @@
 #include "InitApplication.h"
 #include "aps/common/Export.h"
-#include "session/Subject.h"
-#include "session/UsernamePasswordToken.h"
+#include "user/public/Subject.h"
+#include "user/public/UsernamePasswordToken.h"
 
 #include "aps/public/service/mstr/ItemService.h"
 
@@ -9,9 +9,12 @@ InitApplication::InitApplication() {
   gemini::getApp().init();
   initAPS();
 
-  gemini::UsernamePasswordToken token("root", "880607");
-  gemini::Subject::get().login(token);
+  gemini::user::UsernamePasswordToken token("root", "880607");
+  gemini::user::Subject::get().login(token);
   gemini::getApp().setLocale("en_US");
+
+  gemini::ServiceHelper<aps::ItemService> itemService;
+  itemService->test();
 }
 
-InitApplication::~InitApplication() {}
+InitApplication::~InitApplication() { gemini::getApp().uninit(); }

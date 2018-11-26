@@ -7,6 +7,7 @@
 #undef ERROR
 
 namespace gemini {
+namespace api {
 
 class ProcessImpl {
   typedef std::vector<String> Args;
@@ -30,6 +31,7 @@ class ProcessImpl {
   Long _pid;
 };
 
+}  // namespace api
 }  // namespace gemini
 #endif
 

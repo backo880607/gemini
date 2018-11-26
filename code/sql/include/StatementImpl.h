@@ -10,6 +10,7 @@ namespace sql {
 
 class MetaColumn;
 class Binder;
+class Extractor;
 class ResultSetImpl;
 class StatementImpl {
  public:
@@ -57,6 +58,7 @@ class StatementImpl {
   virtual const MetaColumn &metaColumn(Int pos) = 0;
 
   virtual std::shared_ptr<Binder> getBinder() { return nullptr; }
+  virtual std::shared_ptr<Extractor> getExtractor() { return nullptr; }
 
  protected:
   virtual void resetImpl() = 0;

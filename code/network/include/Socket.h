@@ -1,7 +1,7 @@
 #ifndef GEMINI_NETWORK_Socket_INCLUDE
 #define GEMINI_NETWORK_Socket_INCLUDE
-#include "api/MsgData.h"
 #include "../public/NetworkExport.h"
+#include "api/MsgData.h"
 
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
@@ -9,6 +9,7 @@
 #include <deque>
 
 namespace gemini {
+namespace network {
 
 class TCPConnection;
 class Socket {
@@ -18,7 +19,7 @@ class Socket {
  public:
   typedef boost::asio::ip::tcp::socket socket_type;
   typedef boost::asio::io_service service_type;
-  typedef std::deque<MsgData> msg_queue;
+  typedef std::deque<api::MsgData> msg_queue;
 
   /**
    * @brief 连接状态
@@ -50,18 +51,18 @@ class Socket {
    *        -<em>true</em> 异步写入成功
    */
   Boolean asyncWrite(const void* pData, std::size_t size,
-                     MSG_UINT8 msgType = MSG_TYPE_NORMAL, MSG_UINT8 funcID = 0,
-                     MSG_UINT8 priority = 0,
-                     DataType dataType = DataType::DT_MEMSEQ/*,
+                     api::MSG_UINT8 msgType = MSG_TYPE_NORMAL,
+                     api::MSG_UINT8 funcID = 0, api::MSG_UINT8 priority = 0,
+                     api::DataType dataType = api::DataType::DT_MEMSEQ /*,
                      CompressType cpt = CompressType::CPT_ZLIB*/) {
-    MsgData msg;
+    api::MsgData msg;
     msg.setType(msgType);
     msg.setFunctionID(funcID);
     msg.setPriority(priority);
     msg.setDataType(dataType);
-    //msg.setCompressType(cpt);
-    msg.setCompressType(CompressType::CPT_NONE);
-    msg.setEncryption(Encryption::Encry_AES);
+    // msg.setCompressType(cpt);
+    msg.setCompressType(api::CompressType::CPT_NONE);
+    msg.setEncryption(api::Encryption::Encry_AES);
     if (!msg.format(pData, size)) return false;
     return asyncWrite(msg);
   }
@@ -73,7 +74,7 @@ class Socket {
    *        -<em>false</em> 异步写入失败
    *        -<em>true</em> 异步写入成功
    */
-  Boolean asyncWrite(MsgData& msg);
+  Boolean asyncWrite(api::MsgData& msg);
 
   /**
    * @brief 启用socket连接。
@@ -111,10 +112,10 @@ class Socket {
   void async_handle_read_body(const boost::system::error_code& err,
                               std::size_t len);
 
-  Boolean write(MsgData msg);
+  Boolean write(api::MsgData msg);
   Boolean writeImpl(const Char* data, Long size);
 
-  void do_write(MsgData msg);
+  void do_write(api::MsgData msg);
   void async_handle_write(const boost::system::error_code& err, Int pos);
 
   /**
@@ -139,13 +140,14 @@ class Socket {
   socket_type _socket;
   boost::asio::io_service::strand _strand;
 
-  MsgData _readMsg;     ///< 读取消息缓冲区
-  msg_queue _writeMsg;  ///< 写入消息队列
+  api::MsgData _readMsg;  ///< 读取消息缓冲区
+  msg_queue _writeMsg;    ///< 写入消息队列
 
   friend class TCPConnection;
   TCPConnection* _conn;                     ///< 会话连接
   mutable std::weak_ptr<Socket> weak_help;  ///< 用于boost的shared_from_this函数
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // GEMINI_NETWORK_Socket_INCLUDE

@@ -35,6 +35,8 @@ class ODBCTypeInfo {
   Boolean getColumnSize(SQLSMALLINT type, SQLINTEGER& result);
   Boolean getDecimalDigits(SQLSMALLINT type, SQLSMALLINT& result);
 
+  static SQLSMALLINT sqlDataType(SQLSMALLINT cDataType);
+
  private:
   void init(SQLHDBC pHDBC);
 

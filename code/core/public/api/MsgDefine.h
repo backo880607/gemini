@@ -1,7 +1,8 @@
-#ifndef GEMINI_MsgDefine_INCLUDE
-#define GEMINI_MsgDefine_INCLUDE
+#ifndef GEMINI_API_MsgDefine_INCLUDE
+#define GEMINI_API_MsgDefine_INCLUDE
 
 namespace gemini {
+namespace api {
 
 /**
  * @brief 消息类型
@@ -148,5 +149,7 @@ typedef unsigned short MSG_UINT16;
 typedef unsigned int MSG_UINT32;
 typedef unsigned long long MSG_UINT64;
 #endif
+
+}
 }
 #endif  // !GEMINI_MsgDefine_INCLUDE

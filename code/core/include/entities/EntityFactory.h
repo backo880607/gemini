@@ -1,6 +1,6 @@
 #ifndef GEMINI_EntityFactory_INCLUDE
 #define GEMINI_EntityFactory_INCLUDE
-#include "../../public/Object.h"
+#include "Object.h"
 
 namespace gemini {
 
@@ -8,15 +8,15 @@ class Class;
 class EntityFactory final {
  public:
   enum class Relation { OneToOne, OneToMulti, MultiToOne, MultiToMulti };
-  enum class RefType { T_Singleton, T_List, T_Sequence, T_Set };
   struct Data {
-    Int sign;
-    Int reverseSign;
-    Relation rela;
-    Boolean owner;
-    EntityFactory* relaFactory;
-    RefType type;
-    String name;
+    Boolean storage;             ///< 是否进行持久化
+    Boolean owner;               ///< 是否为拥有关系
+    Int sign;                    ///< 字段标识
+    Int relaSign;                ///< 关联字段标识
+    Relation rela;               ///< 关联类型
+    EntityFactory* relaFactory;  ///< 关联工厂类
+    RefKind kind;                ///< 字段结构类型
+    String name;                 ///< 字段名称
   };
 
   EntityFactory(const Class& cls);
@@ -30,12 +30,12 @@ class EntityFactory final {
   const Data* getRelaData(Int sign) const;
   const Data* getRelaData(const String& signName) const;
 
-  void createRelation(const EntityObject::SPtr& entity);
+  void createRelation(const BaseEntity::SPtr& entity);
 
  private:
   friend class FactoryMgr;
   const Class& _cls;
-  EntityObject::SPtr _all;
+  BaseEntity::SPtr _all;
   EntityFactory* _super;
   std::vector<EntityFactory*> _childs;
   std::map<Int, Data> _relations;

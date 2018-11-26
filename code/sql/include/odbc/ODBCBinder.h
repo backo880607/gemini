@@ -28,7 +28,6 @@ class ODBCBinder : public Binder {
 
  private:
   SQLSMALLINT toODBCDirection(Direction dir) const;
-  SQLSMALLINT sqlDataType(SQLSMALLINT cDataType) const;
   void getColumnOrParameterSize(std::size_t pos, SQLINTEGER &size);
   void getColSizeAndPrecision(Int pos, SQLSMALLINT cDataType,
                               SQLINTEGER &colSize, SQLSMALLINT &decDigits);
@@ -41,8 +40,8 @@ class ODBCBinder : public Binder {
 
     if (ErrorUtil::isError(SQLBindParameter(
             _hstmt, (SQLUSMALLINT)pos + 1, toODBCDirection(dir), cDataType,
-            sqlDataType(cDataType), colSize, decDigits, (SQLPOINTER)&val, 0,
-            0))) {
+            ODBCTypeInfo::sqlDataType(cDataType), colSize, decDigits,
+            (SQLPOINTER)&val, 0, 0))) {
       THROW(DataBaseException, "SQLBindParameter(std::string)")
     }
   }

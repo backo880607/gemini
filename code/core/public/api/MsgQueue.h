@@ -1,11 +1,12 @@
-#ifndef GEMINI_MsgQueue_INCLUDE
-#define GEMINI_MsgQueue_INCLUDE
+#ifndef GEMINI_API_MsgQueue_INCLUDE
+#define GEMINI_API_MsgQueue_INCLUDE
 #include "MsgData.h"
 
 #include <mutex>
 #include <queue>
 
 namespace gemini {
+namespace api {
 
 class MsgQueue : public noncopyable {
   typedef std::queue<MsgData> value_type;
@@ -53,6 +54,6 @@ class MsgQueue : public noncopyable {
   mutex_type _mutex;
 };
 
+}  // namespace api
 }  // namespace gemini
-
-#endif  // GEMINI_MsgQueue_INCLUDE
+#endif  // GEMINI_API_MsgQueue_INCLUDE

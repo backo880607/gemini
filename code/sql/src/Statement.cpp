@@ -1,14 +1,16 @@
 #pragma once
-#include "../public/Statement.h"
 #include "../include/ConnectionImpl.h"
 #include "../include/StatementImpl.h"
 #include "../public/SQLModule.h"
+#include "../public/Statement.h"
 
 namespace gemini {
 namespace sql {
 
-Statement::Statement() {}
-Statement::Statement(Connection conn) { reset(conn); }
+Statement::Statement() : _binderPos(0), _extractorPos(0) {}
+Statement::Statement(Connection conn) : _binderPos(0), _extractorPos(0) {
+  reset(conn);
+}
 Statement::~Statement() {}
 
 void Statement::reset() {
@@ -67,16 +69,17 @@ const MetaColumn& Statement::metaColumn(Int pos) {
 }
 
 std::shared_ptr<Binder> Statement::getBinder() { return _impl->getBinder(); }
+std::shared_ptr<Extractor> Statement::getExtractor() {
+  return _impl->getExtractor();
+}
 
 Boolean Statement::existed(const String& tblName) {
   _impl->prepareExisted(tblName);
-  ResultSet resultSet = query();
-  if (!resultSet.valid()) {
-    return false;
-  }
-
-  return resultSet.rowCount() > 0;
-  // return execute() > 0;
+  ResultSet result = query();
+  Int count = 0;
+  into(count);
+  ++result.begin();
+  return count > 0;
 }
 
 PreparedStatement::PreparedStatement(Connection conn) { reset(conn); }
@@ -138,14 +141,14 @@ Statement CreateStatement::done() {
 
   const Class* cls = &_cls;
   do {
-    cls->foreach_fields([&](const Field* field) {
-      if (field->getType().isBase(entityCls)) {
+    cls->foreach_fields([&](const Field& field) {
+      if (field.getType().isBase(entityCls)) {
         return;
       }
-      _stmt << field->getName() << " ";
-      Types type = sqlModule.getColumnType(*cls, field->index());
+      _stmt << field.getName() << " ";
+      Types type = sqlModule.getColumnType(*cls, field.index());
       if (type == Types::UNKNOW) {
-        type = sqlModule.getColumnType(field->getType());
+        type = sqlModule.getColumnType(field.getType());
       }
       _stmt << _stmt._impl->getColumnType(type) << ",";
     });

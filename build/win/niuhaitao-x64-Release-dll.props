@@ -7,6 +7,7 @@
     <IntDir>$(SolutionDir)\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)\$(PlatformName)\$(Configuration)dll\</OutDir>
     <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -16,6 +17,7 @@
       <PreprocessorDefinitions>_WIN64;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>../../../../third_party/boost_1_66_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)\$(PlatformName)\$(Configuration)dll\$(ProjectName).dll</OutputFile>

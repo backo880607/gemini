@@ -1,6 +1,6 @@
 #ifndef APS_MaterialCalculationDao_INCLUDE
 #define APS_MaterialCalculationDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 

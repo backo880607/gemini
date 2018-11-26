@@ -27,12 +27,15 @@ class FactoryMgr final {
     for (const EntityFactory* factory : _factories) {
       if (factory == nullptr) {
         continue;
-	  }
+      }
       fun(factory->getEntityClass());
     }
   }
 
   const EntityFactory::Data* getRelaData(const Class& cls, Int sign) const;
+  const EntityFactory::Data* getRelaData(const Class& cls, const String& sign) const;
+
+  Boolean isFieldStoraged(const Class& cls, const Field& field) const;
 
  private:
   std::vector<EntityFactory*> _factories;

@@ -1,5 +1,5 @@
-#ifndef GEMINI_Process_INCLUDE
-#define GEMINI_Process_INCLUDE
+#ifndef GEMINI_API_Process_INCLUDE
+#define GEMINI_API_Process_INCLUDE
 #include "MsgData.h"
 
 #include <condition_variable>
@@ -12,7 +12,9 @@ class shared_memory_object;
 class mapped_region;
 }  // namespace interprocess
 }  // namespace boost
+
 namespace gemini {
+namespace api {
 
 class ProcessImpl;
 struct ProcessBuffer;
@@ -84,5 +86,6 @@ class CORE_API ProcessPool : public noncopyable {
   std::condition_variable _cond;
 };
 
+}
 }  // namespace gemini
-#endif  // GEMINI_Process_INCLUDE
+#endif  // GEMINI_API_Process_INCLUDE

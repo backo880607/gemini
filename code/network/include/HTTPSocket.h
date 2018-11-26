@@ -4,6 +4,7 @@
 #include "Socket.h"
 
 namespace gemini {
+namespace network {
 
 class HTTPSocket : public Socket {
   // This is the C++11 equivalent of a generic lambda.
@@ -72,5 +73,6 @@ class HTTPSocket : public Socket {
   std::shared_ptr<void> _res;
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // GEMINI_NETWORK_HttpSocket_INCLUDE

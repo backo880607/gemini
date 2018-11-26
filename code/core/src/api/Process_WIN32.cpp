@@ -3,6 +3,7 @@
 
 #if GEMINI_OS == GEMINI_OS_WINDOWS_NT
 namespace gemini {
+namespace api {
 
 ProcessImpl::ProcessImpl(HANDLE hProcess, Long pid)
     : _hProcess(hProcess), _pid(pid) {}
@@ -122,5 +123,6 @@ std::shared_ptr<ProcessImpl> ProcessImpl::launch(const String& command,
   return nullptr;
 }
 
+}
 }  // namespace gemini
 #endif

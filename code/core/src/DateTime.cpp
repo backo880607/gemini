@@ -1,6 +1,6 @@
 #include "DateTime.h"
 #include "message/Exception.h"
-#include "session/Subject.h"
+#include "Session.h"
 #include "tools/LocaleUtil.h"
 #include "tools/StringUtil.h"
 
@@ -191,16 +191,16 @@ Boolean DateTime::operator<(const Any& rhs) const {
 }
 
 std::ostringstream& getDateTimeOSStream() {
-  return Subject::get().getSession()->get<LocaleUtil>().getOSS(true);
+  return getSession()->get<LocaleUtil>().getOSS(true);
 }
-String DateTime::str() const {
+String DateTime::toString() const {
   std::ostringstream& ss = getDateTimeOSStream();
   ss << boost::locale::as::datetime << boost::locale::as::local_time
      << getValue();
   return ss.str();
 }
 
-String DateTime::str(const Char* f) const {
+String DateTime::toString(const Char* f) const {
   tm* t1 = localtime(&_time);
   Char temp[128];
   strftime(temp, 128, f, t1);
@@ -208,7 +208,7 @@ String DateTime::str(const Char* f) const {
 }
 
 std::istringstream& getDateTimeISStream(const Char* str) {
-  return Subject::get().getSession()->get<LocaleUtil>().getISS(str);
+  return getSession()->get<LocaleUtil>().getISS(str);
 }
 DateTime DateTime::valueOf(const Char* str) {
   DateTime dt;
@@ -262,14 +262,18 @@ Boolean Duration::operator<(const Any& rhs) const {
   THROW(OperandException);
 }
 
-String Duration::str() const { return StringUtil::format(_value); }
+String Duration::toString() const { return StringUtil::format(_value); }
 
 Duration Duration::valueOf(const Char* str) {
   return StringUtil::convert<Int>(str);
 }
 
-void DurationExtend::parse() {
+void DurationExtend::parse() {}
 
+String DurationExtend::toString() const { return _value; }
+
+DurationExtend DurationExtend::valueOf(const Char* str) {
+  return DurationExtend();
 }
 
 }  // namespace gemini

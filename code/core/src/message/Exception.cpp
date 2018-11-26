@@ -23,7 +23,7 @@ char const* Exception::what() const noexcept {
   temp << _info->throw_file_ << " " << _info->throw_line_ << " "
        << _info->throw_function_ << "" << getName().c_str() << ":\n";
   for (Any& any : _info->_datas) {
-    temp << any.str();
+    temp << any.toString();
   }
 
   tl_exception_buffer = temp.str();

@@ -1,6 +1,6 @@
 #ifndef APS_PurchaseOrderDao_INCLUDE
 #define APS_PurchaseOrderDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 

@@ -4,8 +4,8 @@
 
 namespace aps {
 
-class APS_API Shift : public gemini::EntityObject {
-  DECLARE_CLASS(Shift, gemini::EntityObject)
+class APS_API Shift : public gemini::Entity {
+  DECLARE_CLASS(Shift, gemini::Entity)
 
   DECLARE_FIELD(gemini::String, time)  ///< 工作时间
 };

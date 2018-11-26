@@ -3,6 +3,7 @@
 #include "../tcp/TCPServer.h"
 
 namespace gemini {
+namespace network {
 
 class HTTPServer : public TCPServer {
  public:
@@ -13,5 +14,6 @@ class HTTPServer : public TCPServer {
   virtual std::shared_ptr<TCPServerConnection> createConnection();
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // GEMINI_NETWORK_HTTPServer_INCLUDE

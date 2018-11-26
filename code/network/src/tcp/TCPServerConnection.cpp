@@ -2,6 +2,7 @@
 #include "../../public/tcp/TCPServerConnection.h"
 
 namespace gemini {
+namespace network {
 
 TCPServerConnection::TCPServerConnection() {}
 
@@ -12,10 +13,13 @@ std::shared_ptr<Socket> TCPServerConnection::createSocket(
   return std::shared_ptr<Socket>(new Socket(ios, this, 100));
 }
 
-Boolean TCPServerConnection::execute(const MsgData& msg) { return Boolean(); }
+Boolean TCPServerConnection::execute(const api::MsgData& msg) {
+  return Boolean();
+}
 
 void TCPServerConnection::close() {}
 
 Boolean TCPServerConnection::proHeartBeatTimeout() { return Boolean(); }
 
+}  // namespace network
 }  // namespace gemini

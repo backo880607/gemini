@@ -1,6 +1,6 @@
 #ifndef APS_BatchTaskDao_INCLUDE
 #define APS_BatchTaskDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 

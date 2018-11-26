@@ -4,8 +4,8 @@
 
 namespace aps {
 
-class APS_API SystemParam : public gemini::EntityObject {
-  DECLARE_CLASS(SystemParam, gemini::EntityObject)
+class APS_API SystemParam : public gemini::BaseEntity {
+  DECLARE_CLASS(SystemParam, gemini::BaseEntity)
 
   DECLARE_FIELD(gemini::DateTime, baseTime)
 };

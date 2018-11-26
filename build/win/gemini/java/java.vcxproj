@@ -23,7 +23,6 @@
     <ProjectGuid>{9ADD1699-45DD-4C8A-BF1A-079EB1B04ADD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>java</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -84,7 +83,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>NDEBUG;JAVA_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>JAVA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Program Files\Java\jdk1.8.0_161\include;C:\Program Files\Java\jdk1.8.0_161\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link />
@@ -136,11 +135,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\code\java\public\com_pisces_core_Initializer.h" />
     <ClInclude Include="..\..\..\..\code\java\public\IExpression.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\code\java\src\com_pisces_core_Initializer.cpp" />
     <ClCompile Include="..\..\..\..\code\java\src\IExpression.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="java.cpp" />

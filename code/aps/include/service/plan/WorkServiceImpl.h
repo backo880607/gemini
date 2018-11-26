@@ -6,7 +6,7 @@
 namespace aps {
 
 class WorkServiceImpl : public gemini::BaseService, public WorkService {
-  virtual void onFree(gemini::EntityObject::SPtr entity) const;
+  virtual void onFree(gemini::BaseEntity::SPtr entity) const;
 
   virtual gemini::SmartPtr<WorkIn> createWorkIn(
       const gemini::SmartPtr<Work>& work) const;

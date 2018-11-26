@@ -9,8 +9,8 @@
 namespace gemini {
 
 Field::Field(const Class &type, Long offset, const Class &cls, const Char *name,
-             Int index /* = 0 */, Boolean multiRef /* = 0 */)
-    : _multiRef(multiRef),
+             Int index /* = 0 */, RefKind refKind /* = RefKind::None */)
+    : _refKind(refKind),
       _index(index),
       _type(type),
       _offset(offset),
@@ -22,8 +22,8 @@ Field::~Field() {}
 __register_field__::__register_field__(const Class &type, Long offset,
                                        const Class &cls, const Char *name,
                                        Int index /* = 0 */,
-                                       Boolean multiRef /* = 0 */) {
-  const Field *field = new Field(type, offset, cls, name, index, multiRef);
+                                       RefKind refKind /* = RefKind::None */) {
+  const Field *field = new Field(type, offset, cls, name, index, refKind);
   const_cast<Class &>(cls).addField(field);
 }
 
@@ -61,7 +61,7 @@ class ClassManager final {
   ~ClassManager() {}
 
   void registerClass(const Class &cls) {
-    if (cls.isBase(EntityObject::getClassStatic())) {
+    if (cls.isBase(BaseEntity::getClassStatic())) {
       _classEntity.insert(std::make_pair(cls.getName(), &cls));
     } else if (cls.isBase(BaseController::getClassStatic())) {
       _classController.insert(std::make_pair(cls.getName(), &cls));
@@ -103,17 +103,17 @@ const std::map<String, const Class *const> &geminiAfxControllerClasses() {
   return geminiAfxGetClassManager().getControllerClasses();
 }
 
-SmartPtr<EntityObject> PropertyRefHelp::get(const EntityObject *entity,
-                                            Int sign) {
+SmartPtr<BaseEntity> FieldRefWrapHelper::get(const BaseEntity *entity,
+                                               Int sign) {
   return entity->_relations[sign]->get();
 }
-void PropertyRefHelp::set(EntityObject *entity, Int sign,
-                          const SmartPtr<EntityObject> &relaEntity) {
-  SmartPtr<EntityObject> entitySPtr;
+void FieldRefWrapHelper::set(BaseEntity *entity, Int sign,
+                             const SmartPtr<BaseEntity> &relaEntity) {
+  SmartPtr<BaseEntity> entitySPtr;
   entitySPtr.wrapRawPointer(entity);
   IocRelation::set(entitySPtr, sign, relaEntity);
 }
-const IList &PropertyRefHelp::getList(const EntityObject *entity, Int sign) {
+const IList &FieldRefWrapHelper::getList(const BaseEntity *entity, Int sign) {
   return *((const IList *)(entity->_relations[sign]));
 }
 
@@ -131,14 +131,21 @@ const Class *getClassByName(const String &name) {
   return geminiAfxGetClassManager().forName(name);
 }
 
+RegisterPrimaryKey::RegisterPrimaryKey(const Class &cls,
+                                       const String &primary) {}
+
+RegisterPrimaryKey::~RegisterPrimaryKey() {}
+
 }  // namespace ns_class
 
 Int Class::s_maxIndex = 0;
-Class::Class(const Char *name, const Class *superClass, PNewInstance instance)
+Class::Class(const Char *name, const Class *superClass, PNewInstance instance,
+             ns_class::HelperHolder *holder)
     : _isEnum(false),
       _index(s_maxIndex++),
       _enumHelper(nullptr),
       _superClass(superClass),
+      _holder(holder),
       _instance(instance),
       _name(name) {
   geminiAfxGetClassManager().registerClass(*this);
@@ -150,11 +157,11 @@ Int Class::max_limits() { return 1024; }
 
 Boolean Class::hasSuper() const { return _superClass != nullptr; }
 
-Boolean Class::isBase(const Class &cls) const {
+Boolean Class::isBase(const Class &superCls) const {
   const Class *temp = this;
   while (temp->hasSuper()) {
     temp = &temp->getSuperClass();
-    if (*temp == cls) {
+    if (*temp == superCls) {
       return true;
     }
   }
@@ -177,11 +184,13 @@ const Class &Class::forName(const String &name) {
   return *cls;
 }
 
-const Field &Class::getField(const String &name) const {
+const Field *Class::getField(const String &name) const {
   std::map<String, const Field *>::const_iterator iter = _fields.find(name);
-  THROW_IF(iter == _fields.end(), NoSuchFieldException, name,
-           " is not existed in class ", getName())
-  return *(iter->second);
+  return iter != _fields.end() ? iter->second : nullptr;
+}
+
+Boolean Class::hasField(const String &name) const {
+  return _fields.find(name) != _fields.end();
 }
 
 void Class::addField(const Field *field) {
@@ -192,11 +201,9 @@ void Class::addField(const Field *field) {
   _fields.insert(std::make_pair(field->getName(), field));
 }
 
-const Method &Class::getMethod(const String &name) const {
+const Method *Class::getMethod(const String &name) const {
   std::map<String, const Method *>::const_iterator iter = _methods.find(name);
-  THROW_IF(iter == _methods.end(), NoSuchMethodException, name,
-           " is not existed in class ", getName())
-  return *(iter->second);
+  return iter != _methods.end() ? iter->second : nullptr;
 }
 
 void Class::addMethod(const Method *method) {

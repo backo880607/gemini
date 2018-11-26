@@ -30,18 +30,29 @@ Expression::Expression() : _hasField(false), _root(nullptr) {}
 
 Expression::~Expression() { clear(_root); }
 
-Boolean Expression::parse(const Char* str) {
-  if (str == nullptr) {
+Boolean Expression::parse(const String& str) {
+  if (str.empty()) {
     return false;
   }
 
-  _root = create(str, false);
+  const Char* temp = str.c_str();
+  try {
+    _root = create(temp, false);
+  } catch (std::exception& exc) {
+    _root = nullptr;
+  }
   return _root != nullptr;
+}
+
+Any Expression::getValue() { return getValue(nullptr); }
+
+Any Expression::getValue(const SmartPtr<BaseEntity>& entity) {
+  return getValue(_root, entity);
 }
 
 Boolean Expression::getBoolean() { return getBoolean(nullptr); }
 
-Boolean Expression::getBoolean(const EntityObject::SPtr& entity) {
+Boolean Expression::getBoolean(const SmartPtr<BaseEntity>& entity) {
   if (_root == nullptr) {
     return false;
   }
@@ -50,7 +61,7 @@ Boolean Expression::getBoolean(const EntityObject::SPtr& entity) {
 
 String Expression::getText() { return getText(nullptr); }
 
-String Expression::getText(const EntityObject::SPtr& entity) {
+String Expression::getText(const SmartPtr<BaseEntity>& entity) {
   if (_root == nullptr) {
     return "";
   }
@@ -58,7 +69,7 @@ String Expression::getText(const EntityObject::SPtr& entity) {
   return StringUtil::format(getValue(_root, entity));
 }
 
-Any Expression::getValue(Node* node, const EntityObject::SPtr& entity) {
+Any Expression::getValue(Node* node, const BaseEntity::SPtr& entity) {
   if (node->type == OperType::DATA) {
     return node->cal->getValue(entity);
   }
@@ -213,12 +224,11 @@ Node* Expression::create(const Char*& str, Boolean bFun) {
         Calculate* cal = new OperTypeCalculate(String(temp, str - temp));
         if (root == nullptr)
           root = new Node(calType, cal);
-        else if (calType < root->type)  // ���ȼ�����
+        else if (calType < root->type)  // 优先级更高
           root->rchild = new Node(calType, cal, root->rchild);
-        else  // ��Ϊ���ȼ���С��������
+        else  // 作为优先级更小的左子树
           root = new Node(calType, cal, root);
       } else {
-        // �Զ��庯������
         Calculate* cal = getFunOrFieldCalculate(str);
         if (cal == nullptr) {
           bError = true;
@@ -292,4 +302,10 @@ Calculate* Expression::getFunOrFieldCalculate(const Char*& str) {
 }
 
 void Expression::clear(Node* node) {}
+
+const Class* Expression::getClass() {
+  return _root != nullptr ? _root->cal->getClass() : nullptr;
+  ;
 }
+
+}  // namespace gemini

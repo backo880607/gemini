@@ -1,6 +1,6 @@
 #ifndef GEMINI_DoubleUtil_INCLUDE
 #define GEMINI_DoubleUtil_INCLUDE
-#include "../Common.h"
+#include "Common.h"
 
 namespace gemini {
 

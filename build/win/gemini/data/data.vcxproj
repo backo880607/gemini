@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{4BC3E453-FC71-4DA1-B817-122F10548175}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>data</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\niuhaitao-x64-Release-dll.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>GEMINI_SQL_EXPORTS;POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\code\core\public;../../../../third_party/poco/Foundation/include;../../../../third_party/poco/Data/include;../../../../third_party/poco/Data/ODBC/include;../../../../third_party/poco/Data/SQLite/include;../../../../third_party/poco/Data/MySQL/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalDependencies>core.lib;libmysql.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DATA_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;DATA_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;DATA_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\code\data\include\ado\Ado.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoBinder.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoCommon.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoMySQL.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoOracle.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoResultSet.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoRow.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoSQLServer.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ado\AdoStatement.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ConnectionImpl.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\Driver.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\mysql\MySQL.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\mysql\MySQLStatement.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\oracle\Oracle.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\oracle\OracleStatement.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoBinder.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoConnection.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoMySQL.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoResultSet.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoRow.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoSQLite.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoSQLServer.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\poco\PocoStatement.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\ResultSetImpl.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\RowImpl.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\sqlite\SQLite.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\sqlite\SQLiteBinder.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\sqlite\SQLiteResultSet.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\sqlite\SQLiteRow.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\sqlite\SQLiteStatement.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\sqlserver\SQLServer.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\sqlserver\SQLServerStatement.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\SQLTransmit.h" />
+    <ClInclude Include="..\..\..\..\code\data\include\StatementImpl.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\Binder.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\Connection.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\ResultSet.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\Row.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\SQLConfig.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\SQLDao.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\SQLException.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\SQLExport.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\SQLModule.h" />
+    <ClInclude Include="..\..\..\..\code\data\public\Statement.h" />
+    <ClInclude Include="..\..\..\..\code\data\src\sqlite\sqlite3.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\code\data\src\ado\Ado.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoBinder.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoCommon.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoMySQL.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoOracle.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoResultSet.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoRow.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoSQLServer.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ado\AdoStatement.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\Binder.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\Connection.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ConnectionImpl.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\Driver.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\mysql\MySQL.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\mysql\MySQLStatement.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\oracle\Oracle.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\oracle\OracleStatement.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoBinder.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoConnection.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoMySQL.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoResultSet.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoRow.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoSQLite.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoSQLServer.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\poco\PocoStatement.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ResultSet.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\ResultSetImpl.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\Row.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\RowImpl.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\SQLDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlite\SQLite.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlite\sqlite3.c" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlite\SQLiteBinder.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlite\SQLiteResultSet.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlite\SQLiteRow.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlite\SQLiteStatement.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\SQLModule.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlserver\SQLServer.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\sqlserver\SQLServerStatement.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\SQLTransmit.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\Statement.cpp" />
+    <ClCompile Include="..\..\..\..\code\data\src\StatementImpl.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

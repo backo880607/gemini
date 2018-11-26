@@ -12,16 +12,16 @@ Propagate::Propagate() : _datas(Class::max_limits()) {}
 
 Propagate::~Propagate() {}
 
-void getEntities(const EntityObject::SPtr& entity,
+void getEntities(const BaseEntity::SPtr& entity,
                  std::vector<Int>::const_iterator iter,
                  const std::vector<Int>& signs,
-                 std::set<EntityObject::SPtr>& result) {
+                 std::set<BaseEntity::SPtr>& result) {
   if (iter == signs.end()) {
     result.insert(entity);
   } else {
     IList::Iterator relaIter = IocRelation::getList(entity, *iter++).iterator();
     while (relaIter.hasNext()) {
-      getEntities(relaIter.next<EntityObject>(), iter, signs, result);
+      getEntities(relaIter.next<BaseEntity>(), iter, signs, result);
     }
   }
 }
@@ -36,12 +36,12 @@ std::vector<VertexPropagate*> buildVertex(VertexPropagate* trigger) {
 
   Int index = 0;
   for (const std::vector<Int>& path : triggerData->paths) {
-    std::set<EntityObject::SPtr> entities;
+    std::set<BaseEntity::SPtr> entities;
     getEntities(trigger->getEntityObject(), path.begin(), path, entities);
 
     const Propagate::Data* targetData =
         Propagate::instance().getData(triggerData->properties[index]);
-    for (const EntityObject::SPtr& entity : entities) {
+    for (const BaseEntity::SPtr& entity : entities) {
       VertexPropagate* target = trigger->getVertex(entity, targetData);
       if (target == nullptr) {
         target = trigger->createVertex(entity, targetData);
@@ -92,7 +92,7 @@ std::shared_ptr<GraphPropagate> buildGraph(VertexPropagate::colls& originPts) {
 
 void Propagate::invoke() {}
 
-void Propagate::modify(const EntityObject::SPtr& entity, const Field* field) {}
+void Propagate::modify(const BaseEntity::SPtr& entity, const Field* field) {}
 
 Propagate::Data* Propagate::getData(const Field* field) {
   return &(_datas[field->getClass().index()][field]);

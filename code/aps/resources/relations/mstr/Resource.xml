@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Class name="Resource">
-    <Relation field="tasks" relationClass="Task" relationField="res" type="OneToMulti" owner="true">
+    <Relation field="tasks" relaClass="Task" relaField="res" rela="OneToMulti" owner="true">
 </Class>

@@ -1,5 +1,5 @@
 #include "Order.h"
 
 namespace aps {
-DECLARE_CLASS_IMPL(Order, gemini::EntityObject)
+DECLARE_CLASS_IMPL(Order, gemini::Entity)
 }

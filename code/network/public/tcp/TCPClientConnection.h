@@ -3,6 +3,7 @@
 #include "TCPConnection.h"
 
 namespace gemini {
+namespace network {
 
 class GEMINI_NETWORK_API TCPClientConnection : public TCPConnection {
   /**
@@ -58,7 +59,7 @@ class GEMINI_NETWORK_API TCPClientConnection : public TCPConnection {
 
  protected:
   virtual std::shared_ptr<Socket> createSocket(boost::asio::io_service& ios);
-  virtual Boolean execute(const MsgData& msg);
+  virtual Boolean execute(const api::MsgData& msg);
   virtual void close();
   virtual Boolean proHeartBeatTimeout();
 
@@ -66,5 +67,6 @@ class GEMINI_NETWORK_API TCPClientConnection : public TCPConnection {
   ClientConfig _clientConfig;  ///< TCP连接配置信息
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // GEMINI_NETWORK_TCPClientConnection_INCLUDE

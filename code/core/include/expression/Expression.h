@@ -1,32 +1,27 @@
 #ifndef GEMINI_Expression_INCLUDE
 #define GEMINI_Expression_INCLUDE
-#include "../../public/Any.h"
-#include "../../public/Object.h"
+#include "../../public/tools/ExpressionUtil.h"
 
 namespace gemini {
 
 struct Node;
 class Calculate;
-class Expression final {
+class Expression final : public IExpression {
  public:
   Expression();
   ~Expression();
-  Boolean parse(const Char *str);
+  virtual Boolean parse(const String &str) override;
 
-  Boolean getBoolean();
-  Boolean getBoolean(const EntityObject::SPtr &entity);
-
-  String getText();
-  String getText(const EntityObject::SPtr &entity);
-
-  template <typename T>
-  void filter(const T &entities) {}
+  virtual Any getValue() override;
+  virtual Any getValue(const SmartPtr<BaseEntity> &entity) override;
+  virtual Boolean getBoolean() override;
+  virtual Boolean getBoolean(const SmartPtr<BaseEntity> &entity) override;
+  virtual String getText() override;
+  virtual String getText(const SmartPtr<BaseEntity> &entity) override;
+  virtual const Class *getClass() override;
 
  private:
-  Any getValue(const EntityObject::SPtr &entity) {
-    return getValue(_root, entity);
-  }
-  Any getValue(Node *node, const EntityObject::SPtr &entity);
+  Any getValue(Node *node, const SmartPtr<BaseEntity> &entity);
   Node *create(const Char *&str, Boolean bFun);
   Calculate *getNumberCalculate(const Char *&str);
   Calculate *getFunOrFieldCalculate(const Char *&str);

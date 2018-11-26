@@ -1,6 +1,6 @@
 #ifndef GEMINI_USER_TenantDao_INCLUDE
 #define GEMINI_USER_TenantDao_INCLUDE
-#include "../../../sql/public/SQLDao.h"
+#include "../../../data/public/SQLDao.h"
 
 namespace gemini {
 namespace user {

@@ -1,8 +1,10 @@
 #include "api/DataNode.h"
+#include "message/Message.h"
+#include "tools/ClassUtil.h"
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/ini_parser.hpp>
 #include <boost/program_options/detail/utf8_codecvt_facet.hpp>
+#include <boost/property_tree/ini_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 
 namespace gemini {
 
@@ -27,7 +29,7 @@ DataNode DataNode::createNode(const Char* tagName) {
 
 void DataNode::removeNode(const Char* tagName) { _pNode->erase(tagName); }
 
-std::vector<DataNode> DataNode::GetChilds() const {
+std::vector<DataNode> DataNode::getChilds() const {
   std::vector<DataNode> vecNode;
   for (auto pt = _pNode->begin(); pt != _pNode->end(); ++pt) {
     if (pt->first == "<xmlattr>") continue;
@@ -39,6 +41,63 @@ std::vector<DataNode> DataNode::GetChilds() const {
 
 void DataNode::addNode(DataNode node) {
   // m_pNode.put_child(m_pNode., node.m_pNode);
+}
+
+Object::SPtr DataNode::getObject(const Class& cls) const {
+  std::vector<DataNode> fieldNodes = getChilds();
+  if (fieldNodes.empty()) {
+    return nullptr;
+  }
+
+  Object::SPtr object = create(cls);
+  for (DataNode fieldNode : fieldNodes) {
+    const String& name = fieldNode.getName();
+    try {
+      const Field& field = ClassUtil::getField(cls, name);
+      StringUtil::setField(object, field, fieldNode.getValue().c_str());
+    } catch (const NoSuchFieldException&) {
+    }
+  }
+  return object;
+}
+
+std::vector<Object::SPtr> DataNode::getObjectList(const Class& cls) const {
+  std::vector<Object::SPtr> objects;
+  for (DataNode objectNode : getChilds()) {
+    objects.push_back(objectNode.getObject(cls));
+  }
+  return objects;
+}
+
+void DataNode::setObject(const Object::SPtr& object) {
+  if (!object.valid()) return;
+
+  const Class& cls = object->getClass();
+  ClassUtil::foreach_fields(cls, [&](const Field& field) {
+    DataNode fieldNode = createNode(field.getName());
+    fieldNode.setValue(StringUtil::getField(object, field));
+  });
+}
+
+void DataNode::setObject(const std::vector<Object::SPtr>& objects) {
+  for (Object::SPtr object : objects) {
+    DataNode objectNode = createNode();
+    objectNode.setObject(object);
+  }
+}
+void DataNode::setObject(const IList& objects) {
+  IList::Iterator iter = objects.iterator();
+  while (iter.hasNext()) {
+    Object::SPtr object = iter.next<Object>();
+    createNode().setObject(object);
+  }
+}
+
+Object::SPtr DataNode::create(const Class& cls) const {
+  Object* pObject = (Object*)cls.newInstance();
+  Object::SPtr object;
+  object.wrapRawPointer(pObject);
+  return object;
 }
 
 InitFile::InitFile(const String& path) { open(path); }

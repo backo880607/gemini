@@ -20,13 +20,19 @@ class CORE_API Application final : public IApplication {
   void unregisterModule(const Char *moduleName);
 
   virtual void init() override;
+  virtual void uninit() override;
+
+  virtual Boolean isFieldStoraged(const Class &cls,
+                                  const Field &field) override;
 
   virtual const Char *getEnvironment() override { return _environment.c_str(); }
   virtual const Char *getConfigPath() override;
+  virtual const Char *getTempPath() override;
   const Char *getDumpPath();
 
   virtual const std::locale &getLocale() override;
   virtual void setLocale(const Char *name) override;
+  virtual void setLocale(const std::locale& loc) override;
 
   std::shared_ptr<LocaleUtil> getDefaultLocal() { return _defaultLocal; }
 

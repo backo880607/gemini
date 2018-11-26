@@ -1,9 +1,10 @@
-#ifndef GEMINI_MsgTransmit_INCLUDE
-#define GEMINI_MsgTransmit_INCLUDE
+#ifndef GEMINI_API_MsgTransmit_INCLUDE
+#define GEMINI_API_MsgTransmit_INCLUDE
 #include <thread>
 #include "MsgQueue.h"
 
 namespace gemini {
+namespace api {
 
 class MsgTransmit {
   typedef std::shared_ptr<std::thread> thread_type;
@@ -33,5 +34,6 @@ class MsgTransmit {
   thread_type _threadResponse;  ///< 响应线程
 };
 
+}  // namespace api
 }  // namespace gemini
-#endif  // GEMINI_MsgTransmit_INCLUDE
+#endif  // GEMINI_API_MsgTransmit_INCLUDE

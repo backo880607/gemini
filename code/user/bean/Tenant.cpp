@@ -2,6 +2,6 @@
 
 namespace gemini {
 namespace user {
-DECLARE_CLASS_IMPL(Tenant, gemini::EntityObject)
+DECLARE_CLASS_IMPL(Tenant, gemini::Entity)
 }
 }  // namespace gemini

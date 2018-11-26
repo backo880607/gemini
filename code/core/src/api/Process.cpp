@@ -17,6 +17,7 @@
 #endif
 
 namespace gemini {
+namespace api {
 
 struct ProcessBuffer {
   boost::interprocess::interprocess_mutex mutex;
@@ -184,4 +185,5 @@ void ProcessPool::startHeartBeat() {
   }));
 }
 
+}
 }  // namespace gemini

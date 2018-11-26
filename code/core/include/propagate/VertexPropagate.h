@@ -26,18 +26,18 @@ class VertexPropagate final : public graph::Vertex {
 
   const Propagate::Data *getData() const { return _data; }
 
-  const EntityObject::SPtr &getEntityObject() const { return _entity; }
+  const BaseEntity::SPtr &getEntityObject() const { return _entity; }
 
-  VertexPropagate *createVertex(const EntityObject::SPtr &entity,
+  VertexPropagate *createVertex(const BaseEntity::SPtr &entity,
                                 const Propagate::Data *data);
-  VertexPropagate *getVertex(const EntityObject::SPtr &entity,
+  VertexPropagate *getVertex(const BaseEntity::SPtr &entity,
                              const Propagate::Data *data);
 
  public:
   Short _visited;
 
  private:
-  EntityObject::SPtr _entity;
+  BaseEntity::SPtr _entity;
   const Propagate::Data *_data;
 };
 

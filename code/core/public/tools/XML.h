@@ -63,42 +63,6 @@ class CORE_API XMLNode : public DataNode {
   }
 };
 
-class CORE_API XMLFile {
- public:
-  typedef XMLNode::node_type node_type;
-  enum class File_Mode { NormalFile = 1, CreateFile, ClearFile };
-
-  XMLFile(const String& name, File_Mode mode = File_Mode::NormalFile);
-  ~XMLFile();
-  Boolean open(const String& name, File_Mode mode = File_Mode::NormalFile);
-  Boolean valid() const { return _ptree != nullptr; }
-  Boolean write() { return write(_fileName); }
-  Boolean write(const String& name, File_Mode mode = File_Mode::NormalFile);
-
-  DataNode getNode();
-  DataNode getNode(const Char* tagName);
-  DataNode getNode(const String& tagName) { return getNode(tagName.c_str()); }
-
-  DataNode createNode(const Char* tagName);
-  DataNode createNode(const String& tagName) {
-    return createNode(tagName.c_str());
-  }
-  void remove();
-
-  static void foreach (const Char* directory,
-                       std::function<void(XMLFile&)> fun);
-  static void foreach_recursion(const Char* directory,
-                                std::function<void(XMLFile&)> fun);
-
- private:
-  void clear();
-  Boolean proXMLFile(String& path, File_Mode mode);
-
- private:
-  std::unique_ptr<node_type> _ptree;
-  String _fileName;
-};
-
 class CORE_API XML {
  public:
   typedef XMLNode::node_type node_type;
@@ -122,8 +86,37 @@ class CORE_API XML {
     return createNode(tagName.c_str());
   }
 
+ protected:
+  std::unique_ptr<node_type> _ptree;
+};
+
+class CORE_API XMLFile : public XML {
+ public:
+  typedef XMLNode::node_type node_type;
+  enum class File_Mode { NormalFile = 1, CreateFile, ClearFile };
+
+  XMLFile(const String& name, File_Mode mode = File_Mode::NormalFile);
+  ~XMLFile();
+
+  Boolean open(const String& name, File_Mode mode = File_Mode::NormalFile);
+
+  Boolean write() { return write(_fileName); }
+  Boolean write(const String& name, File_Mode mode = File_Mode::NormalFile);
+
+  void remove();
+
+  static void foreach (const Char* directory,
+                       std::function<void(XMLFile&)> fun);
+  static void foreach_recursion(const Char* directory,
+                                std::function<void(XMLFile&)> fun);
+
+ private:
+  void clear();
+  Boolean proXMLFile(String& path, File_Mode mode);
+
  private:
   std::unique_ptr<node_type> _ptree;
+  String _fileName;
 };
 
 }  // namespace gemini

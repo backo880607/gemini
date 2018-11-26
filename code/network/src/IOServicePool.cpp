@@ -1,6 +1,7 @@
 #include "../include/IOServicePool.h"
 
 namespace gemini {
+namespace network {
 
 IOServicePool::IOServicePool() : _pool_size(4), _next_io_service(0) {}
 
@@ -44,4 +45,5 @@ IOServicePool::service_type& IOServicePool::get_io_service() {
   return io_service;
 }
 
+}  // namespace network
 }  // namespace gemini

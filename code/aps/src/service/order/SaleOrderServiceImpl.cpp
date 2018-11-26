@@ -11,7 +11,7 @@ gemini::Boolean SaleOrderServiceImpl::isActive(const Order::SPtr& order) const {
   if (!OrderServiceImpl::isActive(order)) {
     return false;
   }
-  Item::SPtr item = order->_item;
+  Item::SPtr item = order->_item();
   if (item->_type == ItemType::INTER_PRODUCT ||
       item->_type == ItemType::VIRTUAL) {
     return false;

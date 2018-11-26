@@ -12,7 +12,7 @@ std::shared_ptr<RowImpl> ODBCResultSet::createRow() const {
   return std::shared_ptr<RowImpl>(new ODBCRow(_hstmt));
 }
 
-Boolean ODBCResultSet::next() { return true; }
+Boolean ODBCResultSet::next() { return ErrorUtil::isError(SQLFetch(_hstmt)); }
 
 }  // namespace sql
 }  // namespace gemini

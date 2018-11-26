@@ -21,6 +21,7 @@ ODBCStatement::ODBCStatement(ConnectionImpl &conn)
   }
 
   _binder = std::shared_ptr<ODBCBinder>(new ODBCBinder(_hstmt, nullptr));
+  _extractor = std::shared_ptr<ODBCExtractor>(new ODBCExtractor(_hstmt));
 }
 
 ODBCStatement::~ODBCStatement() {
@@ -61,6 +62,8 @@ const MetaColumn &ODBCStatement::metaColumn(Int pos) {
 }
 
 std::shared_ptr<Binder> ODBCStatement::getBinder() { return _binder; }
+
+std::shared_ptr<Extractor> ODBCStatement::getExtractor() { return _extractor; }
 
 }  // namespace sql
 }  // namespace gemini

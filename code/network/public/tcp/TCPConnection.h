@@ -1,8 +1,8 @@
 #ifndef GEMINI_NETWORK_TCPConnection_INCLUDE
 #define GEMINI_NETWORK_TCPConnection_INCLUDE
-#include "../../../core/public/Object.h"
-#include "../../../core/public/api/MsgData.h"
 #include "../NetworkExport.h"
+#include "Object.h"
+#include "api/MsgData.h"
 
 namespace boost {
 namespace asio {
@@ -12,6 +12,7 @@ typedef io_context io_service;
 }  // namespace boost
 
 namespace gemini {
+namespace network {
 
 class Socket;
 class GEMINI_NETWORK_API TCPConnection {
@@ -28,7 +29,7 @@ class GEMINI_NETWORK_API TCPConnection {
  protected:
   virtual std::shared_ptr<Socket> createSocket(
       boost::asio::io_service& ios) = 0;
-  virtual Boolean execute(const MsgData& msg) = 0;
+  virtual Boolean execute(const api::MsgData& msg) = 0;
 
   virtual void close() = 0;
 
@@ -43,5 +44,6 @@ class GEMINI_NETWORK_API TCPConnection {
   socket_type _socket;
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // GEMINI_NETWORK_TCPConnection_INCLUDE

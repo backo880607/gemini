@@ -1,6 +1,7 @@
 #include "api/MsgQueue.h"
 
 namespace gemini {
+namespace api {
 
 MsgQueue::MsgQueue() {}
 
@@ -29,4 +30,5 @@ void MsgQueue::pop() {
   _value.pop();
 }
 
+}  // namespace api
 }  // namespace gemini

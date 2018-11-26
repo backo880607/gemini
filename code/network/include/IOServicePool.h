@@ -3,6 +3,7 @@
 #include "Server.h"
 
 namespace gemini {
+namespace network {
 
 class IOServicePool final : public noncopyable {
  public:
@@ -51,5 +52,6 @@ class IOServicePool final : public noncopyable {
   std::mutex _mutex;
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // !GEMINI_NETWORK_IOServicePool_INCLUDE

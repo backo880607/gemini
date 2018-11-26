@@ -6,8 +6,8 @@
 namespace gemini {
 namespace user {
 
-class GEMINI_USER_API DataSet : public gemini::EntityObject {
-  DECLARE_CLASS(DataSet, gemini::EntityObject)
+class GEMINI_USER_API DataSet : public gemini::Entity {
+  DECLARE_CLASS(DataSet, gemini::Entity)
 };
 
 }  // namespace user

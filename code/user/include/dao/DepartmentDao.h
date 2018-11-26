@@ -1,6 +1,6 @@
 #ifndef GEMINI_USER_DepartmentDao_INCLUDE
 #define GEMINI_USER_DepartmentDao_INCLUDE
-#include "../../../sql/public/SQLDao.h"
+#include "../../../data/public/SQLDao.h"
 
 namespace gemini {
 namespace user {

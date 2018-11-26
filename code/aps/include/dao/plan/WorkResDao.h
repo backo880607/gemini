@@ -1,6 +1,6 @@
 #ifndef APS_WorkResDao_INCLUDE
 #define APS_WorkResDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 

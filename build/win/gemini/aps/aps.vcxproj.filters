@@ -684,6 +684,9 @@
     <ClInclude Include="CapPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\code\aps\bean\plan\ParentWork.h">
+      <Filter>bean\plan</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -1042,6 +1045,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\aps\src\dao\task\ToolTaskDao.cpp">
       <Filter>Source Files\dao\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\aps\bean\plan\ParentWork.cpp">
+      <Filter>bean\plan</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

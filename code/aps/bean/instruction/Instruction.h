@@ -5,8 +5,8 @@
 namespace aps {
 
 class Command;
-class APS_API Instruction : public gemini::EntityObject {
-  DECLARE_CLASS(Instruction, gemini::EntityObject)
+class APS_API Instruction : public gemini::Entity {
+  DECLARE_CLASS(Instruction, gemini::Entity)
 
   DECLARE_ENTITY(Command, command)
 };

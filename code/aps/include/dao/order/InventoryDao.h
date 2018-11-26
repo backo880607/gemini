@@ -1,6 +1,6 @@
 #ifndef APS_InventoryDao_INCLUDE
 #define APS_InventoryDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 

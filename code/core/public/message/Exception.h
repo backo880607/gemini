@@ -137,6 +137,9 @@ class CORE_API NotImplementedException : public Exception {
 class CORE_API AccessException : public Exception {
   virtual String getName() const override { return "Access"; }
 };
+class CORE_API ConfigException : public Exception {
+  virtual String getName() const override { return "Config"; }
+};
 class CORE_API UnknownException : public Exception {
   virtual String getName() const override { return "UnknownException"; }
 };

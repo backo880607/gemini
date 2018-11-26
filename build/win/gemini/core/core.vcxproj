@@ -133,11 +133,10 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>CORE_EXPORTS;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\..\third_party\glog\src\windows;..\..\..\..\third_party\breakpad;..\..\..\..\code\core\include;..\..\..\..\code\core\public;$(UniversalCRT_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\third_party\breakpad;..\..\..\..\code\core\include;..\..\..\..\code\core\public;$(UniversalCRT_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -147,18 +146,24 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>libglog_static.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) E:\Development\pisces\core\src\main\resources</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\code\core\include\api\Errors.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\api\handler\DateTimeHandler.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\api\handler\HandlerHelper.h" />
     <ClInclude Include="..\..\..\..\code\core\include\api\MsgHandler.h" />
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_UNIX.h" />
     <ClInclude Include="..\..\..\..\code\core\include\api\Process_WIN32.h" />
     <ClInclude Include="..\..\..\..\code\core\include\Application.h" />
     <ClInclude Include="..\..\..\..\code\core\include\dao\DaoMgr.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\dao\Memory.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\dao\DaoUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\dao\PropertyDao.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EntityFactory.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\EnumMgr.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\FactoryHelper.h" />
@@ -166,7 +171,7 @@
     <ClInclude Include="..\..\..\..\code\core\include\entities\IocRelation.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\RefBase.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\RefEntity.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\entities\RefList.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\entities\RefSequence.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\RefSet.h" />
     <ClInclude Include="..\..\..\..\code\core\include\entities\RefVector.h" />
     <ClInclude Include="..\..\..\..\code\core\include\expression\Calculate.h" />
@@ -186,54 +191,19 @@
     <ClInclude Include="..\..\..\..\code\core\include\graph\EdgeVector.h" />
     <ClInclude Include="..\..\..\..\code\core\include\graph\Graph.h" />
     <ClInclude Include="..\..\..\..\code\core\include\graph\Vertex.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\controller\IOController.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DataSourceMgr.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSExcelCSV.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSJson.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSLocaleFile.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSStream.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\datasource\DSXML.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\HandlerHelper.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\handler\DateTimeHandler.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\IOField.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\IOProject.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\io\IOScheme.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\EdgePropagate.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\Errors.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\GraphPropagate.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\Propagate.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\PropagateHelper.h" />
     <ClInclude Include="..\..\..\..\code\core\include\propagate\VertexPropagate.h" />
+    <ClInclude Include="..\..\..\..\code\core\include\service\PropertyService.h" />
     <ClInclude Include="..\..\..\..\code\core\include\service\ServiceMgr.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authc\Authenticator.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authc\DefaultAuthenticator.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\AuthorizationInfo.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\Authorizer.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizationInfo.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultAuthorizer.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultObjectPermission.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\DefaultPermissionResolver.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\ObjectPermission.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\authz\PermissionResolver.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Department.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Permission.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\Role.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\entities\User.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\Errors.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\realm\AuthorizingRealm.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\realm\DefaultRealm.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\realm\Realm.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\SecurityMgr.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\IPermissionService.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\IRoleService.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\IUserService.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\PermissionService.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\RoleService.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\session\service\UserService.h" />
-    <ClInclude Include="..\..\..\..\code\core\include\System.h" />
     <ClInclude Include="..\..\..\..\code\core\include\tools\LocaleUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Any.h" />
     <ClInclude Include="..\..\..\..\code\core\public\api\DataNode.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\Handler.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\api\IOHelper.h" />
     <ClInclude Include="..\..\..\..\code\core\public\api\MsgData.h" />
     <ClInclude Include="..\..\..\..\code\core\public\api\MsgDefine.h" />
     <ClInclude Include="..\..\..\..\code\core\public\api\MsgQueue.h" />
@@ -243,16 +213,13 @@
     <ClInclude Include="..\..\..\..\code\core\public\Common.h" />
     <ClInclude Include="..\..\..\..\code\core\public\controller\BaseController.h" />
     <ClInclude Include="..\..\..\..\code\core\public\controller\ControllerMgr.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\controller\PropertyController.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Core.h" />
     <ClInclude Include="..\..\..\..\code\core\public\dao\BaseDao.h" />
     <ClInclude Include="..\..\..\..\code\core\public\dao\InnerDao.h" />
     <ClInclude Include="..\..\..\..\code\core\public\DateTime.h" />
     <ClInclude Include="..\..\..\..\code\core\public\IApplication.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\DataSource.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\ExportHelper.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\Handler.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\ImportHelper.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\io\IOHelper.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Memory.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Exception.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Log.h" />
     <ClInclude Include="..\..\..\..\code\core\public\message\Message.h" />
@@ -260,25 +227,22 @@
     <ClInclude Include="..\..\..\..\code\core\public\MultiEnum.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Object.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Platform.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Property.h" />
     <ClInclude Include="..\..\..\..\code\core\public\Reflect.h" />
     <ClInclude Include="..\..\..\..\code\core\public\ReflectMethod.h" />
     <ClInclude Include="..\..\..\..\code\core\public\service\BaseService.h" />
     <ClInclude Include="..\..\..\..\code\core\public\service\IBaseService.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\session\AuthenticationToken.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\session\Session.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\session\Subject.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\session\UsernamePasswordToken.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\service\IPropertyService.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\Session.h" />
     <ClInclude Include="..\..\..\..\code\core\public\SmartPtr.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\tools\CacheUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\ClassUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\DoubleUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\ExpressionUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\File.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\Json.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\RelationUtil.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\StringUtil.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\ExpressionCallable.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgDef.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgList.h" />
-    <ClInclude Include="..\..\..\..\code\core\public\tools\TmplArgs\TmplArgUtil.h" />
+    <ClInclude Include="..\..\..\..\code\core\public\tools\TimeStatistics.h" />
     <ClInclude Include="..\..\..\..\code\core\public\tools\XML.h" />
     <ClInclude Include="..\..\..\..\third_party\DataCompress\deflate.h" />
     <ClInclude Include="..\..\..\..\third_party\DataCompress\infblock.h" />
@@ -297,6 +261,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\code\core\src\Any.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\DataNode.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\handler\DateTimeHandler.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\handler\Handler.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\handler\HandlerHelper.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\api\IOHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\MsgData.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\MsgHandler.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\MsgQueue.cpp" />
@@ -305,12 +273,15 @@
     <ClCompile Include="..\..\..\..\code\core\src\api\Process_UNIX.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\api\Process_WIN32.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Application.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Common.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\controller\BaseController.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\controller\ControllerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\controller\PropertyController.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\dao\BaseDao.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\dao\DaoMgr.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\dao\InnerDao.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\dao\Memory.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\dao\DaoUtil.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\dao\PropertyDao.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\DateTime.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\EntityFactory.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\FactoryHelper.cpp" />
@@ -318,7 +289,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\entities\IocRelation.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\Object.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\RefEntity.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\entities\RefList.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\entities\RefSequence.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\RefSet.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\entities\RefVector.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\expression\Calculate.cpp" />
@@ -333,22 +304,7 @@
     <ClCompile Include="..\..\..\..\code\core\src\graph\Edge.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\graph\Graph.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\graph\Vertex.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\controller\IOController.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\DataSource.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DataSourceMgr.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSExcelCSV.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSJson.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSLocaleFile.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSStream.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\datasource\DSXML.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\ExportHelper.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\HandlerHelper.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\handler\DateTimeHandler.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\ImportHelper.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOField.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOHelper.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOProject.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\io\IOScheme.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Memory.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Exception.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Log.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\message\Message.cpp" />
@@ -361,39 +317,22 @@
     <ClCompile Include="..\..\..\..\code\core\src\propagate\Propagate.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\propagate\PropagateHelper.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\propagate\VertexPropagate.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Property.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\Reflect.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\ReflectMethod.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\service\BaseService.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\service\PropertyService.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\service\ServiceMgr.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\AuthenticationToken.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\Authenticator.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\DefaultAuthenticator.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authc\UsernamePasswordToken.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\Authorizer.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizationInfo.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultAuthorizer.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultObjectPermission.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\DefaultPermissionResolver.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\authz\PermissionResolver.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Department.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Permission.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\Role.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\entities\User.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\realm\AuthorizingRealm.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\realm\DefaultRealm.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\realm\Realm.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\SecurityMgr.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\service\PermissionService.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\service\RoleService.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\service\UserService.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\Session.cpp" />
-    <ClCompile Include="..\..\..\..\code\core\src\session\Subject.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\Session.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\ClassUtil.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\DoubleUtil.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\ExpressionUtil.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\File.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\Json.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\LocaleUtil.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\RelationUtil.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\StringUtil.cpp" />
+    <ClCompile Include="..\..\..\..\code\core\src\tools\TimeStatistics.cpp" />
     <ClCompile Include="..\..\..\..\code\core\src\tools\XML.cpp" />
     <ClCompile Include="..\..\..\..\third_party\DataCompress\adler32.c" />
     <ClCompile Include="..\..\..\..\third_party\DataCompress\compress.c" />

@@ -1,22 +1,24 @@
 #include "entities/EntityFactory.h"
 #include "entities/RefEntity.h"
-#include "entities/RefList.h"
+#include "entities/RefSequence.h"
 #include "entities/RefSet.h"
 #include "entities/RefVector.h"
 
 namespace gemini {
 
 EntityFactory::EntityFactory(const Class& cls) : _cls(cls) {
-  if (cls != EntityObject::getClassStatic()) {
-    _all.wrapRawPointer((EntityObject*)_cls.newInstance());
-    cls.foreach_fields([&](const Field* field) {
-      if (field->index() > 0) {
-        EntityFactory::Data& data = _relations[field->index()];
-        data.sign = field->index();
-        data.name = field->getName();
-      }
-    });
+  if (_cls.canNewInstance()) {
+    _all.wrapRawPointer((BaseEntity*)_cls.newInstance());
   }
+
+  cls.foreach_fields([&](const Field& field) {
+    if (field.index() > 0) {
+      EntityFactory::Data& data = _relations[field.index()];
+      data.sign = field.index();
+      data.name = field.getName();
+      data.kind = field.getRefKind();
+    }
+  });
 }
 
 EntityFactory::~EntityFactory() {}
@@ -46,23 +48,24 @@ const EntityFactory::Data* EntityFactory::getRelaData(
   return getRelaData(getRelaSign(signName));
 }
 
-void EntityFactory::createRelation(const EntityObject::SPtr& entity) {
+void EntityFactory::createRelation(const BaseEntity::SPtr& entity) {
   if (entity->_relations.empty()) {
     entity->_relations.resize(entity->signMaxIndex());
   }
   for (auto iter = _relations.begin(); iter != _relations.end(); ++iter) {
     RefBase* ref = nullptr;
-    switch (iter->second.type) {
-      case EntityFactory::RefType::T_Singleton:
+    switch (iter->second.kind) {
+      case RefKind::Entity:
         ref = new RefEntity();
         break;
-      case EntityFactory::RefType::T_List:
+      case RefKind::Vector:
         ref = new RefVector();
         break;
-      case EntityFactory::RefType::T_Set:
+      case RefKind::Sequence:
+        ref = new RefSequence();
         break;
-      case EntityFactory::RefType::T_Sequence:
-        ref = new RefList();
+      case RefKind::Set:
+        ref = new RefSet();
         break;
       default:
         break;

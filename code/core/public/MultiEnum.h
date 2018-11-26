@@ -6,40 +6,40 @@ namespace gemini {
 
 class CORE_API MultiEnum : public AnyAbstract {
  protected:
-  MultiEnum(Int value);
+  MultiEnum(Short value);
 
  public:
   MultiEnum();
   ~MultiEnum() {}
 
-  Boolean contains(Int value);
+  Boolean contains(Short value);
   Boolean contains(const MultiEnum& rhs);
 
-  void operator+=(Int rhs);
+  void operator+=(Short rhs);
   void operator+=(const MultiEnum& rhs);
-  void operator-=(Int rhs);
+  void operator-=(Short rhs);
   void operator-=(const MultiEnum& rhs);
   Boolean operator==(const MultiEnum& rhs);
 
   virtual void operator+=(const Any& rhs);
   virtual void operator-=(const Any& rhs);
   virtual Boolean operator==(const Any& rhs) const;
-  virtual String str() const;
+
+  virtual String toString() const;
+  static MultiEnum valueOf(const Char*);
 
  protected:
-  Int add(const Any& rhs) const;
-  Int sub(const Any& rhs) const;
-  static Int valudOfImpl(const Char* str);
+  Short add(const Any& rhs) const;
+  Short sub(const Any& rhs) const;
+  static Short valudOfImpl(const Char* str);
 
  private:
-  Int _value;
+  Short _value;
 };
 
 #define DEFINE_MULTI_ENUM(enum_type, ...)                                  \
-  \
-class enum_type final : public gemini::MultiEnum {                         \
-  \
-public:                                                                    \
+  class enum_type final : public gemini::MultiEnum {                       \
+   public:                                                                 \
     enum value_type { __VA_ARGS__ };                                       \
     enum_type() {}                                                         \
     enum_type(value_type value) : gemini::MultiEnum((gemini::Int)value){}; \
@@ -53,10 +53,8 @@ public:                                                                    \
     static enum_type valueOf(const gemini::Char* str) {                    \
       return (value_type)gemini::MultiEnum::valudOfImpl(str);              \
     }                                                                      \
-  \
-};                                                                         \
-  \
-const gemini::Char gemini_enum_##enum_type[] = #__VA_ARGS__;
+  };                                                                       \
+  const gemini::Char gemini_enum_##enum_type[] = #__VA_ARGS__;
 
 #define DEFINE_MULTI_ENUM_IMPL(enum_type)                                 \
   const gemini::EnumHelper::Register<enum_type> geminiAfxEnum##enum_type( \

@@ -83,6 +83,7 @@ void SQLModule::initColumnTypes() {
   _columnTypes[Class::forType<Double>().index()] = Types::DOUBLE;
   _columnTypes[Class::forType<Char>().index()] = Types::CHAR;
   _columnTypes[Class::forType<String>().index()] = Types::VARCHAR;
+  _columnTypes[Class::forType<ID>().index()] = Types::LONG;
   _columnTypes[Class::forType<DateTime>().index()] = Types::DATE;
   _columnTypes[Class::forType<Duration>().index()] = Types::TIMESTAMP;
   _columnTypes[Class::forType<DurationExtend>().index()] = Types::VARCHAR;

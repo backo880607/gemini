@@ -1,6 +1,6 @@
 #ifndef APS_SafeInventoryDao_INCLUDE
 #define APS_SafeInventoryDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 

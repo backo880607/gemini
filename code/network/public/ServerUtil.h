@@ -3,6 +3,7 @@
 #include "NetworkExport.h"
 
 namespace gemini {
+namespace network {
 
 class GEMINI_NETWORK_API ServerUtil {
  public:
@@ -13,5 +14,6 @@ class GEMINI_NETWORK_API ServerUtil {
   static void stopHTTPServer();
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // GEMINI_NETWORK_ServerUtil_INCLUDE

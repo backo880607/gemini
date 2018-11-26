@@ -9,7 +9,7 @@ VertexPropagate::~VertexPropagate() {}
 
 graph::Graph* VertexPropagate::createGraph() { return new GraphPropagate(); }
 
-VertexPropagate* VertexPropagate::createVertex(const EntityObject::SPtr& entity,
+VertexPropagate* VertexPropagate::createVertex(const BaseEntity::SPtr& entity,
                                                const Propagate::Data* data) {
   GraphPropagate* graph = (GraphPropagate*)_graph;
   VertexPropagate* target = new VertexPropagate();
@@ -20,7 +20,7 @@ VertexPropagate* VertexPropagate::createVertex(const EntityObject::SPtr& entity,
   return target;
 }
 
-VertexPropagate* VertexPropagate::getVertex(const EntityObject::SPtr& entity,
+VertexPropagate* VertexPropagate::getVertex(const BaseEntity::SPtr& entity,
                                             const Propagate::Data* data) {
   GraphPropagate* graph = (GraphPropagate*)_graph;
   VertexPropagate target;

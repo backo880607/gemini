@@ -3,6 +3,7 @@
 #include "../tcp/TCPClientConnection.h"
 
 namespace gemini {
+namespace network {
 
 class GEMINI_NETWORK_API HTTPClientConnection : public TCPClientConnection {
  public:
@@ -14,5 +15,6 @@ class GEMINI_NETWORK_API HTTPClientConnection : public TCPClientConnection {
       boost::asio::io_service& ios) override;
 };
 
+}  // namespace network
 }  // namespace gemini
 #endif  // GEMINI_NETWORK_HTTPClientConnection_INCLUDE

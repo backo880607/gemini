@@ -12,12 +12,14 @@
       <PreprocessorDefinitions>_WIN64;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4819;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>..\..\..\..\third_party\boost_1_66_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)\$(PlatformName)\$(Configuration)dll\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\$(PlatformName)\$(Configuration)lib;..\..\Libraries-64-Release</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)\$(PlatformName)\$(Configuration)lib\$(ProjectName).lib</ImportLibrary>
-      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(SolutionDir)\$(PlatformName)\$(Configuration)PDB\$(ProjectName).pdb</ProgramDatabaseFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <OptimizeReferences>true</OptimizeReferences>

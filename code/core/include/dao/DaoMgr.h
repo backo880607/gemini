@@ -11,12 +11,8 @@ class DaoMgr final : public noncopyable {
   DaoMgr();
   ~DaoMgr();
 
-  static DaoMgr &instance() {
-    static DaoMgr mgr;
-    return mgr;
-  }
-
   static void registerDao(const Class &daoClass, const Class &entityClass);
+  static void registerGlobalDao(const Class &daoClass, const Class &entityClass);
   static void registerListener(FunCreateListener creater) {
     s_listenerInfos.push_back(creater);
   }
@@ -24,6 +20,7 @@ class DaoMgr final : public noncopyable {
   void init();
 
   dao_type getDao(const Class &cls);
+  static dao_type getGlobalDao(const Class &cls);
 
   void startSync();
   void endSync();
@@ -32,9 +29,11 @@ class DaoMgr final : public noncopyable {
   std::vector<dao_type> &getDaoes() { return _daoes; }
 
  private:
-  friend class Memory;
+  friend class DaoUtil;
   static std::map<const Class *, const Class *> s_daoInfos;
+  static std::map<const Class *, const Class *> s_globalDaoInfos;
   std::vector<dao_type> _daoes;
+  static std::map<const Class *, dao_type> _globalDaoes;
   static std::vector<FunCreateListener> s_listenerInfos;
   std::vector<DaoListener *> _listeners;
 };

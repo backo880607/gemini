@@ -4,10 +4,10 @@
 
 namespace aps {
 
-class APS_API Client : public gemini::EntityObject {
-  DECLARE_CLASS(Client, gemini::EntityObject)
+class APS_API Client : public gemini::Entity {
+  DECLARE_CLASS(Client, gemini::Entity)
 
-  DECLARE_FIELD(gemini::String, time)  ///< 工作时间
+  DECLARE_FIELD(gemini::String, name)  ///< 名称
 };
 
 }  // namespace aps

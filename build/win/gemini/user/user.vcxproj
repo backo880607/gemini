@@ -89,7 +89,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;data.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -138,66 +138,101 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\code\user\bean\DataSet.h" />
     <ClInclude Include="..\..\..\..\code\user\bean\Department.h" />
-    <ClInclude Include="..\..\..\..\code\user\bean\Privilege.h" />
-    <ClInclude Include="..\..\..\..\code\user\bean\Resource.h" />
+    <ClInclude Include="..\..\..\..\code\user\bean\Permission.h" />
     <ClInclude Include="..\..\..\..\code\user\bean\Role.h" />
     <ClInclude Include="..\..\..\..\code\user\bean\Tenant.h" />
     <ClInclude Include="..\..\..\..\code\user\bean\User.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authc\Authenticator.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authc\DefaultAuthenticator.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\AuthorizationInfo.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\Authorizer.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultAuthorizationInfo.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultAuthorizer.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultObjectPermission.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\DefaultPermissionResolver.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\ObjectPermission.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\authz\PermissionResolver.h" />
     <ClInclude Include="..\..\..\..\code\user\include\controller\DataSetController.h" />
     <ClInclude Include="..\..\..\..\code\user\include\controller\DepartmentController.h" />
-    <ClInclude Include="..\..\..\..\code\user\include\controller\PrivilegeController.h" />
-    <ClInclude Include="..\..\..\..\code\user\include\controller\ResourceController.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\controller\PermissionController.h" />
     <ClInclude Include="..\..\..\..\code\user\include\controller\RoleController.h" />
     <ClInclude Include="..\..\..\..\code\user\include\controller\TenantController.h" />
     <ClInclude Include="..\..\..\..\code\user\include\controller\UserController.h" />
     <ClInclude Include="..\..\..\..\code\user\include\dao\DataSetDao.h" />
     <ClInclude Include="..\..\..\..\code\user\include\dao\DepartmentDao.h" />
-    <ClInclude Include="..\..\..\..\code\user\include\dao\PrivilegeDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\PermissionDao.h" />
     <ClInclude Include="..\..\..\..\code\user\include\dao\RoleDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\dao\SessionDao.h" />
     <ClInclude Include="..\..\..\..\code\user\include\dao\TenantDao.h" />
     <ClInclude Include="..\..\..\..\code\user\include\dao\UserDao.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\Errors.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\realm\AuthorizingRealm.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\realm\DefaultRealm.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\realm\Realm.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\SecurityMgr.h" />
     <ClInclude Include="..\..\..\..\code\user\include\service\DataSetService.h" />
     <ClInclude Include="..\..\..\..\code\user\include\service\DepartmentService.h" />
-    <ClInclude Include="..\..\..\..\code\user\include\service\PrivilegeService.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\PermissionService.h" />
     <ClInclude Include="..\..\..\..\code\user\include\service\RoleService.h" />
+    <ClInclude Include="..\..\..\..\code\user\include\service\SessionService.h" />
     <ClInclude Include="..\..\..\..\code\user\include\service\TenantService.h" />
     <ClInclude Include="..\..\..\..\code\user\include\service\UserService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\AuthenticationToken.h" />
     <ClInclude Include="..\..\..\..\code\user\public\service\IDataSetService.h" />
     <ClInclude Include="..\..\..\..\code\user\public\service\IDepartmentService.h" />
-    <ClInclude Include="..\..\..\..\code\user\public\service\IPrivilegeService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\IPermissionService.h" />
     <ClInclude Include="..\..\..\..\code\user\public\service\IRoleService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\service\ISessionService.h" />
     <ClInclude Include="..\..\..\..\code\user\public\service\ITenantService.h" />
     <ClInclude Include="..\..\..\..\code\user\public\service\IUserService.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\Subject.h" />
     <ClInclude Include="..\..\..\..\code\user\public\UserExport.h" />
+    <ClInclude Include="..\..\..\..\code\user\public\UsernamePasswordToken.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\code\user\bean\DataSet.cpp" />
     <ClCompile Include="..\..\..\..\code\user\bean\Department.cpp" />
-    <ClCompile Include="..\..\..\..\code\user\bean\Privilege.cpp" />
-    <ClCompile Include="..\..\..\..\code\user\bean\Resource.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\bean\Permission.cpp" />
     <ClCompile Include="..\..\..\..\code\user\bean\Role.cpp" />
     <ClCompile Include="..\..\..\..\code\user\bean\Tenant.cpp" />
     <ClCompile Include="..\..\..\..\code\user\bean\User.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authc\AuthenticationToken.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authc\Authenticator.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authc\DefaultAuthenticator.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authc\UsernamePasswordToken.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authz\Authorizer.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultAuthorizationInfo.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultAuthorizer.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultObjectPermission.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authz\DefaultPermissionResolver.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\authz\PermissionResolver.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\controller\DataSetController.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\controller\DepartmentController.cpp" />
-    <ClCompile Include="..\..\..\..\code\user\src\controller\PrivilegeController.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\controller\PermissionController.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\controller\RoleController.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\controller\TenantController.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\controller\UserController.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\dao\DataSetDao.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\dao\DepartmentDao.cpp" />
-    <ClCompile Include="..\..\..\..\code\user\src\dao\PrivilegeDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\PermissionDao.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\dao\RoleDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\dao\SessionDao.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\dao\TenantDao.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\dao\UserDao.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\realm\AuthorizingRealm.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\realm\DefaultRealm.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\realm\Realm.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\SecurityMgr.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\service\DataSetService.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\service\DepartmentService.cpp" />
-    <ClCompile Include="..\..\..\..\code\user\src\service\PrivilegeService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\PermissionService.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\service\RoleService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\service\SessionService.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\service\TenantService.cpp" />
     <ClCompile Include="..\..\..\..\code\user\src\service\UserService.cpp" />
+    <ClCompile Include="..\..\..\..\code\user\src\Subject.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -205,7 +240,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

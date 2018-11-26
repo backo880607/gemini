@@ -4,8 +4,9 @@
 
 namespace gemini {
 
+enum class RefKind { None, Entity, Vector, Sequence, Set };
 class Object;
-class EntityObject;
+class BaseEntity;
 class Class;
 class IList;
 class CORE_API Field final {
@@ -14,10 +15,11 @@ class CORE_API Field final {
 
  public:
   Field(const Class &type, Long offset, const Class &cls, const Char *name,
-        Int index = 0, Boolean multiRef = 0);
+        Int index = 0, RefKind refKind = RefKind::None);
   ~Field();
 
-  Boolean getMultiRef() const { return _multiRef; }
+  Boolean isUserDefined() const { return _offset >= 0; }
+  RefKind getRefKind() const { return _refKind; }
   const String &getName() const { return _name; }
   const Class &getClass() const { return _class; }
   const Class &getType() const { return _type; }
@@ -33,35 +35,35 @@ class CORE_API Field final {
     return get<Value>(object.rawPointer());
   }
   template <class Value>
-  void set(SmartPtr<Object> &object, const Value &value) const {
+  void set(SmartPtr<Object> object, const Value &value) const {
     return set<Value>(object.rawPointer(), value);
   }
 
  private:
-  Boolean _multiRef;
   Int _index;
   const Class &_type;
   Long _offset;
   const Class &_class;
   String _name;
+  RefKind _refKind;
 };
 struct CORE_API __register_field__ {
   __register_field__(const Class &type, Long offset, const Class &cls,
-                     const Char *name, Int index = 0, Boolean multiRef = 0);
+                     const Char *name, Int index = 0,
+                     RefKind refKind = RefKind::None);
 };
 
 template <class Value>
 Value Field::get(const Object *object) const {
-  return *(const Value *)(((const char *)object) + _offset);
+  return *(const __field_wrap__<Value> *)(((const char *)object) + _offset);
 }
 
 template <class Value>
 void Field::set(Object *object, const Value &value) const {
-  *(Value *)(((char *)object) + _offset) = value;
+  *(__field_wrap__<Value> *)(((char *)object) + _offset) = value;
 }
 
 namespace ns_class {
-
 CORE_API String getNameImpl(const Char *name);
 CORE_API const Class *getClassByName(const String &name);
 
@@ -103,65 +105,208 @@ struct FetchImpl<Char *> {
   typedef String type;
 };
 
+struct HelperHolder {
+  virtual String get(const SmartPtr<Object> &object, const Field &field) const {
+    return "";
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const {}
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const {}
+};
 template <typename T>
-struct Helper {
+struct Helper : public HelperHolder {
   static void *create() { return new T; }
   static String getName() { return getNameImpl(typeid(T).name()); }
+
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return field.get<T>(object).toString();
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<T>(object, T::valueOf(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<T>(target, field.get<T>(src));
+  }
 };
 template <>
-struct Helper<void> {
+struct Helper<void> : public HelperHolder {
   static void *create() { return nullptr; }
   static String getName() { return "void"; }
 };
 template <>
-struct Helper<Boolean> {
+struct Helper<Boolean> : public HelperHolder {
   static void *create() { return new Boolean(); }
   static String getName() { return "Boolean"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<Boolean>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<Boolean>(object, StringUtilBase::convert<Boolean>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<Boolean>(target, field.get<Boolean>(src));
+  }
 };
 template <>
-struct Helper<Char> {
+struct Helper<Char> : public HelperHolder {
   static void *create() { return new Char(); }
   static String getName() { return "Char"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<Char>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<Char>(object, StringUtilBase::convert<Char>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<Char>(target, field.get<Char>(src));
+  }
 };
 template <>
-struct Helper<Short> {
+struct Helper<Short> : public HelperHolder {
   static void *create() { return new Short(); }
   static String getName() { return "Short"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<Short>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<Short>(object, StringUtilBase::convert<Short>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<Short>(target, field.get<Short>(src));
+  }
 };
 template <>
-struct Helper<Int> {
+struct Helper<Int> : public HelperHolder {
   static void *create() { return new Int(); }
   static String getName() { return "Int"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<Int>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<Int>(object, StringUtilBase::convert<Int>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<Int>(target, field.get<Int>(src));
+  }
 };
 template <>
-struct Helper<Long> {
+struct Helper<Long> : public HelperHolder {
   static void *create() { return new Long(); }
   static String getName() { return "Long"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<Long>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<Long>(object, StringUtilBase::convert<Long>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<Long>(target, field.get<Long>(src));
+  }
 };
 template <>
-struct Helper<Float> {
+struct Helper<Float> : public HelperHolder {
   static void *create() { return new Float(); }
   static String getName() { return "Float"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<Float>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<Float>(object, StringUtilBase::convert<Float>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<Float>(target, field.get<Float>(src));
+  }
 };
 template <>
-struct Helper<Double> {
+struct Helper<Double> : public HelperHolder {
   static void *create() { return new Double(); }
   static String getName() { return "Double"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<Double>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<Double>(object, StringUtilBase::convert<Double>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<Double>(target, field.get<Double>(src));
+  }
 };
 template <>
-struct Helper<String> {
+struct Helper<String> : public HelperHolder {
   static void *create() { return new String(); }
   static String getName() { return "String"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return field.get<String>(object);
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<String>(object, value);
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<String>(target, field.get<String>(src));
+  }
 };
 template <>
-struct Helper<IList> {
+struct Helper<ID> : public HelperHolder {
+  static void *create() { return new ID(); }
+  static String getName() { return "ID"; }
+  virtual String get(const SmartPtr<Object> &object,
+                     const Field &field) const override {
+    return StringUtilBase::format(field.get<ID>(object));
+  }
+  virtual void set(const SmartPtr<Object> &object, const Field &field,
+                   const Char *value) const override {
+    field.set<ID>(object, StringUtilBase::convert<ID>(value));
+  }
+  virtual void swap(const Field &field, const SmartPtr<Object> &src,
+                    const SmartPtr<Object> &target) const override {
+    field.set<ID>(target, field.get<ID>(src));
+  }
+};
+template <>
+struct Helper<IList> : public HelperHolder {
   static void *create() { return nullptr; }
   static String getName() { return "IList"; }
 };
-template <>
-struct Helper<const IList &> {
-  static void *create() { return nullptr; }
-  static String getName() { return "IList"; }
+template <typename T, Boolean BEnum>
+struct HelperEnum : public HelperHolder {
+  static void *create() { return new T; }
+  static String getName() { return getNameImpl(typeid(T).name()); }
+};
+template <typename T>
+struct HelperEnum<T, false> : public Helper<T> {};
+
+class CORE_API RegisterPrimaryKey {
+ public:
+  RegisterPrimaryKey(const Class &cls, const String &primary);
+  ~RegisterPrimaryKey();
 };
 }  // namespace ns_class
 class Method;
@@ -169,25 +314,28 @@ class EnumHelper;
 class CORE_API Class final {
   typedef void *(*PNewInstance)();
 
-  template <typename T, Boolean BEntity>
+  template <typename T, Boolean BObject>
   struct forTypeImpl {
+    static String getName() { return ns_class::getNameImpl(typeid(T).name()); }
     static const Class &value() { return T::getClassStatic(); }
   };
   template <typename T>
   struct forTypeImpl<T, false> {
+    typedef ns_class::HelperEnum<T, std::is_enum<T>::value> helper_type;
+    static String getName() { return helper_type::getName(); }
     static const Class &value() {
       static const Class *cls = nullptr;
       if (cls == nullptr) {
-        cls = ns_class::getClassByName(ns_class::Helper<T>::getName());
+        cls = ns_class::getClassByName(getName());
         if (cls == nullptr) {
-          static const Class _class(ns_class::Helper<T>::getName().c_str(),
-                                    nullptr, ns_class::Helper<T>::create);
+          static const Class _class(getName().c_str(), nullptr,
+                                    helper_type::create, new helper_type());
           if (std::is_enum<T>::value) {
             const_cast<Class &>(_class)._isEnum = true;
           }
           cls = &_class;
-		}
-	  }
+        }
+      }
       return *cls;
     }
   };
@@ -202,12 +350,14 @@ class CORE_API Class final {
         typename ns_class::remove_cv<T>::type>::type;
   };
 
-  Class(const Char *name, const Class *superClass, PNewInstance instance);
+  Class(const Char *name, const Class *superClass, PNewInstance instance,
+        ns_class::HelperHolder *holder);
   ~Class();
 
   template <typename T>
   static String getName() {
-    return ns_class::Helper<typename Fetch<T>::type>::getName();
+    using type = typename Fetch<T>::type;
+    return forTypeImpl<type, std::is_base_of<Object, type>::value>::getName();
   }
 
   static Int max_limits();
@@ -216,7 +366,7 @@ class CORE_API Class final {
   const String &getName() const { return _name; }
   const Class &getSuperClass() const { return *_superClass; }
   Boolean hasSuper() const;
-  Boolean isBase(const Class &cls) const;
+  Boolean isBase(const Class &superCls) const;
 
   Boolean isEnum() const { return _isEnum; }
   Boolean isMultiEnum() const;
@@ -231,18 +381,6 @@ class CORE_API Class final {
     return forTypeImpl<type, std::is_base_of<Object, type>::value>::value();
   }
 
-  const Field &getField(const String &name) const;
-
-  template <typename FUN>
-  void foreach_fields(FUN fun) const {
-    for (std::map<String, const Field *>::const_iterator iter = _fields.begin();
-         iter != _fields.end(); ++iter) {
-      fun(iter->second);
-    }
-  }
-
-  const Method &getMethod(const String &name) const;
-
   Boolean operator==(const Class &rhs) const { return this == &rhs; }
   Boolean operator!=(const Class &rhs) const { return !(*this == rhs); }
   Boolean operator<(const Class &rhs) const { return this < &rhs; }
@@ -250,16 +388,36 @@ class CORE_API Class final {
   Boolean operator<=(const Class &rhs) const { return !(*this > rhs); }
   Boolean operator>=(const Class &rhs) const { return !(*this < rhs); }
 
+  Boolean canNewInstance() const { return _instance != nullptr; }
   void *newInstance() const { return (*_instance)(); }
+
+  const Field *getField(const String &name) const;
 
  private:
   void addField(const Field *field);
   void addMethod(const Method *method);
 
+  Boolean hasField(const String &name) const;
+
+  template <typename FUN>
+  void foreach_fields(FUN fun) const {
+    for (std::map<String, const Field *>::const_iterator iter = _fields.begin();
+         iter != _fields.end(); ++iter) {
+      fun(*iter->second);
+    }
+  }
+
+  const std::vector<const Field *> &getKeyFields() const { return _keyFields; }
+
+  const Method *getMethod(const String &name) const;
+
   friend class Object;
   friend class DtoBase;
-  friend class EntityObject;
+  friend class BaseEntity;
   friend class EnumHelper;
+  friend class ClassUtil;
+  friend class EntityFactory;
+  friend class StringUtil;
   template <typename, Boolean>
   friend struct forTypeImpl;
   friend struct __register_field__;
@@ -271,113 +429,102 @@ class CORE_API Class final {
   Int _index;
   const EnumHelper *_enumHelper;
   const Class *_superClass;
+  ns_class::HelperHolder *_holder;
   PNewInstance _instance;
   String _name;
 
   std::map<String, const Field *> _fields;
   std::map<String, const Method *> _methods;
+  std::vector<const Field *> _keyFields;
 };
 CORE_API const std::map<String, const Class *const> &geminiAfxEntityClasses();
 CORE_API const std::map<String, const Class *const>
     &geminiAfxControllerClasses();
 
 template <class T>
-class Property {
- protected:
+class __field_wrap__ {
+ public:
   typedef T value_type;
   typedef typename std::conditional<sizeof(T) <= 8, value_type,
                                     const value_type &>::type const_reference;
 
-  Property() : _value() {}
-  Property(const_reference val) : _value(val) {}
-  ~Property() {}
-  Property &operator=(const_reference val) {
+  __field_wrap__() : _value() {}
+  __field_wrap__(const_reference val) : _value(val) {}
+  ~__field_wrap__() {}
+  __field_wrap__ &operator=(const_reference val) {
     _value = val;
     return *this;
   }
-  operator const_reference() { return _value; }
+  operator const_reference() const { return _value; }
 
  private:
   value_type _value;
 };
 template <>
-class Property<String> {
- protected:
+class __field_wrap__<String> {
+ public:
   typedef String value_type;
   typedef value_type const_reference;
 
-  Property() : _value(nullptr) {}
-  Property(const_reference val) : _value(new Char[val.size()]) {}
-  ~Property() {
+  __field_wrap__() : _value(nullptr) {}
+  __field_wrap__(const_reference val) : _value(new Char[val.size()]) {}
+  ~__field_wrap__() {
     if (_value != nullptr) delete[] _value;
   }
-  Property &operator=(const_reference val) {
+  __field_wrap__ &operator=(const_reference val) {
     if (_value != nullptr) {
       delete[] _value;
       _value = nullptr;
     }
 
-    _value = new Char[val.size()];
-    std::memcpy(_value, val.c_str(), val.size());
+    const std::size_t size = val.size();
+    _value = new Char[size + 1];
+    std::memcpy(_value, val.c_str(), size);
+    _value[size] = '\0';
     return *this;
   }
 
-  operator const_reference() { return _value; }
+  operator const_reference() const { return _value != nullptr ? _value : ""; }
 
  private:
   Char *_value;
 };
 class IList;
-enum class RefType { Entity, Vector, List, Set };
-class CORE_API PropertyRefHelp {
+class CORE_API FieldRefWrapHelper {
  public:
-  static SmartPtr<EntityObject> get(const EntityObject *entity, Int sign);
-  static void set(EntityObject *entity, Int sign,
-                  const SmartPtr<EntityObject> &relaEntity);
-  static const IList &getList(const EntityObject *entity, Int sign);
+  static SmartPtr<BaseEntity> get(const BaseEntity *entity, Int sign);
+  static void set(BaseEntity *entity, Int sign,
+                  const SmartPtr<BaseEntity> &relaEntity);
+  static const IList &getList(const BaseEntity *entity, Int sign);
 };
-template <class T, RefType Type>
-class PropertyRef {
+template <Boolean IsList>
+class __field_ref_wrap__ {
  public:
   typedef const IList &const_reference;
   typedef const IList *const_pointer;
-  typedef T value_type;
 
  protected:
-  PropertyRef() {}
-  ~PropertyRef() {}
+  __field_ref_wrap__() {}
+  ~__field_ref_wrap__() {}
 
-  const_reference get(const EntityObject *entity, Int sign) {
-    // return *((const IList*)(entity->_relations[sign]));
-    return PropertyRefHelp::getList(entity, sign);
+  const_reference get(const BaseEntity *entity, Int sign) {
+    return FieldRefWrapHelper::getList(entity, sign);
   }
 };
-template <class T>
-class PropertyRef<T, RefType::Entity> {
- public:
-  typedef SmartPtr<T> const_reference;
-  typedef T value_type;
-
+template <>
+class __field_ref_wrap__<false> {
  protected:
-  PropertyRef() {}
-  ~PropertyRef() {}
+  __field_ref_wrap__() {}
+  ~__field_ref_wrap__() {}
 
-  const_reference get(EntityObject *entity, Int sign) {
-    return PropertyRefHelp::get(entity, sign);
+  SmartPtr<BaseEntity> get(BaseEntity *entity, Int sign) {
+    return FieldRefWrapHelper::get(entity, sign);
   }
 
-  void set(EntityObject *entity, Int sign, const_reference val) {
-    PropertyRefHelp::set(entity, sign, val);
+  void set(BaseEntity *entity, Int sign, const SmartPtr<BaseEntity> &val) {
+    FieldRefWrapHelper::set(entity, sign, val);
   }
 };
-
-template <class T>
-class Sign {
- public:
-  static Int index;
-};
-template <class T>
-Int Sign<T>::index = 0;
 
 class CORE_API EnumHelper {
  public:
@@ -451,102 +598,182 @@ class CORE_API EnumHelper {
 #define DECLARE_CLASS_IMPL(CLASS_NAME, SUPER_CLASS_NAME)       \
   gemini::Int CLASS_NAME::s_index = SUPER_CLASS_NAME::s_index; \
   const gemini::Class CLASS_NAME::_class(                      \
-      #CLASS_NAME, &SUPER_CLASS_NAME::getClassStatic(), create);
+      #CLASS_NAME, &SUPER_CLASS_NAME::getClassStatic(), create, nullptr);
 
 #define __OFFSET__(C, M) ((gemini::Long)(&((const C *)1024)->M) - 1024)
 
-#define DECLARE_FIELD(FIELD_TYPE, FIELD_NAME)                        \
- public:                                                             \
-  class __field_##FIELD_NAME : public gemini::Property<FIELD_TYPE> { \
-    typedef gemini::Property<FIELD_TYPE> base_type;                  \
-                                                                     \
-   public:                                                           \
-    __field_##FIELD_NAME() : base_type() {                           \
-      static gemini::__register_field__ reg(                         \
-          gemini::Class::forType<FIELD_TYPE>(),                      \
-          __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(),    \
-          #FIELD_NAME);                                              \
-    }                                                                \
-    ~__field_##FIELD_NAME() {}                                       \
-    __field_##FIELD_NAME &operator=(const_reference val) {           \
-      base_type::operator=(val);                                     \
-      return *this;                                                  \
-    }                                                                \
-    operator const_reference() {                                     \
-      return base_type::operator const_reference();                  \
-    }                                                                \
-    const gemini::Field *field() {                                   \
-      static const gemini::Field *holder =                           \
-          &getClassStatic().getField(#FIELD_NAME);                   \
-      return holder;                                                 \
-    }                                                                \
-  } _##FIELD_NAME;                                                   \
+#define DECLARE_FIELD(FIELD_TYPE, FIELD_NAME)                              \
+ public:                                                                   \
+  class __field_##FIELD_NAME : public gemini::__field_wrap__<FIELD_TYPE> { \
+    typedef gemini::__field_wrap__<FIELD_TYPE> base_type;                  \
+                                                                           \
+   public:                                                                 \
+    __field_##FIELD_NAME() : base_type() {                                 \
+      static gemini::__register_field__ reg(                               \
+          gemini::Class::forType<FIELD_TYPE>(),                            \
+          __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(),          \
+          #FIELD_NAME);                                                    \
+    }                                                                      \
+    ~__field_##FIELD_NAME() {}                                             \
+    __field_##FIELD_NAME &operator=(const_reference val) {                 \
+      base_type::operator=(val);                                           \
+      return *this;                                                        \
+    }                                                                      \
+    const_reference operator()() {                                         \
+      return base_type::operator const_reference();                        \
+    }                                                                      \
+    const gemini::Field &field() {                                         \
+      static const gemini::Field &holder =                                 \
+          *getClassStatic().getField(#FIELD_NAME);                         \
+      return holder;                                                       \
+    }                                                                      \
+  } _##FIELD_NAME;                                                         \
   friend class __field_##FIELD_NAME;
 
 #define DECLARE_ENTITY(CLASS_NAME, FIELD_NAME)                                 \
  public:                                                                       \
-  class FIELD_NAME                                                             \
-      : public gemini::PropertyRef<CLASS_NAME, gemini::RefType::Entity> {      \
-    typedef gemini::PropertyRef<CLASS_NAME, gemini::RefType::Entity>           \
-        base_type;                                                             \
+  class FIELD_NAME : public gemini::__field_ref_wrap__<false> {                \
+    typedef gemini::__field_ref_wrap__<false> base_type;                       \
                                                                                \
    public:                                                                     \
+    typedef gemini::SmartPtr<CLASS_NAME> const_reference;                      \
+    typedef CLASS_NAME value_type;                                             \
     FIELD_NAME() : base_type() {                                               \
       index();                                                                 \
       static gemini::__register_field__ reg(                                   \
           gemini::Class::forName(#CLASS_NAME),                                 \
           __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, \
-          index());                                                            \
+          index(), gemini::RefKind::Entity);                                   \
     }                                                                          \
     ~FIELD_NAME() {}                                                           \
     FIELD_NAME &operator=(const_reference val) {                               \
       base_type::set(cur(), index(), val);                                     \
       return *this;                                                            \
     }                                                                          \
-    operator const_reference() { return base_type::get(cur(), index()); }      \
+    const_reference operator()() { return base_type::get(cur(), index()); }    \
     static gemini::Int index() {                                               \
       static const gemini::Int temp = ClassType::s_index++;                    \
       return temp;                                                             \
     }                                                                          \
+    const gemini::Field &field() {                                             \
+      static const gemini::Field &holder =                                     \
+          *getClassStatic().getField(#FIELD_NAME);                             \
+      return holder;                                                           \
+    }                                                                          \
                                                                                \
    private:                                                                    \
-    gemini::EntityObject *cur() {                                              \
-      return (gemini::EntityObject *)(((const char *)this) -                   \
-                                      __OFFSET__(ClassType, _##FIELD_NAME));   \
+    gemini::BaseEntity *cur() {                                                \
+      return (gemini::BaseEntity *)(((const char *)this) -                     \
+                                    __OFFSET__(ClassType, _##FIELD_NAME));     \
     }                                                                          \
   } _##FIELD_NAME;
 
 #define DECLARE_VECTOR(CLASS_NAME, FIELD_NAME)                                 \
  public:                                                                       \
-  class FIELD_NAME                                                             \
-      : public gemini::PropertyRef<CLASS_NAME, gemini::RefType::Vector> {      \
-    typedef gemini::PropertyRef<CLASS_NAME, gemini::RefType::Vector>           \
-        base_type;                                                             \
+  class FIELD_NAME : public gemini::__field_ref_wrap__<true> {                 \
+    typedef gemini::__field_ref_wrap__<true> base_type;                        \
                                                                                \
    public:                                                                     \
+    typedef CLASS_NAME value_type;                                             \
     FIELD_NAME() : base_type() {                                               \
       index();                                                                 \
       static gemini::__register_field__ reg(                                   \
           gemini::Class::forName(#CLASS_NAME),                                 \
           __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, \
-          index(), true);                                                      \
+          index(), gemini::RefKind::Vector);                                   \
     }                                                                          \
     ~FIELD_NAME() {}                                                           \
-    operator const_reference() { return base_type::get(cur(), index()); }      \
+    const_reference operator()() { return base_type::get(cur(), index()); }    \
     static gemini::Int index() {                                               \
       static const gemini::Int temp = ClassType::s_index++;                    \
       return temp;                                                             \
     }                                                                          \
-                                                                               \
-    const_pointer operator->() { return &(const_reference)(*this); }           \
+    const gemini::Field &field() {                                             \
+      static const gemini::Field &holder =                                     \
+          *getClassStatic().getField(#FIELD_NAME);                             \
+      return holder;                                                           \
+    }                                                                          \
                                                                                \
    private:                                                                    \
-    const gemini::EntityObject *cur() {                                        \
+    const gemini::BaseEntity *cur() {                                          \
       return (                                                                 \
-          const gemini::EntityObject *)(((const char *)this) -                 \
-                                        __OFFSET__(ClassType, _##FIELD_NAME)); \
+          const gemini::BaseEntity *)(((const char *)this) -                   \
+                                      __OFFSET__(ClassType, _##FIELD_NAME));   \
     }                                                                          \
   } _##FIELD_NAME;
+
+#define DECLARE_SEQUENCE(CLASS_NAME, FIELD_NAME)                               \
+ public:                                                                       \
+  class FIELD_NAME : public gemini::__field_ref_wrap__<true> {                 \
+    typedef gemini::__field_ref_wrap__<true> base_type;                        \
+                                                                               \
+   public:                                                                     \
+    typedef CLASS_NAME value_type;                                             \
+    FIELD_NAME() : base_type() {                                               \
+      index();                                                                 \
+      static gemini::__register_field__ reg(                                   \
+          gemini::Class::forName(#CLASS_NAME),                                 \
+          __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, \
+          index(), gemini::RefKind::Sequence);                                 \
+    }                                                                          \
+    ~FIELD_NAME() {}                                                           \
+    const_reference operator()() { return base_type::get(cur(), index()); }    \
+    static gemini::Int index() {                                               \
+      static const gemini::Int temp = ClassType::s_index++;                    \
+      return temp;                                                             \
+    }                                                                          \
+    const gemini::Field &field() {                                             \
+      static const gemini::Field &holder =                                     \
+          *getClassStatic().getField(#FIELD_NAME);                             \
+      return holder;                                                           \
+    }                                                                          \
+                                                                               \
+   private:                                                                    \
+    const gemini::BaseEntity *cur() {                                          \
+      return (                                                                 \
+          const gemini::BaseEntity *)(((const char *)this) -                   \
+                                      __OFFSET__(ClassType, _##FIELD_NAME));   \
+    }                                                                          \
+  } _##FIELD_NAME;
+
+#define DECLARE_SET(CLASS_NAME, FIELD_NAME)                                    \
+ public:                                                                       \
+  class FIELD_NAME : public gemini::__field_ref_wrap__<true> {                 \
+    typedef gemini::__field_ref_wrap__<true> base_type;                        \
+                                                                               \
+   public:                                                                     \
+    typedef CLASS_NAME value_type;                                             \
+    FIELD_NAME() : base_type() {                                               \
+      index();                                                                 \
+      static gemini::__register_field__ reg(                                   \
+          gemini::Class::forName(#CLASS_NAME),                                 \
+          __OFFSET__(ClassType, _##FIELD_NAME), getClassStatic(), #FIELD_NAME, \
+          index(), gemini::RefKind::Set);                                      \
+    }                                                                          \
+    ~FIELD_NAME() {}                                                           \
+    const_reference operator()() { return base_type::get(cur(), index()); }    \
+    static gemini::Int index() {                                               \
+      static const gemini::Int temp = ClassType::s_index++;                    \
+      return temp;                                                             \
+    }                                                                          \
+    const gemini::Field &field() {                                             \
+      static const gemini::Field &holder =                                     \
+          *getClassStatic().getField(#FIELD_NAME);                             \
+      return holder;                                                           \
+    }                                                                          \
+                                                                               \
+   private:                                                                    \
+    const gemini::BaseEntity *cur() {                                          \
+      return (                                                                 \
+          const gemini::BaseEntity *)(((const char *)this) -                   \
+                                      __OFFSET__(ClassType, _##FIELD_NAME));   \
+    }                                                                          \
+  } _##FIELD_NAME;
+
+#define DECLARE_PRIMARY(CLASS_NAME, ...)           \
+  gemini::ns_class::RegisterPrimaryKey             \
+      gemini_afx_register_primarykey_##CLASS_NAME( \
+          CLASS_NAME::getClassStatic(), #__VA_ARGS__);
 
 #define DEFINE_ENUM(enum_type, ...)     \
   enum class enum_type { __VA_ARGS__ }; \

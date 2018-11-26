@@ -8,7 +8,7 @@ namespace aps {
 
 gemini::ServiceRegister<OrderServiceImpl, OrderService> order_service_register;
 gemini::Boolean OrderServiceImpl::isActive(const Order::SPtr& order) const {
-  if (!_itemService->isValid(order->_item)) {
+  if (!_itemService->isValid(order->_item())) {
     return false;
   }
   if (gemini::DoubleUtil::lessEqual(order->_qty, 0.0)) {

@@ -4,6 +4,7 @@
 #include <boost/asio.hpp>
 
 namespace gemini {
+namespace network {
 
 boost::asio::io_service g_clientIOService;
 TCPClientConnection::TCPClientConnection() { bindIOS(g_clientIOService); }
@@ -26,10 +27,13 @@ std::shared_ptr<Socket> TCPClientConnection::createSocket(
   return std::shared_ptr<Socket>(new Socket(ios, this, 100));
 }
 
-Boolean TCPClientConnection::execute(const MsgData& msg) { return Boolean(); }
+Boolean TCPClientConnection::execute(const api::MsgData& msg) {
+  return Boolean();
+}
 
 void TCPClientConnection::close() {}
 
 Boolean TCPClientConnection::proHeartBeatTimeout() { return Boolean(); }
 
+}  // namespace network
 }  // namespace gemini

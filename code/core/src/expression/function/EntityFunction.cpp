@@ -2,10 +2,19 @@
 
 namespace gemini {
 
-Any EntityFunction::funIsType(const std::vector<Any>& params) {
-  return params[0].getClass().getName() == params[1].cast<String>();
+DECLARE_CLASS_IMPL(EntityFunction, BaseController)
+Boolean EntityFunction::isType(const BaseEntity::SPtr& entity,
+                               const String& clsName) {
+  const Class& cls = Class::forName(clsName);
+  return entity->getClass() == cls;
 }
 
-Any EntityFunction::funAsType(const std::vector<Any>& params) { return Any(); }
+EXPRESSION_REGISTER(EntityFunction, asType)
+EXPRESSION_RETURN(asType, 2)
+BaseEntity::SPtr EntityFunction::asType(const BaseEntity::SPtr& entity,
+                                          const String& clsName) {
+  const Class& cls = Class::forName(clsName);
+  return entity->getClass().isBase(cls) ? entity : nullptr;
+}
 
 }  // namespace gemini

@@ -8,7 +8,7 @@ namespace ns_any {
 
 template <typename T, Boolean BEntity>
 struct ObtainHolderTypeImpl {
-  typedef SmartPtr<EntityObject> holder_type;
+  typedef SmartPtr<BaseEntity> holder_type;
 };
 template <typename T>
 struct ObtainHolderTypeImpl<T, false> {
@@ -17,7 +17,7 @@ struct ObtainHolderTypeImpl<T, false> {
 template <typename T>
 struct ObtainHolderType {
   typedef typename ObtainHolderTypeImpl<
-      T, std::is_base_of<EntityObject, T>::value>::holder_type holder_type;
+      T, std::is_base_of<BaseEntity, T>::value>::holder_type holder_type;
   typedef const holder_type &const_reference;
 };
 template <>
@@ -44,7 +44,7 @@ class CORE_API Any {
     virtual void operator/=(const Any &rhs) = 0;
     virtual Boolean operator==(const Any &rhs) const = 0;
     virtual Boolean operator<(const Any &rhs) const = 0;
-    virtual String str() const = 0;
+    virtual String toString() const = 0;
   };
   template <typename T>
   class Holder : public PlaceHolder {
@@ -85,7 +85,7 @@ class CORE_API Any {
     virtual Boolean operator<(const Any &rhs) const {
       return Holder<T>::_value < rhs;
     }
-    virtual String str() const { return Holder<T>::_value.str(); }
+    virtual String toString() const { return Holder<T>::_value.toString(); }
   };
 
   template <typename T>
@@ -94,16 +94,17 @@ class CORE_API Any {
   }
   PlaceHolder *create(Boolean value);
   PlaceHolder *create(Char value);
-  PlaceHolder *create(Char16 value);
-  PlaceHolder *create(Char32 value);
+  /*PlaceHolder *create(Char16 value);
+  PlaceHolder *create(Char32 value);*/
   PlaceHolder *create(Short value);
   PlaceHolder *create(Int value);
   PlaceHolder *create(Long value);
   PlaceHolder *create(Float value);
   PlaceHolder *create(Double value);
   PlaceHolder *create(const String &value);
+  PlaceHolder *create(ID value);
   PlaceHolder *create(const Char *value);
-  PlaceHolder *create(const SmartPtr<EntityObject> &value);
+  PlaceHolder *create(const SmartPtr<BaseEntity> &value);
   PlaceHolder *create(const IList &value);
 
  public:
@@ -113,7 +114,7 @@ class CORE_API Any {
   Any(const T &value) : _holder(create(value)) {}
   template <typename T>
   Any(const SmartPtr<T> &value)
-      : _holder(create((const SmartPtr<EntityObject> &)value)) {}
+      : _holder(create((const SmartPtr<BaseEntity> &)value)) {}
   Any(const Any &rhs);
   Any(Any &&rhs);
   ~Any();
@@ -190,7 +191,7 @@ class CORE_API Any {
   Boolean operator>(const Any &rhs) const { return rhs < *this; }
   Boolean operator>=(const Any &rhs) const { return !(*this < rhs); }
 
-  String str() const;
+  String toString() const;
 
  private:
   void swap(Any &rhs) { std::swap(_holder, rhs._holder); }
@@ -213,7 +214,7 @@ class CORE_API AnyAbstract {
   virtual Boolean operator==(const Any &rhs) const;
   virtual Boolean operator<(const Any &rhs) const;
 
-  virtual String str() const;
+  virtual String toString() const;
 };
 
 }  // namespace gemini

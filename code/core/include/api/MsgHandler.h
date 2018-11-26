@@ -1,9 +1,10 @@
-#ifndef GEMINI_MsgHandler_INCLUDE
-#define GEMINI_MsgHandler_INCLUDE
+#ifndef GEMINI_API_MsgHandler_INCLUDE
+#define GEMINI_API_MsgHandler_INCLUDE
 #include "../../public/Object.h"
 #include "../../public/api/MsgData.h"
 
 namespace gemini {
+namespace api {
 
 class MsgHandler {
  public:
@@ -11,11 +12,11 @@ class MsgHandler {
   virtual ~MsgHandler();
 
   virtual MsgData execute(const MsgData& msg);
-  Boolean format(MsgData& msg, const EntityObject::SPtr& entity);
+  Boolean format(MsgData& msg, const BaseEntity::SPtr& entity);
 
  private:
-  String getValue(const EntityObject::SPtr& entity, const Field* field);
-  Boolean formatJson(MsgData& msg, const EntityObject::SPtr& entity);
+  String getValue(const BaseEntity::SPtr& entity, const Field& field);
+  Boolean formatJson(MsgData& msg, const BaseEntity::SPtr& entity);
 };
 
 class MsgProcessHandler : public MsgHandler {
@@ -30,5 +31,6 @@ class MsgRemoteHandler : public MsgHandler {
   virtual ~MsgRemoteHandler();
 };
 
+}
 }  // namespace gemini
-#endif  // GEMINI_MsgHandler_INCLUDE
+#endif  // GEMINI_API_MsgHandler_INCLUDE

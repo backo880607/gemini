@@ -159,6 +159,9 @@
     <ClInclude Include="..\..\..\..\code\sql\public\MetaColumn.h">
       <Filter>public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\code\sql\include\odbc\ODBCExtractor.h">
+      <Filter>Header Files\odbc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -174,9 +177,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\sql\src\Driver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\sql\src\Extractor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\sql\src\ResultSet.cpp">
@@ -256,6 +256,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCBinder.cpp">
       <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\odbc\ODBCExtractor.cpp">
+      <Filter>Source Files\odbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\sql\src\Extractor.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

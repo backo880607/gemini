@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "Buffer.h"
-#include "session/Subject.h"
+//#include "Session.h"
 #include "tools/LocaleUtil.h"
 #include "tools/StringUtil.h"
 
@@ -12,12 +12,9 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include <iomanip>
-
 namespace gemini {
 
 void StringUtil::to_upper(String& str) {
-  boost::lexical_cast<int>(str.c_str());
   boost::to_upper(str, g_app.getLocale());
 }
 
@@ -68,16 +65,27 @@ Boolean StringUtil::iequals(const Char* str, const Char* test) {
 }
 
 Int StringUtil::compare(const Char* str, const Char* test) {
-  return String(str).compare(test);
+  Char f, l;
+  const Char* dst = str;
+  const Char* src = test;
+  const std::locale& loc = g_app.getLocale();
+  do {
+    f = *dst;
+    l = *src;
+    dst++;
+    src++;
+  } while ((f) && (f == l));
+  return (Int)(f - l);
 }
 
 Int StringUtil::icompare(const Char* str, const Char* test) {
   Char f, l;
   const Char* dst = str;
   const Char* src = test;
+  const std::locale& loc = g_app.getLocale();
   do {
-    f = std::tolower(*dst, g_app.getLocale());
-    l = std::tolower(*src, g_app.getLocale());
+    f = std::tolower(*dst, loc);
+    l = std::tolower(*src, loc);
     dst++;
     src++;
   } while ((f) && (f == l));
@@ -85,8 +93,8 @@ Int StringUtil::icompare(const Char* str, const Char* test) {
 }
 
 String::size_type StringUtil::ifind_first(const Char* str, const Char* test) {
-  boost::algorithm::ifind_first(str, test, g_app.getLocale());
-  return String::size_type();
+  return boost::algorithm::ifind_first(str, test, g_app.getLocale()).begin() -
+         str;
 }
 
 String::size_type StringUtil::ifind_last(const Char* str, const Char* test) {
@@ -94,7 +102,8 @@ String::size_type StringUtil::ifind_last(const Char* str, const Char* test) {
 }
 
 String StringUtil::get_head(const Char* str, const Char* sep) {
-  return String();
+  // const String::size_type pos = boost::find();
+  return "";
 }
 
 String StringUtil::iget_head(const Char* str, const Char* sep) {
@@ -127,9 +136,15 @@ void StringUtil::ierase_first(String& str, const Char* dest) {
   boost::algorithm::ierase_first(str, dest, g_app.getLocale());
 }
 
+String StringUtil::fetch_first(String& str, const Char* sep) {
+  return String();
+}
+
+String StringUtil::fetch_end(String& str, const Char* sep) { return String(); }
+
 const Char* StringUtil::increment(const Char* str) {
   while (*++str != '\0') {
-    if (*str & 0xc0 != 0x80) {
+    if ((*str & 0xc0) != 0x80) {
       break;
     }
   }
@@ -139,7 +154,7 @@ const Char* StringUtil::increment(const Char* str) {
 
 const Char* StringUtil::descending(const Char* str) {
   while (--str) {
-    if (*str & 0xc0 != 0x80) {
+    if ((*str & 0xc0) != 0x80) {
       break;
     }
   }
@@ -177,6 +192,26 @@ String StringUtil::SPrintf(const Char* pFormat, ...) {
   return buffer.begin();
 }
 
+String StringUtil::getField(const Object::SPtr& object, const Field& field) {
+  if (field.getRefKind() != RefKind::None) {
+    const BaseEntity* pObject = (const BaseEntity*)object.rawPointer();
+    if (field.getRefKind() == RefKind::Entity) {
+      BaseEntity::SPtr entity =
+          FieldRefWrapHelper::get(pObject, field.index());
+      return entity.valid() ? format(entity->getID()) : "";
+    }
+    const IList& entities = FieldRefWrapHelper::getList(pObject, field.index());
+    return join(entities, ";",
+                [](BaseEntity::SPtr entity) { return entity->getID(); });
+  }
+  return field.getType()._holder->get(object, field);
+}
+
+void StringUtil::setField(Object::SPtr object, const Field& field,
+                          const Char* value) {
+  field.getType()._holder->set(object, field, value);
+}
+
 std::wstring StringUtil::utf8_to_unicode(const Char* src) {
   return boost::locale::conv::to_utf<wchar_t>(src, "UTF-8");
 }
@@ -186,111 +221,5 @@ String StringUtil::uuid() {
   boost::uuids::uuid u = gen();
   return boost::uuids::to_string(u);
 }
-
-std::ostringstream& getStringOSStream() {
-  Session::SPtr session = Subject::get().getSession();
-  if (session.valid()) {
-    return session->get<LocaleUtil>().getOSS(true);
-  }
-  return g_app.getDefaultLocal()->getOSS(true);
-}
-String StringUtil::formatImpl(Boolean val) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << boost::locale::as::number << val;
-  return ss.str();
-}
-String StringUtil::formatImpl(Short val) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << boost::locale::as::number << val;
-  return ss.str();
-}
-String StringUtil::formatImpl(Int val) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << boost::locale::as::number << val;
-  return ss.str();
-}
-String StringUtil::formatImpl(Long val) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << boost::locale::as::number << val;
-  return ss.str();
-}
-String StringUtil::formatImpl(Float val) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << std::fixed << boost::locale::as::number << val;
-  return ss.str();
-}
-String StringUtil::formatImpl(Double val) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << std::fixed << boost::locale::as::number << val;
-  return ss.str();
-}
-String StringUtil::formatImpl(Char val) { return String(1, val); }
-String StringUtil::formatImpl(Char16 val) {
-  // return val;
-  return "";
-}
-String StringUtil::formatImpl(Char32 val) {
-  // return val;
-  return "";
-}
-String StringUtil::formatImpl(WChar* val) {
-  return boost::locale::conv::utf_to_utf<Char>(val);
-}
-String StringUtil::formatImpl(const WChar* val) {
-  return boost::locale::conv::utf_to_utf<Char>(val);
-}
-String StringUtil::format(Float val, Int precision) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << std::fixed << std::setprecision(precision) << boost::locale::as::number
-     << val;
-  return ss.str();
-}
-String StringUtil::format(Double val, Int precision) {
-  std::ostringstream& ss = getStringOSStream();
-  ss << std::fixed << std::setprecision(precision) << boost::locale::as::number
-     << val;
-  return ss.str();
-}
-
-std::istringstream& getStringISStream(const Char* str) {
-  Session::SPtr session = Subject::get().getSession();
-  if (session.valid()) {
-    return session->get<LocaleUtil>().getISS(str);
-  }
-  return g_app.getDefaultLocal()->getISS(str);
-}
-void StringUtil::convertImpl(Short& val, const Char* str) {
-  std::istringstream& ss = getStringISStream(str);
-  ss >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(Int& val, const Char* str) {
-  std::istringstream& ss = getStringISStream(str);
-  ss >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(Long& val, const Char* str) {
-  std::istringstream& ss = getStringISStream(str);
-  ss >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(Float& val, const Char* str) {
-  std::istringstream& ss = getStringISStream(str);
-  ss >> std::fixed >> boost::locale::as::number >> val;
-}
-void StringUtil::convertImpl(Double& val, const Char* str) {
-  std::istringstream& ss = getStringISStream(str);
-  ss >> std::fixed >> boost::locale::as::number >> val;
-}
-
-void StringUtil::convertImpl(Boolean& val, const Char* str, std::size_t fPos,
-                             std::size_t lPos) {}
-void StringUtil::convertImpl(Short& val, const Char* str, std::size_t fPos,
-                             std::size_t lPos) {}
-void StringUtil::convertImpl(Int& val, const Char* str, std::size_t fPos,
-                             std::size_t lPos) {}
-void StringUtil::convertImpl(Long& val, const Char* str, std::size_t fPos,
-                             std::size_t lPos) {}
-void StringUtil::convertImpl(Float& val, const Char* str, std::size_t fPos,
-                             std::size_t lPos) {}
-void StringUtil::convertImpl(Double& val, const Char* str, std::size_t fPos,
-                             std::size_t lPos) {}
 
 }  // namespace gemini

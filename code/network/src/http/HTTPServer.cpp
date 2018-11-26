@@ -2,6 +2,7 @@
 #include "../../public/http/HTTPServerConnection.h"
 
 namespace gemini {
+namespace network {
 
 HTTPServer::HTTPServer() {}
 
@@ -11,4 +12,5 @@ std::shared_ptr<TCPServerConnection> HTTPServer::createConnection() {
   return std::shared_ptr<TCPServerConnection>(new HTTPServerConnection());
 }
 
+}  // namespace network
 }  // namespace gemini

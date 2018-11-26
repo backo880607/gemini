@@ -6,8 +6,13 @@
 namespace gemini {
 namespace user {
 
-class GEMINI_USER_API Department : public gemini::EntityObject {
-  DECLARE_CLASS(Department, gemini::EntityObject)
+class GEMINI_USER_API Department : public gemini::Entity {
+  DECLARE_CLASS(Department, gemini::Entity)
+
+  DECLARE_FIELD(String, name)
+
+  DECLARE_ENTITY(Department, parent)
+  DECLARE_VECTOR(Department, subordinates)
 };
 
 }  // namespace user

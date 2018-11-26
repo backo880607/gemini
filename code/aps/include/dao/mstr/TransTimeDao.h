@@ -1,6 +1,6 @@
 #ifndef APS_TransTimeDao_INCLUDE
 #define APS_TransTimeDao_INCLUDE
-#include "../../../../sql/public/SQLDao.h"
+#include "../../../../data/public/SQLDao.h"
 
 namespace aps {
 
