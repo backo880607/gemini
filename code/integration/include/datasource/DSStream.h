@@ -1,17 +1,19 @@
-#ifndef GEMINI_INTEGRATION_DSLocaleFile_INCLUDE
-#define GEMINI_INTEGRATION_DSLocaleFile_INCLUDE
+#ifndef GEMINI_INTEGRATION_DSStream_INCLUDE
+#define GEMINI_INTEGRATION_DSStream_INCLUDE
 #include "../../public/DataSource.h"
 
 namespace gemini {
-class File;
 namespace integration {
 
-class DSLocaleFile : public DataSource {
+class DSStream : public DataSource {
  public:
-  DSLocaleFile();
-  ~DSLocaleFile();
+  DSStream();
+  virtual ~DSStream();
 
-  virtual Boolean open(const String &connection) override;
+  virtual Boolean validConnection(const Source::SPtr& source,
+                                  const String& tblName) override;
+  virtual Boolean open(const Source::SPtr& source,
+                       const String& tblName) override;
   virtual void close() override;
 
   virtual Boolean step() override;
@@ -23,7 +25,6 @@ class DSLocaleFile : public DataSource {
   void parseFields();
 
  private:
-  std::shared_ptr<File> _file;
   String::size_type _prevPos;
   String::size_type _curPos;
   String _stream;
@@ -32,4 +33,4 @@ class DSLocaleFile : public DataSource {
 
 }  // namespace integration
 }  // namespace gemini
-#endif  // GEMINI_INTEGRATION_DSLocaleFile_INCLUDE
+#endif  // !GEMINI_INTEGRATION_DSStream_INCLUDE

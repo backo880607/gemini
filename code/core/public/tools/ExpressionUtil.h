@@ -16,7 +16,7 @@ class IExpression {
   virtual const Class* getClass() = 0;
 };
 
-class ExpressionUtil final {
+class CORE_API ExpressionUtil final {
   ExpressionUtil();
 
  public:

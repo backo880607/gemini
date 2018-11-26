@@ -20,10 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{28ACFF10-9DD3-4871-BE43-8E180AF83540}</ProjectGuid>
+    <ProjectGuid>{EEAE328B-704C-4A93-A7BC-F57B17C3EDC0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ImportExport</RootNamespace>
-    <ProjectName>integration</ProjectName>
+    <RootNamespace>platform</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -84,12 +83,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>GEMINI_INTEGRATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../code/core/public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PLATFORM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link />
     <Link>
-      <AdditionalDependencies>core.lib;data.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;data.lib;network.lib;user.lib;integration.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -98,7 +96,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;IMPORTEXPORT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;PLATFORM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,7 +109,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;IMPORTEXPORT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;PLATFORM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -126,7 +124,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;IMPORTEXPORT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;PLATFORM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,61 +134,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\code\integration\bean\FieldInfo.h" />
-    <ClInclude Include="..\..\..\..\code\integration\bean\Project.h" />
-    <ClInclude Include="..\..\..\..\code\integration\bean\Scheme.h" />
-    <ClInclude Include="..\..\..\..\code\integration\bean\Source.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\controller\ProjectController.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\controller\SchemeController.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\controller\SourceController.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\dao\ProjectDao.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\dao\SchemeDao.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\dao\SourceDao.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DataSourceMgr.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSExcelCSV.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSJson.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSLocaleFile.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSStream.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSXML.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\IntegrationError.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\service\ProjectService.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\service\SchemeService.h" />
-    <ClInclude Include="..\..\..\..\code\integration\include\service\SourceService.h" />
-    <ClInclude Include="..\..\..\..\code\integration\public\DataSource.h" />
-    <ClInclude Include="..\..\..\..\code\integration\public\ExportHelper.h" />
-    <ClInclude Include="..\..\..\..\code\integration\public\ImportExport.h" />
-    <ClInclude Include="..\..\..\..\code\integration\public\ImportHelper.h" />
-    <ClInclude Include="..\..\..\..\code\integration\public\service\IProjectService.h" />
-    <ClInclude Include="..\..\..\..\code\integration\public\service\ISchemeService.h" />
-    <ClInclude Include="..\..\..\..\code\integration\public\service\ISourceService.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\code\integration\bean\FieldInfo.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\bean\Project.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\bean\Scheme.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\bean\Source.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\controller\ProjectController.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\controller\SchemeController.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\controller\SourceController.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\dao\ProjectDao.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\dao\SchemeDao.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\dao\SourceDao.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\DataSource.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DataSourceMgr.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSExcelCSV.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSJson.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSLocaleFile.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSStream.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSXML.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\ExportHelper.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\ImportHelper.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\service\ProjectService.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\service\SchemeService.cpp" />
-    <ClCompile Include="..\..\..\..\code\integration\src\service\SourceService.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="ImportExport.cpp" />
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

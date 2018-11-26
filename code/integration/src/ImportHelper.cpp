@@ -1,6 +1,6 @@
 #include "../bean/FieldInfo.h"
 #include "../bean/Scheme.h"
-#include "../include/IEError.h"
+#include "../include/IntegrationError.h"
 #include "../include/datasource/DataSourceMgr.h"
 #include "../public/DataSource.h"
 #include "../public/ImportHelper.h"

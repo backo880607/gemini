@@ -7,8 +7,13 @@ DSJson::DSJson() { setName("json"); }
 
 DSJson::~DSJson() {}
 
-Boolean DSJson::open(const String &connection) {
-  _json.reset(connection.c_str());
+Boolean DSJson::validConnection(const Source::SPtr &source,
+                                const String &tblName) {
+  return true;
+}
+
+Boolean DSJson::open(const Source::SPtr &source, const String &tblName) {
+  //_json.reset(connection.c_str());
   if (!_json.valid()) {
     return false;
   }
@@ -34,8 +39,13 @@ DSJsonFile::DSJsonFile() { setName("jsonFile"); }
 
 DSJsonFile::~DSJsonFile() {}
 
-Boolean DSJsonFile::open(const String &connection) {
-  _jsonFile.reset(new JsonFile(connection));
+Boolean DSJsonFile::validConnection(const Source::SPtr &source,
+                                    const String &tblName) {
+  return true;
+}
+
+Boolean DSJsonFile::open(const Source::SPtr &source, const String &tblName) {
+  //_jsonFile.reset(new JsonFile(connection));
   if (!_jsonFile->valid()) {
     return false;
   }

@@ -1,30 +1,33 @@
-#include "../../include/datasource/DSLocaleFile.h"
-#include "tools/File.h"
+#include "../../include/datasource/DSStream.h"
 
 namespace gemini {
 namespace integration {
 
-DSLocaleFile::DSLocaleFile() : _prevPos(0), _curPos(0) {
-  setName("localeFile");
+DSStream::DSStream() : _prevPos(0), _curPos(0) {
+  setName("stream");
   setMatrix(true);
 }
 
-DSLocaleFile::~DSLocaleFile() {}
+DSStream::~DSStream() {}
 
-Boolean DSLocaleFile::open(const String &connection) {
-  _file.reset(new File(connection.c_str()));
-  return _file->open();
+Boolean DSStream::validConnection(const Source::SPtr& source,
+                                  const String& tblName) {
+  return true;
 }
 
-void DSLocaleFile::close() {
-  _file->close();
+Boolean DSStream::open(const Source::SPtr& source, const String& tblName) {
+  //_stream = connection;
+  return true;
+}
+
+void DSStream::close() {
   _prevPos = 0;
   _curPos = 0;
   _stream.clear();
   _fieldsPos.clear();
 }
 
-Boolean DSLocaleFile::step() {
+Boolean DSStream::step() {
   if (_curPos == String::npos) {
     return false;
   }
@@ -38,18 +41,18 @@ Boolean DSLocaleFile::step() {
   return !_fieldsPos.empty();
 }
 
-String DSLocaleFile::getData(Int index) {
+String DSStream::getData(Int index) {
   const String::size_type fPos =
       index == 0 ? _prevPos : _fieldsPos[index - 1] + _config._sepField.size();
   const String::size_type lPos = _fieldsPos[index];
   return _stream.substr(fPos, lPos - fPos);
 }
 
-Boolean DSLocaleFile::write(const Field *fd, const String &data) {
-  return true;
+Boolean DSStream::write(const Field* fd, const String& data) {
+  return Boolean();
 }
 
-void DSLocaleFile::parseFields() {
+void DSStream::parseFields() {
   _fieldsPos.clear();
   std::size_t fPos = _prevPos;
   const std::size_t sepLen = strlen(_config._sepField.c_str());

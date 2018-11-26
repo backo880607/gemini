@@ -11,7 +11,10 @@ class DSJson : public DataSource {
   DSJson();
   virtual ~DSJson();
 
-  virtual Boolean open(const String &connection) override;
+  virtual Boolean validConnection(const Source::SPtr& source,
+                                  const String& tblName) override;
+  virtual Boolean open(const Source::SPtr& source,
+                       const String& tblName) override;
   virtual void close() override;
 
   virtual Boolean step() override;
@@ -31,7 +34,10 @@ class DSJsonFile : public DSJson {
  public:
   DSJsonFile();
   ~DSJsonFile();
-  virtual Boolean open(const String &connection) override;
+  virtual Boolean validConnection(const Source::SPtr& source,
+                                  const String& tblName) override;
+  virtual Boolean open(const Source::SPtr& source,
+                       const String& tblName) override;
   virtual void close() override;
 
  private:

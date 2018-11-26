@@ -54,85 +54,85 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\bean\FieldInfo.h">
-      <Filter>bean</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\bean\Project.h">
-      <Filter>bean</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\bean\Scheme.h">
-      <Filter>bean</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\bean\Source.h">
-      <Filter>bean</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\public\ImportExport.h">
+    <ClInclude Include="..\..\..\..\code\integration\public\DataSource.h">
       <Filter>public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\public\service\IProjectService.h">
+    <ClInclude Include="..\..\..\..\code\integration\public\ExportHelper.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\integration\public\ImportExport.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\integration\public\ImportHelper.h">
+      <Filter>public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\integration\public\service\IProjectService.h">
       <Filter>public\service</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\public\service\ISchemeService.h">
+    <ClInclude Include="..\..\..\..\code\integration\public\service\ISchemeService.h">
       <Filter>public\service</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\public\service\ISourceService.h">
+    <ClInclude Include="..\..\..\..\code\integration\public\service\ISourceService.h">
       <Filter>public\service</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\service\ProjectService.h">
-      <Filter>Header Files\service</Filter>
+    <ClInclude Include="..\..\..\..\code\integration\bean\FieldInfo.h">
+      <Filter>bean</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\service\SchemeService.h">
-      <Filter>Header Files\service</Filter>
+    <ClInclude Include="..\..\..\..\code\integration\bean\Project.h">
+      <Filter>bean</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\service\SourceService.h">
-      <Filter>Header Files\service</Filter>
+    <ClInclude Include="..\..\..\..\code\integration\bean\Scheme.h">
+      <Filter>bean</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\dao\ProjectDao.h">
-      <Filter>Header Files\dao</Filter>
+    <ClInclude Include="..\..\..\..\code\integration\bean\Source.h">
+      <Filter>bean</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\dao\SchemeDao.h">
-      <Filter>Header Files\dao</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\dao\SourceDao.h">
-      <Filter>Header Files\dao</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\controller\ProjectController.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\controller\ProjectController.h">
       <Filter>Header Files\controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\controller\SchemeController.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\controller\SchemeController.h">
       <Filter>Header Files\controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\controller\SourceController.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\controller\SourceController.h">
       <Filter>Header Files\controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\public\DataSource.h">
-      <Filter>public</Filter>
+    <ClInclude Include="..\..\..\..\code\integration\include\dao\ProjectDao.h">
+      <Filter>Header Files\dao</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\public\ExportHelper.h">
-      <Filter>public</Filter>
+    <ClInclude Include="..\..\..\..\code\integration\include\dao\SchemeDao.h">
+      <Filter>Header Files\dao</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\public\ImportHelper.h">
-      <Filter>public</Filter>
+    <ClInclude Include="..\..\..\..\code\integration\include\dao\SourceDao.h">
+      <Filter>Header Files\dao</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DataSourceMgr.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DataSourceMgr.h">
       <Filter>Header Files\datasource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSExcelCSV.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSExcelCSV.h">
       <Filter>Header Files\datasource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSJson.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSJson.h">
       <Filter>Header Files\datasource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSLocaleFile.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSLocaleFile.h">
       <Filter>Header Files\datasource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSStream.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSStream.h">
       <Filter>Header Files\datasource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\datasource\DSXML.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\datasource\DSXML.h">
       <Filter>Header Files\datasource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\code\ImportExport\include\IEError.h">
+    <ClInclude Include="..\..\..\..\code\integration\include\service\ProjectService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\integration\include\service\SchemeService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\integration\include\service\SourceService.h">
+      <Filter>Header Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\integration\include\IntegrationError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,71 +146,71 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\bean\FieldInfo.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\bean\FieldInfo.cpp">
       <Filter>bean</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\bean\Project.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\bean\Project.cpp">
       <Filter>bean</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\bean\Scheme.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\bean\Scheme.cpp">
       <Filter>bean</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\bean\Source.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\bean\Source.cpp">
       <Filter>bean</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\service\ProjectService.cpp">
-      <Filter>Source Files\service</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\service\SchemeService.cpp">
-      <Filter>Source Files\service</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\service\SourceService.cpp">
-      <Filter>Source Files\service</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\dao\ProjectDao.cpp">
-      <Filter>Source Files\dao</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\dao\SchemeDao.cpp">
-      <Filter>Source Files\dao</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\dao\SourceDao.cpp">
-      <Filter>Source Files\dao</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\controller\ProjectController.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\src\controller\ProjectController.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\controller\SchemeController.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\src\controller\SchemeController.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\controller\SourceController.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\src\controller\SourceController.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\DataSource.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\src\dao\ProjectDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\dao\SchemeDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\dao\SourceDao.cpp">
+      <Filter>Source Files\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DataSourceMgr.cpp">
+      <Filter>Source Files\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSExcelCSV.cpp">
+      <Filter>Source Files\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSJson.cpp">
+      <Filter>Source Files\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSLocaleFile.cpp">
+      <Filter>Source Files\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSStream.cpp">
+      <Filter>Source Files\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\datasource\DSXML.cpp">
+      <Filter>Source Files\datasource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\service\ProjectService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\service\SchemeService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\service\SourceService.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\integration\src\DataSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\ExportHelper.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\src\ExportHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\ImportHelper.cpp">
+    <ClCompile Include="..\..\..\..\code\integration\src\ImportHelper.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DataSourceMgr.cpp">
-      <Filter>Source Files\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSExcelCSV.cpp">
-      <Filter>Source Files\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSJson.cpp">
-      <Filter>Source Files\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSLocaleFile.cpp">
-      <Filter>Source Files\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSStream.cpp">
-      <Filter>Source Files\datasource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\code\ImportExport\src\datasource\DSXML.cpp">
-      <Filter>Source Files\datasource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

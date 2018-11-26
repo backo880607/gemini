@@ -14,7 +14,9 @@ DSExcelCSV::DSExcelCSV() {
 DSExcelCSV::~DSExcelCSV() {}
 
 Boolean DSExcelCSV::validConnection(const Source::SPtr& source,
-                                    const String& tblName) {}
+                                    const String& tblName) {
+  return true;
+}
 
 Boolean DSExcelCSV::open(const Source::SPtr& source, const String& tblName) {
   //_file.reset(new File(connection.c_str()));
